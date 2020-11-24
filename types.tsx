@@ -11,10 +11,10 @@ export type BottomTabParamList = {
   TabSetting: undefined;
 };
 
-export type TabOneParamList = {
+export type TabPracticeParamList = {
   TabPracticeScreen: undefined;
 };
 
-export type TabTwoParamList = {
+export type TabFavoriteParamList = {
   TabFavoriteScreen: undefined;
 };

@@ -6,7 +6,7 @@ import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
-import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
+import { BottomTabParamList, TabPracticeParamList, TabFavoriteParamList } from '../types';
 import BottomTabBarIcon from './BottomTabIcon';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
@@ -30,41 +30,41 @@ export default function BottomTabNavigator() {
         tabBarIcon: (props) => <BottomTabBarIcon route={route} {...props} />,
       })}
     >
-      <BottomTab.Screen name="TabPractice" component={TabOneNavigator} />
-      <BottomTab.Screen name="TabFavorite" component={TabTwoNavigator} />
-      <BottomTab.Screen name="TabAnalysis" component={TabTwoNavigator} />
-      <BottomTab.Screen name="TabDownload" component={TabTwoNavigator} />
-      <BottomTab.Screen name="TabSetting" component={TabTwoNavigator} />
+      <BottomTab.Screen name="TabPractice" component={TabPracticeNavigator} />
+      <BottomTab.Screen name="TabFavorite" component={TabFavoriteNavigator} />
+      <BottomTab.Screen name="TabAnalysis" component={TabFavoriteNavigator} />
+      <BottomTab.Screen name="TabDownload" component={TabFavoriteNavigator} />
+      <BottomTab.Screen name="TabSetting" component={TabFavoriteNavigator} />
     </BottomTab.Navigator>
   );
 }
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
-const TabOneStack = createStackNavigator<TabOneParamList>();
+const TabPracticeStack = createStackNavigator<TabPracticeParamList>();
 
-function TabOneNavigator() {
+function TabPracticeNavigator() {
   return (
-    <TabOneStack.Navigator>
-      <TabOneStack.Screen
-        name="TabOneScreen"
+    <TabPracticeStack.Navigator>
+      <TabPracticeStack.Screen
+        name="TabPracticeScreen"
         component={TabOneScreen}
         options={{ headerTitle: 'Tab One Title' }}
       />
-    </TabOneStack.Navigator>
+    </TabPracticeStack.Navigator>
   );
 }
 
-const TabTwoStack = createStackNavigator<TabTwoParamList>();
+const TabFavoriteStack = createStackNavigator<TabFavoriteParamList>();
 
-function TabTwoNavigator() {
+function TabFavoriteNavigator() {
   return (
-    <TabTwoStack.Navigator>
-      <TabTwoStack.Screen
-        name="TabTwoScreen"
+    <TabFavoriteStack.Navigator>
+      <TabFavoriteStack.Screen
+        name="TabFavoriteScreen"
         component={TabTwoScreen}
         options={{ headerTitle: 'Tab Two Title' }}
       />
-    </TabTwoStack.Navigator>
+    </TabFavoriteStack.Navigator>
   );
 }
