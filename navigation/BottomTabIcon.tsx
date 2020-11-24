@@ -14,22 +14,21 @@ type Props = {
 };
 
 export default function BottomTabBarIcon(props: Props): JSX.Element {
+  const colorScheme = useColorScheme();
   const { route, focused, color } = props;
   const { name } = route;
-  const colorScheme = useColorScheme();
+
+  const textStyle = {
+    color: Colors[colorScheme].tint,
+    fontSize: 12,
+    marginTop: 5,
+  };
 
   return (
     <View style={{ alignItems: 'center' }}>
       <TabBarIcon name={TabBar[name].icon} size={22} color={color} />
       {focused && (
-        <Text
-          weight={700}
-          style={{
-            color: Colors[colorScheme].tint,
-            fontSize: 12,
-            marginTop: 5,
-          }}
-        >
+        <Text weight={700} style={textStyle}>
           {TabBar[name].name}
         </Text>
       )}
