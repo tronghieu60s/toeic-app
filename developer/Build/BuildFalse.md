@@ -1,0 +1,1 @@
+Can Run: expo build:android -c (for reset keystore)
