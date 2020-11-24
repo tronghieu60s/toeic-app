@@ -4,14 +4,17 @@ export type RootStackParamList = {
 };
 
 export type BottomTabParamList = {
-  TabOne: undefined;
-  TabTwo: undefined;
+  TabPractice: undefined;
+  TabFavorite: undefined;
+  TabAnalysis: undefined;
+  TabDownload: undefined;
+  TabSetting: undefined;
 };
 
 export type TabOneParamList = {
-  TabOneScreen: undefined;
+  TabPracticeScreen: undefined;
 };
 
 export type TabTwoParamList = {
-  TabTwoScreen: undefined;
+  TabFavoriteScreen: undefined;
 };
