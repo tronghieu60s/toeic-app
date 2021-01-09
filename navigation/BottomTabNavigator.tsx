@@ -1,18 +1,20 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as React from 'react';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import Ripple from "react-native-material-ripple";
+import Ripple from 'react-native-material-ripple';
+import { useSelector } from 'react-redux';
+import { RootState } from '~/redux/reducers/rootReducer';
 import TabFavoriteNavigator from '~/stacks/TabFavoriteNavigator';
 import TabPracticeNavigator from '~/stacks/TabPracticeNavigator';
 import Colors from '../constants/Colors';
-import useColorScheme from '../hooks/useColorScheme';
 import { BottomTabParamList } from '../types';
 import BottomTabBarIcon from './BottomTabIcon';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
-export default function BottomTabNavigator() {
-  const colorScheme = useColorScheme();
+export default function BottomTabNavigator(): JSX.Element {
+  const colorScheme = useSelector((state: RootState) => state.common.theme);
 
   const tabBarOptions = {
     showLabel: false,

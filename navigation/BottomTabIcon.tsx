@@ -1,11 +1,12 @@
 import { AntDesign } from '@expo/vector-icons';
 import { Route } from '@react-navigation/native';
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { Text, View } from '~/components/Themed';
 import Colors from '~/constants/Colors';
 import TabBar from '~/constants/TabBar';
-import useColorScheme from '~/hooks/useColorScheme';
+import { RootState } from '~/redux/reducers/rootReducer';
 import { BottomTabParamList } from '~/types';
-import { Text, View } from '~/components/Themed';
 
 type Props = {
   route: Route<keyof BottomTabParamList, undefined>;
@@ -14,7 +15,7 @@ type Props = {
 };
 
 export default function BottomTabBarIcon(props: Props): JSX.Element {
-  const colorScheme = useColorScheme();
+  const colorScheme = useSelector((state: RootState) => state.common.theme);
   const { route, focused, color } = props;
   const { name } = route;
 
