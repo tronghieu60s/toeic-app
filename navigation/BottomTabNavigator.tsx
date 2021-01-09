@@ -1,5 +1,6 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as React from 'react';
+// @ts-ignore
 import Ripple from "react-native-material-ripple";
 import TabFavoriteNavigator from '~/stacks/TabFavoriteNavigator';
 import TabPracticeNavigator from '~/stacks/TabPracticeNavigator';

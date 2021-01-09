@@ -1,11 +1,11 @@
 import React from 'react';
-import { createStackNavigator } from "@react-navigation/stack";
+import { createStackNavigator } from '@react-navigation/stack';
 import TabFavoriteScreen from '~/screens/TabFavoriteScreen';
-import { TabFavoriteParamList } from "~/types";
+import { TabFavoriteParamList } from '~/types';
 
 const TabFavoriteStack = createStackNavigator<TabFavoriteParamList>();
 
-export default function TabFavoriteNavigator() {
+export default function TabFavoriteNavigator(): JSX.Element {
   return (
     <TabFavoriteStack.Navigator>
       <TabFavoriteStack.Screen
