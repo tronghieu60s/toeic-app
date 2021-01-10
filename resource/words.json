@@ -1,0 +1,86 @@
+[
+    {
+        "name": "abide by",
+        "pronounce": "/ə'baid bai/",
+        "explain": "to accept and act according to a law, an agreement.",
+        "translate": "(v) (+ by) trung thành với, giữ, tuân theo",
+        "group": "1"
+    },
+    {
+        "name": "agreement",
+        "pronounce": "/ə'gri:mənt/",
+        "explain": "an arrangement, a promise or a contract made with somebody.",
+        "translate": "(n) hợp đồng, thỏa ước, hiệp nghị / sự thỏa thuận",
+        "group": "1"
+    },
+    {
+        "name": "assurance",
+        "pronounce": "/ə'∫ɔ:rəns/",
+        "explain": "a statement that something will certainly be true or will certainly happen.",
+        "translate": "(n) sự cam đoan, bảo đảm, chắc chắn; sự tin chắc, tự tin",
+        "group": "1"
+    },
+    {
+        "name": "cancellation",
+        "pronounce": "/,kænsə'lei∫n/",
+        "explain": "a decision to stop something that has already been arranged from happening.",
+        "translate": "(n) sự hủy bỏ, sự hủy / vé hủy, vé bỏ",
+        "group": "1"
+    },
+    {
+        "name": "determine",
+        "pronounce": "/di'tɜ:min/",
+        "explain": "to discover the facts about something.",
+        "translate": "(v) quyết định, xác định, định rõ; quyết tâm, kiên quyết",
+        "group": "1"
+    },
+    {
+        "name": "engage",
+        "pronounce": "/in'geidʒ/",
+        "explain": "occupy, attract, or involve (someone's interest or attention).",
+        "translate": "(v) tham gia, cam kết / (n) sự hứa hẹn, hứa hôn",
+        "group": "1"
+    },
+    {
+        "name": "establish",
+        "pronounce": "/is'tæbliʃ/",
+        "explain": "to start or create an organization, a system.",
+        "translate": "(v) thiết lập, thành lập; xác minh, chứng minh, củng cố",
+        "group": "1"
+    },
+    {
+        "name": "obligate",
+        "pronounce": "/'ɔbligeit/",
+        "explain": "to bind legally or morally.",
+        "translate": "(v) bắt buộc, ép buộc",
+        "group": "1"
+    },
+    {
+        "name": "party",
+        "pronounce": "/'pɑ:ti/",
+        "explain": "one of the people or groups of people involved in a legal agreemen.",
+        "translate": "(n) đảng, phái, đội, nhóm; người tham dự/tham gia; buổi liên hoan, buổi tiệc",
+        "group": "1"
+    },
+    {
+        "name": "provision",
+        "pronounce": "/prə'viʒn/",
+        "explain": "a condition or an arrangement in a legal document.",
+        "translate": "(n) sự dự liệu, dự trữ, dự phòng, cung cấp; điều khoản",
+        "group": "1"
+    },
+    {
+        "name": "resolve",
+        "pronounce": "/ri'zɔlv/",
+        "explain": "to find an acceptable solution to a problem.",
+        "translate": "(v) giải quyết, (n) sự kiên quyết / sự tin chắc",
+        "group": "1"
+    },
+    {
+        "name": "specific",
+        "pronounce": "/spi'sifik/",
+        "explain": "detailed abd exact.",
+        "translate": "(adj) riêng biệt, cụ thể, đặc trưng; rõ ràng, rành mạch",
+        "group": "1"
+    }
+]

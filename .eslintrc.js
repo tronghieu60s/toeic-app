@@ -22,8 +22,9 @@ module.exports = {
   ],
   rules: {
     'global-require': 'off',
-    'no-use-before-define': 'off',
+    'no-shadow': 'off',
     'no-console': 'off',
+    'no-use-before-define': 'off',
     'object-curly-newline': 'off',
     'import/extensions': 'off',
     'import/no-unresolved': 'off',

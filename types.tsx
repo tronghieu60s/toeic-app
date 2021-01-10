@@ -18,3 +18,11 @@ export type TabPracticeParamList = {
 export type TabFavoriteParamList = {
   TabFavoriteScreen: undefined;
 };
+
+export type GroupType = {
+  [key: string]: {
+    name: string;
+    pronounce: string;
+    image: string;
+  };
+};

@@ -2,7 +2,7 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import TabPracticeScreen from '~/screens/TabPracticeScreen';
 import { TabPracticeParamList } from '~/types';
-import TabPracticeHeaderTitle from '~/components/TabPractice/TabPracticeHeaderTitle';
+import TabPracticeHeaderTitle from '~/components/TabPractice/Header/Title';
 
 const TabPracticeStack = createStackNavigator<TabPracticeParamList>();
 

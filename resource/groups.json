@@ -1,0 +1,52 @@
+{
+    "1": {
+        "name": "Contracts",
+        "pronounce": "/ˈkäntrakt/",
+        "image": "https://i.imgur.com/eyf8Ht9.png"
+    },
+    "2": {
+        "name": "Marketing",
+        "pronounce": "/ˈmärkədiNG/",
+        "image": "https://i.imgur.com/9R4hxR9.png"
+    },
+    "3": {
+        "name": "Warranties",
+        "pronounce": "/ˈwôrən(t)ē/",
+        "image": "https://i.imgur.com/nEztn1a.png"
+    },
+    "4": {
+        "name": "Business Planning",
+        "pronounce": "/ˈbiznəs ˈplaniNG/",
+        "image": "https://i.imgur.com/VidmLag.png"
+    },
+    "5": {
+        "name": "Conferences",
+        "pronounce": "/ˈkänf(ə)rəns/",
+        "image": "https://i.imgur.com/y9r53Mm.png"
+    },
+    "6": {
+        "name": "Computers",
+        "pronounce": "/kəmˈpyo͞odər/",
+        "image": "https://i.imgur.com/ZKxTilT.png"
+    },
+    "7": {
+        "name": "Office Technology",
+        "pronounce": "/ˈôfis,ˈäfis tekˈnäləjē/",
+        "image": "https://i.imgur.com/6rrV9ps.png"
+    },
+    "8": {
+        "name": "Office Procedures",
+        "pronounce": "/ˈôfis,ˈäfis prəˈsējər/",
+        "image": "https://i.imgur.com/unLcaec.png"
+    },
+    "9": {
+        "name": "Electronics",
+        "pronounce": "/əˌlekˈträniks/",
+        "image": "https://i.imgur.com/E38mj27.png"
+    },
+    "10": {
+        "name": "Correspondence",
+        "pronounce": "/ˌkôrəˈspändəns,ˌkärəˈspändəns/",
+        "image": "https://i.imgur.com/ZYmJdH1.png"
+    }
+}
