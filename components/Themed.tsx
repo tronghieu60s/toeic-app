@@ -22,7 +22,7 @@ export function useThemeColor(
 }
 
 type ThemeProps = {
-  weight?: number;
+  weight?: 300 | 400 | 600 | 700 | 800;
   lightColor?: string;
   darkColor?: string;
 };

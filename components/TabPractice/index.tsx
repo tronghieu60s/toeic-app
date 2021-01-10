@@ -10,7 +10,10 @@ type Props = {
   navigation: StackNavigationProp<TabPracticeParamList, 'TabPracticeScreen'>;
 };
 
-const groups: GroupType[string][] = _.values(require('~/resource/groups'));
+const groups: GroupType[string][] = _.map(require('~/resource/groups'), (value, key) => ({
+  key,
+  ...value,
+}));
 
 const TabPractice = memo(({ navigation }: Props) => {
   const renderGroups = (order: number, limit: number) => {
