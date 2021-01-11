@@ -13,12 +13,12 @@ type Props = {
 };
 
 export default function GroupItem({ navigation, group }: Props): JSX.Element {
-  const { key, name, image, pronounce } = group;
+  const { name, image, pronounce } = group;
 
   return (
     <Ripple
       style={styles.group}
-      onPress={() => navigation.navigate('TabPracticeWords', { key: key || '', name, pronounce })}
+      onPress={() => navigation.navigate('TabPracticeWords', { group })}
     >
       <Image source={{ uri: image }} style={styles.groupImage} />
       <Text weight={700} style={styles.groupName}>

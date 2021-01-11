@@ -82,5 +82,89 @@
         "explain": "detailed abd exact.",
         "translate": "(adj) riêng biệt, cụ thể, đặc trưng; rõ ràng, rành mạch",
         "group": "1"
+    },
+    {
+        "name": "attract",
+        "pronounce": "/ə'trækt/",
+        "explain": "to draw by appeal.",
+        "translate": "(v) hấp dẫn, lôi cuốn, thu hút",
+        "group": "2"
+    },
+    {
+        "name": "compare",
+        "pronounce": "/kəm'peə/",
+        "explain": "to examine people or things to see how they are similar and how they are different.",
+        "translate": "(v) so sánh, đối chiếu",
+        "group": "2"
+    },
+    {
+        "name": "competition",
+        "pronounce": "/,kɔmpi'tiʃn/",
+        "explain": "a situation in which people or organizations compete with each other for something that not everyone can have.",
+        "translate": "(v) (sự/cuộc) cạnh tranh, tranh giành, thi đấu",
+        "group": "2"
+    },
+    {
+        "name": "consume",
+        "pronounce": "/kən'sju:m/",
+        "explain": "to use something, especially fuel, engery or time.",
+        "translate": "(v) tiêu thụ, tiêu dùng",
+        "group": "2"
+    },
+    {
+        "name": "convince",
+        "pronounce": "/kən'vins/",
+        "explain": "to make somebody / yourselft believe that something is true.",
+        "translate": "(v) thuyết phục",
+        "group": "2"
+    },
+    {
+        "name": "currently",
+        "pronounce": "/ˈkʌrəntli/",
+        "explain": "at the present time.",
+        "translate": "(adv) hiện thời, hiện nay, lúc này",
+        "group": "2"
+    },
+    {
+        "name": "fad",
+        "pronounce": "/fæd/",
+        "explain": "something that people are interested in for only a short period of time.",
+        "translate": "(n) mốt nhất thời, sự thích thú tạm thời; dở hơi, gàn dở",
+        "group": "2"
+    },
+    {
+        "name": "inspiration",
+        "pronounce": "/,inspə'reiʃn/",
+        "explain": "a thing or person that arouses a feeling.",
+        "translate": "(n) (sự/người/vật) truyền cảm hứng, gây cảm hứng",
+        "group": "2"
+    },
+    {
+        "name": "market",
+        "pronounce": "/'mɑ:kit/",
+        "explain": "to advertise and offer a product for sale.",
+        "translate": "(n) thị trường, chợ, nơi mua bán sản phẩm",
+        "group": "2"
+    },
+    {
+        "name": "persuasion",
+        "pronounce": "/pə'sweiʤn/",
+        "explain": "the power to influence, a deep conviction or belief.",
+        "translate": "(n) (sự) thuyết phục, làm cho tin (chú ý: persuade > convince)",
+        "group": "2"
+    },
+    {
+        "name": "productive",
+        "pronounce": "/prəˈdʌktɪv/",
+        "explain": "making goods or growing crops.",
+        "translate": "(adj) sản xuất, sinh sản; sinh lợi nhiều, có hiệu quả",
+        "group": "2"
+    },
+    {
+        "name": "satisfaction",
+        "pronounce": "/,sætis'fækʃn/",
+        "explain": "the good feeling that you have when you have achieved something.",
+        "translate": "(n) sự làm thỏa mãn, sự hài lòng",
+        "group": "2"
     }
 ]

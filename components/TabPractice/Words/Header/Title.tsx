@@ -1,22 +1,38 @@
 import { RouteProp } from '@react-navigation/native';
+import _ from 'lodash';
 import React, { memo } from 'react';
 import { StyleSheet } from 'react-native';
 import { Text, View } from '~/components/Themed';
-import { TabPracticeParamList } from '~/types';
+import { TabPracticeParamList, WordType } from '~/types';
 
 type Props = {
   route: RouteProp<TabPracticeParamList, 'TabPracticeWords'>;
 };
 
+const allWords: WordType[] = require('~/resource/words');
+
 const TabPracticeWordsHeaderTitle = memo(({ route }: Props) => {
-  const { name, pronounce } = route.params;
+  const { key, name, mean, pronounce } = route.params.group;
+
+  const words: WordType[] = _.filter(allWords, (o) => o.group === key);
 
   return (
     <View>
-      <Text weight={700} style={styles.name}>
-        {name}
+      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+        <Text weight={700} style={styles.name}>
+          {name}
+        </Text>
+        <Text weight={400} style={styles.count}>
+          (0/
+          {words.length}
+          )
+        </Text>
+      </View>
+      <Text style={styles.mean}>
+        {pronounce}
+        {' - '}
+        {mean}
       </Text>
-      <Text style={styles.pronounce}>{pronounce}</Text>
     </View>
   );
 });
@@ -26,9 +42,16 @@ const styles = StyleSheet.create({
     fontSize: 16,
     letterSpacing: 0.7,
   },
-  pronounce: {
+  count: {
+    fontSize: 11,
+    marginLeft: 4,
+    letterSpacing: 1.5,
+    marginTop: 2,
+  },
+  mean: {
     color: '#5e72e4',
-    fontSize: 13,
+    fontSize: 11,
+    textTransform: 'capitalize',
   },
 });
 

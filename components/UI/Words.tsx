@@ -14,8 +14,9 @@ type Props = {
 };
 
 const Words = memo(({ word }: Props) => {
-  const { name, pronounce, explain, translate } = word;
+  const { name, pronounce, translate } = word;
   const dispatch = useDispatch();
+
   return (
     <View style={styles.container}>
       <View style={styles.word}>
@@ -40,9 +41,7 @@ const Words = memo(({ word }: Props) => {
               <MaterialIcons name="volume-up" size={16} color="black" />
             </Ripple>
           </View>
-          <Text style={styles.wordTranslate}>
-            {translate}
-          </Text>
+          <Text style={styles.wordTranslate}>{translate}</Text>
         </View>
         <View style={styles.wordRight}>
           <Ripple

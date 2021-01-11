@@ -1,51 +1,61 @@
 {
     "1": {
         "name": "Contracts",
+        "mean": "hợp đồng",
         "pronounce": "/ˈkäntrakt/",
         "image": "https://i.imgur.com/eyf8Ht9.png"
     },
     "2": {
         "name": "Marketing",
+        "mean": "tiếp thị",
         "pronounce": "/ˈmärkədiNG/",
         "image": "https://i.imgur.com/9R4hxR9.png"
     },
     "3": {
         "name": "Warranties",
+        "mean": "bảo hành",
         "pronounce": "/ˈwôrən(t)ē/",
         "image": "https://i.imgur.com/nEztn1a.png"
     },
     "4": {
         "name": "Business Planning",
+        "mean": "kế hoạch kinh doanh",
         "pronounce": "/ˈbiznəs ˈplaniNG/",
         "image": "https://i.imgur.com/VidmLag.png"
     },
     "5": {
         "name": "Conferences",
+        "mean": "hội nghị",
         "pronounce": "/ˈkänf(ə)rəns/",
         "image": "https://i.imgur.com/y9r53Mm.png"
     },
     "6": {
         "name": "Computers",
+        "mean": "máy vi tính",
         "pronounce": "/kəmˈpyo͞odər/",
         "image": "https://i.imgur.com/ZKxTilT.png"
     },
     "7": {
         "name": "Office Technology",
+        "mean": "công nghệ văn phòng",
         "pronounce": "/ˈôfis,ˈäfis tekˈnäləjē/",
         "image": "https://i.imgur.com/6rrV9ps.png"
     },
     "8": {
         "name": "Office Procedures",
+        "mean": "thủ tục văn phòng",
         "pronounce": "/ˈôfis,ˈäfis prəˈsējər/",
         "image": "https://i.imgur.com/unLcaec.png"
     },
     "9": {
         "name": "Electronics",
+        "mean": "thiết bị điện tử",
         "pronounce": "/əˌlekˈträniks/",
         "image": "https://i.imgur.com/E38mj27.png"
     },
     "10": {
         "name": "Correspondence",
+        "mean": "thư tín",
         "pronounce": "/ˌkôrəˈspändəns,ˌkärəˈspändəns/",
         "image": "https://i.imgur.com/ZYmJdH1.png"
     }

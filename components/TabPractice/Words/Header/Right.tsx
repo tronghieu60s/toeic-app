@@ -1,4 +1,5 @@
-import { AntDesign, FontAwesome } from '@expo/vector-icons';
+import { AntDesign, FontAwesome, SimpleLineIcons } from '@expo/vector-icons';
+import { Entypo } from '@expo/vector-icons'; 
 import React, { memo, useState } from 'react';
 import { StyleSheet } from 'react-native';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -16,17 +17,17 @@ const TabPracticeWordsHeaderRight = memo(() => {
         style={styles.button}
         rippleCentered
         rippleContainerBorderRadius={50}
-        //onPress={() => dispatch(lessonsRandomSwitch(!lessonsRandom))}
+        //onPress={() => dispatch(lessonsFavoriteSwitch(!showFavorite))}
       >
-        <FontAwesome name="random" size={20} color="#5e72e4" />
+        <SimpleLineIcons name="graduation" size={22} color="black" />
       </Ripple>
       <Ripple
         style={styles.button}
         rippleCentered
         rippleContainerBorderRadius={50}
-        //onPress={() => dispatch(lessonsFavoriteSwitch(!showFavorite))}
+        //onPress={() => dispatch(lessonsRandomSwitch(!lessonsRandom))}
       >
-        <AntDesign name="heart" size={20} color="#f5365c" />
+        <Entypo name="time-slot" size={18} color="black" />
       </Ripple>
       <Ripple
         style={styles.button}

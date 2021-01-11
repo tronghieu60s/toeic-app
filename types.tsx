@@ -14,9 +14,7 @@ export type BottomTabParamList = {
 export type TabPracticeParamList = {
   TabPracticeScreen: undefined;
   TabPracticeWords: {
-    key: string;
-    name: string;
-    pronounce: string;
+    group: GroupType[string];
   };
 };
 
@@ -28,6 +26,7 @@ export type GroupType = {
   [key: string]: {
     key?: string;
     name: string;
+    mean: string;
     pronounce: string;
     image: string;
   };

@@ -1,9 +1,10 @@
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import _ from 'lodash';
-import React, { memo } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
-import { Text } from '~/components/Themed';
+import React, { memo, useEffect, useState } from 'react';
+import { ActivityIndicator, StyleSheet, View } from 'react-native';
+import { ScrollView } from '~/components/Themed';
+import Center from '~/components/UI/Center';
 import Words from '~/components/UI/Words';
 import { TabPracticeParamList, WordType } from '~/types';
 
@@ -12,17 +13,35 @@ type Props = {
   navigation: StackNavigationProp<TabPracticeParamList, 'TabPracticeWords'>;
 };
 
-const allWords: WordType[] = require('~/resource/words');
-
 const TabPracticeWords = memo(({ route, navigation }: Props) => {
-  const { key, name } = route.params;
-  const words: WordType[] = _.filter(allWords, (o) => o.group === key);
+  const { key } = route.params.group;
+  const [loadWords, setLoadWords] = useState(false);
+  const [words, setWords] = useState<WordType[]>([]);
+
+  useEffect(() => {
+    const allWords: WordType[] = require('~/resource/words');
+    const words: WordType[] = _.filter(allWords, (o) => o.group === key);
+    setWords(words);
+    setLoadWords(true);
+  }, []);
 
   const renderWords = () => {
     let result: React.ReactNode = null;
     result = words.map((word) => <Words key={word.name} word={word} />);
     return result;
   };
+
+  if (words.length <= 0 && !loadWords) {
+    return (
+      <Center>
+        <ActivityIndicator size="small" color="#0000ff" />
+      </Center>
+    );
+  }
+
+  if (words.length <= 0 && loadWords) {
+    return <Center>Bài học này đang cập nhật. Vui lòng quay lại sau.</Center>;
+  }
 
   return (
     <View style={styles.container}>
