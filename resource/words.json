@@ -3,168 +3,168 @@
         "name": "abide by",
         "pronounce": "/ə'baid bai/",
         "explain": "to accept and act according to a law, an agreement.",
-        "translate": "(v) (+ by) trung thành với, giữ, tuân theo",
+        "mean": "(v) (+ by) trung thành với, giữ, tuân theo",
         "group": "1"
     },
     {
         "name": "agreement",
         "pronounce": "/ə'gri:mənt/",
         "explain": "an arrangement, a promise or a contract made with somebody.",
-        "translate": "(n) hợp đồng, thỏa ước, hiệp nghị / sự thỏa thuận",
+        "mean": "(n) hợp đồng, thỏa ước, hiệp nghị / sự thỏa thuận",
         "group": "1"
     },
     {
         "name": "assurance",
         "pronounce": "/ə'∫ɔ:rəns/",
         "explain": "a statement that something will certainly be true or will certainly happen.",
-        "translate": "(n) sự cam đoan, bảo đảm, chắc chắn; sự tin chắc, tự tin",
+        "mean": "(n) sự cam đoan, bảo đảm, chắc chắn; sự tin chắc, tự tin",
         "group": "1"
     },
     {
         "name": "cancellation",
         "pronounce": "/,kænsə'lei∫n/",
         "explain": "a decision to stop something that has already been arranged from happening.",
-        "translate": "(n) sự hủy bỏ, sự hủy / vé hủy, vé bỏ",
+        "mean": "(n) sự hủy bỏ, sự hủy / vé hủy, vé bỏ",
         "group": "1"
     },
     {
         "name": "determine",
         "pronounce": "/di'tɜ:min/",
         "explain": "to discover the facts about something.",
-        "translate": "(v) quyết định, xác định, định rõ; quyết tâm, kiên quyết",
+        "mean": "(v) quyết định, xác định, định rõ; quyết tâm, kiên quyết",
         "group": "1"
     },
     {
         "name": "engage",
         "pronounce": "/in'geidʒ/",
         "explain": "occupy, attract, or involve (someone's interest or attention).",
-        "translate": "(v) tham gia, cam kết / (n) sự hứa hẹn",
+        "mean": "(v) tham gia, cam kết / (n) sự hứa hẹn",
         "group": "1"
     },
     {
         "name": "establish",
         "pronounce": "/is'tæbliʃ/",
         "explain": "to start or create an organization, a system.",
-        "translate": "(v) thiết lập, thành lập; xác minh, chứng minh, củng cố",
+        "mean": "(v) thiết lập, thành lập; xác minh, chứng minh, củng cố",
         "group": "1"
     },
     {
         "name": "obligate",
         "pronounce": "/'ɔbligeit/",
         "explain": "to bind legally or morally.",
-        "translate": "(v) bắt buộc, ép buộc",
+        "mean": "(v) bắt buộc, ép buộc",
         "group": "1"
     },
     {
         "name": "party",
         "pronounce": "/'pɑ:ti/",
         "explain": "one of the people or groups of people involved in a legal agreemen.",
-        "translate": "(n) đảng, phái, đội, nhóm; người tham dự/tham gia;",
+        "mean": "(n) đảng, phái, đội, nhóm; người tham dự/tham gia;",
         "group": "1"
     },
     {
         "name": "provision",
         "pronounce": "/prə'viʒn/",
         "explain": "a condition or an arrangement in a legal document.",
-        "translate": "(n) sự dự liệu, dự trữ, dự phòng, cung cấp; điều khoản",
+        "mean": "(n) sự dự liệu, dự trữ, dự phòng, cung cấp; điều khoản",
         "group": "1"
     },
     {
         "name": "resolve",
         "pronounce": "/ri'zɔlv/",
         "explain": "to find an acceptable solution to a problem.",
-        "translate": "(v) giải quyết, (n) sự kiên quyết / sự tin chắc",
+        "mean": "(v) giải quyết, (n) sự kiên quyết / sự tin chắc",
         "group": "1"
     },
     {
         "name": "specific",
         "pronounce": "/spi'sifik/",
         "explain": "detailed abd exact.",
-        "translate": "(adj) riêng biệt, cụ thể, đặc trưng; rõ ràng, rành mạch",
+        "mean": "(adj) riêng biệt, cụ thể, đặc trưng; rõ ràng, rành mạch",
         "group": "1"
     },
     {
         "name": "attract",
         "pronounce": "/ə'trækt/",
         "explain": "to draw by appeal.",
-        "translate": "(v) hấp dẫn, lôi cuốn, thu hút",
+        "mean": "(v) hấp dẫn, lôi cuốn, thu hút",
         "group": "2"
     },
     {
         "name": "compare",
         "pronounce": "/kəm'peə/",
         "explain": "to examine people or things to see how they are similar and how they are different.",
-        "translate": "(v) so sánh, đối chiếu",
+        "mean": "(v) so sánh, đối chiếu",
         "group": "2"
     },
     {
         "name": "competition",
         "pronounce": "/,kɔmpi'tiʃn/",
         "explain": "a situation in which people or organizations compete with each other for something that not everyone can have.",
-        "translate": "(v) (sự/cuộc) cạnh tranh, tranh giành, thi đấu",
+        "mean": "(v) (sự/cuộc) cạnh tranh, tranh giành, thi đấu",
         "group": "2"
     },
     {
         "name": "consume",
         "pronounce": "/kən'sju:m/",
         "explain": "to use something, especially fuel, engery or time.",
-        "translate": "(v) tiêu thụ, tiêu dùng",
+        "mean": "(v) tiêu thụ, tiêu dùng",
         "group": "2"
     },
     {
         "name": "convince",
         "pronounce": "/kən'vins/",
         "explain": "to make somebody / yourselft believe that something is true.",
-        "translate": "(v) thuyết phục",
+        "mean": "(v) thuyết phục",
         "group": "2"
     },
     {
         "name": "currently",
         "pronounce": "/ˈkʌrəntli/",
         "explain": "at the present time.",
-        "translate": "(adv) hiện thời, hiện nay, lúc này",
+        "mean": "(adv) hiện thời, hiện nay, lúc này",
         "group": "2"
     },
     {
         "name": "fad",
         "pronounce": "/fæd/",
         "explain": "something that people are interested in for only a short period of time.",
-        "translate": "(n) mốt nhất thời, sự thích thú tạm thời; dở hơi, gàn dở",
+        "mean": "(n) mốt nhất thời, sự thích thú tạm thời; dở hơi, gàn dở",
         "group": "2"
     },
     {
         "name": "inspiration",
         "pronounce": "/,inspə'reiʃn/",
         "explain": "a thing or person that arouses a feeling.",
-        "translate": "(n) (sự/người/vật) truyền cảm hứng, gây cảm hứng",
+        "mean": "(n) (sự/người/vật) truyền cảm hứng, gây cảm hứng",
         "group": "2"
     },
     {
         "name": "market",
         "pronounce": "/'mɑ:kit/",
         "explain": "to advertise and offer a product for sale.",
-        "translate": "(n) thị trường, chợ, nơi mua bán sản phẩm",
+        "mean": "(n) thị trường, chợ, nơi mua bán sản phẩm",
         "group": "2"
     },
     {
         "name": "persuasion",
         "pronounce": "/pə'sweiʤn/",
         "explain": "the power to influence, a deep conviction or belief.",
-        "translate": "(n) (sự) thuyết phục, làm cho tin (chú ý: persuade > convince)",
+        "mean": "(n) (sự) thuyết phục, làm cho tin (chú ý: persuade > convince)",
         "group": "2"
     },
     {
         "name": "productive",
         "pronounce": "/prəˈdʌktɪv/",
         "explain": "making goods or growing crops.",
-        "translate": "(adj) sản xuất, sinh sản; sinh lợi nhiều, có hiệu quả",
+        "mean": "(adj) sản xuất, sinh sản; sinh lợi nhiều, có hiệu quả",
         "group": "2"
     },
     {
         "name": "satisfaction",
         "pronounce": "/,sætis'fækʃn/",
         "explain": "the good feeling that you have when you have achieved something.",
-        "translate": "(n) sự làm thỏa mãn, sự hài lòng",
+        "mean": "(n) sự làm thỏa mãn, sự hài lòng",
         "group": "2"
     }
 ]

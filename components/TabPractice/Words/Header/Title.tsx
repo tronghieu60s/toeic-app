@@ -1,6 +1,6 @@
 import { RouteProp } from '@react-navigation/native';
 import _ from 'lodash';
-import React, { memo } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { Text, View } from '~/components/Themed';
 import { TabPracticeParamList, WordType } from '~/types';
@@ -9,12 +9,15 @@ type Props = {
   route: RouteProp<TabPracticeParamList, 'TabPracticeWords'>;
 };
 
-const allWords: WordType[] = require('~/resource/words');
-
 const TabPracticeWordsHeaderTitle = memo(({ route }: Props) => {
   const { key, name, mean, pronounce } = route.params.group;
+  const [words, setWords] = useState<WordType[]>([]);
 
-  const words: WordType[] = _.filter(allWords, (o) => o.group === key);
+  useEffect(() => {
+    const allWords: WordType[] = require('~/resource/words');
+    const words: WordType[] = _.filter(allWords, (o) => o.group === key);
+    setWords(words);
+  }, []);
 
   return (
     <View>

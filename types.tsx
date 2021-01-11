@@ -36,6 +36,6 @@ export type WordType = {
   name: string;
   pronounce: string;
   explain: string;
-  translate: string;
+  mean: string;
   group: string;
 };

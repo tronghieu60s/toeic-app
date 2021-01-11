@@ -1,8 +1,10 @@
 import React, { memo } from 'react';
 import { Modal, StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Text, View } from '~/components/Themed';
 import Switch from '~/components/UI/Switch';
+import { toggleMean, togglePronounce, toggleWord } from '~/redux/actions/commonAction';
+import { RootState } from '~/redux/reducers/rootReducer';
 
 type Props = {
   modalVisible: boolean;
@@ -11,6 +13,9 @@ type Props = {
 
 const TabPracticeWordsHeaderModal = memo(({ modalVisible, setModalVisible }: Props) => {
   const dispatch = useDispatch();
+  const { visibleWord, visibleMean, visiblePronounce } = useSelector(
+    (state: RootState) => state.common,
+  );
 
   return (
     <Modal
@@ -30,22 +35,22 @@ const TabPracticeWordsHeaderModal = memo(({ modalVisible, setModalVisible }: Pro
               Cài Đặt Hiển Thị
             </Text>
             <Switch
-              name="Hiển Thị Phiên Âm"
-              description="Hiển thị phiên âm cách đọc của từ vựng."
-              //value={lessonsSpelling}
-              //onValueChange={(value) => dispatch(lessonsSpellingSwitch(value))}
+              name="Hiển Thị Từ Vựng"
+              description="Hiển thị đầy đủ từ vựng."
+              value={visibleWord}
+              onValueChange={() => dispatch(toggleWord())}
             />
             <Switch
-              name="Hiển Thị Nghĩa Tiếng Anh"
-              description="Hiển thị giải thích nghĩa bằng Tiếng Anh."
-              //   value={lessonsEnglish}
-              //   onValueChange={(value) => dispatch(lessonsEnglishSwitch(value))}
+              name="Hiển Thị Phiên Âm"
+              description="Hiển thị phiên âm cách đọc của từ vựng."
+              value={visiblePronounce}
+              onValueChange={() => dispatch(togglePronounce())}
             />
             <Switch
               name="Hiển Thị Nghĩa"
-              description="Hiển thị nghĩa Tiếng Việt của từ vựng."
-              //   value={lessonsTranslate}
-              //   onValueChange={(value) => dispatch(lessonsTranslateSwitch(value))}
+              description="Hiển thị nghĩa của từ vựng."
+              value={visibleMean}
+              onValueChange={() => dispatch(toggleMean())}
             />
           </View>
         </TouchableWithoutFeedback>

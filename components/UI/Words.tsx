@@ -5,7 +5,8 @@ import { Image, StyleSheet } from 'react-native';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import Ripple from 'react-native-material-ripple';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '~/redux/reducers/rootReducer';
 import { WordType } from '~/types';
 import { Text, View } from '../Themed';
 
@@ -14,24 +15,30 @@ type Props = {
 };
 
 const Words = memo(({ word }: Props) => {
-  const { name, pronounce, translate } = word;
-  const dispatch = useDispatch();
+  const { name, pronounce, mean } = word;
+  const { visibleWord, visibleMean, visiblePronounce } = useSelector(
+    (state: RootState) => state.common,
+  );
 
   return (
     <View style={styles.container}>
       <View style={styles.word}>
         <View style={styles.wordLeft}>
-          <Image style={styles.flash} source={require('~/assets/images/lightbulb-1.png')} />
+          <Image style={styles.flash} source={require('~/assets/images/lightbulb-0.png')} />
         </View>
         <View style={styles.wordCenter}>
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-            <Text weight={700} style={styles.wordName}>
-              {name}
-            </Text>
-            <Text weight={600} style={styles.wordSpelling}>
-              {' '}
-              {pronounce}
-            </Text>
+            {visibleWord && (
+              <Text weight={700} style={styles.wordName}>
+                {name}
+              </Text>
+            )}
+            {visiblePronounce && (
+              <Text weight={600} style={styles.wordSpelling}>
+                {' '}
+                {pronounce}
+              </Text>
+            )}
             <Ripple
               rippleCentered
               rippleContainerBorderRadius={50}
@@ -41,15 +48,10 @@ const Words = memo(({ word }: Props) => {
               <MaterialIcons name="volume-up" size={16} color="black" />
             </Ripple>
           </View>
-          <Text style={styles.wordTranslate}>{translate}</Text>
+          {visibleMean && <Text style={styles.wordMean}>{mean}</Text>}
         </View>
         <View style={styles.wordRight}>
-          <Ripple
-            rippleCentered
-            rippleContainerBorderRadius={50}
-            style={styles.icon}
-            //onPress={() => dispatch(switchFavorites(lessonName, key || ''))}
-          >
+          <Ripple rippleCentered rippleContainerBorderRadius={50} style={styles.icon}>
             <Image style={styles.flash} source={require('~/assets/images/flash.png')} />
           </Ripple>
         </View>
@@ -91,7 +93,7 @@ const styles = StyleSheet.create({
   wordSpelling: {
     color: '#888',
   },
-  wordTranslate: {
+  wordMean: {
     fontSize: 14,
   },
   flash: {
