@@ -12,7 +12,7 @@ type Props = {
   onValueChange: () => void;
 };
 
-const SwitchCustom = memo((props: Props) => {
+const SwitchUI = memo((props: Props) => {
   const { name, description, value, onValueChange } = props;
 
   return (
@@ -58,4 +58,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SwitchCustom;
+export default SwitchUI;

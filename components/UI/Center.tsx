@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Text, View } from '../Themed';
 
-export default function Center({ children }: { children: React.ReactNode }): JSX.Element {
+export default function CenterUI({ children }: { children: React.ReactNode }): JSX.Element {
   return (
     <View style={styles.container}>
       <Text style={{ fontSize: 13 }}>{children}</Text>

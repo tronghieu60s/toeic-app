@@ -4,9 +4,9 @@ import _ from 'lodash';
 import React, { memo, useEffect, useState } from 'react';
 import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import { ScrollView } from '~/components/Themed';
-import Center from '~/components/UI/Center';
-import Words from '~/components/UI/Words';
+import CenterUI from '~/components/UI/Center';
 import { TabPracticeParamList, WordType } from '~/types';
+import TabPracticeWordItem from './Word';
 
 type Props = {
   route: RouteProp<TabPracticeParamList, 'TabPracticeWords'>;
@@ -27,20 +27,22 @@ const TabPracticeWords = memo(({ route, navigation }: Props) => {
 
   const renderWords = () => {
     let result: React.ReactNode = null;
-    result = words.map((word) => <Words key={word.name} word={word} />);
+    result = words.map((word) => (
+      <TabPracticeWordItem key={word.name} word={word} navigation={navigation} />
+    ));
     return result;
   };
 
   if (words.length <= 0 && !loadWords) {
     return (
-      <Center>
+      <CenterUI>
         <ActivityIndicator size="small" color="#0000ff" />
-      </Center>
+      </CenterUI>
     );
   }
 
   if (words.length <= 0 && loadWords) {
-    return <Center>Bài học này đang cập nhật. Vui lòng quay lại sau.</Center>;
+    return <CenterUI>Bài học này đang cập nhật. Vui lòng quay lại sau.</CenterUI>;
   }
 
   return (

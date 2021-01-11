@@ -27,8 +27,7 @@ const TabPracticeWordsHeaderTitle = memo(({ route }: Props) => {
         </Text>
         <Text weight={400} style={styles.count}>
           (0/
-          {words.length}
-          )
+          {words.length})
         </Text>
       </View>
       <Text style={styles.mean}>
@@ -54,7 +53,6 @@ const styles = StyleSheet.create({
   mean: {
     color: '#5e72e4',
     fontSize: 11,
-    textTransform: 'capitalize',
   },
 });
 

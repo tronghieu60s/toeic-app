@@ -1,20 +1,23 @@
 import { MaterialIcons } from '@expo/vector-icons';
+import { StackNavigationProp } from '@react-navigation/stack';
 import * as Speech from 'expo-speech';
 import React, { memo } from 'react';
 import { Image, StyleSheet } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import Ripple from 'react-native-material-ripple';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { RootState } from '~/redux/reducers/rootReducer';
-import { WordType } from '~/types';
-import { Text, View } from '../Themed';
+import { TabPracticeParamList, WordType } from '~/types';
+import { Text, View } from '../../Themed';
 
 type Props = {
   word: WordType;
+  navigation: StackNavigationProp<TabPracticeParamList, 'TabPracticeWords'>;
 };
 
-const Words = memo(({ word }: Props) => {
+const TabPracticeWordItem = memo(({ word, navigation }: Props) => {
   const { name, pronounce, mean } = word;
   const { visibleWord, visibleMean, visiblePronounce } = useSelector(
     (state: RootState) => state.common,
@@ -29,9 +32,13 @@ const Words = memo(({ word }: Props) => {
         <View style={styles.wordCenter}>
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
             {visibleWord && (
-              <Text weight={700} style={styles.wordName}>
-                {name}
-              </Text>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('TabPracticeWordDetails', { word })}
+              >
+                <Text weight={700} style={styles.wordName}>
+                  {name}
+                </Text>
+              </TouchableOpacity>
             )}
             {visiblePronounce && (
               <Text weight={600} style={styles.wordSpelling}>
@@ -43,7 +50,7 @@ const Words = memo(({ word }: Props) => {
               rippleCentered
               rippleContainerBorderRadius={50}
               style={{ padding: 3 }}
-              onPress={() => Speech.speak(name, { language: 'en-US' })}
+              onPress={() => Speech.speak(name, { language: 'en' })}
             >
               <MaterialIcons name="volume-up" size={16} color="black" />
             </Ripple>
@@ -62,7 +69,6 @@ const Words = memo(({ word }: Props) => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: 15,
     marginHorizontal: 10,
     marginVertical: 5,
     borderRadius: 10,
@@ -79,6 +85,7 @@ const styles = StyleSheet.create({
   },
   wordCenter: {
     flex: 8,
+    paddingVertical: 15,
     justifyContent: 'center',
   },
   wordRight: {
@@ -105,4 +112,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Words;
+export default TabPracticeWordItem;

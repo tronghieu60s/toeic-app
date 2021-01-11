@@ -16,6 +16,9 @@ export type TabPracticeParamList = {
   TabPracticeWords: {
     group: GroupType[string];
   };
+  TabPracticeWordDetails: {
+    word: WordType;
+  };
 };
 
 export type TabFavoriteParamList = {
