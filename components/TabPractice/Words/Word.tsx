@@ -2,8 +2,8 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { StackNavigationProp } from '@react-navigation/stack';
 import * as Speech from 'expo-speech';
 import React, { memo } from 'react';
-import { Image, StyleSheet } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { TouchableOpacity, Image, StyleSheet } from 'react-native';
+import { TouchableNativeFeedback } from 'react-native-gesture-handler';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import Ripple from 'react-native-material-ripple';
@@ -19,9 +19,7 @@ type Props = {
 
 const TabPracticeWordItem = memo(({ word, navigation }: Props) => {
   const { name, pronounce, mean } = word;
-  const { visibleWord, visibleMean, visiblePronounce } = useSelector(
-    (state: RootState) => state.common,
-  );
+  const { visibleMean, visiblePronounce } = useSelector((state: RootState) => state.common);
 
   return (
     <View style={styles.container}>
@@ -31,29 +29,25 @@ const TabPracticeWordItem = memo(({ word, navigation }: Props) => {
         </View>
         <View style={styles.wordCenter}>
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-            {visibleWord && (
-              <TouchableOpacity
-                onPress={() => navigation.navigate('TabPracticeWordDetails', { word })}
-              >
-                <Text weight={700} style={styles.wordName}>
-                  {name}
-                </Text>
-              </TouchableOpacity>
-            )}
+            <TouchableOpacity
+              onPress={() => navigation.navigate('TabPracticeWordDetails', { word })}
+            >
+              <Text weight={700} style={styles.wordName}>
+                {name}
+              </Text>
+            </TouchableOpacity>
             {visiblePronounce && (
               <Text weight={600} style={styles.wordSpelling}>
                 {' '}
                 {pronounce}
               </Text>
             )}
-            <Ripple
-              rippleCentered
-              rippleContainerBorderRadius={50}
+            <TouchableNativeFeedback
               style={{ padding: 3 }}
               onPress={() => Speech.speak(name, { language: 'en' })}
             >
               <MaterialIcons name="volume-up" size={16} color="black" />
-            </Ripple>
+            </TouchableNativeFeedback>
           </View>
           {visibleMean && <Text style={styles.wordMean}>{mean}</Text>}
         </View>

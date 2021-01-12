@@ -3,7 +3,7 @@ import { Modal, StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'r
 import { useDispatch, useSelector } from 'react-redux';
 import { Text, View } from '~/components/Themed';
 import Switch from '~/components/UI/Switch';
-import { toggleMean, togglePronounce, toggleWord } from '~/redux/actions/commonAction';
+import { toggleMean, togglePronounce } from '~/redux/actions/commonAction';
 import { RootState } from '~/redux/reducers/rootReducer';
 
 type Props = {
@@ -13,7 +13,7 @@ type Props = {
 
 const TabPracticeWordsHeaderModal = memo(({ modalVisible, setModalVisible }: Props) => {
   const dispatch = useDispatch();
-  const { visibleWord, visibleMean, visiblePronounce } = useSelector(
+  const { visibleMean, visiblePronounce } = useSelector(
     (state: RootState) => state.common,
   );
 
@@ -34,12 +34,6 @@ const TabPracticeWordsHeaderModal = memo(({ modalVisible, setModalVisible }: Pro
             <Text weight={600} style={styles.modalText}>
               Cài Đặt Hiển Thị
             </Text>
-            <Switch
-              name="Hiển Thị Từ Vựng"
-              description="Hiển thị đầy đủ từ vựng."
-              value={visibleWord}
-              onValueChange={() => dispatch(toggleWord())}
-            />
             <Switch
               name="Hiển Thị Phiên Âm"
               description="Hiển thị phiên âm cách đọc của từ vựng."

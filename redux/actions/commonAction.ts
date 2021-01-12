@@ -1,5 +1,4 @@
 export const TOGGLE_THEME = 'TOGGLE_THEME';
-export const TOGGLE_WORD = 'TOGGLE_WORD';
 export const TOGGLE_MEAN = 'TOGGLE_MEAN';
 export const TOGGLE_PRONOUNCE = 'TOGGLE_PRONOUNCE';
 
@@ -11,10 +10,6 @@ export type CommonAction = {
 
 export const toggleTheme = (): CommonAction => ({
   type: TOGGLE_THEME,
-});
-
-export const toggleWord = (): CommonAction => ({
-  type: TOGGLE_WORD,
 });
 
 export const toggleMean = (): CommonAction => ({

@@ -1,5 +1,5 @@
 import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
+import { CardStyleInterpolators, createStackNavigator, TransitionSpecs } from '@react-navigation/stack';
 import TabPracticeScreen from '~/screens/TabPracticeScreen';
 import { TabPracticeParamList } from '~/types';
 import TabPracticeHeaderTitle from '~/components/TabPractice/Header/Title';
@@ -13,7 +13,11 @@ const TabPracticeStack = createStackNavigator<TabPracticeParamList>();
 
 export default function TabPracticeNavigator(): JSX.Element {
   return (
-    <TabPracticeStack.Navigator>
+    <TabPracticeStack.Navigator
+      screenOptions={{
+        cardStyleInterpolator: CardStyleInterpolators.forModalPresentationIOS,
+      }}
+    >
       <TabPracticeStack.Screen
         name="TabPracticeScreen"
         component={TabPracticeScreen}

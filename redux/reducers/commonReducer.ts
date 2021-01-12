@@ -1,15 +1,19 @@
-import { CommonAction, ThemeType, TOGGLE_MEAN, TOGGLE_PRONOUNCE, TOGGLE_THEME, TOGGLE_WORD } from '../actions/commonAction';
+import {
+  CommonAction,
+  ThemeType,
+  TOGGLE_MEAN,
+  TOGGLE_PRONOUNCE,
+  TOGGLE_THEME,
+} from '../actions/commonAction';
 
 type CommonState = {
   theme: ThemeType;
-  visibleWord: boolean;
   visibleMean: boolean;
   visiblePronounce: boolean;
 };
 
 const commonInitialState: CommonState = {
   theme: 'light',
-  visibleWord: true,
   visibleMean: true,
   visiblePronounce: true,
 };
@@ -19,9 +23,6 @@ const common = (state = commonInitialState, action: CommonAction): CommonState =
     case TOGGLE_THEME: {
       const theme: ThemeType = state.theme === 'light' ? 'dark' : 'light';
       return { ...state, theme };
-    }
-    case TOGGLE_WORD: {
-      return { ...state, visibleWord: !state.visibleWord };
     }
     case TOGGLE_MEAN: {
       return { ...state, visibleMean: !state.visibleMean };
