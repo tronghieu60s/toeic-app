@@ -3,13 +3,19 @@ import { Dimensions, Image, StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Text, View } from '~/components/Themed';
 import ProcessBar from '~/components/UI/ProcessBar';
+import { WordType } from '~/types';
 
-const StudyUI = memo(({ children }: { children: JSX.Element }) => (
+type Props = {
+  words: WordType,
+  children: JSX.Element;
+};
+
+const StudyUI = memo(({ words, children }: Props) => (
   <View style={styles.container}>
     <ProcessBar percent={90} />
     <View style={styles.viewTop}>
       <Text weight={700} style={styles.question}>
-        assurance
+        {words.mean}
       </Text>
       <Image style={styles.flash} source={require('~/assets/images/lightbulb-0.png')} />
     </View>
@@ -53,7 +59,7 @@ const styles = StyleSheet.create({
   },
   question: {
     flex: 8,
-    fontSize: 20,
+    fontSize: 18,
   },
   flash: {
     width: 40,

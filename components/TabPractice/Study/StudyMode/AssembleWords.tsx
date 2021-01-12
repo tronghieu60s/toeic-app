@@ -1,8 +1,11 @@
 import { Feather } from '@expo/vector-icons';
-import React, { memo } from 'react';
+import _ from 'lodash';
+import React, { memo, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import { Text, View } from '~/components/Themed';
+import { generateRandomChars } from '~/helpers/random';
+import { WordType } from '~/types';
 
 type PropsWord = {
   children: string;
@@ -11,22 +14,36 @@ type PropsWord = {
 
 const Word = memo(({ children, handleOnPressWord }: PropsWord) => (
   <TouchableOpacity style={styles.button} onPress={() => handleOnPressWord(children)}>
-    <Text weight={600} style={{ fontSize: 15 }}>
+    <Text weight={600} style={{ fontSize: 18 }}>
       {children}
     </Text>
   </TouchableOpacity>
 ));
 
-const AssembleWords = memo(() => {
+type Props = {
+  words: WordType;
+};
+
+const AssembleWords = memo(({ words }: Props) => {
+  const { name } = words;
   const [text, onChangeText] = React.useState('');
+  const [chars] = useState(() => _.shuffle(_.uniq(`${name}${generateRandomChars(3)}`.split(''))));
   const handleOnPressWord = (value: string) => onChangeText(`${text}${value}`);
+
+  const renderWords = () => {
+    let result: React.ReactNode = null;
+    result = chars.map((char) => (
+      <Word key={char} handleOnPressWord={handleOnPressWord}>
+        {char}
+      </Word>
+    ));
+    return result;
+  };
 
   return (
     <View style={{ marginTop: 30 }}>
       <TextInput style={styles.input} onChangeText={(text) => onChangeText(text)} value={text} />
-      <View style={styles.buttons}>
-        <Word handleOnPressWord={handleOnPressWord}>S</Word>
-      </View>
+      <View style={styles.buttons}>{renderWords()}</View>
       <View style={styles.otherButtons}>
         <TouchableOpacity
           style={[styles.button, { width: 210 }]}

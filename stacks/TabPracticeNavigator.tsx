@@ -40,7 +40,7 @@ export default function TabPracticeNavigator(): JSX.Element {
         component={TabPracticeWords}
         options={({ route, navigation }) => ({
           headerTitle: () => <TabPracticeWordsHeaderTitle route={route} />,
-          headerRight: () => <TabPracticeWordsHeaderRight navigation={navigation} />,
+          headerRight: () => <TabPracticeWordsHeaderRight route={route} navigation={navigation} />,
         })}
       />
       <TabPracticeStack.Screen
