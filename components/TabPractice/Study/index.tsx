@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { Dimensions, StyleSheet } from 'react-native';
+import { Dimensions, Image, StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Text, View } from '~/components/Themed';
 import ProcessBar from '~/components/UI/ProcessBar';
@@ -7,6 +7,10 @@ import ProcessBar from '~/components/UI/ProcessBar';
 const TabPracticeStudy = memo(() => (
   <View style={styles.container}>
     <ProcessBar percent={90} />
+    <View style={styles.viewTop}>
+      <Text weight={700} style={styles.question}>assurance</Text>
+      <Image style={styles.flash} source={require('~/assets/images/lightbulb-0.png')} />
+    </View>
     <View style={styles.viewBottom}>
       <TouchableOpacity style={styles.continue}>
         <Text weight={700} style={styles.continueText}>
@@ -37,6 +41,20 @@ const styles = StyleSheet.create({
   continueText: {
     fontSize: 20,
     textTransform: 'capitalize',
+  },
+  viewTop: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 20,
+    marginTop: 15,
+  },
+  question: {
+    flex: 8,
+    fontSize: 20,
+  },
+  flash: {
+    width: 40,
+    height: 40,
   },
 });
 
