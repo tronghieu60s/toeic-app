@@ -27,10 +27,21 @@ export default function BottomTabNavigator(): JSX.Element {
     <BottomTab.Navigator
       initialRouteName="TabPractice"
       tabBarOptions={tabBarOptions}
-      screenOptions={({ route }) => ({
-        tabBarButton: (props) => <Ripple rippleCentered {...props} />,
-        tabBarIcon: (props) => <BottomTabBarIcon route={route} {...props} />,
-      })}
+      screenOptions={({ route, navigation }) => {
+        const { routes, index } = navigation.dangerouslyGetState();
+        const { state: exploreState } = routes[index];
+        let tabBarVisible = true;
+        if (exploreState) {
+          const { routes: exploreRoutes, index: exploreIndex } = exploreState;
+          const exploreActiveRoute = exploreRoutes[exploreIndex];
+          if (exploreActiveRoute.name === 'TabPracticeStudy') tabBarVisible = false;
+        }
+        return {
+          tabBarVisible,
+          tabBarButton: (props) => <Ripple rippleCentered {...props} />,
+          tabBarIcon: (props) => <BottomTabBarIcon route={route} {...props} />,
+        };
+      }}
     >
       <BottomTab.Screen name="TabPractice" component={TabPracticeNavigator} />
       <BottomTab.Screen name="TabFavorite" component={TabFavoriteNavigator} />

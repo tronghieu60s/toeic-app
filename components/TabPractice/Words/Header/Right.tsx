@@ -1,14 +1,19 @@
-import { AntDesign, FontAwesome, SimpleLineIcons } from '@expo/vector-icons';
-import { Entypo } from '@expo/vector-icons'; 
+import { AntDesign, Entypo, SimpleLineIcons } from '@expo/vector-icons';
+import { StackNavigationProp } from '@react-navigation/stack';
 import React, { memo, useState } from 'react';
 import { StyleSheet } from 'react-native';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import Ripple from 'react-native-material-ripple';
 import { View } from '~/components/Themed';
+import { TabPracticeParamList } from '~/types';
 import TabPracticeWordsHeaderModal from './Modal';
 
-const TabPracticeWordsHeaderRight = memo(() => {
+type Props = {
+  navigation: StackNavigationProp<TabPracticeParamList, 'TabPracticeWords'>;
+};
+
+const TabPracticeWordsHeaderRight = memo(({ navigation }: Props) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   return (
@@ -17,16 +22,11 @@ const TabPracticeWordsHeaderRight = memo(() => {
         style={styles.button}
         rippleCentered
         rippleContainerBorderRadius={50}
-        //onPress={() => dispatch(lessonsFavoriteSwitch(!showFavorite))}
+        onPress={() => navigation.navigate('TabPracticeStudy')}
       >
         <SimpleLineIcons name="graduation" size={22} color="black" />
       </Ripple>
-      <Ripple
-        style={styles.button}
-        rippleCentered
-        rippleContainerBorderRadius={50}
-        //onPress={() => dispatch(lessonsRandomSwitch(!lessonsRandom))}
-      >
+      <Ripple style={styles.button} rippleCentered rippleContainerBorderRadius={50}>
         <Entypo name="time-slot" size={18} color="black" />
       </Ripple>
       <Ripple

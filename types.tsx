@@ -19,6 +19,7 @@ export type TabPracticeParamList = {
   TabPracticeWordDetails: {
     word: WordType;
   };
+  TabPracticeStudy: undefined;
 };
 
 export type TabFavoriteParamList = {

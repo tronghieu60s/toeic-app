@@ -35,7 +35,7 @@ const TabPracticeWordDetails = memo(({ route }: Props) => {
       <Text weight={400} style={styles.mean}>
         {explain}
       </Text>
-      <Text weight={600} style={[styles.mean, { marginTop: 20 }]}>
+      <Text weight={700} style={[styles.mean, { marginTop: 20 }]}>
         {mean}
       </Text>
     </View>
