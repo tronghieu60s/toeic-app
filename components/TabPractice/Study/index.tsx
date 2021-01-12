@@ -2,12 +2,16 @@ import React, { memo } from 'react';
 import { Dimensions, StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Text, View } from '~/components/Themed';
+import ProcessBar from '~/components/UI/ProcessBar';
 
 const TabPracticeStudy = memo(() => (
   <View style={styles.container}>
+    <ProcessBar percent={90} />
     <View style={styles.viewBottom}>
       <TouchableOpacity style={styles.continue}>
-        <Text weight={700} style={styles.continueText}>Tiếp tục</Text>
+        <Text weight={700} style={styles.continueText}>
+          Tiếp tục
+        </Text>
       </TouchableOpacity>
     </View>
   </View>
