@@ -13,14 +13,21 @@ type Props = {
 
 const TabPracticeStudy = memo(({ route }: Props) => {
   const { key } = route.params.group;
-  const [indexStudy, setIndexStudy] = useState(0);
   const [words, setWords] = useState<WordType[]>([]);
+  const [indexStudy, setIndexStudy] = useState(0);
+  const [correct, setCorrect] = useState(false);
 
   useEffect(() => {
     const allWords: WordType[] = require('~/resource/words');
     const words: WordType[] = _.filter(allWords, (o) => o.group === key);
     setWords(_.shuffle(words));
   }, []);
+
+  const handleAnswer = (value: string) => {
+    if (words[indexStudy].name === value) {
+      setCorrect(true);
+    }
+  };
 
   if (words.length <= 0) {
     return (
@@ -32,7 +39,7 @@ const TabPracticeStudy = memo(({ route }: Props) => {
 
   return (
     <StudyUI words={words[indexStudy]}>
-      <AssembleWords words={words[indexStudy]} />
+      <AssembleWords words={words[indexStudy]} handleAnswer={handleAnswer} />
     </StudyUI>
   );
 });

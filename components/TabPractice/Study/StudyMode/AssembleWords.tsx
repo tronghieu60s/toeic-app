@@ -14,7 +14,7 @@ type PropsWord = {
 
 const Word = memo(({ children, handleOnPressWord }: PropsWord) => (
   <TouchableOpacity style={styles.button} onPress={() => handleOnPressWord(children)}>
-    <Text weight={600} style={{ fontSize: 18 }}>
+    <Text weight={600} style={{ fontSize: 18, color: '#2c3749' }}>
       {children}
     </Text>
   </TouchableOpacity>
@@ -22,9 +22,10 @@ const Word = memo(({ children, handleOnPressWord }: PropsWord) => (
 
 type Props = {
   words: WordType;
+  handleAnswer: (value: string) => void;
 };
 
-const AssembleWords = memo(({ words }: Props) => {
+const AssembleWords = memo(({ words, handleAnswer }: Props) => {
   const { name } = words;
   const [text, onChangeText] = React.useState('');
   const [chars] = useState(() => _.shuffle(_.uniq(`${name}${generateRandomChars(3)}`.split(''))));
@@ -80,7 +81,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fb6340',
+    backgroundColor: '#ffc000',
   },
   otherButtons: {
     flexWrap: 'wrap',
