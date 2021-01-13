@@ -12,27 +12,31 @@ type Props = {
   children: JSX.Element;
 };
 
-const StudyUI = memo(({ words, correct = false, children }: Props) => (
-  <View style={{ flex: 1 }}>
-    <ProcessBar percent={90} />
-    <View style={styles.viewTop}>
-      <Text weight={700} style={styles.question}>
-        {words.mean}
-      </Text>
-      <Image style={styles.flash} source={require('~/assets/images/lightbulb-0.png')} />
+const StudyUI = memo(({ words, correct = true, children }: Props) => (
+  <View style={{ flex: 1, justifyContent: 'space-between' }}>
+    <View>
+      <ProcessBar percent={90} />
+      <View style={styles.viewTop}>
+        <Text weight={700} style={styles.question}>
+          {words.mean}
+        </Text>
+        <View style={styles.flash}>
+          <Image style={styles.flashImage} source={require('~/assets/images/lightbulb-0.png')} />
+        </View>
+      </View>
     </View>
     <View style={styles.viewCenter}>{children}</View>
     <View style={styles.viewBottom}>
       <TouchableOpacity
-        style={[styles.continue, { backgroundColor: correct ? '#57cc02' : '#ff4b4c' }]}
+        style={[styles.continue, { backgroundColor: correct ? '#219764' : '#b4082b' }]}
       >
         <Text weight={700} style={[styles.continueText, { color: '#fff' }]}>
-          {/* Kiểm tra */}
-          Tiếp tục
+          Kiểm tra
+          {/* Tiếp tục */}
         </Text>
       </TouchableOpacity>
     </View>
-    <AlertUI correct={correct} />
+    {/* <AlertUI correct={correct} /> */}
   </View>
 ));
 
@@ -48,12 +52,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   viewBottom: {
-    width: Dimensions.get('window').width,
-    backgroundColor: '#fff0',
+    backgroundColor: 'transparent',
     paddingHorizontal: 15,
-    position: 'absolute',
-    bottom: 20,
     zIndex: 100,
+    marginBottom: 20,
   },
   continue: {
     justifyContent: 'center',
@@ -72,6 +74,11 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   flash: {
+    flex: 2,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  flashImage: {
     width: 40,
     height: 40,
   },

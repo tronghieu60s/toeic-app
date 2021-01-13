@@ -54,8 +54,11 @@ export default function TabPracticeNavigator(): JSX.Element {
         name="TabPracticeStudy"
         component={TabPracticeStudy}
         options={({ route }) => ({
+          headerStyle: {
+            backgroundColor: '#47d798',
+          },
           headerBackImage: () => (
-            <View style={{ padding: 8 }}>
+            <View style={{ padding: 8, backgroundColor: 'transparent' }}>
               <FontAwesome5 name="times" size={20} color="black" />
             </View>
           ),

@@ -7,40 +7,39 @@ import Ripple from 'react-native-material-ripple';
 import { Text, View } from '~/components/Themed';
 
 const AlertUI = memo(({ correct }: { correct: boolean }) => (
-  <View
-    style={[
-      styles.viewFinish,
-      {
-        backgroundColor: correct ? '#d7ffb8' : '#ffdfe0',
-      },
-    ]}
-  >
-    <View style={styles.viewFinishLeft}>
-      <Text weight={700} style={[styles.alert, { color: correct ? '#58a700' : '#e92b2b' }]}>
-        Trả lời đúng:
-      </Text>
-      <Text style={[styles.alertContent, { color: correct ? '#59a409' : '#e82c2b' }]}>
-        This is a correct answer.
-      </Text>
-    </View>
-    <View style={styles.viewFinishRight}>
-      <Ripple style={{ padding: 10 }} rippleCentered rippleContainerBorderRadius={50}>
-        <Feather name="flag" size={20} color={correct ? '#58a700' : '#e92b2b'} />
-      </Ripple>
+  <View style={styles.viewFinish}>
+    <View style={[styles.viewFinishTab, { backgroundColor: correct ? '#2dce89' : '#f5365c' }]}>
+      <View style={styles.viewFinishLeft}>
+        <Text weight={700} style={styles.alert}>
+          Trả lời đúng:
+        </Text>
+        <Text style={styles.alertContent}>This is a correct answer.</Text>
+      </View>
+      <View style={styles.viewFinishRight}>
+        <Ripple style={{ padding: 10 }} rippleCentered rippleContainerBorderRadius={50}>
+          <Feather name="flag" size={20} color="#f4f5f7" />
+        </Ripple>
+      </View>
     </View>
   </View>
 ));
 
 const styles = StyleSheet.create({
   viewFinish: {
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height - 55,
+    position: 'absolute',
+    backgroundColor: 'transparent',
+  },
+  viewFinishTab: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: Dimensions.get('window').width,
-    height: 160,
+    height: 180,
     paddingTop: 20,
     paddingHorizontal: 15,
-    position: 'absolute',
-    bottom: 0,
   },
   viewFinishLeft: {
     backgroundColor: '#fff0',
@@ -49,11 +48,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff0',
   },
   alert: {
-    fontSize: 22,
+    fontSize: 25,
+    color: '#f4f5f7',
   },
   alertContent: {
-    fontSize: 15,
+    fontSize: 16,
     marginTop: 5,
+    color: '#f4f5f7',
   },
 });
 

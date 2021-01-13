@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginRight: 20,
+    backgroundColor: 'transparent',
   },
   iconVolume: {
     width: 30,
@@ -41,7 +42,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#19191969',
+    backgroundColor: '#7de3b7',
     paddingVertical: 3,
   },
   pointText: {

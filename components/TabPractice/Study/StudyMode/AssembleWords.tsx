@@ -14,7 +14,7 @@ type PropsWord = {
 
 const Word = memo(({ children, handleOnPressWord }: PropsWord) => (
   <TouchableOpacity style={styles.button} onPress={() => handleOnPressWord(children)}>
-    <Text weight={600} style={{ fontSize: 18, color: '#2c3749' }}>
+    <Text weight={600} style={styles.buttonText}>
       {children}
     </Text>
   </TouchableOpacity>
@@ -42,8 +42,14 @@ const AssembleWords = memo(({ words, handleAnswer }: Props) => {
   };
 
   return (
-    <View style={{ marginTop: 30 }}>
-      <TextInput style={styles.input} onChangeText={(text) => onChangeText(text)} value={text} />
+    <View>
+      <TextInput
+        multiline
+        style={styles.input}
+        onChangeText={(text) => onChangeText(text)}
+        value={text}
+        placeholder="Nhập nghĩa vào đây..."
+      />
       <View style={styles.buttons}>{renderWords()}</View>
       <View style={styles.otherButtons}>
         <TouchableOpacity
@@ -63,10 +69,13 @@ const AssembleWords = memo(({ words, handleAnswer }: Props) => {
 const styles = StyleSheet.create({
   input: {
     fontSize: 18,
-    height: 40,
+    height: 200,
     borderColor: '#999999a1',
-    paddingBottom: 8,
-    borderBottomWidth: 1.5,
+    borderRadius: 10,
+    padding: 20,
+    borderWidth: 1.5,
+    backgroundColor: '#f4f5f7',
+    textAlignVertical: 'top',
   },
   buttons: {
     marginTop: 30,
@@ -74,14 +83,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   button: {
-    width: 45,
-    height: 35,
+    width: 47,
+    height: 38,
     borderRadius: 7,
     marginRight: 10,
     marginBottom: 10,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#ffc000',
+  },
+  buttonText: {
+    fontSize: 19,
   },
   otherButtons: {
     flexWrap: 'wrap',
