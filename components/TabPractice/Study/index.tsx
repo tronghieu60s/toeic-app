@@ -13,9 +13,10 @@ type Props = {
 
 const TabPracticeStudy = memo(({ route }: Props) => {
   const { key } = route.params.group;
+  const [status, setStatus] = useState<StatusQuestion>('Waiting');
+
   const [words, setWords] = useState<WordType[]>([]);
   const [indexStudy, setIndexStudy] = useState(0);
-  const [status, setStatus] = useState<StatusQuestion>('Waiting');
 
   useEffect(() => {
     const allWords: WordType[] = require('~/resource/words');
@@ -24,10 +25,20 @@ const TabPracticeStudy = memo(({ route }: Props) => {
   }, []);
 
   const handleAnswer = (value: string) => {
-    const result = value.trim().toLowerCase();
-    if (words[indexStudy].name.toLowerCase() === result) {
-      console.log('correct');
-      setStatus('Correct');
+    const result = words[indexStudy].name.toLowerCase();
+    const answer = value.trim().toLowerCase();
+    if (result === answer) setStatus('Correct');
+  };
+
+  const handleClickAnswer = () => {
+    if (status === 'Waiting') {
+      const result = words[indexStudy].name.toLowerCase();
+      const answer = 'aaa'.trim().toLowerCase();
+      if (result === answer) setStatus('Correct');
+      else setStatus('Incorrect');
+    } else {
+      setIndexStudy(indexStudy + 1);
+      setStatus('Waiting');
     }
   };
 
@@ -40,7 +51,7 @@ const TabPracticeStudy = memo(({ route }: Props) => {
   }
 
   return (
-    <StudyUI status={status} words={words[indexStudy]}>
+    <StudyUI status={status} words={words[indexStudy]} handleClickAnswer={handleClickAnswer}>
       <AssembleWords words={words[indexStudy]} handleAnswer={handleAnswer} />
     </StudyUI>
   );

@@ -1,6 +1,6 @@
 import { Feather } from '@expo/vector-icons';
 import _ from 'lodash';
-import React, { memo, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import { Text, View } from '~/components/Themed';
@@ -28,10 +28,13 @@ type Props = {
 const AssembleWords = memo(({ words, handleAnswer }: Props) => {
   const { name } = words;
   const [text, onChangeText] = React.useState('');
-  const [chars] = useState(() => {
+  const [chars, setChars] = useState<string[]>([]);
+
+  useEffect(() => {
     const arrStr = `${name}${generateRandomChars(5)}`.replace(' ', '').split('');
-    return _.shuffle(_.uniq(arrStr));
-  });
+    setChars(_.shuffle(_.uniq(arrStr)));
+  }, [name]);
+
   const handleOnPressWord = (value: string) => {
     const result = `${text}${value}`;
     onChangeText(result);

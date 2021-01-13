@@ -9,10 +9,11 @@ import AlertUI from './AlertUI';
 type Props = {
   status: StatusQuestion;
   words: WordType;
+  handleClickAnswer: () => void;
   children: JSX.Element;
 };
 
-const StudyUI = memo(({ words, status = 'Waiting', children }: Props) => {
+const StudyUI = memo(({ words, status = 'Waiting', handleClickAnswer, children }: Props) => {
   let colorButton = '#2dce89';
   if (status === 'Correct') colorButton = '#219764';
   if (status === 'Incorrect') colorButton = '#b4082b';
@@ -31,10 +32,12 @@ const StudyUI = memo(({ words, status = 'Waiting', children }: Props) => {
       </View>
       <View style={styles.viewCenter}>{children}</View>
       <View style={styles.viewBottom}>
-        <TouchableOpacity style={[styles.continue, { backgroundColor: colorButton }]}>
+        <TouchableOpacity
+          style={[styles.continue, { backgroundColor: colorButton }]}
+          onPress={handleClickAnswer}
+        >
           <Text weight={700} style={[styles.continueText, { color: '#fff' }]}>
-            Kiểm tra
-            {/* Tiếp tục */}
+            {status !== 'Waiting' ? 'Tiếp tục' : 'Kiểm tra'}
           </Text>
         </TouchableOpacity>
       </View>
