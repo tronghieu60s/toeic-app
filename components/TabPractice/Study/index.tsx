@@ -1,9 +1,10 @@
 import { RouteProp } from '@react-navigation/native';
 import _ from 'lodash';
 import React, { memo, useEffect, useState } from 'react';
-import { ActivityIndicator } from 'react-native';
+import { ActivityIndicator, Keyboard, ToastAndroid, Vibration } from 'react-native';
 import CenterUI from '~/components/UI/Center';
-import { TabPracticeParamList, WordType, StatusQuestion } from '~/types';
+import playSound, { AUDIO_CORRECT, AUDIO_WRONG } from '~/helpers/sound';
+import { StatusQuestion, TabPracticeParamList, WordType } from '~/types';
 import AssembleWords from './StudyMode/AssembleWords';
 import StudyUI from './StudyUI';
 
@@ -18,6 +19,18 @@ const TabPracticeStudy = memo(({ route }: Props) => {
   const [words, setWords] = useState<WordType[]>([]);
   const [indexStudy, setIndexStudy] = useState(0);
 
+  const handleCorrectAnswer = () => {
+    Keyboard.dismiss();
+    playSound(AUDIO_CORRECT);
+    setStatus('Correct');
+  };
+
+  const handleWrongAnswer = () => {
+    playSound(AUDIO_WRONG);
+    Vibration.vibrate(200);
+    setStatus('Incorrect');
+  };
+
   useEffect(() => {
     const allWords: WordType[] = require('~/resource/words');
     const words: WordType[] = _.filter(allWords, (o) => o.group === key);
@@ -27,15 +40,15 @@ const TabPracticeStudy = memo(({ route }: Props) => {
   const handleAnswer = (value: string) => {
     const result = words[indexStudy].name.toLowerCase();
     const answer = value.trim().toLowerCase();
-    if (result === answer) setStatus('Correct');
+    if (result === answer) handleCorrectAnswer();
   };
 
   const handleClickAnswer = () => {
     if (status === 'Waiting') {
       const result = words[indexStudy].name.toLowerCase();
       const answer = 'aaa'.trim().toLowerCase();
-      if (result === answer) setStatus('Correct');
-      else setStatus('Incorrect');
+      if (result === answer) handleCorrectAnswer();
+      else handleWrongAnswer();
     } else {
       setIndexStudy(indexStudy + 1);
       setStatus('Waiting');

@@ -1,6 +1,6 @@
 import { Feather } from '@expo/vector-icons';
 import React, { memo } from 'react';
-import { Dimensions, StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet, ToastAndroid } from 'react-native';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import Ripple from 'react-native-material-ripple';
@@ -22,7 +22,12 @@ const AlertUI = memo(({ status }: { status: StatusQuestion }) => (
         <Text style={styles.alertContent}>This is a correct answer.</Text>
       </View>
       <View style={styles.viewFinishRight}>
-        <Ripple style={{ padding: 10 }} rippleCentered rippleContainerBorderRadius={50}>
+        <Ripple
+          style={{ padding: 10 }}
+          rippleCentered
+          rippleContainerBorderRadius={50}
+          onPress={() => ToastAndroid.show('Chức năng này đang bảo trì!', ToastAndroid.SHORT)}
+        >
           <Feather name="flag" size={20} color="#f4f5f7" />
         </Ripple>
       </View>
@@ -37,7 +42,7 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height - 55,
     position: 'absolute',
-    backgroundColor: 'transparent',
+    backgroundColor: '#fff0',
   },
   viewFinishTab: {
     flexDirection: 'row',

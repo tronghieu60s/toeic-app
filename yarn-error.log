@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add lodash
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add expo-av@~8.6.0
 
 PATH: 
   C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files (x86)\Yarn\bin\;C:\Program Files\dotnet\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\Java\jdk1.8.0_181\bin;C:\Users\trong\AppData\Local\Programs\Python\Python38-32\Scripts\;C:\Users\trong\AppData\Local\Programs\Python\Python38-32\;C:\Users\trong\AppData\Local\Microsoft\WindowsApps;C:\Users\trong\AppData\Roaming\npm;C:\Program Files\heroku\bin;C:\Users\trong\AppData\Local\Yarn\bin;C:\Users\trong\AppData\Local\Programs\Microsoft VS Code\bin
@@ -42,9 +42,11 @@ npm manifest:
       "expo-constants": "~9.2.0",
       "expo-font": "~8.3.0",
       "expo-linking": "^1.0.1",
+      "expo-speech": "~8.4.0",
       "expo-splash-screen": "~0.6.2",
       "expo-status-bar": "~1.0.2",
       "expo-web-browser": "~8.5.0",
+      "lodash": "^4.17.20",
       "react": "16.13.1",
       "react-dom": "16.13.1",
       "react-native": "https://github.com/expo/react-native/archive/sdk-39.0.4.tar.gz",
@@ -60,6 +62,7 @@ npm manifest:
     },
     "devDependencies": {
       "@babel/core": "~7.9.0",
+      "@types/lodash": "^4.14.167",
       "@types/react": "~16.9.35",
       "@types/react-native": "~0.63.2",
       "@types/react-redux": "^7.1.15",
@@ -2234,6 +2237,11 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/@types/json5/-/json5-0.0.29.tgz#ee28707ae94e11d2b827bcbe5270bcea7f3e71ee"
     integrity sha1-7ihweulOEdK4J7y+UnC86n8+ce4=
   
+  "@types/lodash@^4.14.167":
+    version "4.14.167"
+    resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.167.tgz#ce7d78553e3c886d4ea643c37ec7edc20f16765e"
+    integrity sha512-w7tQPjARrvdeBkX/Rwg95S592JwxqOjmms3zWQ0XZgSyxSLdzWaYH3vErBhdVS/lRBX7F8aBYcYJYTr5TMGOzw==
+  
   "@types/node@*":
     version "14.14.9"
     resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.9.tgz#04afc9a25c6ff93da14deabd65dc44485b53c8d6"
@@ -4382,6 +4390,11 @@ Lockfile:
     version "9.3.0"
     resolved "https://registry.yarnpkg.com/expo-permissions/-/expo-permissions-9.3.0.tgz#b90c7e9e411d306c1c7ba2bae18d5c53c201affd"
     integrity sha512-ylSJZVvEGJVFTKsFrUL2S6gCvFt+/o8TJ3xT4WaMjHe2/2Z7R8ng6NR47Kt54t7XBIV/SZ7DIY9uRiR7TPuNYA==
+  
+  expo-speech@~8.4.0:
+    version "8.4.0"
+    resolved "https://registry.yarnpkg.com/expo-speech/-/expo-speech-8.4.0.tgz#8ab20d0eef017864838f5760282e8c02b010dce4"
+    integrity sha512-7AFZIBZh9yeM4J50KOmS3NOG8h8Hst5m0589F+y7Vc5UfKhrM6n4Y8IUa8+PuBv3YFtNcG80We4m1UDSHIza9Q==
   
   expo-splash-screen@~0.6.2:
     version "0.6.2"

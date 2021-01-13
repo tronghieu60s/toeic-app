@@ -1,10 +1,11 @@
 import { Feather } from '@expo/vector-icons';
 import _ from 'lodash';
 import React, { memo, useEffect, useState } from 'react';
-import { StyleSheet } from 'react-native';
+import { Keyboard, StyleSheet } from 'react-native';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import { Text, View } from '~/components/Themed';
 import { generateRandomChars } from '~/helpers/random';
+import { spliceString } from '~/helpers/string';
 import { WordType } from '~/types';
 
 type PropsWord = {
@@ -27,18 +28,35 @@ type Props = {
 
 const AssembleWords = memo(({ words, handleAnswer }: Props) => {
   const { name } = words;
+  const [selection, setSelection] = useState({ end: 0, start: 0 });
   const [text, onChangeText] = React.useState('');
   const [chars, setChars] = useState<string[]>([]);
 
   useEffect(() => {
     const arrStr = `${name}${generateRandomChars(5)}`.replace(' ', '').split('');
     setChars(_.shuffle(_.uniq(arrStr)));
+    onChangeText('');
   }, [name]);
 
   const handleOnPressWord = (value: string) => {
-    const result = `${text}${value}`;
+    Keyboard.dismiss();
+    const { start, end } = selection;
+    if (start === end) {
+      const result = text.slice(0, start) + value + text.slice(start);
+      setSelection({ start: start + 1, end: end + 1 });
+      onChangeText(result);
+      handleAnswer(result);
+    }
+  };
+
+  const handleDeleteWord = () => {
+    const { start, end } = selection;
+    let result = text;
+    if (start === end && start > 0) {
+      result = result.slice(0, start - 1) + result.slice(start);
+      setSelection({ start: start - 1, end: start - 1 });
+    } else result = spliceString(result, start, end);
     onChangeText(result);
-    handleAnswer(result);
   };
 
   const renderWords = () => {
@@ -56,17 +74,22 @@ const AssembleWords = memo(({ words, handleAnswer }: Props) => {
       <TextInput
         multiline
         style={styles.input}
-        onChangeText={(text) => onChangeText(text)}
+        onChangeText={(text) => {
+          onChangeText(text);
+          handleAnswer(text);
+        }}
+        selection={selection}
+        onSelectionChange={(event) => setSelection(event.nativeEvent.selection)}
         value={text}
         placeholder="Nhập nghĩa vào đây..."
       />
       <View style={styles.buttons}>{renderWords()}</View>
       <View style={styles.otherButtons}>
         <TouchableOpacity
-          style={[styles.button, { width: 210 }]}
-          onPress={() => onChangeText(`${text} `)}
+          style={[styles.button, { width: 218 }]}
+          onPress={() => handleOnPressWord(' ')}
         />
-        <TouchableOpacity style={styles.button} onPress={() => onChangeText(text.slice(0, -1))}>
+        <TouchableOpacity style={styles.button} onPress={() => handleDeleteWord()}>
           <Text weight={600} style={{ fontSize: 15 }}>
             <Feather name="delete" size={24} color="black" />
           </Text>
