@@ -28,6 +28,8 @@ export type TabFavoriteParamList = {
   TabFavoriteScreen: undefined;
 };
 
+export type StatusQuestion = 'Waiting' | 'Correct' | 'Incorrect';
+
 export type GroupType = {
   [key: string]: {
     key?: string;

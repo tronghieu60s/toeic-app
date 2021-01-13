@@ -1,44 +1,47 @@
 import React, { memo } from 'react';
-import { Dimensions, Image, StyleSheet } from 'react-native';
+import { Image, StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Text, View } from '~/components/Themed';
 import ProcessBar from '~/components/UI/ProcessBar';
-import { WordType } from '~/types';
+import { StatusQuestion, WordType } from '~/types';
 import AlertUI from './AlertUI';
 
 type Props = {
-  correct: boolean;
+  status: StatusQuestion;
   words: WordType;
   children: JSX.Element;
 };
 
-const StudyUI = memo(({ words, correct = true, children }: Props) => (
-  <View style={{ flex: 1, justifyContent: 'space-between' }}>
-    <View>
-      <ProcessBar percent={90} />
-      <View style={styles.viewTop}>
-        <Text weight={700} style={styles.question}>
-          {words.mean}
-        </Text>
-        <View style={styles.flash}>
-          <Image style={styles.flashImage} source={require('~/assets/images/lightbulb-0.png')} />
+const StudyUI = memo(({ words, status = 'Waiting', children }: Props) => {
+  let colorButton = '#2dce89';
+  if (status === 'Correct') colorButton = '#219764';
+  if (status === 'Incorrect') colorButton = '#b4082b';
+  return (
+    <View style={{ flex: 1, justifyContent: 'space-between' }}>
+      <View>
+        <ProcessBar percent={90} />
+        <View style={styles.viewTop}>
+          <Text weight={700} style={styles.question}>
+            {words.mean}
+          </Text>
+          <View style={styles.flash}>
+            <Image style={styles.flashImage} source={require('~/assets/images/lightbulb-0.png')} />
+          </View>
         </View>
       </View>
+      <View style={styles.viewCenter}>{children}</View>
+      <View style={styles.viewBottom}>
+        <TouchableOpacity style={[styles.continue, { backgroundColor: colorButton }]}>
+          <Text weight={700} style={[styles.continueText, { color: '#fff' }]}>
+            Kiểm tra
+            {/* Tiếp tục */}
+          </Text>
+        </TouchableOpacity>
+      </View>
+      {status !== 'Waiting' && <AlertUI status={status} />}
     </View>
-    <View style={styles.viewCenter}>{children}</View>
-    <View style={styles.viewBottom}>
-      <TouchableOpacity
-        style={[styles.continue, { backgroundColor: correct ? '#219764' : '#b4082b' }]}
-      >
-        <Text weight={700} style={[styles.continueText, { color: '#fff' }]}>
-          Kiểm tra
-          {/* Tiếp tục */}
-        </Text>
-      </TouchableOpacity>
-    </View>
-    {/* <AlertUI correct={correct} /> */}
-  </View>
-));
+  );
+});
 
 const styles = StyleSheet.create({
   viewTop: {
@@ -60,7 +63,7 @@ const styles = StyleSheet.create({
   continue: {
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#ffc000',
+    backgroundColor: '#2dce89',
     borderRadius: 15,
     paddingVertical: 8,
   },

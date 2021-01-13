@@ -5,10 +5,16 @@ import { Dimensions, StyleSheet } from 'react-native';
 // @ts-ignore
 import Ripple from 'react-native-material-ripple';
 import { Text, View } from '~/components/Themed';
+import { StatusQuestion } from '~/types';
 
-const AlertUI = memo(({ correct }: { correct: boolean }) => (
+const AlertUI = memo(({ status }: { status: StatusQuestion }) => (
   <View style={styles.viewFinish}>
-    <View style={[styles.viewFinishTab, { backgroundColor: correct ? '#2dce89' : '#f5365c' }]}>
+    <View
+      style={[
+        styles.viewFinishTab,
+        { backgroundColor: status === 'Correct' ? '#2dce89' : '#f5365c' },
+      ]}
+    >
       <View style={styles.viewFinishLeft}>
         <Text weight={700} style={styles.alert}>
           Trả lời đúng:

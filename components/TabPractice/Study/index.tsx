@@ -3,7 +3,7 @@ import _ from 'lodash';
 import React, { memo, useEffect, useState } from 'react';
 import { ActivityIndicator } from 'react-native';
 import CenterUI from '~/components/UI/Center';
-import { TabPracticeParamList, WordType } from '~/types';
+import { TabPracticeParamList, WordType, StatusQuestion } from '~/types';
 import AssembleWords from './StudyMode/AssembleWords';
 import StudyUI from './StudyUI';
 
@@ -15,7 +15,7 @@ const TabPracticeStudy = memo(({ route }: Props) => {
   const { key } = route.params.group;
   const [words, setWords] = useState<WordType[]>([]);
   const [indexStudy, setIndexStudy] = useState(0);
-  const [correct, setCorrect] = useState(false);
+  const [status, setStatus] = useState<StatusQuestion>('Waiting');
 
   useEffect(() => {
     const allWords: WordType[] = require('~/resource/words');
@@ -24,8 +24,10 @@ const TabPracticeStudy = memo(({ route }: Props) => {
   }, []);
 
   const handleAnswer = (value: string) => {
-    if (words[indexStudy].name === value) {
-      setCorrect(true);
+    const result = value.trim().toLowerCase();
+    if (words[indexStudy].name.toLowerCase() === result) {
+      console.log('correct');
+      setStatus('Correct');
     }
   };
 
@@ -38,7 +40,7 @@ const TabPracticeStudy = memo(({ route }: Props) => {
   }
 
   return (
-    <StudyUI words={words[indexStudy]}>
+    <StudyUI status={status} words={words[indexStudy]}>
       <AssembleWords words={words[indexStudy]} handleAnswer={handleAnswer} />
     </StudyUI>
   );
