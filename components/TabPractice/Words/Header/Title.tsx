@@ -2,7 +2,9 @@ import { RouteProp } from '@react-navigation/native';
 import _ from 'lodash';
 import React, { memo, useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
+import { useSelector } from 'react-redux';
 import { Text, View } from '~/components/Themed';
+import { RootState } from '~/redux/reducers/rootReducer';
 import { TabPracticeParamList, WordType } from '~/types';
 
 type Props = {
@@ -10,14 +12,8 @@ type Props = {
 };
 
 const TabPracticeWordsHeaderTitle = memo(({ route }: Props) => {
-  const { key, name, mean, pronounce } = route.params.group;
-  const [words, setWords] = useState<WordType[]>([]);
-
-  useEffect(() => {
-    const allWords: WordType[] = require('~/resource/words');
-    const words: WordType[] = _.filter(allWords, (o) => o.group === key);
-    setWords(words);
-  }, []);
+  const { name, mean, pronounce } = route.params.group;
+  const words = useSelector((state: RootState) => state.practice.practiceWords);
 
   return (
     <View>

@@ -1,11 +1,14 @@
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import _ from 'lodash';
 import React, { memo, useEffect, useState } from 'react';
 import { ActivityIndicator, StyleSheet, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 import { ScrollView } from '~/components/Themed';
 import CenterUI from '~/components/UI/Center';
-import { TabPracticeParamList, WordType } from '~/types';
+import { delayLoading } from '~/helpers/common';
+import { loadWordsGroup } from '~/redux/actions/practiceAction';
+import { RootState } from '~/redux/reducers/rootReducer';
+import { TabPracticeParamList } from '~/types';
 import TabPracticeWordItem from './Word';
 
 type Props = {
@@ -14,15 +17,21 @@ type Props = {
 };
 
 const TabPracticeWords = memo(({ route, navigation }: Props) => {
-  const { key } = route.params.group;
-  const [loadWords, setLoadWords] = useState(false);
-  const [words, setWords] = useState<WordType[]>([]);
+  const { key = '1' } = route.params.group;
+  const [loadWords, setLoadWords] = useState(true);
+
+  const dispatch = useDispatch();
+  const words = useSelector((state: RootState) => state.practice.practiceWords);
 
   useEffect(() => {
-    const allWords: WordType[] = require('~/resource/words');
-    const words: WordType[] = _.filter(allWords, (o) => o.group === key);
-    setWords(words);
-    setLoadWords(true);
+    (async () => {
+      setLoadWords(true);
+
+      dispatch(loadWordsGroup(key));
+      await delayLoading();
+
+      setLoadWords(false);
+    })();
   }, []);
 
   const renderWords = () => {
@@ -33,7 +42,7 @@ const TabPracticeWords = memo(({ route, navigation }: Props) => {
     return result;
   };
 
-  if (words.length <= 0 && !loadWords) {
+  if (loadWords) {
     return (
       <CenterUI>
         <ActivityIndicator size="small" color="#0000ff" />
@@ -41,7 +50,7 @@ const TabPracticeWords = memo(({ route, navigation }: Props) => {
     );
   }
 
-  if (words.length <= 0 && loadWords) {
+  if (words.length <= 0 && !loadWords) {
     return <CenterUI>Bài học này đang cập nhật. Vui lòng quay lại sau.</CenterUI>;
   }
 
