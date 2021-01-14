@@ -7,3 +7,7 @@ export const generateRandomChars = (length: number) => {
   }
   return result;
 };
+
+export const randomBetweenTwoNumber = (num1: number, num2: number): number =>
+  // eslint-disable-next-line implicit-arrow-linebreak
+  Math.floor(Math.random() * num2) + num1;

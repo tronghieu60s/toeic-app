@@ -5,6 +5,8 @@ import { Dimensions, StyleSheet, ToastAndroid } from 'react-native';
 // @ts-ignore
 import Ripple from 'react-native-material-ripple';
 import { Text, View } from '~/components/Themed';
+import { TextCorrect, TextIncorrect } from '~/constants/Text/Study';
+import { randomBetweenTwoNumber } from '~/helpers/random';
 import { StatusQuestion } from '~/types';
 
 const AlertUI = memo(({ status }: { status: StatusQuestion }) => (
@@ -17,7 +19,9 @@ const AlertUI = memo(({ status }: { status: StatusQuestion }) => (
     >
       <View style={styles.viewFinishLeft}>
         <Text weight={700} style={styles.alert}>
-          Trả lời đúng:
+          {status === 'Correct'
+            ? TextCorrect[randomBetweenTwoNumber(0, TextCorrect.length)]
+            : TextIncorrect[randomBetweenTwoNumber(0, TextIncorrect.length)]}
         </Text>
         <Text style={styles.alertContent}>This is a correct answer.</Text>
       </View>
@@ -26,7 +30,7 @@ const AlertUI = memo(({ status }: { status: StatusQuestion }) => (
           style={{ padding: 10 }}
           rippleCentered
           rippleContainerBorderRadius={50}
-          onPress={() => ToastAndroid.show('Chức năng này đang bảo trì!', ToastAndroid.SHORT)}
+          onPress={() => ToastAndroid.show('Chức năng này đang bảo trì.', ToastAndroid.SHORT)}
         >
           <Feather name="flag" size={20} color="#f4f5f7" />
         </Ripple>
@@ -42,13 +46,13 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height - 55,
     position: 'absolute',
-    backgroundColor: '#fff0',
+    backgroundColor: '#ffffff',
   },
   viewFinishTab: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: Dimensions.get('window').width,
-    height: 180,
+    height: 170,
     paddingTop: 20,
     paddingHorizontal: 15,
   },

@@ -1,20 +1,19 @@
 import { Feather } from '@expo/vector-icons';
 import _ from 'lodash';
 import React, { memo, useEffect, useState } from 'react';
-import { Keyboard, StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import { Text, View } from '~/components/Themed';
 import { generateRandomChars } from '~/helpers/random';
-import { spliceString } from '~/helpers/string';
 import { WordType } from '~/types';
 
 type PropsWord = {
   children: string;
-  handleOnPressWord: (value: string) => void;
+  handleOnType: (value: string) => void;
 };
 
-const Word = memo(({ children, handleOnPressWord }: PropsWord) => (
-  <TouchableOpacity style={styles.button} onPress={() => handleOnPressWord(children)}>
+const Word = memo(({ children, handleOnType }: PropsWord) => (
+  <TouchableOpacity style={styles.button} onPress={() => handleOnType(children)}>
     <Text weight={600} style={styles.buttonText}>
       {children}
     </Text>
@@ -28,9 +27,13 @@ type Props = {
 
 const AssembleWords = memo(({ words, handleAnswer }: Props) => {
   const { name } = words;
-  const [selection, setSelection] = useState({ end: 0, start: 0 });
   const [text, onChangeText] = React.useState('');
   const [chars, setChars] = useState<string[]>([]);
+  const handleOnType = (value: string) => {
+    const result = `${text}${value}`;
+    onChangeText(result);
+    handleAnswer(result);
+  };
 
   useEffect(() => {
     const arrStr = `${name}${generateRandomChars(5)}`.replace(' ', '').split('');
@@ -38,31 +41,10 @@ const AssembleWords = memo(({ words, handleAnswer }: Props) => {
     onChangeText('');
   }, [name]);
 
-  const handleOnPressWord = (value: string) => {
-    Keyboard.dismiss();
-    const { start, end } = selection;
-    if (start === end) {
-      const result = text.slice(0, start) + value + text.slice(start);
-      setSelection({ start: start + 1, end: end + 1 });
-      onChangeText(result);
-      handleAnswer(result);
-    }
-  };
-
-  const handleDeleteWord = () => {
-    const { start, end } = selection;
-    let result = text;
-    if (start === end && start > 0) {
-      result = result.slice(0, start - 1) + result.slice(start);
-      setSelection({ start: start - 1, end: start - 1 });
-    } else result = spliceString(result, start, end);
-    onChangeText(result);
-  };
-
   const renderWords = () => {
     let result: React.ReactNode = null;
     result = chars.map((char) => (
-      <Word key={char} handleOnPressWord={handleOnPressWord}>
+      <Word key={char} handleOnType={handleOnType}>
         {char}
       </Word>
     ));
@@ -71,25 +53,22 @@ const AssembleWords = memo(({ words, handleAnswer }: Props) => {
 
   return (
     <View>
-      <TextInput
-        multiline
-        style={styles.input}
-        onChangeText={(text) => {
-          onChangeText(text);
-          handleAnswer(text);
-        }}
-        selection={selection}
-        onSelectionChange={(event) => setSelection(event.nativeEvent.selection)}
-        value={text}
-        placeholder="Nhập nghĩa vào đây..."
-      />
+      <View style={styles.inputCover}>
+        <View style={styles.frame} />
+        <TextInput
+          multiline
+          value={text}
+          style={styles.input}
+          placeholder="Nhập nghĩa vào đây..."
+        />
+      </View>
       <View style={styles.buttons}>{renderWords()}</View>
       <View style={styles.otherButtons}>
         <TouchableOpacity
           style={[styles.button, { width: 218 }]}
-          onPress={() => handleOnPressWord(' ')}
+          onPress={() => handleOnType(' ')}
         />
-        <TouchableOpacity style={styles.button} onPress={() => handleDeleteWord()}>
+        <TouchableOpacity style={styles.button} onPress={() => onChangeText(text.slice(0, -1))}>
           <Text weight={600} style={{ fontSize: 15 }}>
             <Feather name="delete" size={24} color="black" />
           </Text>
@@ -100,6 +79,17 @@ const AssembleWords = memo(({ words, handleAnswer }: Props) => {
 });
 
 const styles = StyleSheet.create({
+  inputCover: {
+    width: Dimensions.get('window').width - 40,
+    height: 200,
+  },
+  frame: {
+    width: Dimensions.get('window').width - 40,
+    height: 200,
+    position: 'absolute',
+    backgroundColor: '#fff0',
+    zIndex: 100,
+  },
   input: {
     fontSize: 18,
     height: 200,

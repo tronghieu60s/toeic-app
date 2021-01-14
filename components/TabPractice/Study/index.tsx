@@ -6,6 +6,7 @@ import CenterUI from '~/components/UI/Center';
 import playSound, { AUDIO_CORRECT, AUDIO_WRONG } from '~/helpers/sound';
 import { StatusQuestion, TabPracticeParamList, WordType } from '~/types';
 import AssembleWords from './StudyMode/AssembleWords';
+import ChooseWord from './StudyMode/ChooseWord';
 import StudyUI from './StudyUI';
 
 type Props = {
@@ -65,7 +66,8 @@ const TabPracticeStudy = memo(({ route }: Props) => {
 
   return (
     <StudyUI status={status} words={words[indexStudy]} handleClickAnswer={handleClickAnswer}>
-      <AssembleWords words={words[indexStudy]} handleAnswer={handleAnswer} />
+      {/* <AssembleWords words={words[indexStudy]} handleAnswer={handleAnswer} /> */}
+      <ChooseWord word={words[indexStudy]} handleAnswer={handleAnswer} />
     </StudyUI>
   );
 });
