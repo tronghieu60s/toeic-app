@@ -21,10 +21,12 @@ module.exports = {
     'plugin:import/typescript',
   ],
   rules: {
+    camelcase: 'off',
     'global-require': 'off',
     'no-shadow': 'off',
     'no-console': 'off',
     'no-use-before-define': 'off',
+    'no-underscore-dangle': 'off',
     'object-curly-newline': 'off',
     'import/extensions': 'off',
     'import/no-unresolved': 'off',

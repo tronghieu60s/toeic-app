@@ -1,33 +1,40 @@
 import { StackNavigationProp } from '@react-navigation/stack';
-import _ from 'lodash';
-import React, { memo } from 'react';
+import * as SQLite from 'expo-sqlite';
+import React, { memo, useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { GroupType, TabPracticeParamList } from '~/types';
+import { executeSql } from '~/utils/SQLite';
 import { ScrollView, Text, View } from '../Themed';
+import Loading from '../UI/Loading';
 import GroupItem from './GroupItem';
-import SQLLite from './SQLLite';
 
 type Props = {
   navigation: StackNavigationProp<TabPracticeParamList, 'TabPracticeScreen'>;
 };
 
-const groups: GroupType[string][] = _.map(require('~/resource/groups'), (value, key) => ({
-  key,
-  ...value,
-}));
-
 const TabPractice = memo(({ navigation }: Props) => {
+  const [groups, setGroups] = useState<GroupType[]>([]);
+
+  useEffect(() => {
+    (async () => {
+      const groups = await executeSql('SELECT * FROM groups');
+      setGroups(groups.data);
+    })();
+  }, []);
+
   const renderGroups = (order: number, limit: number) => {
     const newGroups = groups.slice(order, order + limit);
     let result: React.ReactNode = null;
     result = newGroups.map((group, index) => (
-      <React.Fragment key={group.name}>
+      <React.Fragment key={group.id_group}>
         {index % 2 === 0 && <View style={{ flexBasis: '100%' }} />}
         <GroupItem group={group} navigation={navigation} />
       </React.Fragment>
     ));
     return result;
   };
+
+  if (groups.length <= 0) return <Loading />;
 
   return (
     <ScrollView style={styles.container}>

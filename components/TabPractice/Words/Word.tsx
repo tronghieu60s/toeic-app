@@ -18,7 +18,7 @@ type Props = {
 };
 
 const TabPracticeWordItem = memo(({ word, navigation }: Props) => {
-  const { name, pronounce, mean } = word;
+  const { name_word, pronounce_word, mean_word } = word;
   const { visibleMean, visiblePronounce } = useSelector((state: RootState) => state.common);
 
   return (
@@ -33,23 +33,23 @@ const TabPracticeWordItem = memo(({ word, navigation }: Props) => {
               onPress={() => navigation.navigate('TabPracticeWordDetails', { word })}
             >
               <Text weight={700} style={styles.wordName}>
-                {name}
+                {name_word}
               </Text>
             </TouchableOpacity>
             {visiblePronounce && (
               <Text weight={600} style={styles.wordSpelling}>
                 {' '}
-                {pronounce}
+                {pronounce_word}
               </Text>
             )}
             <TouchableNativeFeedback
               style={{ padding: 3 }}
-              onPress={() => Speech.speak(name, { language: 'en' })}
+              onPress={() => Speech.speak(name_word, { language: 'en' })}
             >
               <MaterialIcons name="volume-up" size={16} color="black" />
             </TouchableNativeFeedback>
           </View>
-          {visibleMean && <Text style={styles.wordMean}>{mean}</Text>}
+          {visibleMean && <Text style={styles.wordMean}>{mean_word}</Text>}
         </View>
         <View style={styles.wordRight}>
           <Ripple rippleCentered rippleContainerBorderRadius={50} style={styles.icon}>

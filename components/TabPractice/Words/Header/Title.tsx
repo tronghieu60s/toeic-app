@@ -12,14 +12,14 @@ type Props = {
 };
 
 const TabPracticeWordsHeaderTitle = memo(({ route }: Props) => {
-  const { name, mean, pronounce } = route.params.group;
-  const words = useSelector((state: RootState) => state.practice.practiceWords);
+  const { name_group, mean_group, pronounce_group } = route.params.group;
+  const words = useSelector((state: RootState) => state.practice.words);
 
   return (
     <View>
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         <Text weight={700} style={styles.name}>
-          {name}
+          {name_group}
         </Text>
         <Text weight={400} style={styles.count}>
           (0/
@@ -27,9 +27,9 @@ const TabPracticeWordsHeaderTitle = memo(({ route }: Props) => {
         </Text>
       </View>
       <Text style={styles.mean}>
-        {pronounce}
+        {pronounce_group}
         {' - '}
-        {mean}
+        {mean_group}
       </Text>
     </View>
   );

@@ -1,21 +1,19 @@
-import _ from 'lodash';
 import { WordType } from '~/types';
-import { PracticeAction, LOAD_WORDS_GROUP } from '../actions/practiceAction';
+import { LOAD_WORDS_GROUP, PracticeAction } from '../actions/practiceAction';
 
 type PracticeState = {
-  practiceWords: WordType[];
+  words: WordType[];
 };
 
 const practiceInitialState: PracticeState = {
-  practiceWords: [],
+  words: [],
 };
 
 const practice = (state = practiceInitialState, action: PracticeAction): PracticeState => {
   switch (action.type) {
     case LOAD_WORDS_GROUP: {
-      const allWords: WordType[] = require('~/resource/words');
-      const practiceWords: WordType[] = _.filter(allWords, (o) => o.group === action.group);
-      return { ...state, practiceWords };
+      const { words } = action;
+      return { ...state, words };
     }
     default:
       return state;

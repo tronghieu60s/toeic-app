@@ -1,5 +1,5 @@
 import { StackNavigationProp } from '@react-navigation/stack';
-import React from 'react';
+import React, { memo } from 'react';
 import { Image, StyleSheet } from 'react-native';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -8,29 +8,26 @@ import { GroupType, TabPracticeParamList } from '~/types';
 import { Text } from '../Themed';
 
 type Props = {
-  group: GroupType[string];
+  group: GroupType;
   navigation: StackNavigationProp<TabPracticeParamList, 'TabPracticeScreen'>;
 };
 
-export default function GroupItem({ navigation, group }: Props): JSX.Element {
-  const { name, image, pronounce } = group;
+const GroupItem = memo(({ group, navigation }: Props) => {
+  const { name_group, pronounce_group, image_group } = group;
 
   return (
-    <Ripple
-      style={styles.group}
-      onPress={() => navigation.navigate('TabPracticeWords', { group })}
-    >
-      <Image source={{ uri: image }} style={styles.groupImage} />
+    <Ripple style={styles.group} onPress={() => navigation.navigate('TabPracticeWords', { group })}>
+      <Image source={{ uri: image_group }} style={styles.groupImage} />
       <Text weight={700} style={styles.groupName}>
-        {name}
+        {name_group}
       </Text>
       <Text weight={300} style={styles.groupPronounce}>
-        {pronounce.substring(0, 15)}
-        {pronounce.length > 15 ? '.../' : ''}
+        {pronounce_group.substring(0, 15)}
+        {pronounce_group.length > 15 ? '.../' : ''}
       </Text>
     </Ripple>
   );
-}
+});
 
 const styles = StyleSheet.create({
   group: {
@@ -56,3 +53,5 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
 });
+
+export default GroupItem;

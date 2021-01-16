@@ -1,11 +1,13 @@
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { delay } from 'lodash';
 import React, { memo, useEffect, useState } from 'react';
-import { ActivityIndicator, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { ScrollView } from '~/components/Themed';
 import CenterUI from '~/components/UI/Center';
-import { loadWordsGroup } from '~/redux/actions/practiceAction';
+import Loading from '~/components/UI/Loading';
+import { actLoadWordsGroup } from '~/redux/actions/practiceAction';
 import { RootState } from '~/redux/reducers/rootReducer';
 import { TabPracticeParamList } from '~/types';
 import TabPracticeWordItem from './Word';
@@ -16,37 +18,32 @@ type Props = {
 };
 
 const TabPracticeWords = memo(({ route, navigation }: Props) => {
-  const { key = '1' } = route.params.group;
-  const [loadWords, setLoadWords] = useState(true);
+  const { group } = route.params;
+  const [isPending, setIsPending] = useState(true);
 
   const dispatch = useDispatch();
-  const words = useSelector((state: RootState) => state.practice.practiceWords);
+  const words = useSelector((state: RootState) => state.practice.words);
 
   useEffect(() => {
-    setLoadWords(true);
-    dispatch(loadWordsGroup(key));
-    setLoadWords(false);
+    delay(async () => {
+      // Await Dispatch
+      await dispatch(actLoadWordsGroup(group));
+      setIsPending(false);
+    }, 500);
   }, []);
 
   const renderWords = () => {
     let result: React.ReactNode = null;
     result = words.map((word) => (
-      <TabPracticeWordItem key={word.name} word={word} navigation={navigation} />
+      <TabPracticeWordItem key={word.id_word} word={word} navigation={navigation} />
     ));
     return result;
   };
 
-  if (loadWords) {
-    return (
-      <CenterUI>
-        <ActivityIndicator size="small" color="#0000ff" />
-      </CenterUI>
-    );
-  }
+  if (isPending) return <Loading />;
 
-  if (words.length <= 0 && !loadWords) {
-    return <CenterUI>Bài học này đang cập nhật. Vui lòng quay lại sau.</CenterUI>;
-  }
+  const text = 'Bài học này đang cập nhật. Vui lòng quay lại sau.';
+  if (words.length <= 0 && !isPending) return <CenterUI>{text}</CenterUI>;
 
   return (
     <View style={styles.container}>

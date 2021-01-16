@@ -14,7 +14,7 @@ export type BottomTabParamList = {
 export type TabPracticeParamList = {
   TabPracticeScreen: undefined;
   TabPracticeWords: {
-    group: GroupType[string];
+    group: GroupType;
   };
   TabPracticeWordDetails: {
     word: WordType;
@@ -29,19 +29,19 @@ export type TabFavoriteParamList = {
 export type StatusQuestion = 'Waiting' | 'Correct' | 'Incorrect';
 
 export type GroupType = {
-  [key: string]: {
-    key?: string;
-    name: string;
-    mean: string;
-    pronounce: string;
-    image: string;
-  };
+  id_group: number;
+  name_group: string;
+  pronounce_group: string;
+  explain_group: string;
+  mean_group: string;
+  image_group: string;
 };
 
 export type WordType = {
-  name: string;
-  pronounce: string;
-  explain: string;
-  mean: string;
-  group: string;
+  id_word: number;
+  name_word: string;
+  pronounce_word: string;
+  explain_word: string;
+  mean_word: string;
+  group: GroupType;
 };
