@@ -8,10 +8,10 @@ import { WordType } from '~/types';
 
 type Props = {
   word: WordType;
-  handleAnswer: (value: string) => void;
+  handleSendAnswer: (value: string) => void;
 };
 
-const ChooseWord = memo(({ word, handleAnswer }: Props) => {
+const ChooseWord = memo(({ word, handleSendAnswer }: Props) => {
   const { name, group } = word;
   const [words, setWords] = useState<WordType[]>([]);
   const [selectWords, setSelectWords] = useState(-1);
@@ -35,7 +35,7 @@ const ChooseWord = memo(({ word, handleAnswer }: Props) => {
         style={[styles.word, { backgroundColor: selectWords === index ? '#2dce89' : '#e1e4ea' }]}
         onPress={() => {
           setSelectWords(index);
-          handleAnswer(word.name);
+          handleSendAnswer(word.name);
         }}
       >
         <Text style={styles.wordText}>{word.name}</Text>

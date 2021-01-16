@@ -1,5 +1,4 @@
 import { AntDesign, Entypo, SimpleLineIcons } from '@expo/vector-icons';
-import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { memo, useState } from 'react';
 import { StyleSheet } from 'react-native';
@@ -11,12 +10,10 @@ import { TabPracticeParamList } from '~/types';
 import TabPracticeWordsHeaderModal from './Modal';
 
 type Props = {
-  route: RouteProp<TabPracticeParamList, 'TabPracticeWords'>;
   navigation: StackNavigationProp<TabPracticeParamList, 'TabPracticeWords'>;
 };
 
-const TabPracticeWordsHeaderRight = memo(({ route, navigation }: Props) => {
-  const { group } = route.params;
+const TabPracticeWordsHeaderRight = memo(({ navigation }: Props) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   return (
@@ -25,7 +22,7 @@ const TabPracticeWordsHeaderRight = memo(({ route, navigation }: Props) => {
         style={styles.button}
         rippleCentered
         rippleContainerBorderRadius={50}
-        onPress={() => navigation.navigate('TabPracticeStudy', { group })}
+        onPress={() => navigation.navigate('TabPracticeStudy')}
       >
         <SimpleLineIcons name="graduation" size={22} color="black" />
       </Ripple>

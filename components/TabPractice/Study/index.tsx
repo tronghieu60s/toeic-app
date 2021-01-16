@@ -1,58 +1,47 @@
-import { RouteProp } from '@react-navigation/native';
-import _ from 'lodash';
-import React, { memo, useEffect, useState } from 'react';
-import { ActivityIndicator, Keyboard, ToastAndroid, Vibration } from 'react-native';
+import React, { memo, useState } from 'react';
+import { ActivityIndicator, Keyboard, Vibration } from 'react-native';
+import { useSelector } from 'react-redux';
+import { View } from '~/components/Themed';
 import CenterUI from '~/components/UI/Center';
+import ProcessBar from '~/components/UI/ProcessBar';
+import { randomBetweenTwoNumber } from '~/helpers/random';
 import playSound, { AUDIO_CORRECT, AUDIO_WRONG } from '~/helpers/sound';
-import { StatusQuestion, TabPracticeParamList, WordType } from '~/types';
+import { RootState } from '~/redux/reducers/rootReducer';
+import { StatusQuestion } from '~/types';
+import AlertUI from './AlertUI';
+import BottomUI from './BottomUI';
 import AssembleWords from './StudyMode/AssembleWords';
 import ChooseWord from './StudyMode/ChooseWord';
 import StudyUI from './StudyUI';
 
-type Props = {
-  route: RouteProp<TabPracticeParamList, 'TabPracticeStudy'>;
-};
+const TabPracticeStudy = memo(() => {
+  const [status, setStatus] = useState<StatusQuestion>('Correct');
 
-const TabPracticeStudy = memo(({ route }: Props) => {
-  const { key } = route.params.group;
-  const [status, setStatus] = useState<StatusQuestion>('Waiting');
+  const words = useSelector((state: RootState) => state.practice.practiceWords);
+  const [index, setIndex] = useState(() => randomBetweenTwoNumber(0, words.length));
+  const [answer, setAnswer] = useState('');
 
-  const [words, setWords] = useState<WordType[]>([]);
-  const [indexStudy, setIndexStudy] = useState(0);
-
-  const handleCorrectAnswer = () => {
-    Keyboard.dismiss();
-    playSound(AUDIO_CORRECT);
-    setStatus('Correct');
-  };
-
-  const handleWrongAnswer = () => {
-    playSound(AUDIO_WRONG);
-    Vibration.vibrate(200);
-    setStatus('Incorrect');
-  };
-
-  useEffect(() => {
-    const allWords: WordType[] = require('~/resource/words');
-    const words: WordType[] = _.filter(allWords, (o) => o.group === key);
-    setWords(_.shuffle(words));
-  }, []);
-
-  const handleAnswer = (value: string) => {
-    const result = words[indexStudy].name.toLowerCase();
+  const handleSendAnswer = (value: string) => {
     const answer = value.trim().toLowerCase();
-    if (result === answer) handleCorrectAnswer();
+    setAnswer(answer);
   };
 
-  const handleClickAnswer = () => {
-    if (status === 'Waiting') {
-      const result = words[indexStudy].name.toLowerCase();
-      const answer = 'aaa'.trim().toLowerCase();
-      if (result === answer) handleCorrectAnswer();
-      else handleWrongAnswer();
-    } else {
-      setIndexStudy(indexStudy + 1);
+  const handleCheckAnswer = () => {
+    if (status !== 'Waiting') {
+      const random = randomBetweenTwoNumber(0, words.length);
+      setIndex(random);
       setStatus('Waiting');
+      return;
+    }
+
+    const result = words[index].name.trim().toLowerCase();
+    if (result === answer) {
+      playSound(AUDIO_CORRECT);
+      setStatus('Correct');
+    } else {
+      playSound(AUDIO_WRONG);
+      Vibration.vibrate(200);
+      setStatus('Incorrect');
     }
   };
 
@@ -65,10 +54,15 @@ const TabPracticeStudy = memo(({ route }: Props) => {
   }
 
   return (
-    <StudyUI status={status} words={words[indexStudy]} handleClickAnswer={handleClickAnswer}>
-      {/* <AssembleWords words={words[indexStudy]} handleAnswer={handleAnswer} /> */}
-      <ChooseWord word={words[indexStudy]} handleAnswer={handleAnswer} />
-    </StudyUI>
+    <View style={{ flex: 1, justifyContent: 'space-between' }}>
+      <ProcessBar percent={90} />
+      <StudyUI words={words[index]}>
+        <AssembleWords words={words[index]} handleSendAnswer={handleSendAnswer} />
+        {/* <ChooseWord word={words[index]} handleSendAnswer={handleSendAnswer} /> */}
+      </StudyUI>
+      <BottomUI status={status} handleCheckAnswer={handleCheckAnswer} />
+      {status !== 'Waiting' && <AlertUI status={status} />}
+    </View>
   );
 });
 

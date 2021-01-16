@@ -5,7 +5,6 @@ import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { ScrollView } from '~/components/Themed';
 import CenterUI from '~/components/UI/Center';
-import { delayLoading } from '~/helpers/common';
 import { loadWordsGroup } from '~/redux/actions/practiceAction';
 import { RootState } from '~/redux/reducers/rootReducer';
 import { TabPracticeParamList } from '~/types';
@@ -24,14 +23,9 @@ const TabPracticeWords = memo(({ route, navigation }: Props) => {
   const words = useSelector((state: RootState) => state.practice.practiceWords);
 
   useEffect(() => {
-    (async () => {
-      setLoadWords(true);
-
-      dispatch(loadWordsGroup(key));
-      await delayLoading();
-
-      setLoadWords(false);
-    })();
+    setLoadWords(true);
+    dispatch(loadWordsGroup(key));
+    setLoadWords(false);
   }, []);
 
   const renderWords = () => {

@@ -5,6 +5,7 @@ import { StyleSheet } from 'react-native';
 import { GroupType, TabPracticeParamList } from '~/types';
 import { ScrollView, Text, View } from '../Themed';
 import GroupItem from './GroupItem';
+import SQLLite from './SQLLite';
 
 type Props = {
   navigation: StackNavigationProp<TabPracticeParamList, 'TabPracticeScreen'>;

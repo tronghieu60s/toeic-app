@@ -22,17 +22,17 @@ const Word = memo(({ children, handleOnType }: PropsWord) => (
 
 type Props = {
   words: WordType;
-  handleAnswer: (value: string) => void;
+  handleSendAnswer: (value: string) => void;
 };
 
-const AssembleWords = memo(({ words, handleAnswer }: Props) => {
+const AssembleWords = memo(({ words, handleSendAnswer }: Props) => {
   const { name } = words;
   const [text, onChangeText] = React.useState('');
   const [chars, setChars] = useState<string[]>([]);
   const handleOnType = (value: string) => {
     const result = `${text}${value}`;
     onChangeText(result);
-    handleAnswer(result);
+    handleSendAnswer(result);
   };
 
   useEffect(() => {
@@ -52,7 +52,7 @@ const AssembleWords = memo(({ words, handleAnswer }: Props) => {
   };
 
   return (
-    <View>
+    <View style={{ paddingVertical: 60 }}>
       <View style={styles.inputCover}>
         <View style={styles.frame} />
         <TextInput

@@ -16,6 +16,7 @@ const ProcessBar = memo(({ percent }: { percent: number }) => {
 const styles = StyleSheet.create({
   container: {
     height: 3,
+    zIndex: 500,
   },
   process: {
     height: 3,
