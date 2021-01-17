@@ -4,7 +4,7 @@ import * as Speech from 'expo-speech';
 import React, { memo } from 'react';
 import { Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { useSelector } from 'react-redux';
-import { lightBulbIcon } from '~/constants/IconSource';
+import { flashIcon, lightBulbIcon } from '~/constants/IconSource';
 import { RootState } from '~/redux/reducers/rootReducer';
 import { TabPracticeParamList, WordType } from '~/types';
 import { Ripple, Text, View } from '../../Themed';
@@ -15,7 +15,7 @@ type Props = {
 };
 
 const TabPracticeWordItem = memo(({ word, navigation }: Props) => {
-  const { name_word, pronounce_word, mean_word, count_study } = word;
+  const { name_word, pronounce_word, mean_word, count_study, difficult_study } = word;
   const { visibleMean, visiblePronounce } = useSelector((state: RootState) => state.common);
 
   return (
@@ -41,7 +41,7 @@ const TabPracticeWordItem = memo(({ word, navigation }: Props) => {
             )}
             <Ripple
               style={{ padding: 3 }}
-              onPress={() => Speech.speak(name_word, { language: 'en' })}
+              onPress={() => Speech.speak(name_word || '', { language: 'en' })}
             >
               <MaterialIcons name="volume-up" size={16} color="black" />
             </Ripple>
@@ -50,7 +50,7 @@ const TabPracticeWordItem = memo(({ word, navigation }: Props) => {
         </View>
         <View style={styles.wordRight}>
           <Ripple style={styles.icon}>
-            <Image style={styles.flash} source={require('~/assets/images/flash.png')} />
+            <Image style={styles.flash} source={flashIcon[difficult_study || 0]} />
           </Ripple>
         </View>
       </View>

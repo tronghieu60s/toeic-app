@@ -1,8 +1,9 @@
 /* eslint-disable arrow-body-style */
+import { GroupType } from '~/types';
 import { executeSql } from '~/utils/SQLite';
 
 // eslint-disable-next-line import/prefer-default-export
-export const getWordsByIdGroup = ({ id_group }: { id_group: number }) => {
+export const getWordsByIdGroup = ({ id_group }: GroupType) => {
   return executeSql(
     `select * from words 
   left join groups on groups.id_group = words.id_group 
