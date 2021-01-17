@@ -43,5 +43,6 @@ export type WordType = {
   pronounce_word: string;
   explain_word: string;
   mean_word: string;
+  id_group: number;
   group: GroupType;
 };

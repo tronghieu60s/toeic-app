@@ -1,5 +1,5 @@
 import { StackNavigationProp } from '@react-navigation/stack';
-import * as SQLite from 'expo-sqlite';
+import { isNull } from 'lodash';
 import React, { memo, useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { GroupType, TabPracticeParamList } from '~/types';
@@ -18,7 +18,7 @@ const TabPractice = memo(({ navigation }: Props) => {
   useEffect(() => {
     (async () => {
       const groups = await executeSql('SELECT * FROM groups');
-      setGroups(groups.data);
+      if (!isNull(groups.data)) setGroups(groups.data);
     })();
   }, []);
 

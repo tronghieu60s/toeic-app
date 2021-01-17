@@ -8,8 +8,6 @@ type Props = {
   route: RouteProp<TabPracticeParamList, 'TabPracticeWordDetails'>;
 };
 
-const allGroups: GroupType = require('~/resource/groups');
-
 const TabPracticeWordDetailHeaderTitle = memo(({ route }: Props) => {
   const { name, pronounce, group } = route.params.word;
 
@@ -17,7 +15,7 @@ const TabPracticeWordDetailHeaderTitle = memo(({ route }: Props) => {
     <View>
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         <Text weight={700} style={styles.name}>
-          {allGroups[group].name}
+          {/* {allGroups[group].name} */}
         </Text>
       </View>
       <Text style={styles.pronounce}>
