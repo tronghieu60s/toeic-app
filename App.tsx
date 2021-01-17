@@ -6,9 +6,6 @@ import store from '~/redux/store';
 import { View } from './components/Themed';
 import useCachedResources from './hooks/useCachedResources';
 import Navigation from './navigation';
-import { initDatabase } from './utils/SQLite';
-
-initDatabase();
 
 export default function App(): JSX.Element {
   const isLoadingComplete = useCachedResources();

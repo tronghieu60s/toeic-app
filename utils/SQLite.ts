@@ -14,15 +14,15 @@ type ExecuteSQL = {
   rowsAffected: number;
 };
 
-const initDbTable = () => {
-  executeSql(
+const initDbTable = async () => {
+  await executeSql(
     `create table if not exists options (
     id_option integer primary key not null, 
     name_option text, 
     value_option text
     );`,
   );
-  executeSql(
+  await executeSql(
     `create table if not exists groups (
     id_group integer primary key not null, 
     name_group text, 
@@ -31,7 +31,7 @@ const initDbTable = () => {
     image_group text
     );`,
   );
-  executeSql(
+  await executeSql(
     `create table if not exists words (
     id_word integer primary key not null, 
     name_word text, 
@@ -73,8 +73,8 @@ const isNewVersionDatabase = () => {
   });
 };
 
-const loadDataGroupsFromApi = () => {
-  apiCaller('groups.json').then((groups) => {
+const loadDataGroupsFromApi = async () => {
+  await apiCaller('groups.json').then((groups) => {
     if (!isNull(groups)) {
       let sqlValue = `insert into groups
         (id_group, name_group, pronounce_group, mean_group, image_group)
@@ -90,8 +90,8 @@ const loadDataGroupsFromApi = () => {
   });
 };
 
-const loadDataWordsFromApi = () => {
-  apiCaller('words.json').then((words) => {
+const loadDataWordsFromApi = async () => {
+  await apiCaller('words.json').then((words) => {
     if (!isNull(words)) {
       let sqlValue = `insert into words
         (id_word, name_word, pronounce_word, explain_word, mean_word, id_group)
@@ -109,17 +109,17 @@ const loadDataWordsFromApi = () => {
 };
 
 export const initDatabase = async () => {
-  initDbTable();
+  await initDbTable();
   const isNew = await isNewVersionDatabase();
   if (isNew) {
     // Delete All Data Before Load New Data
     await executeSql('drop table groups;');
     await executeSql('drop table words;');
-    initDbTable();
+    await initDbTable();
 
     // Load Data From Api
-    loadDataGroupsFromApi();
-    loadDataWordsFromApi();
+    await loadDataGroupsFromApi();
+    await loadDataWordsFromApi();
   }
 };
 

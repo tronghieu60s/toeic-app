@@ -2,6 +2,7 @@ import { Ionicons } from '@expo/vector-icons';
 import * as Font from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import * as React from 'react';
+import { initDatabase } from '~/utils/SQLite';
 
 export default function useCachedResources(): boolean {
   const [isLoadingComplete, setLoadingComplete] = React.useState(false);
@@ -11,6 +12,9 @@ export default function useCachedResources(): boolean {
     async function loadResourcesAndDataAsync() {
       try {
         SplashScreen.preventAutoHideAsync();
+
+        // Load Database
+        await initDatabase();
 
         // Load fonts
         await Font.loadAsync({
