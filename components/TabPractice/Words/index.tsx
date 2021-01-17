@@ -25,11 +25,10 @@ const TabPracticeWords = memo(({ route, navigation }: Props) => {
   const words = useSelector((state: RootState) => state.practice.words);
 
   useEffect(() => {
-    delay(async () => {
-      // Await Dispatch
+    (async () => {
       await dispatch(actLoadWordsGroup(group));
       setIsPending(false);
-    }, 500);
+    })();
   }, []);
 
   const renderWords = () => {

@@ -13,9 +13,7 @@ type Props = {
 
 const TabPracticeWordsHeaderModal = memo(({ modalVisible, setModalVisible }: Props) => {
   const dispatch = useDispatch();
-  const { visibleMean, visiblePronounce } = useSelector(
-    (state: RootState) => state.common,
-  );
+  const { visibleMean, visiblePronounce } = useSelector((state: RootState) => state.common);
 
   return (
     <Modal

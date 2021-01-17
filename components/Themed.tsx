@@ -1,10 +1,12 @@
 import * as React from 'react';
 import {
+  ScrollView as DefaultScrollView,
   Text as DefaultText,
   View as DefaultView,
-  ScrollView as DefaultScrollView,
 } from 'react-native';
-
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import DefaultRipple from 'react-native-material-ripple';
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 
@@ -30,6 +32,7 @@ type ThemeProps = {
 export type TextProps = ThemeProps & DefaultText['props'];
 export type ViewProps = ThemeProps & DefaultView['props'];
 export type ScrollViewProps = ThemeProps & DefaultScrollView['props'];
+export type RippleProps = ThemeProps & DefaultRipple['props'];
 
 export function Text(props: TextProps): JSX.Element {
   const { style, weight, lightColor, darkColor, ...otherProps } = props;
@@ -55,6 +58,18 @@ export function ScrollView(props: ScrollViewProps): JSX.Element {
       style={[style]}
       showsVerticalScrollIndicator={false}
       showsHorizontalScrollIndicator={false}
+      {...otherProps}
+    />
+  );
+}
+
+export function Ripple(props: RippleProps): JSX.Element {
+  const { style, ...otherProps } = props;
+  return (
+    <DefaultRipple
+      rippleCentered
+      rippleContainerBorderRadius={50}
+      style={[style]}
       {...otherProps}
     />
   );

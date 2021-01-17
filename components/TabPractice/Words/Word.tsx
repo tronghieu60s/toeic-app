@@ -2,15 +2,12 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { StackNavigationProp } from '@react-navigation/stack';
 import * as Speech from 'expo-speech';
 import React, { memo } from 'react';
-import { TouchableOpacity, Image, StyleSheet } from 'react-native';
-import { TouchableNativeFeedback } from 'react-native-gesture-handler';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import Ripple from 'react-native-material-ripple';
+import { Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { useSelector } from 'react-redux';
+import { lightBulbIcon } from '~/constants/IconSource';
 import { RootState } from '~/redux/reducers/rootReducer';
 import { TabPracticeParamList, WordType } from '~/types';
-import { Text, View } from '../../Themed';
+import { Ripple, Text, View } from '../../Themed';
 
 type Props = {
   word: WordType;
@@ -18,14 +15,14 @@ type Props = {
 };
 
 const TabPracticeWordItem = memo(({ word, navigation }: Props) => {
-  const { name_word, pronounce_word, mean_word } = word;
+  const { name_word, pronounce_word, mean_word, count_study } = word;
   const { visibleMean, visiblePronounce } = useSelector((state: RootState) => state.common);
 
   return (
     <View style={styles.container}>
       <View style={styles.word}>
         <View style={styles.wordLeft}>
-          <Image style={styles.flash} source={require('~/assets/images/lightbulb-0.png')} />
+          <Image style={styles.flash} source={lightBulbIcon[count_study || 0]} />
         </View>
         <View style={styles.wordCenter}>
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -42,17 +39,17 @@ const TabPracticeWordItem = memo(({ word, navigation }: Props) => {
                 {pronounce_word}
               </Text>
             )}
-            <TouchableNativeFeedback
+            <Ripple
               style={{ padding: 3 }}
               onPress={() => Speech.speak(name_word, { language: 'en' })}
             >
               <MaterialIcons name="volume-up" size={16} color="black" />
-            </TouchableNativeFeedback>
+            </Ripple>
           </View>
           {visibleMean && <Text style={styles.wordMean}>{mean_word}</Text>}
         </View>
         <View style={styles.wordRight}>
-          <Ripple rippleCentered rippleContainerBorderRadius={50} style={styles.icon}>
+          <Ripple style={styles.icon}>
             <Image style={styles.flash} source={require('~/assets/images/flash.png')} />
           </Ripple>
         </View>

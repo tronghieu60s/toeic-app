@@ -1,7 +1,6 @@
 import React, { memo } from 'react';
 import { Image, StyleSheet } from 'react-native';
 import { Text, View } from '~/components/Themed';
-import ProcessBar from '~/components/UI/ProcessBar';
 import { WordType } from '~/types';
 
 type Props = {
@@ -13,7 +12,7 @@ const StudyUI = memo(({ words, children }: Props) => (
   <View style={{ flex: 1, justifyContent: 'space-between' }}>
     <View style={styles.viewTop}>
       <Text weight={700} style={styles.question}>
-        {words.mean}
+        {words.mean_word}
       </Text>
       <View style={styles.flash}>
         <Image style={styles.flashImage} source={require('~/assets/images/lightbulb-0.png')} />

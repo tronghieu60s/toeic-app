@@ -5,7 +5,9 @@ import { StyleSheet } from 'react-native';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import Ripple from 'react-native-material-ripple';
+import { useSelector } from 'react-redux';
 import { View } from '~/components/Themed';
+import { RootState } from '~/redux/reducers/rootReducer';
 import { TabPracticeParamList } from '~/types';
 import TabPracticeWordsHeaderModal from './Modal';
 
@@ -15,20 +17,25 @@ type Props = {
 
 const TabPracticeWordsHeaderRight = memo(({ navigation }: Props) => {
   const [modalVisible, setModalVisible] = useState(false);
+  const words = useSelector((state: RootState) => state.practice.words);
 
   return (
     <View style={styles.container}>
-      <Ripple
-        style={styles.button}
-        rippleCentered
-        rippleContainerBorderRadius={50}
-        onPress={() => navigation.navigate('TabPracticeStudy')}
-      >
-        <SimpleLineIcons name="graduation" size={22} color="black" />
-      </Ripple>
-      <Ripple style={styles.button} rippleCentered rippleContainerBorderRadius={50}>
-        <Entypo name="time-slot" size={18} color="black" />
-      </Ripple>
+      {words.length > 0 && (
+        <>
+          <Ripple
+            style={styles.button}
+            rippleCentered
+            rippleContainerBorderRadius={50}
+            onPress={() => navigation.navigate('TabPracticeStudy')}
+          >
+            <SimpleLineIcons name="graduation" size={22} color="black" />
+          </Ripple>
+          <Ripple style={styles.button} rippleCentered rippleContainerBorderRadius={50}>
+            <Entypo name="time-slot" size={18} color="black" />
+          </Ripple>
+        </>
+      )}
       <Ripple
         style={styles.button}
         rippleCentered
@@ -49,7 +56,7 @@ const styles = StyleSheet.create({
   container: {
     width: 110,
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-end',
     alignItems: 'center',
     marginRight: 5,
   },

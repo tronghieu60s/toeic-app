@@ -9,19 +9,19 @@ type Props = {
 };
 
 const TabPracticeWordDetailHeaderTitle = memo(({ route }: Props) => {
-  const { name, pronounce, group } = route.params.word;
+  const { name_word, pronounce_word, name_group } = route.params.word;
 
   return (
     <View>
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         <Text weight={700} style={styles.name}>
-          {/* {allGroups[group].name} */}
+          {name_group}
         </Text>
       </View>
       <Text style={styles.pronounce}>
-        {name}
+        {name_word}
         {' - '}
-        {pronounce}
+        {pronounce_word}
       </Text>
     </View>
   );

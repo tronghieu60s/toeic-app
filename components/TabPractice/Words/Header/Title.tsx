@@ -1,11 +1,10 @@
 import { RouteProp } from '@react-navigation/native';
-import _ from 'lodash';
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo } from 'react';
 import { StyleSheet } from 'react-native';
 import { useSelector } from 'react-redux';
 import { Text, View } from '~/components/Themed';
 import { RootState } from '~/redux/reducers/rootReducer';
-import { TabPracticeParamList, WordType } from '~/types';
+import { TabPracticeParamList } from '~/types';
 
 type Props = {
   route: RouteProp<TabPracticeParamList, 'TabPracticeWords'>;

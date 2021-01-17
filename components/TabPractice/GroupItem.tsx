@@ -1,6 +1,6 @@
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { memo } from 'react';
-import { Image, StyleSheet } from 'react-native';
+import { Dimensions, Image, StyleSheet } from 'react-native';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import Ripple from 'react-native-material-ripple';
@@ -31,7 +31,7 @@ const GroupItem = memo(({ group, navigation }: Props) => {
 
 const styles = StyleSheet.create({
   group: {
-    flex: 1,
+    width: Dimensions.get('window').width / 2 - 15,
     justifyContent: 'center',
     backgroundColor: '#fff',
     padding: 20,

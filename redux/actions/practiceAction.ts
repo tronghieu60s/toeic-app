@@ -1,4 +1,6 @@
+import { isNull } from 'lodash';
 import { Dispatch } from 'react';
+import { getWordsByIdGroup } from '~/models/WordsModel';
 import { GroupType, WordType } from '~/types';
 import { executeSql } from '~/utils/SQLite';
 
@@ -13,8 +15,8 @@ export const actLoadWordsGroup = (group: GroupType) => async (
   dispatch: Dispatch<PracticeAction>,
 ): Promise<void> => {
   const { id_group } = group;
-  const words = await executeSql('SELECT * FROM words WHERE words.id_group = ?', [id_group]);
-  return dispatch(loadWordsGroup(words.data));
+  const words = await getWordsByIdGroup({ id_group });
+  return dispatch(loadWordsGroup(words.data || []));
 };
 
 export const loadWordsGroup = (words: WordType[]): PracticeAction => ({

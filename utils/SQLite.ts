@@ -42,6 +42,13 @@ const initDbTable = async () => {
     foreign key(id_group) references groups(id_group)
     );`,
   );
+  await executeSql(
+    `create table if not exists studies (
+    id_study integer primary key not null, 
+    count_study integer,
+    foreign key(id_study) references words(id_word)
+    );`,
+  );
 };
 
 const isNewVersionDatabase = () => {

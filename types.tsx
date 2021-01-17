@@ -28,6 +28,11 @@ export type TabFavoriteParamList = {
 
 export type StatusQuestion = 'Waiting' | 'Correct' | 'Incorrect';
 
+export type StudyType = {
+  id_study: number;
+  count_study?: number;
+};
+
 export type GroupType = {
   id_group: number;
   name_group: string;
@@ -37,12 +42,11 @@ export type GroupType = {
   image_group: string;
 };
 
-export type WordType = {
+export type WordType = GroupType & StudyType & {
   id_word: number;
   name_word: string;
   pronounce_word: string;
   explain_word: string;
   mean_word: string;
   id_group: number;
-  group: GroupType;
 };

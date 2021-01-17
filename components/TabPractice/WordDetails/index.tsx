@@ -3,10 +3,7 @@ import { RouteProp } from '@react-navigation/native';
 import * as Speech from 'expo-speech';
 import React, { memo } from 'react';
 import { StyleSheet } from 'react-native';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import Ripple from 'react-native-material-ripple';
-import { Text, View } from '~/components/Themed';
+import { Ripple, Text, View } from '~/components/Themed';
 import { TabPracticeParamList } from '~/types';
 
 type Props = {
@@ -14,29 +11,27 @@ type Props = {
 };
 
 const TabPracticeWordDetails = memo(({ route }: Props) => {
-  const { name, mean, explain, pronounce } = route.params.word;
+  const { name_word, mean_word, explain_word, pronounce_word } = route.params.word;
 
   return (
     <View style={styles.container}>
       <Text weight={700} style={styles.name}>
-        {name}
+        {name_word}
       </Text>
       <Text weight={600} style={styles.pronounce}>
-        {pronounce}
+        {pronounce_word}
       </Text>
       <Ripple
-        rippleCentered
-        rippleContainerBorderRadius={50}
         style={{ padding: 3 }}
-        onPress={() => Speech.speak(name, { language: 'en' })}
+        onPress={() => Speech.speak(name_word, { language: 'en' })}
       >
         <MaterialIcons name="volume-up" size={16} color="black" />
       </Ripple>
       <Text weight={400} style={styles.mean}>
-        {explain}
+        {explain_word}
       </Text>
       <Text weight={700} style={[styles.mean, { marginTop: 20 }]}>
-        {mean}
+        {mean_word}
       </Text>
     </View>
   );

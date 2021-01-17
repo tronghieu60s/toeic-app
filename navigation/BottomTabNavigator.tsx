@@ -1,9 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as React from 'react';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import Ripple from 'react-native-material-ripple';
 import { useSelector } from 'react-redux';
+import { Ripple } from '~/components/Themed';
 import { RootState } from '~/redux/reducers/rootReducer';
 import TabFavoriteNavigator from '~/stacks/TabFavoriteNavigator';
 import TabPracticeNavigator from '~/stacks/TabPracticeNavigator';
@@ -38,7 +36,7 @@ export default function BottomTabNavigator(): JSX.Element {
         }
         return {
           tabBarVisible,
-          tabBarButton: (props) => <Ripple rippleCentered {...props} />,
+          tabBarButton: (props) => <Ripple {...props} />,
           tabBarIcon: (props) => <BottomTabBarIcon route={route} {...props} />,
         };
       }}

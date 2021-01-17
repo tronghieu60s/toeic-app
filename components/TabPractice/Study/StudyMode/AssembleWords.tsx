@@ -26,7 +26,7 @@ type Props = {
 };
 
 const AssembleWords = memo(({ words, handleSendAnswer }: Props) => {
-  const { name } = words;
+  const { name_word } = words;
   const [text, onChangeText] = React.useState('');
   const [chars, setChars] = useState<string[]>([]);
   const handleOnType = (value: string) => {
@@ -36,10 +36,10 @@ const AssembleWords = memo(({ words, handleSendAnswer }: Props) => {
   };
 
   useEffect(() => {
-    const arrStr = `${name}${generateRandomChars(5)}`.replace(' ', '').split('');
+    const arrStr = `${name_word}${generateRandomChars(5)}`.replace(' ', '').split('');
     setChars(_.shuffle(_.uniq(arrStr)));
     onChangeText('');
-  }, [name]);
+  }, [name_word]);
 
   const renderWords = () => {
     let result: React.ReactNode = null;

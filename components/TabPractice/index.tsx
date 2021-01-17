@@ -1,9 +1,9 @@
 import { StackNavigationProp } from '@react-navigation/stack';
 import { isNull } from 'lodash';
 import React, { memo, useEffect, useState } from 'react';
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
+import { getGroups } from '~/models/GroupsModel';
 import { GroupType, TabPracticeParamList } from '~/types';
-import { executeSql } from '~/utils/SQLite';
 import { ScrollView, Text, View } from '../Themed';
 import Loading from '../UI/Loading';
 import GroupItem from './GroupItem';
@@ -17,7 +17,7 @@ const TabPractice = memo(({ navigation }: Props) => {
 
   useEffect(() => {
     (async () => {
-      const groups = await executeSql('SELECT * FROM groups');
+      const groups = await getGroups();
       if (!isNull(groups.data)) setGroups(groups.data);
     })();
   }, []);
@@ -25,11 +25,8 @@ const TabPractice = memo(({ navigation }: Props) => {
   const renderGroups = (order: number, limit: number) => {
     const newGroups = groups.slice(order, order + limit);
     let result: React.ReactNode = null;
-    result = newGroups.map((group, index) => (
-      <React.Fragment key={group.id_group}>
-        {index % 2 === 0 && <View style={{ flexBasis: '100%' }} />}
-        <GroupItem group={group} navigation={navigation} />
-      </React.Fragment>
+    result = newGroups.map((group) => (
+      <GroupItem key={group.id_group} group={group} navigation={navigation} />
     ));
     return result;
   };
@@ -60,7 +57,7 @@ const styles = StyleSheet.create({
   },
   groups: {
     flex: 1,
-    width: '100%',
+    width: Dimensions.get('window').width - 10,
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
