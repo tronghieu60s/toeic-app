@@ -2,7 +2,6 @@ import React, { memo, useState } from 'react';
 import { Vibration } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { View } from '~/components/Themed';
-import Loading from '~/components/UI/Loading';
 import ProcessBar from '~/components/UI/ProcessBar';
 import { randomBetweenTwoNumber as rdNum } from '~/helpers/random';
 import playSound, { AUDIO_CORRECT, AUDIO_WRONG } from '~/helpers/sound';
@@ -14,6 +13,8 @@ import BottomUI from './BottomUI';
 import AssembleWords from './StudyMode/AssembleWords';
 import StudyUI from './StudyUI';
 
+const totalQuestions = 5;
+
 const TabPracticeStudy = memo(() => {
   const [status, setStatus] = useState<StatusQuestion>('Waiting');
 
@@ -21,6 +22,7 @@ const TabPracticeStudy = memo(() => {
   const words = useSelector((state: RootState) => state.practice.words);
   const [answer, setAnswer] = useState('');
   const [index, setIndex] = useState(() => rdNum(0, words.length));
+  const [countQuestion, setCountQuestion] = useState(0);
 
   const handleSendAnswer = (value: string) => {
     const answer = value.trim().toLowerCase();
@@ -44,6 +46,8 @@ const TabPracticeStudy = memo(() => {
       playSound(AUDIO_WRONG);
       setStatus('Incorrect');
     }
+
+    setCountQuestion(countQuestion + 1);
   };
 
   const handleButtonAnswer = () => {
@@ -57,11 +61,9 @@ const TabPracticeStudy = memo(() => {
     handleCheckAnswer();
   };
 
-  if (words.length <= 0) return <Loading />;
-
   return (
     <View style={{ flex: 1, justifyContent: 'space-between' }}>
-      <ProcessBar percent={90} />
+      <ProcessBar percent={(countQuestion * 100) / totalQuestions} />
       <StudyUI words={words[index]}>
         <AssembleWords words={words[index]} handleSendAnswer={handleSendAnswer} />
         {/* <ChooseWord word={words[index]} handleSendAnswer={handleSendAnswer} /> */}

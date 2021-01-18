@@ -4,7 +4,7 @@ import { View } from '../Themed';
 
 const ProcessBar = memo(({ percent }: { percent: number }) => {
   const { width } = Dimensions.get('window');
-  const widthProcess = (width / 100) * percent;
+  const widthProcess = (width * percent) / 100;
 
   return (
     <View style={[styles.container, { width }]}>

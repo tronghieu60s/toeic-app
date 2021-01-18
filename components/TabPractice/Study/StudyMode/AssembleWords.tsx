@@ -1,7 +1,7 @@
 import { Feather } from '@expo/vector-icons';
 import _ from 'lodash';
 import React, { memo, useEffect, useState } from 'react';
-import { Dimensions, StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet, Vibration } from 'react-native';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import { Text, View } from '~/components/Themed';
 import { generateRandomChars } from '~/helpers/random';
@@ -13,7 +13,13 @@ type PropsWord = {
 };
 
 const Word = memo(({ children, handleOnType }: PropsWord) => (
-  <TouchableOpacity style={styles.button} onPress={() => handleOnType(children)}>
+  <TouchableOpacity
+    style={styles.button}
+    onPress={() => {
+      Vibration.vibrate(30);
+      handleOnType(children);
+    }}
+  >
     <Text weight={600} style={styles.buttonText}>
       {children}
     </Text>
@@ -29,6 +35,7 @@ const AssembleWords = memo(({ words, handleSendAnswer }: Props) => {
   const { name_word } = words;
   const [text, onChangeText] = React.useState('');
   const [chars, setChars] = useState<string[]>([]);
+
   const handleOnType = (value: string) => {
     const result = `${text}${value}`;
     onChangeText(result);
@@ -66,9 +73,18 @@ const AssembleWords = memo(({ words, handleSendAnswer }: Props) => {
       <View style={styles.otherButtons}>
         <TouchableOpacity
           style={[styles.button, { width: 218 }]}
-          onPress={() => handleOnType(' ')}
+          onPress={() => {
+            Vibration.vibrate(30);
+            handleOnType(' ');
+          }}
         />
-        <TouchableOpacity style={styles.button} onPress={() => onChangeText(text.slice(0, -1))}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => {
+            Vibration.vibrate(30);
+            onChangeText(text.slice(0, -1));
+          }}
+        >
           <Text weight={600} style={{ fontSize: 15 }}>
             <Feather name="delete" size={24} color="black" />
           </Text>
