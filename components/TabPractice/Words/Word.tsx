@@ -5,7 +5,7 @@ import React, { memo } from 'react';
 import { Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { flashIcon, lightBulbIcon } from '~/constants/IconSource';
-import { actFlashWord } from '~/redux/actions/practiceAction';
+import { actToggleFlashWord } from '~/redux/actions/practiceAction';
 import { RootState } from '~/redux/reducers/rootReducer';
 import { TabPracticeParamList, WordType } from '~/types';
 import { Ripple, Text, View } from '../../Themed';
@@ -20,7 +20,7 @@ const TabPracticeWordItem = memo(({ word, navigation }: Props) => {
   const { visibleMean, visiblePronounce } = useSelector((state: RootState) => state.common);
 
   const dispatch = useDispatch();
-  const handleFlashWord = () => dispatch(actFlashWord(word));
+  const handleFlashWord = () => dispatch(actToggleFlashWord(word));
 
   return (
     <View style={styles.container}>

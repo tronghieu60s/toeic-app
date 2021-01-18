@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
 import { Image, StyleSheet } from 'react-native';
 import { Text, View } from '~/components/Themed';
+import { lightBulbIcon } from '~/constants/IconSource';
 import { WordType } from '~/types';
 
 type Props = {
@@ -8,19 +9,23 @@ type Props = {
   children: JSX.Element;
 };
 
-const StudyUI = memo(({ words, children }: Props) => (
-  <View style={{ flex: 1, justifyContent: 'space-between' }}>
-    <View style={styles.viewTop}>
-      <Text weight={700} style={styles.question}>
-        {words.mean_word}
-      </Text>
-      <View style={styles.flash}>
-        <Image style={styles.flashImage} source={require('~/assets/images/lightbulb-0.png')} />
+const StudyUI = memo(({ words, children }: Props) => {
+  const { mean_word, count_study } = words;
+
+  return (
+    <View style={{ flex: 1, justifyContent: 'space-between' }}>
+      <View style={styles.viewTop}>
+        <Text weight={700} style={styles.question}>
+          {mean_word}
+        </Text>
+        <View style={styles.lightBulb}>
+          <Image style={styles.lightBulbImage} source={lightBulbIcon[count_study || 0]} />
+        </View>
       </View>
+      <View style={styles.viewCenter}>{children}</View>
     </View>
-    <View style={styles.viewCenter}>{children}</View>
-  </View>
-));
+  );
+});
 
 const styles = StyleSheet.create({
   viewTop: {
@@ -37,12 +42,12 @@ const styles = StyleSheet.create({
     flex: 8,
     fontSize: 18,
   },
-  flash: {
+  lightBulb: {
     flex: 2,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  flashImage: {
+  lightBulbImage: {
     width: 40,
     height: 40,
   },

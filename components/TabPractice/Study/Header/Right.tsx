@@ -4,18 +4,26 @@ import { StyleSheet } from 'react-native';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import Ripple from 'react-native-material-ripple';
+import { useSelector } from 'react-redux';
 import { Text, View } from '~/components/Themed';
+import { RootState } from '~/redux/reducers/rootReducer';
 
-const TabPracticeStudyHeaderRight = memo(() => (
-  <View style={styles.container}>
-    <Ripple rippleCentered rippleContainerBorderRadius={50} style={styles.iconVolume}>
-      <FontAwesome5 name="volume-mute" size={22} color="black" />
-    </Ripple>
-    <View style={styles.point}>
-      <Text weight={700} style={styles.pointText}>1200</Text>
+const TabPracticeStudyHeaderRight = memo(() => {
+  const point = useSelector((state: RootState) => state.practice.point);
+
+  return (
+    <View style={styles.container}>
+      <Ripple rippleCentered rippleContainerBorderRadius={50} style={styles.iconVolume}>
+        <FontAwesome5 name="volume-mute" size={22} color="black" />
+      </Ripple>
+      <View style={styles.point}>
+        <Text weight={700} style={styles.pointText}>
+          {point}
+        </Text>
+      </View>
     </View>
-  </View>
-));
+  );
+});
 
 const styles = StyleSheet.create({
   container: {

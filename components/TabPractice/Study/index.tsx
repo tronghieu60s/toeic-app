@@ -6,7 +6,7 @@ import Loading from '~/components/UI/Loading';
 import ProcessBar from '~/components/UI/ProcessBar';
 import { randomBetweenTwoNumber as rdNum } from '~/helpers/random';
 import playSound, { AUDIO_CORRECT, AUDIO_WRONG } from '~/helpers/sound';
-import { actStudyCorrect, actStudyInCorrect } from '~/redux/actions/practiceAction';
+import { actStudyCorrect, actStudyInCorrect, increasePoint } from '~/redux/actions/practiceAction';
 import { RootState } from '~/redux/reducers/rootReducer';
 import { StatusQuestion } from '~/types';
 import AlertUI from './AlertUI';
@@ -19,8 +19,8 @@ const TabPracticeStudy = memo(() => {
 
   const dispatch = useDispatch();
   const words = useSelector((state: RootState) => state.practice.words);
-  const [index, setIndex] = useState(() => rdNum(0, words.length));
   const [answer, setAnswer] = useState('');
+  const [index, setIndex] = useState(() => rdNum(0, words.length));
 
   const handleSendAnswer = (value: string) => {
     const answer = value.trim().toLowerCase();
@@ -31,7 +31,8 @@ const TabPracticeStudy = memo(() => {
     const { name_word } = words[index];
     const result = (name_word || '').trim().toLowerCase();
     if (result === answer) {
-      // Dispatch Update Study To Database
+      // Handle Study Correct And Increase Point
+      dispatch(increasePoint(50));
       dispatch(actStudyCorrect(words[index]));
 
       playSound(AUDIO_CORRECT);

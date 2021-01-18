@@ -4,17 +4,33 @@ import { getWordsByIdGroup } from '~/models/WordsModel';
 import { GroupType, WordType } from '~/types';
 
 export const LOAD_WORDS_GROUP = 'LOAD_WORDS_GROUP';
+export const INCREASE_POINT = 'INCREASE_POINT';
 
 export type PracticeAction = {
   type: string;
+  point: number;
   words: WordType[];
 };
 
 export const typeDefault: PracticeAction = {
   type: '',
+  point: 0,
   words: [],
 };
 
+export const loadWordsGroup = (words: WordType[]): PracticeAction => ({
+  ...typeDefault,
+  type: LOAD_WORDS_GROUP,
+  words,
+});
+
+export const increasePoint = (point: number): PracticeAction => ({
+  ...typeDefault,
+  type: INCREASE_POINT,
+  point,
+});
+
+// Async Await Thunk
 export const actLoadWordsGroup = (group: GroupType) => async (
   dispatch: Dispatch<PracticeAction>,
 ): Promise<void> => {
@@ -52,7 +68,7 @@ export const actStudyInCorrect = (word: WordType) => async (
   return undefined;
 };
 
-export const actFlashWord = (word: WordType) => async (
+export const actToggleFlashWord = (word: WordType) => async (
   dispatch: Dispatch<PracticeAction>,
 ): Promise<void> => {
   const { id_group, id_study, id_word, difficult_study } = word;
@@ -62,9 +78,3 @@ export const actFlashWord = (word: WordType) => async (
   const words = await getWordsByIdGroup({ id_group });
   return dispatch(loadWordsGroup(words.data || []));
 };
-
-export const loadWordsGroup = (words: WordType[]): PracticeAction => ({
-  ...typeDefault,
-  type: LOAD_WORDS_GROUP,
-  words,
-});
