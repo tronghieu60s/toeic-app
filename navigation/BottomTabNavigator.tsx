@@ -1,4 +1,5 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { TransitionPresets, TransitionSpecs } from '@react-navigation/stack';
 import * as React from 'react';
 import { useSelector } from 'react-redux';
 import { Ripple } from '~/components/Themed';
@@ -33,6 +34,7 @@ export default function BottomTabNavigator(): JSX.Element {
           const { routes: exploreRoutes, index: exploreIndex } = exploreState;
           const exploreActiveRoute = exploreRoutes[exploreIndex];
           if (exploreActiveRoute.name === 'TabPracticeStudy') tabBarVisible = false;
+          if (exploreActiveRoute.name === 'TabPracticeWords') tabBarVisible = false;
         }
         return {
           tabBarVisible,

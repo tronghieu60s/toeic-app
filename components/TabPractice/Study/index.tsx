@@ -1,13 +1,14 @@
-import React, { memo, useState } from 'react';
-import { Vibration } from 'react-native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import React, { memo, useEffect, useState } from 'react';
+import { Alert, Vibration } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { View } from '~/components/Themed';
 import ProcessBar from '~/components/UI/ProcessBar';
 import { randomBetweenTwoNumber as rdNum } from '~/helpers/random';
-import playSound, { AUDIO_CORRECT, AUDIO_WRONG } from '~/helpers/sound';
+import playSound, { AUDIO_CORRECT, AUDIO_FINISH, AUDIO_WRONG } from '~/helpers/sound';
 import { actStudyCorrect, actStudyInCorrect, increasePoint } from '~/redux/actions/practiceAction';
 import { RootState } from '~/redux/reducers/rootReducer';
-import { StatusQuestion } from '~/types';
+import { StatusQuestion, TabPracticeParamList } from '~/types';
 import AlertUI from './AlertUI';
 import BottomUI from './BottomUI';
 import AssembleWords from './StudyMode/AssembleWords';
@@ -15,7 +16,11 @@ import StudyUI from './StudyUI';
 
 const totalQuestions = 5;
 
-const TabPracticeStudy = memo(() => {
+type Props = {
+  navigation: StackNavigationProp<TabPracticeParamList, 'TabPracticeScreen'>;
+};
+
+const TabPracticeStudy = memo(({ navigation }: Props) => {
   const [status, setStatus] = useState<StatusQuestion>('Waiting');
 
   const dispatch = useDispatch();
@@ -23,6 +28,26 @@ const TabPracticeStudy = memo(() => {
   const [answer, setAnswer] = useState('');
   const [index, setIndex] = useState(() => rdNum(0, words.length));
   const [countQuestion, setCountQuestion] = useState(0);
+
+  useEffect(() => {
+    navigation.addListener('beforeRemove', (e) => {
+      // Prevent default behavior of leaving the screen
+      e.preventDefault();
+
+      Alert.alert(
+        'Thoát phiên học',
+        'Bạn có chắc muốn thoát phiên học này không? Kết quả sẽ được lưu lại.',
+        [
+          { text: 'Hủy', style: 'cancel' },
+          {
+            text: 'Thoát',
+            style: 'destructive',
+            onPress: () => navigation.dispatch(e.data.action),
+          },
+        ],
+      );
+    });
+  }, []);
 
   const handleSendAnswer = (value: string) => {
     const answer = value.trim().toLowerCase();
@@ -52,6 +77,10 @@ const TabPracticeStudy = memo(() => {
 
   const handleButtonAnswer = () => {
     if (status !== 'Waiting') {
+      if (countQuestion === totalQuestions) {
+        playSound(AUDIO_FINISH);
+        navigation.goBack();
+      }
       const random = rdNum(0, words.length);
       setIndex(random);
       setStatus('Waiting');

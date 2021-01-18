@@ -2,11 +2,8 @@ import { AntDesign, Entypo, SimpleLineIcons } from '@expo/vector-icons';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { memo, useState } from 'react';
 import { StyleSheet } from 'react-native';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import Ripple from 'react-native-material-ripple';
 import { useSelector } from 'react-redux';
-import { View } from '~/components/Themed';
+import { Ripple, View } from '~/components/Themed';
 import { RootState } from '~/redux/reducers/rootReducer';
 import { TabPracticeParamList } from '~/types';
 import TabPracticeWordsHeaderModal from './Modal';
@@ -25,8 +22,6 @@ const TabPracticeWordsHeaderRight = memo(({ navigation }: Props) => {
         <>
           <Ripple
             style={styles.button}
-            rippleCentered
-            rippleContainerBorderRadius={50}
             onPress={() => navigation.navigate('TabPracticeStudy')}
           >
             <SimpleLineIcons name="graduation" size={22} color="black" />
@@ -38,8 +33,6 @@ const TabPracticeWordsHeaderRight = memo(({ navigation }: Props) => {
       )}
       <Ripple
         style={styles.button}
-        rippleCentered
-        rippleContainerBorderRadius={50}
         onPress={() => setModalVisible(true)}
       >
         <AntDesign name="setting" size={20} color="black" />
@@ -62,6 +55,7 @@ const styles = StyleSheet.create({
   },
   button: {
     padding: 7,
+    marginLeft: 5,
     justifyContent: 'center',
     alignItems: 'center',
   },

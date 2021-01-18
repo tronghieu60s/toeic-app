@@ -2,7 +2,7 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import {
   CardStyleInterpolators,
   createStackNavigator,
-  TransitionSpecs,
+  HeaderStyleInterpolators,
 } from '@react-navigation/stack';
 import React from 'react';
 import TabPracticeHeaderTitle from '~/components/TabPractice/Header/Title';
@@ -23,10 +23,7 @@ export default function TabPracticeNavigator(): JSX.Element {
   return (
     <TabPracticeStack.Navigator
       screenOptions={{
-        transitionSpec: {
-          open: TransitionSpecs.FadeInFromBottomAndroidSpec,
-          close: TransitionSpecs.FadeInFromBottomAndroidSpec,
-        },
+        headerStyleInterpolator: HeaderStyleInterpolators.forFade,
         cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
       }}
     >
