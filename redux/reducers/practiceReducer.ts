@@ -13,7 +13,7 @@ const practice = (state = practiceInitialState, action: PracticeAction): Practic
   switch (action.type) {
     case LOAD_WORDS_GROUP: {
       const { words } = action;
-      return { ...state, words };
+      return { ...state, words: words || [] };
     }
     default:
       return state;

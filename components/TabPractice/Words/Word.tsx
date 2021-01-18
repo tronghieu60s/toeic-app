@@ -3,8 +3,9 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import * as Speech from 'expo-speech';
 import React, { memo } from 'react';
 import { Image, StyleSheet, TouchableOpacity } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { flashIcon, lightBulbIcon } from '~/constants/IconSource';
+import { actFlashWord } from '~/redux/actions/practiceAction';
 import { RootState } from '~/redux/reducers/rootReducer';
 import { TabPracticeParamList, WordType } from '~/types';
 import { Ripple, Text, View } from '../../Themed';
@@ -17,6 +18,9 @@ type Props = {
 const TabPracticeWordItem = memo(({ word, navigation }: Props) => {
   const { name_word, pronounce_word, mean_word, count_study, difficult_study } = word;
   const { visibleMean, visiblePronounce } = useSelector((state: RootState) => state.common);
+
+  const dispatch = useDispatch();
+  const handleFlashWord = () => dispatch(actFlashWord(word));
 
   return (
     <View style={styles.container}>
@@ -49,7 +53,7 @@ const TabPracticeWordItem = memo(({ word, navigation }: Props) => {
           {visibleMean && <Text style={styles.wordMean}>{mean_word}</Text>}
         </View>
         <View style={styles.wordRight}>
-          <Ripple style={styles.icon}>
+          <Ripple style={styles.icon} onPress={handleFlashWord}>
             <Image style={styles.flash} source={flashIcon[difficult_study || 0]} />
           </Ripple>
         </View>

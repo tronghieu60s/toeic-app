@@ -6,8 +6,7 @@ import Loading from '~/components/UI/Loading';
 import ProcessBar from '~/components/UI/ProcessBar';
 import { randomBetweenTwoNumber as rdNum } from '~/helpers/random';
 import playSound, { AUDIO_CORRECT, AUDIO_WRONG } from '~/helpers/sound';
-import { createStudies, updateStudies } from '~/models/StudiesModel';
-import { actLoadWordsGroup } from '~/redux/actions/practiceAction';
+import { actStudyCorrect, actStudyInCorrect } from '~/redux/actions/practiceAction';
 import { RootState } from '~/redux/reducers/rootReducer';
 import { StatusQuestion } from '~/types';
 import AlertUI from './AlertUI';
@@ -29,30 +28,21 @@ const TabPracticeStudy = memo(() => {
   };
 
   const handleCheckAnswer = () => {
-    const { id_group, id_word, name_word, id_study, count_study } = words[index];
+    const { name_word } = words[index];
     const result = (name_word || '').trim().toLowerCase();
     if (result === answer) {
-      // Update Study To Database
-      if (id_study) {
-        if ((count_study || 0) < 2) {
-          updateStudies({
-            ...words[index],
-            count_study: (count_study || 0) + 1,
-          });
-        } else updateStudies({ ...words[index], difficult_study: 0 });
-      } else createStudies({ id_study: id_word, count_study: 2 });
+      // Dispatch Update Study To Database
+      dispatch(actStudyCorrect(words[index]));
 
       playSound(AUDIO_CORRECT);
       setStatus('Correct');
     } else {
-      if (id_study) updateStudies({ ...words[index], difficult_study: 1 });
+      dispatch(actStudyInCorrect(words[index]));
 
-      playSound(AUDIO_WRONG);
       Vibration.vibrate(200);
+      playSound(AUDIO_WRONG);
       setStatus('Incorrect');
     }
-
-    dispatch(actLoadWordsGroup({ id_group }));
   };
 
   const handleButtonAnswer = () => {
