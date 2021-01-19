@@ -1,14 +1,22 @@
 import { WordType } from '~/types';
-import { INCREASE_POINT, LOAD_WORDS_GROUP, PracticeAction } from '../actions/practiceAction';
+import {
+  CHANGE_TYPE_PRACTICE,
+  INCREASE_POINT,
+  LOAD_WORDS_GROUP,
+  PracticeAction,
+  TypePractice,
+} from '../actions/practiceAction';
 
 type PracticeState = {
   point: number;
   words: WordType[];
+  typePractice: TypePractice;
 };
 
 const practiceInitialState: PracticeState = {
   point: 0,
   words: [],
+  typePractice: 'NAME-MEAN',
 };
 
 const practice = (state = practiceInitialState, action: PracticeAction): PracticeState => {
@@ -21,6 +29,10 @@ const practice = (state = practiceInitialState, action: PracticeAction): Practic
       const { point } = action;
       const newPoint = state.point + point;
       return { ...state, point: newPoint };
+    }
+    case CHANGE_TYPE_PRACTICE: {
+      const { typePractice } = action;
+      return { ...state, typePractice };
     }
     default:
       return state;

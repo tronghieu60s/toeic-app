@@ -1,142 +1,50 @@
-import { Feather } from '@expo/vector-icons';
-import _ from 'lodash';
-import React, { memo, useEffect, useState } from 'react';
-import { Dimensions, StyleSheet, Vibration } from 'react-native';
-import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
-import { Text, View } from '~/components/Themed';
-import { generateRandomChars } from '~/helpers/random';
-import { WordType } from '~/types';
-
-type PropsWord = {
-  children: string;
-  handleOnType: (value: string) => void;
-};
-
-const Word = memo(({ children, handleOnType }: PropsWord) => (
-  <TouchableOpacity
-    style={styles.button}
-    onPress={() => {
-      Vibration.vibrate(30);
-      handleOnType(children);
-    }}
-  >
-    <Text weight={600} style={styles.buttonText}>
-      {children}
-    </Text>
-  </TouchableOpacity>
-));
+import React, { memo, useEffect } from 'react';
+import { Dimensions, StyleSheet } from 'react-native';
+import { TextInput } from 'react-native-gesture-handler';
+import { View } from '~/components/Themed';
+import { WordQuestion } from '~/types';
 
 type Props = {
-  words: WordType;
+  wordQuestion: WordQuestion;
   handleSendAnswer: (value: string) => void;
 };
 
-const AssembleWords = memo(({ words, handleSendAnswer }: Props) => {
-  const { name_word } = words;
+const AssembleWords = memo(({ wordQuestion, handleSendAnswer }: Props) => {
   const [text, onChangeText] = React.useState('');
-  const [chars, setChars] = useState<string[]>([]);
-
-  const handleOnType = (value: string) => {
-    const result = `${text}${value}`;
-    onChangeText(result);
-    handleSendAnswer(result);
-  };
 
   useEffect(() => {
-    const arrStr = `${name_word}${generateRandomChars(5)}`.replace(' ', '').split('');
-    setChars(_.shuffle(_.uniq(arrStr)));
     onChangeText('');
-  }, [name_word]);
+  }, [wordQuestion]);
 
-  const renderWords = () => {
-    let result: React.ReactNode = null;
-    result = chars.map((char) => (
-      <Word key={char} handleOnType={handleOnType}>
-        {char}
-      </Word>
-    ));
-    return result;
+  const handleChangeText = (value: string) => {
+    onChangeText(value);
+    handleSendAnswer(value);
   };
 
   return (
     <View style={{ paddingVertical: 60 }}>
-      <View style={styles.inputCover}>
-        <View style={styles.frame} />
-        <TextInput
-          multiline
-          value={text}
-          style={styles.input}
-          placeholder="Nhập nghĩa vào đây..."
-        />
-      </View>
-      <View style={styles.buttons}>{renderWords()}</View>
-      <View style={styles.otherButtons}>
-        <TouchableOpacity
-          style={[styles.button, { width: 218 }]}
-          onPress={() => {
-            Vibration.vibrate(30);
-            handleOnType(' ');
-          }}
-        />
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => {
-            Vibration.vibrate(30);
-            onChangeText(text.slice(0, -1));
-          }}
-        >
-          <Text weight={600} style={{ fontSize: 15 }}>
-            <Feather name="delete" size={24} color="black" />
-          </Text>
-        </TouchableOpacity>
-      </View>
+      <TextInput
+        multiline
+        autoFocus
+        value={text}
+        style={styles.input}
+        placeholder="Nhập nghĩa vào đây..."
+        onChangeText={(text) => handleChangeText(text)}
+      />
     </View>
   );
 });
 
 const styles = StyleSheet.create({
-  inputCover: {
-    width: Dimensions.get('window').width - 40,
-    height: 200,
-  },
-  frame: {
-    width: Dimensions.get('window').width - 40,
-    height: 200,
-    position: 'absolute',
-    backgroundColor: '#fff0',
-    zIndex: 100,
-  },
   input: {
     fontSize: 18,
-    height: 200,
+    height: Dimensions.get('window').height / 3.5,
     borderColor: '#999999a1',
     borderRadius: 10,
     padding: 20,
     borderWidth: 1.5,
     backgroundColor: '#f4f5f7',
     textAlignVertical: 'top',
-  },
-  buttons: {
-    marginTop: 30,
-    flexWrap: 'wrap',
-    flexDirection: 'row',
-  },
-  button: {
-    width: 47,
-    height: 38,
-    borderRadius: 7,
-    marginRight: 10,
-    marginBottom: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#ffc000',
-  },
-  buttonText: {
-    fontSize: 19,
-  },
-  otherButtons: {
-    flexWrap: 'wrap',
-    flexDirection: 'row',
   },
 });
 

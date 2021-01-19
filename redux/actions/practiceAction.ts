@@ -5,17 +5,22 @@ import { GroupType, WordType } from '~/types';
 
 export const LOAD_WORDS_GROUP = 'LOAD_WORDS_GROUP';
 export const INCREASE_POINT = 'INCREASE_POINT';
+export const CHANGE_TYPE_PRACTICE = 'CHANGE_TYPE_PRACTICE';
+
+export type TypePractice = 'NAME-MEAN' | 'MEAN-NAME';
 
 export type PracticeAction = {
   type: string;
   point: number;
   words: WordType[];
+  typePractice: TypePractice;
 };
 
 export const typeDefault: PracticeAction = {
   type: '',
   point: 0,
   words: [],
+  typePractice: 'NAME-MEAN',
 };
 
 export const loadWordsGroup = (words: WordType[]): PracticeAction => ({
@@ -28,6 +33,12 @@ export const increasePoint = (point: number): PracticeAction => ({
   ...typeDefault,
   type: INCREASE_POINT,
   point,
+});
+
+export const changeTypePractice = (typePractice: TypePractice) => ({
+  ...typeDefault,
+  type: CHANGE_TYPE_PRACTICE,
+  typePractice,
 });
 
 // Async Await Thunk

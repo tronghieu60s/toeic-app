@@ -35,7 +35,7 @@ const TabPractice = memo(({ navigation }: Props) => {
 
   return (
     <ScrollView style={styles.container}>
-      <View style={{ backgroundColor: '#f3f3f3' }}>
+      <View style={{ backgroundColor: '#f3f3f3', paddingBottom: 60 }}>
         <Text weight={700} style={styles.groupsTitle}>
           General Business
         </Text>

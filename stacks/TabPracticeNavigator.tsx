@@ -23,14 +23,16 @@ export default function TabPracticeNavigator(): JSX.Element {
   return (
     <TabPracticeStack.Navigator
       screenOptions={{
-        headerStyleInterpolator: HeaderStyleInterpolators.forFade,
-        cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+        headerStyleInterpolator: HeaderStyleInterpolators.forSlideUp,
+        cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
       }}
     >
       <TabPracticeStack.Screen
         name="TabPracticeScreen"
         component={TabPracticeScreen}
-        options={{ headerTitle: () => <TabPracticeHeaderTitle /> }}
+        options={{
+          headerTitle: () => <TabPracticeHeaderTitle />,
+        }}
       />
       <TabPracticeStack.Screen
         name="TabPracticeWords"
@@ -50,7 +52,7 @@ export default function TabPracticeNavigator(): JSX.Element {
       <TabPracticeStack.Screen
         name="TabPracticeStudy"
         component={TabPracticeStudy}
-        options={({ route }) => ({
+        options={{
           headerStyle: {
             backgroundColor: '#47d798',
           },
@@ -61,7 +63,8 @@ export default function TabPracticeNavigator(): JSX.Element {
           ),
           headerTitle: () => <View />,
           headerRight: () => <TabPracticeStudyHeaderRight />,
-        })}
+          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+        }}
       />
     </TabPracticeStack.Navigator>
   );

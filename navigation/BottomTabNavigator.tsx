@@ -1,5 +1,4 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { TransitionPresets, TransitionSpecs } from '@react-navigation/stack';
 import * as React from 'react';
 import { useSelector } from 'react-redux';
 import { Ripple } from '~/components/Themed';
@@ -15,17 +14,15 @@ const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 export default function BottomTabNavigator(): JSX.Element {
   const colorScheme = useSelector((state: RootState) => state.common.theme);
 
-  const tabBarOptions = {
-    showLabel: false,
-    activeTintColor: Colors[colorScheme].tint,
-    inactiveTintColor: '#AAA',
-    style: { height: 55 },
-  };
-
   return (
     <BottomTab.Navigator
       initialRouteName="TabPractice"
-      tabBarOptions={tabBarOptions}
+      tabBarOptions={{
+        showLabel: false,
+        activeTintColor: Colors[colorScheme].tint,
+        inactiveTintColor: '#AAA',
+        style: { height: 55, position: 'absolute' },
+      }}
       screenOptions={({ route, navigation }) => {
         const { routes, index } = navigation.dangerouslyGetState();
         const { state: exploreState } = routes[index];

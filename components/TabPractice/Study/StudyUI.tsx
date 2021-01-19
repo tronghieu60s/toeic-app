@@ -2,22 +2,27 @@ import React, { memo } from 'react';
 import { Image, StyleSheet } from 'react-native';
 import { Text, View } from '~/components/Themed';
 import { lightBulbIcon } from '~/constants/IconSource';
-import { WordType } from '~/types';
+import { StatusQuestion, WordQuestion } from '~/types';
 
 type Props = {
-  words: WordType;
+  status: StatusQuestion;
+  wordQuestion: WordQuestion;
   children: JSX.Element;
 };
 
-const StudyUI = memo(({ words, children }: Props) => {
-  const { mean_word, count_study } = words;
+const StudyUI = memo(({ status, wordQuestion, children }: Props) => {
+  const { question, words } = wordQuestion;
+  const { explain_word, count_study } = words;
 
   return (
-    <View style={{ flex: 1, justifyContent: 'space-between' }}>
+    <View style={{ flex: 1 }}>
       <View style={styles.viewTop}>
-        <Text weight={700} style={styles.question}>
-          {mean_word}
-        </Text>
+        <View style={{ flex: 8 }}>
+          <Text weight={700} style={styles.question}>
+            {question}
+          </Text>
+          {status !== 'Waiting' && <Text style={styles.explain}>{explain_word}</Text>}
+        </View>
         <View style={styles.lightBulb}>
           <Image style={styles.lightBulbImage} source={lightBulbIcon[count_study || 0]} />
         </View>
@@ -35,16 +40,16 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   viewCenter: {
-    paddingVertical: 40,
     paddingHorizontal: 20,
   },
   question: {
-    flex: 8,
     fontSize: 18,
+  },
+  explain: {
+    marginTop: 2,
   },
   lightBulb: {
     flex: 2,
-    justifyContent: 'center',
     alignItems: 'center',
   },
   lightBulbImage: {
