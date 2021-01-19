@@ -88,15 +88,14 @@ const TabPracticeStudy = memo(({ navigation }: Props) => {
       if (arrAnswer.indexOf(result) !== -1 || answer === result) handleStudyCorrect();
       else handleStudyIncorrect();
     } else {
-      const typeQuestion = rdNum(0, 2);
-      setTypeQuestion(typeQuestion);
-
       if (countQuestion === totalQuestions) {
         playSound(AUDIO_FINISH);
         navigation.removeListener('beforeRemove', (e) => navigation.dispatch(e.data.action));
         navigation.goBack();
+        return;
       }
-
+      const typeQuestion = rdNum(0, 2);
+      setTypeQuestion(typeQuestion);
       setTypeAnswer(rdNum(0, 2));
       setWordQuestion(words[rdNum(0, words.length)]);
       setStatus('Waiting');

@@ -1,4 +1,5 @@
-import React, { memo } from 'react';
+import * as Speech from 'expo-speech';
+import React, { memo, useEffect } from 'react';
 import { Image, StyleSheet } from 'react-native';
 import { Text, View } from '~/components/Themed';
 import { lightBulbIcon } from '~/constants/IconSource';
@@ -12,19 +13,26 @@ type Props = {
 };
 
 const StudyUI = memo(({ status, word, typeAnswer, children }: Props) => {
-  const { name_word, mean_word, explain_word, count_study } = word;
+  const { name_word, mean_word, pronounce_word, explain_word, count_study } = word;
 
-  let question;
-  if (typeAnswer === 0) question = name_word;
-  if (typeAnswer === 1) question = mean_word;
+  let question = '';
+  if (typeAnswer === 0) question = name_word || '';
+  if (typeAnswer === 1) question = mean_word || '';
+
+  useEffect(() => {
+    if (typeAnswer === 0) Speech.speak(question, { language: 'en' });
+  }, [word]);
 
   return (
     <View style={{ flex: 1 }}>
       <View style={styles.viewTop}>
         <View style={{ flex: 8 }}>
-          <Text weight={700} style={styles.question}>
-            {question}
-          </Text>
+          <View style={{ flexDirection: 'row' }}>
+            <Text weight={700} style={styles.question}>
+              {question}
+              {typeAnswer === 0 && ` - ${pronounce_word}`}
+            </Text>
+          </View>
           {status !== 'Waiting' && <Text style={styles.explain}>{explain_word}</Text>}
         </View>
         <View style={styles.lightBulb}>
