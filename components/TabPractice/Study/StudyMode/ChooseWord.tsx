@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width - 40,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    paddingVertical: 40,
+    paddingVertical: 20,
   },
   word: {
     width: Dimensions.get('window').width / 2 - 30,

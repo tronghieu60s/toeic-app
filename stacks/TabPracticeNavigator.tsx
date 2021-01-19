@@ -24,7 +24,7 @@ export default function TabPracticeNavigator(): JSX.Element {
     <TabPracticeStack.Navigator
       screenOptions={{
         headerStyleInterpolator: HeaderStyleInterpolators.forSlideUp,
-        cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
+        cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
       }}
     >
       <TabPracticeStack.Screen

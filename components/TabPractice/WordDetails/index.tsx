@@ -23,7 +23,7 @@ const TabPracticeWordDetails = memo(({ route }: Props) => {
       </Text>
       <Ripple
         style={{ padding: 3 }}
-        onPress={() => Speech.speak(name_word, { language: 'en' })}
+        onPress={() => Speech.speak(name_word || '', { language: 'en' })}
       >
         <MaterialIcons name="volume-up" size={16} color="black" />
       </Ripple>

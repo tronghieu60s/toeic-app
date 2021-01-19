@@ -1,6 +1,6 @@
 import * as Speech from 'expo-speech';
-import React, { memo, useEffect } from 'react';
-import { Image, StyleSheet } from 'react-native';
+import React, { memo, useEffect, useRef } from 'react';
+import { Animated, Dimensions, Image, StyleSheet } from 'react-native';
 import { Text, View } from '~/components/Themed';
 import { lightBulbIcon } from '~/constants/IconSource';
 import { StatusQuestion, WordType } from '~/types';
@@ -13,6 +13,8 @@ type Props = {
 };
 
 const StudyUI = memo(({ status, word, typeAnswer, children }: Props) => {
+  const opacityMean = useRef(new Animated.Value(0)).current;
+  const scaleLightBulb = useRef(new Animated.Value(1)).current;
   const { name_word, mean_word, pronounce_word, explain_word, count_study } = word;
 
   let question = '';
@@ -22,6 +24,22 @@ const StudyUI = memo(({ status, word, typeAnswer, children }: Props) => {
   useEffect(() => {
     if (typeAnswer === 0) Speech.speak(question, { language: 'en' });
   }, [word]);
+
+  useEffect(() => {
+    if (status === 'Correct') {
+      Animated.spring(scaleLightBulb, {
+        toValue: 1.3,
+        useNativeDriver: true,
+      }).start();
+      Animated.spring(opacityMean, {
+        toValue: 1,
+        useNativeDriver: true,
+      }).start();
+    } else {
+      opacityMean.setValue(0);
+      scaleLightBulb.setValue(1);
+    }
+  }, [status]);
 
   return (
     <View style={{ flex: 1 }}>
@@ -33,11 +51,16 @@ const StudyUI = memo(({ status, word, typeAnswer, children }: Props) => {
               {typeAnswer === 0 && ` - ${pronounce_word}`}
             </Text>
           </View>
-          {status !== 'Waiting' && <Text style={styles.explain}>{explain_word}</Text>}
+          <Animated.View style={{ opacity: opacityMean, width: '92%' }}>
+            <Text style={styles.explain}>
+              {explain_word?.slice(0, 70)}
+              {(explain_word || '').length > 70 && '...'}
+            </Text>
+          </Animated.View>
         </View>
-        <View style={styles.lightBulb}>
+        <Animated.View style={[styles.lightBulb, { transform: [{ scale: scaleLightBulb }] }]}>
           <Image style={styles.lightBulbImage} source={lightBulbIcon[count_study || 0]} />
-        </View>
+        </Animated.View>
       </View>
       <View style={styles.viewCenter}>{children}</View>
     </View>
@@ -46,6 +69,7 @@ const StudyUI = memo(({ status, word, typeAnswer, children }: Props) => {
 
 const styles = StyleSheet.create({
   viewTop: {
+    height: Dimensions.get('window').height / 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingHorizontal: 20,
@@ -56,13 +80,15 @@ const styles = StyleSheet.create({
   },
   question: {
     fontSize: 18,
+    width: '90%',
   },
   explain: {
     marginTop: 2,
   },
   lightBulb: {
-    flex: 2,
+    flex: 1.2,
     alignItems: 'center',
+    marginTop: 15,
   },
   lightBulbImage: {
     width: 40,

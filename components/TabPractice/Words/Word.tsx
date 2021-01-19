@@ -1,8 +1,6 @@
-import { MaterialIcons } from '@expo/vector-icons';
 import { StackNavigationProp } from '@react-navigation/stack';
-import * as Speech from 'expo-speech';
 import React, { memo } from 'react';
-import { Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { Image, StyleSheet } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { flashIcon, lightBulbIcon } from '~/constants/IconSource';
 import { actToggleFlashWord } from '~/redux/actions/practiceAction';
@@ -25,33 +23,30 @@ const TabPracticeWordItem = memo(({ word, navigation }: Props) => {
   return (
     <View style={styles.container}>
       <View style={styles.word}>
-        <View style={styles.wordLeft}>
-          <Image style={styles.flash} source={lightBulbIcon[count_study || 0]} />
-        </View>
-        <View style={styles.wordCenter}>
-          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-            <TouchableOpacity
-              onPress={() => navigation.navigate('TabPracticeWordDetails', { word })}
-            >
+        <Ripple
+          rippleCentered={false}
+          rippleContainerBorderRadius={0}
+          style={styles.ripple}
+          onPress={() => navigation.navigate('TabPracticeWordDetails', { word })}
+        >
+          <View style={styles.wordLeft}>
+            <Image style={styles.flash} source={lightBulbIcon[count_study || 0]} />
+          </View>
+          <View style={styles.wordCenter}>
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               <Text weight={700} style={styles.wordName}>
                 {name_word}
               </Text>
-            </TouchableOpacity>
-            {visiblePronounce && (
-              <Text weight={600} style={styles.wordSpelling}>
-                {' '}
-                {pronounce_word}
-              </Text>
-            )}
-            <Ripple
-              style={{ padding: 3 }}
-              onPress={() => Speech.speak(name_word || '', { language: 'en' })}
-            >
-              <MaterialIcons name="volume-up" size={16} color="black" />
-            </Ripple>
+              {visiblePronounce && (
+                <Text weight={600} style={styles.wordSpelling}>
+                  {' '}
+                  {pronounce_word}
+                </Text>
+              )}
+            </View>
+            {visibleMean && <Text style={styles.wordMean}>{mean_word}</Text>}
           </View>
-          {visibleMean && <Text style={styles.wordMean}>{mean_word}</Text>}
-        </View>
+        </Ripple>
         <View style={styles.wordRight}>
           <Ripple style={styles.icon} onPress={handleFlashWord}>
             <Image style={styles.flash} source={flashIcon[difficult_study || 0]} />
@@ -67,6 +62,10 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     marginVertical: 5,
     borderRadius: 10,
+  },
+  ripple: {
+    flex: 8,
+    flexDirection: 'row',
   },
   word: {
     flex: 1,
@@ -84,7 +83,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   wordRight: {
-    flex: 2,
+    flex: 1.5,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -97,6 +96,7 @@ const styles = StyleSheet.create({
   },
   wordMean: {
     fontSize: 14,
+    marginTop: 1,
   },
   flash: {
     width: 25,
