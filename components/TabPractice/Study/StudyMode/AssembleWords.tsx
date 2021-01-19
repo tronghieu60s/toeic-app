@@ -2,19 +2,19 @@ import React, { memo, useEffect } from 'react';
 import { Dimensions, StyleSheet } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import { View } from '~/components/Themed';
-import { WordQuestion } from '~/types';
+import { WordType } from '~/types';
 
 type Props = {
-  wordQuestion: WordQuestion;
+  word: WordType;
   handleSendAnswer: (value: string) => void;
 };
 
-const AssembleWords = memo(({ wordQuestion, handleSendAnswer }: Props) => {
+const AssembleWords = memo(({ word, handleSendAnswer }: Props) => {
   const [text, onChangeText] = React.useState('');
 
   useEffect(() => {
     onChangeText('');
-  }, [wordQuestion]);
+  }, [word]);
 
   const handleChangeText = (value: string) => {
     onChangeText(value);

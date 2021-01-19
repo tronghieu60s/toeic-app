@@ -2,17 +2,21 @@ import React, { memo } from 'react';
 import { Image, StyleSheet } from 'react-native';
 import { Text, View } from '~/components/Themed';
 import { lightBulbIcon } from '~/constants/IconSource';
-import { StatusQuestion, WordQuestion } from '~/types';
+import { StatusQuestion, WordType } from '~/types';
 
 type Props = {
+  word: WordType;
   status: StatusQuestion;
-  wordQuestion: WordQuestion;
+  typeAnswer: number;
   children: JSX.Element;
 };
 
-const StudyUI = memo(({ status, wordQuestion, children }: Props) => {
-  const { question, words } = wordQuestion;
-  const { explain_word, count_study } = words;
+const StudyUI = memo(({ status, word, typeAnswer, children }: Props) => {
+  const { name_word, mean_word, explain_word, count_study } = word;
+
+  let question;
+  if (typeAnswer === 0) question = name_word;
+  if (typeAnswer === 1) question = mean_word;
 
   return (
     <View style={{ flex: 1 }}>

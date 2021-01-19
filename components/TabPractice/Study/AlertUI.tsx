@@ -3,45 +3,45 @@ import React, { memo } from 'react';
 import { Dimensions, StyleSheet, ToastAndroid } from 'react-native';
 import { Ripple, Text, View } from '~/components/Themed';
 import { TEXT_CORRECT, TEXT_INCORRECT } from '~/constants/Text/Study';
-import { randomBetweenTwoNumber } from '~/helpers/random';
-import { StatusQuestion, WordQuestion } from '~/types';
+import { randomBetweenTwoNumber as rdNum } from '~/helpers/random';
+import { StatusQuestion, WordType } from '~/types';
 
 type Props = {
-  wordQuestion: WordQuestion;
+  word: WordType;
   status: StatusQuestion;
 };
 
-const AlertUI = memo(({ wordQuestion, status }: Props) => (
-  <View style={styles.viewFinish}>
-    <View
-      style={[
-        styles.viewFinishTab,
-        { backgroundColor: status === 'Correct' ? '#2dce89' : '#f5365c' },
-      ]}
-    >
-      <View style={styles.viewFinishLeft}>
-        <Text weight={700} style={styles.alert}>
-          {status === 'Correct'
-            ? TEXT_CORRECT[randomBetweenTwoNumber(0, TEXT_CORRECT.length)]
-            : TEXT_INCORRECT[randomBetweenTwoNumber(0, TEXT_INCORRECT.length)]}
-        </Text>
-        <Text style={styles.alertContent}>
-          {wordQuestion.question}
-          {' - '}
-          {wordQuestion.answer}
-        </Text>
-      </View>
-      <View style={styles.viewFinishRight}>
-        <Ripple
-          style={{ padding: 10 }}
-          onPress={() => ToastAndroid.show('Chức năng này đang bảo trì.', ToastAndroid.SHORT)}
-        >
-          <Feather name="flag" size={20} color="#f4f5f7" />
-        </Ripple>
+const AlertUI = memo(({ word, status }: Props) => {
+  const { name_word, mean_word } = word;
+  const bgColor = status === 'Correct' ? '#2dce89' : '#f5365c';
+  const textCorrect = TEXT_CORRECT[rdNum(0, TEXT_CORRECT.length)];
+  const textIncorrect = TEXT_INCORRECT[rdNum(0, TEXT_INCORRECT.length)];
+
+  return (
+    <View style={styles.viewFinish}>
+      <View style={[styles.viewFinishTab, { backgroundColor: bgColor }]}>
+        <View style={styles.viewFinishLeft}>
+          <Text weight={700} style={styles.alert}>
+            {status === 'Correct' ? textCorrect : textIncorrect}
+          </Text>
+          <Text style={styles.alertContent}>
+            {name_word}
+            {' - '}
+            {mean_word}
+          </Text>
+        </View>
+        <View style={styles.viewFinishRight}>
+          <Ripple
+            style={{ padding: 10 }}
+            onPress={() => ToastAndroid.show('Chức năng này đang bảo trì.', ToastAndroid.SHORT)}
+          >
+            <Feather name="flag" size={20} color="#f4f5f7" />
+          </Ripple>
+        </View>
       </View>
     </View>
-  </View>
-));
+  );
+});
 
 const styles = StyleSheet.create({
   viewFinish: {

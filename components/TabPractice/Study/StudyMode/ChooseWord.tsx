@@ -1,48 +1,63 @@
+import _ from 'lodash';
 import React, { memo, useEffect, useState } from 'react';
 import { Dimensions, StyleSheet } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { useSelector } from 'react-redux';
 import { Text, View } from '~/components/Themed';
+import { randomBetweenTwoNumber as rdNum } from '~/helpers/random';
 import { RootState } from '~/redux/reducers/rootReducer';
 import { WordType } from '~/types';
 
 type Props = {
-  wordsAnswer: WordType[];
+  word: WordType;
+  typeAnswer: number;
   handleSendAnswer: (value: string) => void;
 };
 
-const ChooseWord = memo(({ wordsAnswer, handleSendAnswer }: Props) => {
+const ChooseWord = memo(({ word, typeAnswer, handleSendAnswer }: Props) => {
   const [selectWords, setSelectWords] = useState(-1);
 
-  const typePractice = useSelector((state: RootState) => state.practice.typePractice);
+  const [words, setWords] = useState<WordType[]>([]);
+  const wordsState = useSelector((state: RootState) => state.practice.words);
 
   useEffect(() => {
     setSelectWords(-1);
-  }, [wordsAnswer]);
 
-  const renderWordsSelect = (wordsAnswer: WordType[]) => {
+    let words = [...wordsState];
+    if (typeAnswer === 0) words = words.filter((o) => o.name_word !== word.name_word);
+    if (typeAnswer === 1) words = words.filter((o) => o.mean_word !== word.mean_word);
+
+    words = _.shuffle(words).slice(0, 5);
+    words.splice(rdNum(0, 4), 0, word);
+
+    setWords(words);
+  }, [word]);
+
+  const renderWordsSelect = () => {
     let result: React.ReactNode = null;
-    result = wordsAnswer.map((word, index) => {
-      let wordShow = '';
-      if (typePractice === 'NAME-MEAN') wordShow = word.mean_word || '';
-      if (typePractice === 'MEAN-NAME') wordShow = word.name_word || '';
+    result = words.map((word, index) => {
+      const bgColor = selectWords === index ? '#2dce89' : '#e1e4ea';
+      const color = selectWords === index ? '#fff' : '#000';
+      let name = '';
+      if (typeAnswer === 0) name = word.mean_word || '';
+      if (typeAnswer === 1) name = word.name_word || '';
       return (
         <TouchableWithoutFeedback
           key={word.id_word}
-          style={[styles.word, { backgroundColor: selectWords === index ? '#2dce89' : '#e1e4ea' }]}
+          style={[styles.word, { backgroundColor: bgColor }]}
           onPress={() => {
             setSelectWords(index);
-            handleSendAnswer(wordShow || '');
+            handleSendAnswer(name);
           }}
         >
-          <Text style={styles.wordText}>{wordShow}</Text>
+          <Text style={[styles.wordText, { color }]}>{name}</Text>
         </TouchableWithoutFeedback>
       );
     });
     return result;
   };
 
-  return <View style={styles.container}>{renderWordsSelect(wordsAnswer)}</View>;
+  return <View style={styles.container}>{renderWordsSelect()}</View>;
 });
 
 const styles = StyleSheet.create({
@@ -54,7 +69,7 @@ const styles = StyleSheet.create({
   },
   word: {
     width: Dimensions.get('window').width / 2 - 30,
-    height: 150,
+    height: Dimensions.get('window').height / 5,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#e1e4ea',

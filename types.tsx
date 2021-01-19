@@ -28,12 +28,6 @@ export type TabFavoriteParamList = {
 
 export type StatusQuestion = 'Waiting' | 'Correct' | 'Incorrect';
 
-export type WordQuestion = {
-  words: WordType;
-  question: string;
-  answer: string;
-};
-
 export type StudyType = {
   id_study: number;
   count_study?: number;
