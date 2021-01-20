@@ -1,28 +1,32 @@
 import React, { memo } from 'react';
 import { StyleSheet } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { Text, View } from '~/components/Themed';
+import { Ripple, Text, View } from '~/components/Themed';
 import { StatusQuestion } from '~/types';
 
 type Props = {
   status: StatusQuestion;
+  userAnswer: string;
   handleCheckAnswer: () => void;
 };
 
-const BottomUI = memo(({ status, handleCheckAnswer }: Props) => {
+const BottomUI = memo(({ status, userAnswer, handleCheckAnswer }: Props) => {
   let colorButton = '#2dce89';
+  const colorText = userAnswer ? '#fff' : '#2a3547';
+  if (userAnswer.length === 0) colorButton = '#d7d8dc';
   if (status === 'Correct') colorButton = '#219764';
   if (status === 'Incorrect') colorButton = '#d10a32';
+
   return (
     <View style={styles.viewBottom}>
-      <TouchableOpacity
+      <Ripple
+        rippleCentered={false}
         style={[styles.continue, { backgroundColor: colorButton }]}
-        onPress={handleCheckAnswer}
+        onPress={() => userAnswer && handleCheckAnswer()}
       >
-        <Text weight={700} style={[styles.continueText, { color: '#fff' }]}>
+        <Text weight={700} style={[styles.continueText, { color: colorText }]}>
           {status !== 'Waiting' ? 'Tiếp tục' : 'Kiểm tra'}
         </Text>
-      </TouchableOpacity>
+      </Ripple>
     </View>
   );
 });

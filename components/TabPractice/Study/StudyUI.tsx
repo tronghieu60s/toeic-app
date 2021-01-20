@@ -1,8 +1,8 @@
-import * as Speech from 'expo-speech';
 import React, { memo, useEffect, useRef } from 'react';
 import { Animated, Dimensions, Image, StyleSheet } from 'react-native';
 import { Text, View } from '~/components/Themed';
 import { lightBulbIcon } from '~/constants/IconSource';
+import { SpeechEnglish } from '~/helpers/sound';
 import { StatusQuestion, WordType } from '~/types';
 
 type Props = {
@@ -22,7 +22,7 @@ const StudyUI = memo(({ status, word, typeAnswer, children }: Props) => {
   if (typeAnswer === 1) question = mean_word || '';
 
   useEffect(() => {
-    if (typeAnswer === 0) Speech.speak(question, { language: 'en' });
+    if (typeAnswer === 0) SpeechEnglish(question);
   }, [word]);
 
   useEffect(() => {

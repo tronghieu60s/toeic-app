@@ -5,14 +5,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { View } from '~/components/Themed';
 import ProcessBar from '~/components/UI/ProcessBar';
 import { randomBetweenTwoNumber as rdNum } from '~/helpers/random';
-import playSound, { AUDIO_CORRECT, AUDIO_FINISH, AUDIO_WRONG } from '~/helpers/sound';
+import { AUDIO_CORRECT, AUDIO_FINISH, AUDIO_WRONG, playSound } from '~/helpers/sound';
 import { actStudyCorrect, actStudyInCorrect, increasePoint } from '~/redux/actions/practiceAction';
 import { RootState } from '~/redux/reducers/rootReducer';
 import { StatusQuestion, TabPracticeParamList, WordType } from '~/types';
 import AlertUI from './AlertUI';
 import BottomUI from './BottomUI';
-import AssembleWords from './StudyMode/AssembleWords';
 import ChooseWord from './StudyMode/ChooseWord';
+import FillWord from './StudyMode/FillWord';
+import StudyWord from './StudyMode/StudyWord';
 import StudyUI from './StudyUI';
 
 const totalQuestions = 5;
@@ -99,16 +100,18 @@ const TabPracticeStudy = memo(({ navigation }: Props) => {
       setTypeAnswer(rdNum(0, 2));
       setWordQuestion(words[rdNum(0, words.length)]);
       setStatus('Waiting');
+      setUserAnswer('');
     }
   };
 
   return (
     <View style={{ flex: 1, justifyContent: 'space-between' }}>
       <ProcessBar percent={(countQuestion * 100) / totalQuestions} />
+      {/* <StudyWord word={wordQuestion} /> */}
       <StudyUI status={status} word={wordQuestion} typeAnswer={typeAnswer}>
         <View>
           {typeQuestion === 0 && (
-            <AssembleWords word={wordQuestion} handleSendAnswer={handleSendAnswer} />
+            <FillWord word={wordQuestion} handleSendAnswer={handleSendAnswer} />
           )}
           {typeQuestion === 1 && (
             <ChooseWord
@@ -119,7 +122,7 @@ const TabPracticeStudy = memo(({ navigation }: Props) => {
           )}
         </View>
       </StudyUI>
-      <BottomUI status={status} handleCheckAnswer={handleCheckAnswer} />
+      <BottomUI status={status} userAnswer={userAnswer} handleCheckAnswer={handleCheckAnswer} />
       {status !== 'Waiting' && <AlertUI status={status} word={wordQuestion} />}
     </View>
   );

@@ -9,7 +9,7 @@ type Props = {
   handleSendAnswer: (value: string) => void;
 };
 
-const AssembleWords = memo(({ word, handleSendAnswer }: Props) => {
+const FillWord = memo(({ word, handleSendAnswer }: Props) => {
   const [text, onChangeText] = React.useState('');
 
   useEffect(() => {
@@ -48,4 +48,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AssembleWords;
+export default FillWord;
