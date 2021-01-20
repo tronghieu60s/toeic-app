@@ -23,6 +23,7 @@ const AlertUI = memo(({ word, status }: Props) => {
     if (status !== 'Waiting') {
       Animated.spring(outPosition, {
         toValue: 0,
+        speed: 30,
         useNativeDriver: true,
       }).start();
     }

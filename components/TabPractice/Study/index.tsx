@@ -1,4 +1,5 @@
 import { StackNavigationProp } from '@react-navigation/stack';
+import { isNull } from 'lodash';
 import React, { memo, useEffect, useState } from 'react';
 import { Alert, Keyboard, Vibration } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
@@ -24,6 +25,7 @@ type Props = {
 };
 
 const TabPracticeStudy = memo(({ navigation }: Props) => {
+  const [statusStudy, setStatusStudy] = useState(false);
   const [status, setStatus] = useState<StatusQuestion>('Waiting');
 
   const [userAnswer, setUserAnswer] = useState('');
@@ -54,6 +56,18 @@ const TabPracticeStudy = memo(({ navigation }: Props) => {
     });
   }, []);
 
+  useEffect(() => {
+    if (isNull(wordQuestion.count_study)) setStatusStudy(true);
+  }, [wordQuestion]);
+
+  useEffect(() => {
+    // Handle Button Continue If Count Study === null
+    if (statusStudy) {
+      setStatus('Correct');
+      setUserAnswer('Continue');
+    }
+  }, [statusStudy]);
+
   const handleSendAnswer = (value: string) => {
     const userAnswer = value.trim().toLowerCase();
     setUserAnswer(userAnswer);
@@ -78,57 +92,74 @@ const TabPracticeStudy = memo(({ navigation }: Props) => {
     setStatus('Incorrect');
   };
 
-  const handleCheckAnswer = () => {
-    if (status === 'Waiting') {
-      Keyboard.dismiss();
-      let answer;
-      if (typeAnswer === 0) answer = wordQuestion.mean_word;
-      if (typeAnswer === 1) answer = wordQuestion.name_word;
+  const handleAnswer = () => {
+    Keyboard.dismiss();
 
-      const result = userAnswer.trim().toLowerCase();
-      const arrAnswer = (answer || '').split(',').map((item) => item.trim().toLowerCase());
-      const arrAnswerVn = (answer || '')
-        .split(',')
-        .map((item) => removeVietnameseTones(item.trim().toLowerCase()));
-      const conditionArr = arrAnswer.indexOf(result) !== -1 || arrAnswerVn.indexOf(result) !== -1;
-      if (conditionArr || answer === result) handleStudyCorrect();
-      else handleStudyIncorrect();
-    } else {
-      if (countQuestion === totalQuestions) {
-        playSound(AUDIO_FINISH);
-        navigation.removeListener('beforeRemove', (e) => navigation.dispatch(e.data.action));
-        navigation.goBack();
-        return;
-      }
-      const typeQuestion = rdNum(0, 2);
-      setTypeQuestion(typeQuestion);
-      setTypeAnswer(rdNum(0, 2));
-      setWordQuestion(words[rdNum(0, words.length)]);
-      setStatus('Waiting');
-      setUserAnswer('');
+    let answer;
+    if (typeAnswer === 0) answer = wordQuestion.mean_word;
+    if (typeAnswer === 1) answer = wordQuestion.name_word;
+
+    // Handle Answer - Result
+    const result = userAnswer.trim().toLowerCase();
+    const arrAnswer = (answer || '').split(',').map((item) => item.trim().toLowerCase());
+    const arrAnswerVn = (answer || '')
+      .split(',')
+      .map((item) => removeVietnameseTones(item.trim().toLowerCase()));
+    const conditionArr = arrAnswer.indexOf(result) !== -1 || arrAnswerVn.indexOf(result) !== -1;
+    if (conditionArr || answer === result) handleStudyCorrect();
+    else handleStudyIncorrect();
+  };
+
+  const handleContinue = (): void | null => {
+    if (status === 'Waiting') return handleAnswer();
+
+    // Handle Exit Study
+    if (countQuestion === totalQuestions) {
+      playSound(AUDIO_FINISH);
+      navigation.removeListener('beforeRemove', (e) => navigation.dispatch(e.data.action));
+      navigation.goBack();
+      return null;
     }
+
+    const typeQuestion = rdNum(0, 2);
+    setTypeQuestion(typeQuestion);
+    setTypeAnswer(rdNum(0, 2));
+
+    const wordRandom = words[rdNum(0, words.length)];
+    const newWordQuestion = status === 'Incorrect' || statusStudy ? wordQuestion : wordRandom;
+    setWordQuestion(newWordQuestion);
+
+    if (status === 'Incorrect') setStatusStudy(true);
+    else setStatusStudy(false);
+
+    setStatus('Waiting');
+    setUserAnswer('');
+
+    return null;
   };
 
   return (
     <View style={{ flex: 1, justifyContent: 'space-between' }}>
       <ProcessBar percent={(countQuestion * 100) / totalQuestions} />
-      {/* <StudyWord word={wordQuestion} /> */}
-      <StudyUI status={status} word={wordQuestion} typeAnswer={typeAnswer}>
-        <View>
-          {typeQuestion === 0 && (
-            <FillWord word={wordQuestion} handleSendAnswer={handleSendAnswer} />
-          )}
-          {typeQuestion === 1 && (
-            <ChooseWord
-              word={wordQuestion}
-              typeAnswer={typeAnswer}
-              handleSendAnswer={handleSendAnswer}
-            />
-          )}
-        </View>
-      </StudyUI>
-      <BottomUI status={status} userAnswer={userAnswer} handleCheckAnswer={handleCheckAnswer} />
-      {status !== 'Waiting' && <AlertUI status={status} word={wordQuestion} />}
+      {statusStudy && <StudyWord word={wordQuestion} />}
+      {!statusStudy && (
+        <StudyUI status={status} word={wordQuestion} typeAnswer={typeAnswer}>
+          <View>
+            {isNull(wordQuestion.count_study) && (
+              <ChooseWord
+                word={wordQuestion}
+                typeAnswer={typeAnswer}
+                handleSendAnswer={handleSendAnswer}
+              />
+            )}
+            {(wordQuestion.count_study || 0) >= 1 && (
+              <FillWord word={wordQuestion} handleSendAnswer={handleSendAnswer} />
+            )}
+          </View>
+        </StudyUI>
+      )}
+      <BottomUI status={status} userAnswer={userAnswer} handleContinue={handleContinue} />
+      {status !== 'Waiting' && !statusStudy && <AlertUI status={status} word={wordQuestion} />}
     </View>
   );
 });

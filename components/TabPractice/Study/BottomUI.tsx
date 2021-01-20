@@ -8,10 +8,10 @@ import { StatusQuestion } from '~/types';
 type Props = {
   status: StatusQuestion;
   userAnswer: string;
-  handleCheckAnswer: () => void;
+  handleContinue: () => void;
 };
 
-const BottomUI = memo(({ status, userAnswer, handleCheckAnswer }: Props) => {
+const BottomUI = memo(({ status, userAnswer, handleContinue }: Props) => {
   let colorButton = '#2dce89';
   const colorText = userAnswer ? '#fff' : '#2a3547';
   if (userAnswer.length === 0) colorButton = '#d7d8dc';
@@ -23,7 +23,7 @@ const BottomUI = memo(({ status, userAnswer, handleCheckAnswer }: Props) => {
       <TouchableOpacity
         disabled={userAnswer.length === 0 ? true : false}
         style={[styles.continue, { backgroundColor: colorButton }]}
-        onPress={() => userAnswer && handleCheckAnswer()}
+        onPress={handleContinue}
       >
         <Text weight={700} style={[styles.continueText, { color: colorText }]}>
           {status !== 'Waiting' ? 'Tiếp tục' : 'Kiểm tra'}

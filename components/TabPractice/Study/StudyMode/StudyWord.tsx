@@ -2,7 +2,7 @@ import { SimpleLineIcons } from '@expo/vector-icons';
 import React, { memo } from 'react';
 import { StyleSheet } from 'react-native';
 import { TouchableNativeFeedback } from 'react-native-gesture-handler';
-import { Text, View } from '~/components/Themed';
+import { Ripple, Text, View } from '~/components/Themed';
 import { SpeechEnglish } from '~/helpers/sound';
 import { WordType } from '~/types';
 
@@ -16,12 +16,12 @@ const StudyWord = memo(({ word }: Props) => {
   return (
     <View style={{ height: '90%', zIndex: 1 }}>
       <View style={styles.viewTop}>
-        <TouchableNativeFeedback
+        <Ripple
           style={styles.sound}
           onPress={() => SpeechEnglish(name_word || '')}
         >
           <SimpleLineIcons name="volume-2" size={24} color="black" />
-        </TouchableNativeFeedback>
+        </Ripple>
         <Text weight={700} style={styles.wordName}>
           {name_word}
         </Text>
@@ -31,7 +31,7 @@ const StudyWord = memo(({ word }: Props) => {
           <Text weight={700} style={{ color: '#9d9d9d' }}>
             VIETNAMESE
           </Text>
-          <Text weight={700} style={{ fontSize: 17, marginTop: 3 }}>
+          <Text weight={700} style={styles.wordMean}>
             {mean_word}
           </Text>
         </View>
@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fdfaf3',
   },
   viewBottom: {
+    width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 20,
@@ -69,10 +70,15 @@ const styles = StyleSheet.create({
     transform: [{ rotate: '-10deg' }],
   },
   wordName: {
-    fontSize: 18,
+    fontSize: 22,
   },
   wordExplain: {
     fontSize: 15,
+    marginTop: 3,
+    textAlign: 'center',
+  },
+  wordMean: {
+    fontSize: 17,
     marginTop: 3,
     textAlign: 'center',
   },
