@@ -12,6 +12,6 @@ export async function playSound(source: AVPlaybackSource) {
   await sound.playAsync();
 }
 
-export async function SpeechEnglish(value: string) {
-  Speech.speak(value, { language: 'en' });
+export async function SpeechEnglish(value: string, option?: any) {
+  Speech.speak(value, { language: 'en', ...option });
 }

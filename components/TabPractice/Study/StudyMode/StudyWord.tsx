@@ -1,7 +1,6 @@
 import { SimpleLineIcons } from '@expo/vector-icons';
 import React, { memo } from 'react';
 import { StyleSheet } from 'react-native';
-import { TouchableNativeFeedback } from 'react-native-gesture-handler';
 import { Ripple, Text, View } from '~/components/Themed';
 import { SpeechEnglish } from '~/helpers/sound';
 import { WordType } from '~/types';

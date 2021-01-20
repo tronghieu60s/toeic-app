@@ -15,6 +15,7 @@ import AlertUI from './AlertUI';
 import BottomUI from './BottomUI';
 import ChooseWord from './StudyMode/ChooseWord';
 import FillWord from './StudyMode/FillWord';
+import ListenAndChoose from './StudyMode/ListenAndChoose';
 import StudyWord from './StudyMode/StudyWord';
 import StudyUI from './StudyUI';
 
@@ -30,7 +31,6 @@ const TabPracticeStudy = memo(({ navigation }: Props) => {
 
   const [userAnswer, setUserAnswer] = useState('');
   const [typeAnswer, setTypeAnswer] = useState(0);
-  const [typeQuestion, setTypeQuestion] = useState(0);
   const [countQuestion, setCountQuestion] = useState(0);
 
   const dispatch = useDispatch();
@@ -121,8 +121,6 @@ const TabPracticeStudy = memo(({ navigation }: Props) => {
       return null;
     }
 
-    const typeQuestion = rdNum(0, 2);
-    setTypeQuestion(typeQuestion);
     setTypeAnswer(rdNum(0, 2));
 
     const wordRandom = words[rdNum(0, words.length)];
@@ -152,8 +150,11 @@ const TabPracticeStudy = memo(({ navigation }: Props) => {
                 handleSendAnswer={handleSendAnswer}
               />
             )}
-            {(wordQuestion.count_study || 0) >= 1 && (
+            {wordQuestion.count_study === 1 && (
               <FillWord word={wordQuestion} handleSendAnswer={handleSendAnswer} />
+            )}
+            {wordQuestion.count_study === 2 && typeAnswer === 1 && (
+              <ListenAndChoose word={wordQuestion} handleSendAnswer={handleSendAnswer} />
             )}
           </View>
         </StudyUI>
