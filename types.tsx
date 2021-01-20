@@ -20,6 +20,7 @@ export type TabPracticeParamList = {
     word: WordType;
   };
   TabPracticeStudy: undefined;
+  TabPracticeStudyItem: undefined;
 };
 
 export type TabFavoriteParamList = {
@@ -27,6 +28,13 @@ export type TabFavoriteParamList = {
 };
 
 export type StatusQuestion = 'Waiting' | 'Correct' | 'Incorrect';
+export type TypesAnswer =
+  | 'CHOOSE-NAME-MEAN'
+  | 'CHOOSE-MEAN-NAME'
+  | 'CHOOSE-SOUND-MEAN'
+  | 'CHOOSE-MEAN-SOUND'
+  | 'FILL-NAME-MEAN'
+  | 'FILL-MEAN-NAME';
 
 export type StudyType = {
   id_study: number;
@@ -43,11 +51,12 @@ export type GroupType = {
   image_group?: string;
 };
 
-export type WordType = GroupType & StudyType & {
-  id_word: number;
-  name_word?: string;
-  pronounce_word?: string;
-  explain_word?: string;
-  mean_word?: string;
-  id_group?: number;
-};
+export type WordType = GroupType &
+  StudyType & {
+    id_word: number;
+    name_word?: string;
+    pronounce_word?: string;
+    explain_word?: string;
+    mean_word?: string;
+    id_group?: number;
+  };

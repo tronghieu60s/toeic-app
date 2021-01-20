@@ -44,7 +44,7 @@ export const actStudyCorrect = (word: WordType) => async (
 ): Promise<void> => {
   const { id_word, id_group, id_study, count_study } = word;
   if (id_study) {
-    if ((count_study || 0) < 2) {
+    if ((count_study || 0) < 5) {
       await updateStudies({
         ...word,
         count_study: (count_study || 0) + 1,

@@ -1,8 +1,7 @@
-import { SimpleLineIcons } from '@expo/vector-icons';
 import React, { memo } from 'react';
 import { StyleSheet } from 'react-native';
-import { Ripple, Text, View } from '~/components/Themed';
-import { SpeechEnglish } from '~/helpers/sound';
+import { Text, View } from '~/components/Themed';
+import SoundButton from '~/components/UI/SoundButton';
 import { WordType } from '~/types';
 
 type Props = {
@@ -15,12 +14,7 @@ const StudyWord = memo(({ word }: Props) => {
   return (
     <View style={{ height: '90%', zIndex: 1 }}>
       <View style={styles.viewTop}>
-        <Ripple
-          style={styles.sound}
-          onPress={() => SpeechEnglish(name_word || '')}
-        >
-          <SimpleLineIcons name="volume-2" size={24} color="black" />
-        </Ripple>
+        <SoundButton autoPlay word={word} />
         <Text weight={700} style={styles.wordName}>
           {name_word}
         </Text>

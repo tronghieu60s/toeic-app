@@ -1,14 +1,15 @@
+/* eslint-disable operator-linebreak */
 import React, { memo, useEffect, useRef } from 'react';
 import { Animated, Dimensions, Image, StyleSheet } from 'react-native';
 import { Text, View } from '~/components/Themed';
+import SoundButton from '~/components/UI/SoundButton';
 import { lightBulbIcon } from '~/constants/IconSource';
-import { SpeechEnglish } from '~/helpers/sound';
-import { StatusQuestion, WordType } from '~/types';
+import { StatusQuestion, TypesAnswer, WordType } from '~/types';
 
 type Props = {
   word: WordType;
   status: StatusQuestion;
-  typeAnswer: number;
+  typeAnswer: TypesAnswer;
   children: JSX.Element;
 };
 
@@ -18,12 +19,16 @@ const StudyUI = memo(({ status, word, typeAnswer, children }: Props) => {
   const { name_word, mean_word, pronounce_word, explain_word, count_study } = word;
 
   let question = '';
-  if (typeAnswer === 0) question = name_word || '';
-  if (typeAnswer === 1) question = mean_word || '';
-
-  useEffect(() => {
-    if (typeAnswer === 0) SpeechEnglish(question);
-  }, [word]);
+  if (typeAnswer === 'CHOOSE-NAME-MEAN' || typeAnswer === 'FILL-NAME-MEAN') {
+    question = name_word || '';
+  }
+  if (
+    typeAnswer === 'CHOOSE-MEAN-NAME' ||
+    typeAnswer === 'CHOOSE-MEAN-SOUND' ||
+    typeAnswer === 'FILL-MEAN-NAME'
+  ) {
+    question = mean_word || '';
+  }
 
   useEffect(() => {
     if (status === 'Correct') {
@@ -46,9 +51,11 @@ const StudyUI = memo(({ status, word, typeAnswer, children }: Props) => {
       <View style={styles.viewTop}>
         <View style={{ flex: 8 }}>
           <View style={{ flexDirection: 'row' }}>
+            {typeAnswer === 'CHOOSE-SOUND-MEAN' && <SoundButton size={70} word={word} autoPlay />}
             <Text weight={700} style={styles.question}>
               {question}
-              {typeAnswer === 0 && ` - ${pronounce_word}`}
+              {(typeAnswer === 'CHOOSE-NAME-MEAN' || typeAnswer === 'FILL-NAME-MEAN') &&
+                ` - ${pronounce_word}`}
             </Text>
           </View>
           <Animated.View style={{ opacity: opacityMean, width: '92%' }}>

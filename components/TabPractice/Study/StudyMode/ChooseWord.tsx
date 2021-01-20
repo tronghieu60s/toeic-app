@@ -6,11 +6,11 @@ import { useSelector } from 'react-redux';
 import { Text, View } from '~/components/Themed';
 import { randomBetweenTwoNumber as rdNum } from '~/helpers/random';
 import { RootState } from '~/redux/reducers/rootReducer';
-import { WordType } from '~/types';
+import { TypesAnswer, WordType } from '~/types';
 
 type Props = {
   word: WordType;
-  typeAnswer: number;
+  typeAnswer: TypesAnswer;
   handleSendAnswer: (value: string) => void;
 };
 
@@ -36,9 +36,13 @@ const ChooseWord = memo(({ word, typeAnswer, handleSendAnswer }: Props) => {
     result = words.map((word, index) => {
       const bgColor = selectWords === index ? '#2dce89' : '#e1e4ea';
       const color = selectWords === index ? '#fff' : '#000';
+
       let name = '';
-      if (typeAnswer === 0) name = word.mean_word || '';
-      if (typeAnswer === 1) name = word.name_word || '';
+      if (typeAnswer === 'CHOOSE-NAME-MEAN' || typeAnswer === 'CHOOSE-SOUND-MEAN') {
+        name = word.mean_word || '';
+      }
+      if (typeAnswer === 'CHOOSE-MEAN-NAME') name = word.name_word || '';
+
       return (
         <TouchableWithoutFeedback
           key={word.id_word}
