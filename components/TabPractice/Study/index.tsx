@@ -4,6 +4,7 @@ import { Alert, Keyboard, Vibration } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { View } from '~/components/Themed';
 import ProcessBar from '~/components/UI/ProcessBar';
+import { removeVietnameseTones } from '~/helpers/convert';
 import { randomBetweenTwoNumber as rdNum } from '~/helpers/random';
 import { AUDIO_CORRECT, AUDIO_FINISH, AUDIO_WRONG, playSound } from '~/helpers/sound';
 import { actStudyCorrect, actStudyInCorrect, increasePoint } from '~/redux/actions/practiceAction';
@@ -86,7 +87,11 @@ const TabPracticeStudy = memo(({ navigation }: Props) => {
 
       const result = userAnswer.trim().toLowerCase();
       const arrAnswer = (answer || '').split(',').map((item) => item.trim().toLowerCase());
-      if (arrAnswer.indexOf(result) !== -1 || answer === result) handleStudyCorrect();
+      const arrAnswerVn = (answer || '')
+        .split(',')
+        .map((item) => removeVietnameseTones(item.trim().toLowerCase()));
+      const conditionArr = arrAnswer.indexOf(result) !== -1 || arrAnswerVn.indexOf(result) !== -1;
+      if (conditionArr || answer === result) handleStudyCorrect();
       else handleStudyIncorrect();
     } else {
       if (countQuestion === totalQuestions) {

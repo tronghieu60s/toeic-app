@@ -1,6 +1,8 @@
+/* eslint-disable no-unneeded-ternary */
 import React, { memo } from 'react';
 import { StyleSheet } from 'react-native';
-import { Ripple, Text, View } from '~/components/Themed';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { Text, View } from '~/components/Themed';
 import { StatusQuestion } from '~/types';
 
 type Props = {
@@ -18,15 +20,15 @@ const BottomUI = memo(({ status, userAnswer, handleCheckAnswer }: Props) => {
 
   return (
     <View style={styles.viewBottom}>
-      <Ripple
-        rippleCentered={false}
+      <TouchableOpacity
+        disabled={userAnswer.length === 0 ? true : false}
         style={[styles.continue, { backgroundColor: colorButton }]}
         onPress={() => userAnswer && handleCheckAnswer()}
       >
         <Text weight={700} style={[styles.continueText, { color: colorText }]}>
           {status !== 'Waiting' ? 'Tiếp tục' : 'Kiểm tra'}
         </Text>
-      </Ripple>
+      </TouchableOpacity>
     </View>
   );
 });
