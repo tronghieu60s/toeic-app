@@ -20,6 +20,10 @@ const StudyUI = memo(({ status, word, typeAnswer, children }: Props) => {
 
   const [countStudy, setCountStudy] = useState(count_study);
 
+  useEffect(() => {
+    setCountStudy(word.count_study);
+  }, [word]);
+
   let question = '';
   if (typeAnswer === 'CHOOSE-NAME-MEAN' || typeAnswer === 'FILL-NAME-MEAN') {
     question = name_word || '';

@@ -1,5 +1,5 @@
 import { SimpleLineIcons } from '@expo/vector-icons';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Animated, StyleSheet } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { SpeechEnglish } from '~/helpers/sound';
@@ -14,26 +14,20 @@ type PropsSound = {
 };
 
 const SoundButton = ({ word, size, selected, autoPlay, handleSendAnswer }: PropsSound) => {
-  const [played, setPlayed] = useState(false);
   const soundSize = useRef(new Animated.Value(1)).current;
   const bgColor = selected ? '#fff' : '#ffc000';
 
   useEffect(() => {
     if (autoPlay) onPress();
-  }, [word]);
+  }, []);
 
   const onPress = () => {
-    if (!played) {
-      setPlayed(true);
-      if (handleSendAnswer) handleSendAnswer(word.name_word || '');
-      SpeechEnglish(word.name_word || '', {
-        onStart: () => Animated.spring(soundSize, { toValue: 0.85, useNativeDriver: true }).start(),
-        onDone: () => {
-          Animated.spring(soundSize, { toValue: 1, useNativeDriver: true }).start();
-          setPlayed(false);
-        },
-      });
-    }
+    if (handleSendAnswer) handleSendAnswer(word.name_word || '');
+    SpeechEnglish(word.name_word || '', {
+      onStart: () => Animated.spring(soundSize, { toValue: 0.85, useNativeDriver: true }).start(),
+      onDone: () => Animated.spring(soundSize, { toValue: 1, useNativeDriver: true }).start(),
+      onStopped: () => Animated.spring(soundSize, { toValue: 1, useNativeDriver: true }).start(),
+    });
   };
 
   return (

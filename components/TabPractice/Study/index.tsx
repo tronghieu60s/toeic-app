@@ -73,6 +73,7 @@ const TabPracticeStudy = memo(({ navigation }: Props) => {
   }, []);
 
   useEffect(() => {
+    Speech.stop();
     LayoutAnimation.configureNext({
       duration: 200,
       create: {
