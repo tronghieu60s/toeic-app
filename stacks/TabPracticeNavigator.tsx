@@ -6,15 +6,14 @@ import {
 } from '@react-navigation/stack';
 import React from 'react';
 import TabPracticeHeaderTitle from '~/components/TabPractice/Header/Title';
+import TabPracticeStudy from '~/components/TabPractice/Study';
 import TabPracticeStudyHeaderRight from '~/components/TabPractice/Study/Header/Right';
-import TabPracticeStudyItem from '~/components/TabPractice/Study/StudyItem';
 import TabPracticeWordDetails from '~/components/TabPractice/WordDetails';
 import TabPracticeWordDetailHeaderTitle from '~/components/TabPractice/WordDetails/Header/Title';
 import TabPracticeWords from '~/components/TabPractice/Words';
 import TabPracticeWordsHeaderRight from '~/components/TabPractice/Words/Header/Right';
 import TabPracticeWordsHeaderTitle from '~/components/TabPractice/Words/Header/Title';
 import { View } from '~/components/Themed';
-import Loading from '~/components/UI/Loading';
 import TabPracticeScreen from '~/screens/TabPracticeScreen';
 import { TabPracticeParamList } from '~/types';
 
@@ -52,12 +51,7 @@ export default function TabPracticeNavigator(): JSX.Element {
       />
       <TabPracticeStack.Screen
         name="TabPracticeStudy"
-        component={Loading}
-        options={{ headerShown: false }}
-      />
-      <TabPracticeStack.Screen
-        name="TabPracticeStudyItem"
-        component={TabPracticeStudyItem}
+        component={TabPracticeStudy}
         options={{
           headerStyle: {
             backgroundColor: '#47d798',

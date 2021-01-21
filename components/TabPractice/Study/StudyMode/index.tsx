@@ -1,4 +1,5 @@
 import React, { memo } from 'react';
+import { View } from '~/components/Themed';
 import { TypesAnswer, WordType } from '~/types';
 import ChooseSoundEN from './ChooseSoundEN';
 import ChooseWord from './ChooseWord';
@@ -10,28 +11,24 @@ type Props = {
   handleSendAnswer: (value: string) => void;
 };
 
-const StudyMode = memo(({ word, typeAnswer, handleSendAnswer }: Props) => {
-  if (typeAnswer === 'CHOOSE-NAME-MEAN') {
-    return <ChooseWord word={word} typeAnswer={typeAnswer} handleSendAnswer={handleSendAnswer} />;
-  }
-
-  if (typeAnswer === 'CHOOSE-MEAN-NAME') {
-    return <ChooseWord word={word} typeAnswer={typeAnswer} handleSendAnswer={handleSendAnswer} />;
-  }
-
-  if (typeAnswer === 'FILL-NAME-MEAN' || typeAnswer === 'FILL-MEAN-NAME') {
-    return <FillWord word={word} handleSendAnswer={handleSendAnswer} />;
-  }
-
-  if (typeAnswer === 'CHOOSE-MEAN-SOUND') {
-    return <ChooseSoundEN word={word} handleSendAnswer={handleSendAnswer} />;
-  }
-
-  if (typeAnswer === 'CHOOSE-SOUND-MEAN') {
-    return <ChooseWord word={word} typeAnswer={typeAnswer} handleSendAnswer={handleSendAnswer} />;
-  }
-
-  return null;
-});
+const StudyMode = memo(({ word, typeAnswer, handleSendAnswer }: Props) => (
+  <View>
+    {typeAnswer === 'CHOOSE-NAME-MEAN' && (
+      <ChooseWord word={word} typeAnswer={typeAnswer} handleSendAnswer={handleSendAnswer} />
+    )}
+    {typeAnswer === 'CHOOSE-MEAN-NAME' && (
+      <ChooseWord word={word} typeAnswer={typeAnswer} handleSendAnswer={handleSendAnswer} />
+    )}
+    {(typeAnswer === 'FILL-NAME-MEAN' || typeAnswer === 'FILL-MEAN-NAME') && (
+      <FillWord word={word} handleSendAnswer={handleSendAnswer} />
+    )}
+    {typeAnswer === 'CHOOSE-MEAN-SOUND' && (
+      <ChooseSoundEN word={word} handleSendAnswer={handleSendAnswer} />
+    )}
+    {typeAnswer === 'CHOOSE-SOUND-MEAN' && (
+      <ChooseWord word={word} typeAnswer={typeAnswer} handleSendAnswer={handleSendAnswer} />
+    )}
+  </View>
+));
 
 export default StudyMode;

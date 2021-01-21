@@ -32,6 +32,7 @@ export default function BottomTabNavigator(): JSX.Element {
           const exploreActiveRoute = exploreRoutes[exploreIndex];
           if (exploreActiveRoute.name === 'TabPracticeStudy') tabBarVisible = false;
           if (exploreActiveRoute.name === 'TabPracticeWords') tabBarVisible = false;
+          if (exploreActiveRoute.name === 'TabPracticeWordDetails') tabBarVisible = false;
         }
         return {
           tabBarVisible,

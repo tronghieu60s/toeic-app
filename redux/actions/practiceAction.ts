@@ -59,8 +59,8 @@ export const actStudyCorrect = (word: WordType) => async (
 export const actStudyInCorrect = (word: WordType) => async (
   dispatch: Dispatch<PracticeAction>,
 ): Promise<void> => {
-  const { id_study, id_group } = word;
-  if (id_study) {
+  const { id_study, id_group, count_study } = word;
+  if (id_study && (count_study || 0) >= 5) {
     await updateStudies({ ...word, difficult_study: 1 });
     const words = await getWordsByIdGroup({ id_group });
     return dispatch(loadWordsGroup(words.data || []));

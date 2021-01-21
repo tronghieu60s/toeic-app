@@ -20,7 +20,7 @@ const SoundButton = ({ word, size, selected, autoPlay, handleSendAnswer }: Props
 
   useEffect(() => {
     if (autoPlay) onPress();
-  }, []);
+  }, [word]);
 
   const onPress = () => {
     if (!played) {

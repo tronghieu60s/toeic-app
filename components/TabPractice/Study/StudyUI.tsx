@@ -1,5 +1,5 @@
 /* eslint-disable operator-linebreak */
-import React, { memo, useEffect, useRef } from 'react';
+import React, { memo, useEffect, useRef, useState } from 'react';
 import { Animated, Dimensions, Image, StyleSheet } from 'react-native';
 import { Text, View } from '~/components/Themed';
 import SoundButton from '~/components/UI/SoundButton';
@@ -18,6 +18,8 @@ const StudyUI = memo(({ status, word, typeAnswer, children }: Props) => {
   const scaleLightBulb = useRef(new Animated.Value(1)).current;
   const { name_word, mean_word, pronounce_word, explain_word, count_study } = word;
 
+  const [countStudy, setCountStudy] = useState(count_study);
+
   let question = '';
   if (typeAnswer === 'CHOOSE-NAME-MEAN' || typeAnswer === 'FILL-NAME-MEAN') {
     question = name_word || '';
@@ -32,6 +34,8 @@ const StudyUI = memo(({ status, word, typeAnswer, children }: Props) => {
 
   useEffect(() => {
     if (status === 'Correct') {
+      const newCount = (countStudy || 0) < 5 ? (countStudy || 0) + 1 : countStudy;
+      setCountStudy(newCount);
       Animated.spring(scaleLightBulb, {
         toValue: 1.3,
         useNativeDriver: true,
@@ -47,7 +51,7 @@ const StudyUI = memo(({ status, word, typeAnswer, children }: Props) => {
   }, [status]);
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1, width: Dimensions.get('window').width }}>
       <View style={styles.viewTop}>
         <View style={{ flex: 8 }}>
           <View style={{ flexDirection: 'row' }}>
@@ -66,7 +70,7 @@ const StudyUI = memo(({ status, word, typeAnswer, children }: Props) => {
           </Animated.View>
         </View>
         <Animated.View style={[styles.lightBulb, { transform: [{ scale: scaleLightBulb }] }]}>
-          <Image style={styles.lightBulbImage} source={lightBulbIcon[count_study || 0]} />
+          <Image style={styles.lightBulbImage} source={lightBulbIcon[countStudy || 0]} />
         </Animated.View>
       </View>
       <View style={styles.viewCenter}>{children}</View>

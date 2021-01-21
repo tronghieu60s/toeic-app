@@ -26,7 +26,7 @@ const ChooseWord = memo(({ word, typeAnswer, handleSendAnswer }: Props) => {
     let words = [...wordsState];
     words = words.filter((o) => o.id_word !== word.id_word);
     words = _.shuffle(words).slice(0, 5);
-    words.splice(rdNum(0, 4), 0, word);
+    words.splice(rdNum(0, 5), 0, word);
 
     setWords(words);
   }, [word]);
