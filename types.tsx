@@ -5,9 +5,9 @@ export type RootStackParamList = {
 
 export type BottomTabParamList = {
   TabPractice: undefined;
+  TabDifficult: undefined;
   TabFavorite: undefined;
   TabAnalysis: undefined;
-  TabDownload: undefined;
   TabSetting: undefined;
 };
 
@@ -21,6 +21,13 @@ export type TabPracticeParamList = {
   };
   TabPracticeStudy: undefined;
   TabPracticeStudyItem: undefined;
+};
+
+export type TabDifficultParamList = {
+  TabDifficultScreen: undefined;
+  TabPracticeWordDetails: {
+    word: WordType;
+  };
 };
 
 export type TabFavoriteParamList = {

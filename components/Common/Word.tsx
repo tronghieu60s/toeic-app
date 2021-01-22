@@ -1,24 +1,20 @@
-import { StackNavigationProp } from '@react-navigation/stack';
-import React, { memo } from 'react';
+import React from 'react';
 import { Image, StyleSheet } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { flashIcon, lightBulbIcon } from '~/constants/IconSource';
-import { actToggleFlashWord } from '~/redux/actions/practiceAction';
 import { RootState } from '~/redux/reducers/rootReducer';
-import { TabPracticeParamList, WordType } from '~/types';
-import { Ripple, Text, View } from '../../Themed';
+import { WordType } from '~/types';
+import { Ripple, Text, View } from '../Themed';
 
 type Props = {
   word: WordType;
-  navigation: StackNavigationProp<TabPracticeParamList, 'TabPracticeWords'>;
+  handleFlashWord: () => void;
+  handleDetailsWord: () => void;
 };
 
-const TabPracticeWordItem = memo(({ word, navigation }: Props) => {
+const CommonWordItem = ({ word, handleFlashWord, handleDetailsWord }: Props) => {
   const { name_word, pronounce_word, mean_word, count_study, difficult_study } = word;
   const { visibleMean, visiblePronounce } = useSelector((state: RootState) => state.common);
-
-  const dispatch = useDispatch();
-  const handleFlashWord = () => dispatch(actToggleFlashWord(word));
 
   return (
     <View style={styles.container}>
@@ -27,7 +23,7 @@ const TabPracticeWordItem = memo(({ word, navigation }: Props) => {
           rippleCentered={false}
           rippleContainerBorderRadius={0}
           style={styles.ripple}
-          onPress={() => navigation.navigate('TabPracticeWordDetails', { word })}
+          onPress={handleDetailsWord}
         >
           <View style={styles.wordLeft}>
             <Image style={styles.flash} source={lightBulbIcon[count_study || 0]} />
@@ -55,7 +51,7 @@ const TabPracticeWordItem = memo(({ word, navigation }: Props) => {
       </View>
     </View>
   );
-});
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -107,4 +103,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TabPracticeWordItem;
+export default CommonWordItem;

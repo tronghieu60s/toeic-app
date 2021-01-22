@@ -1,14 +1,15 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { Image, StyleSheet } from 'react-native';
 import Colors from '~/constants/Colors';
 import useColorScheme from '~/hooks/useColorScheme';
 import { Text, View } from '~/components/Themed';
+import { lightBulbIcon } from '~/constants/IconSource';
 
 export default function TabPracticeHeaderTitle(): JSX.Element {
   const colorScheme = useColorScheme();
 
   return (
-    <View style={{ flexDirection: 'row' }}>
+    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
       <Text weight={700} style={styles.text}>
         TOEIC
       </Text>

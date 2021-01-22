@@ -1,31 +1,28 @@
-import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { memo, useEffect, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import CommonWordItem from '~/components/Common/Word';
-import { ScrollView } from '~/components/Themed';
-import CenterUI from '~/components/UI/Center';
-import Loading from '~/components/UI/Loading';
-import { actLoadWordsGroup, actToggleFlashWord } from '~/redux/actions/practiceAction';
+import { actLoadWordsDifficult, actToggleFlashWord } from '~/redux/actions/practiceAction';
 import { RootState } from '~/redux/reducers/rootReducer';
-import { TabPracticeParamList, WordType } from '~/types';
+import { TabDifficultParamList, WordType } from '~/types';
+import CommonWordItem from '../Common/Word';
+import { ScrollView, View } from '../Themed';
+import CenterUI from '../UI/Center';
+import Loading from '../UI/Loading';
 
 type Props = {
-  route: RouteProp<TabPracticeParamList, 'TabPracticeWords'>;
-  navigation: StackNavigationProp<TabPracticeParamList, 'TabPracticeWords'>;
+  navigation: StackNavigationProp<TabDifficultParamList, 'TabDifficultScreen'>;
 };
 
-const TabPracticeWords = memo(({ route, navigation }: Props) => {
-  const { group } = route.params;
+const TabDifficult = memo(({ navigation }: Props) => {
   const [isPending, setIsPending] = useState(true);
 
   const dispatch = useDispatch();
-  const words = useSelector((state: RootState) => state.practice.words);
+  const words = useSelector((state: RootState) => state.practice.wordsDifficult);
 
   useEffect(() => {
     (async () => {
-      await dispatch(actLoadWordsGroup(group));
+      await dispatch(actLoadWordsDifficult());
       setIsPending(false);
     })();
   }, []);
@@ -50,7 +47,7 @@ const TabPracticeWords = memo(({ route, navigation }: Props) => {
 
   if (isPending) return <Loading />;
 
-  const text = 'Bài học này đang cập nhật. Vui lòng quay lại sau.';
+  const text = 'Không có từ khó.';
   if (words.length <= 0 && !isPending) return <CenterUI>{text}</CenterUI>;
 
   return (
@@ -73,4 +70,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TabPracticeWords;
+export default TabDifficult;

@@ -1,9 +1,8 @@
-import { MaterialIcons } from '@expo/vector-icons';
 import { RouteProp } from '@react-navigation/native';
-import * as Speech from 'expo-speech';
 import React, { memo } from 'react';
 import { StyleSheet } from 'react-native';
-import { Ripple, Text, View } from '~/components/Themed';
+import { Text, View } from '~/components/Themed';
+import SoundButton from '~/components/UI/SoundButton';
 import { TabPracticeParamList } from '~/types';
 
 type Props = {
@@ -15,18 +14,13 @@ const TabPracticeWordDetails = memo(({ route }: Props) => {
 
   return (
     <View style={styles.container}>
+      <SoundButton autoPlay size={80} word={route.params.word} />
       <Text weight={700} style={styles.name}>
         {name_word}
       </Text>
       <Text weight={600} style={styles.pronounce}>
         {pronounce_word}
       </Text>
-      <Ripple
-        style={{ padding: 3 }}
-        onPress={() => Speech.speak(name_word || '', { language: 'en' })}
-      >
-        <MaterialIcons name="volume-up" size={16} color="black" />
-      </Ripple>
       <Text weight={400} style={styles.mean}>
         {explain_word}
       </Text>
@@ -52,6 +46,7 @@ const styles = StyleSheet.create({
   },
   mean: {
     textAlign: 'center',
+    marginTop: 20,
   },
 });
 

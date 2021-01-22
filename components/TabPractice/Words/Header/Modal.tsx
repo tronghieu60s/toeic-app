@@ -1,8 +1,9 @@
 import React, { memo } from 'react';
-import { Modal, StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
+import { Image, Modal, StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { Text, View } from '~/components/Themed';
 import Switch from '~/components/UI/Switch';
+import { lightBulbIcon } from '~/constants/IconSource';
 import { toggleMean, togglePronounce } from '~/redux/actions/commonAction';
 import { RootState } from '~/redux/reducers/rootReducer';
 
@@ -29,20 +30,28 @@ const TabPracticeWordsHeaderModal = memo(({ modalVisible, setModalVisible }: Pro
       >
         <TouchableWithoutFeedback>
           <View style={styles.modalView}>
+            <View style={styles.flashBlock}>
+              <Image style={styles.flash} source={lightBulbIcon[0]} />
+              <Image style={styles.flash} source={lightBulbIcon[1]} />
+              <Image style={styles.flash} source={lightBulbIcon[2]} />
+              <Image style={styles.flash} source={lightBulbIcon[3]} />
+              <Image style={styles.flash} source={lightBulbIcon[4]} />
+              <Image style={styles.flash} source={lightBulbIcon[5]} />
+            </View>
             <Text weight={600} style={styles.modalText}>
               Cài Đặt Hiển Thị
             </Text>
-            <Switch
-              name="Hiển Thị Phiên Âm"
-              description="Hiển thị phiên âm cách đọc của từ vựng."
-              value={visiblePronounce}
-              onValueChange={() => dispatch(togglePronounce())}
-            />
             <Switch
               name="Hiển Thị Nghĩa"
               description="Hiển thị nghĩa của từ vựng."
               value={visibleMean}
               onValueChange={() => dispatch(toggleMean())}
+            />
+            <Switch
+              name="Hiển Thị Phiên Âm"
+              description="Hiển thị phiên âm của từ vựng."
+              value={visiblePronounce}
+              onValueChange={() => dispatch(togglePronounce())}
             />
           </View>
         </TouchableWithoutFeedback>
@@ -76,8 +85,17 @@ const styles = StyleSheet.create({
   },
   modalText: {
     fontSize: 17,
-    marginBottom: 15,
+    marginTop: 25,
+    marginBottom: 5,
     textAlign: 'center',
+  },
+  flashBlock: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  flash: {
+    width: 35,
+    height: 35,
   },
 });
 

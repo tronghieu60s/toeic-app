@@ -3,6 +3,7 @@ import * as React from 'react';
 import { useSelector } from 'react-redux';
 import { Ripple } from '~/components/Themed';
 import { RootState } from '~/redux/reducers/rootReducer';
+import TabDifficultNavigator from '~/stacks/TabDifficultNavigator';
 import TabFavoriteNavigator from '~/stacks/TabFavoriteNavigator';
 import TabPracticeNavigator from '~/stacks/TabPracticeNavigator';
 import Colors from '../constants/Colors';
@@ -42,9 +43,9 @@ export default function BottomTabNavigator(): JSX.Element {
       }}
     >
       <BottomTab.Screen name="TabPractice" component={TabPracticeNavigator} />
-      <BottomTab.Screen name="TabFavorite" component={TabFavoriteNavigator} />
+      <BottomTab.Screen name="TabDifficult" component={TabDifficultNavigator} />
       <BottomTab.Screen name="TabAnalysis" component={TabFavoriteNavigator} />
-      <BottomTab.Screen name="TabDownload" component={TabFavoriteNavigator} />
+      <BottomTab.Screen name="TabFavorite" component={TabFavoriteNavigator} />
       <BottomTab.Screen name="TabSetting" component={TabFavoriteNavigator} />
     </BottomTab.Navigator>
   );

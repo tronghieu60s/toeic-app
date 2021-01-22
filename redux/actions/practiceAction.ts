@@ -1,9 +1,10 @@
 import { Dispatch } from 'react';
 import { createStudies, updateStudies } from '~/models/StudiesModel';
-import { getWordsByIdGroup } from '~/models/WordsModel';
+import { getWordsByIdGroup, getWordsDifficult } from '~/models/WordsModel';
 import { GroupType, WordType } from '~/types';
 
 export const LOAD_WORDS_GROUP = 'LOAD_WORDS_GROUP';
+export const LOAD_WORDS_DIFFICULT = 'LOAD_WORDS_DIFFICULT';
 export const INCREASE_POINT = 'INCREASE_POINT';
 
 export type PracticeAction = {
@@ -24,6 +25,12 @@ export const loadWordsGroup = (words: WordType[]): PracticeAction => ({
   words,
 });
 
+export const loadWordsDifficult = (words: WordType[]): PracticeAction => ({
+  ...typeDefault,
+  type: LOAD_WORDS_DIFFICULT,
+  words,
+});
+
 export const increasePoint = (point: number): PracticeAction => ({
   ...typeDefault,
   type: INCREASE_POINT,
@@ -37,6 +44,13 @@ export const actLoadWordsGroup = (group: GroupType) => async (
   const { id_group } = group;
   const words = await getWordsByIdGroup({ id_group });
   return dispatch(loadWordsGroup(words.data || []));
+};
+
+export const actLoadWordsDifficult = () => async (
+  dispatch: Dispatch<PracticeAction>,
+): Promise<void> => {
+  const words = await getWordsDifficult();
+  return dispatch(loadWordsDifficult(words.data || []));
 };
 
 export const actStudyCorrect = (word: WordType) => async (
@@ -76,5 +90,7 @@ export const actToggleFlashWord = (word: WordType) => async (
   else await createStudies({ id_study: id_word, difficult_study: 1 });
 
   const words = await getWordsByIdGroup({ id_group });
-  return dispatch(loadWordsGroup(words.data || []));
+  dispatch(loadWordsGroup(words.data || []));
+  const wordsDifficult = await getWordsDifficult();
+  return dispatch(loadWordsDifficult(wordsDifficult.data || []));
 };

@@ -3,15 +3,15 @@ export default {
     icon: 'home',
     name: 'Luyện tập',
   },
-  TabFavorite: {
-    icon: 'heart',
-    name: 'Yêu thích',
+  TabDifficult: {
+    icon: 'rocket1',
+    name: 'Từ khó',
   },
   TabAnalysis: {
     icon: 'piechart',
     name: 'Thống kê',
   },
-  TabDownload: {
+  TabFavorite: {
     icon: 'clouddownload',
     name: 'Tải xuống',
   },
