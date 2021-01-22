@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Text, View } from '~/components/Themed';
 import Switch from '~/components/UI/Switch';
 import { lightBulbIcon } from '~/constants/IconSource';
-import { toggleMean, togglePronounce } from '~/redux/actions/commonAction';
+import { toggleExplain, toggleMean, togglePronounce } from '~/redux/actions/commonAction';
 import { RootState } from '~/redux/reducers/rootReducer';
 
 type Props = {
@@ -12,9 +12,11 @@ type Props = {
   setModalVisible: (value: boolean) => void;
 };
 
-const TabPracticeWordsHeaderModal = memo(({ modalVisible, setModalVisible }: Props) => {
+const ModalSetting = memo(({ modalVisible, setModalVisible }: Props) => {
   const dispatch = useDispatch();
-  const { visibleMean, visiblePronounce } = useSelector((state: RootState) => state.common);
+  const { visibleMean, visibleExplain, visiblePronounce } = useSelector(
+    (state: RootState) => state.common,
+  );
 
   return (
     <Modal
@@ -52,6 +54,12 @@ const TabPracticeWordsHeaderModal = memo(({ modalVisible, setModalVisible }: Pro
               description="Hiển thị phiên âm của từ vựng."
               value={visiblePronounce}
               onValueChange={() => dispatch(togglePronounce())}
+            />
+            <Switch
+              name="Hiển Thị Giải Thích"
+              description="Hiển thị giải thích của từ vựng."
+              value={visibleExplain}
+              onValueChange={() => dispatch(toggleExplain())}
             />
           </View>
         </TouchableWithoutFeedback>
@@ -99,4 +107,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TabPracticeWordsHeaderModal;
+export default ModalSetting;

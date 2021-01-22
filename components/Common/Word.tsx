@@ -13,8 +13,10 @@ type Props = {
 };
 
 const CommonWordItem = ({ word, handleFlashWord, handleDetailsWord }: Props) => {
-  const { name_word, pronounce_word, mean_word, count_study, difficult_study } = word;
-  const { visibleMean, visiblePronounce } = useSelector((state: RootState) => state.common);
+  const { name_word, pronounce_word, mean_word, explain_word, count_study, difficult_study } = word;
+  const { visibleMean, visibleExplain, visiblePronounce } = useSelector(
+    (state: RootState) => state.common,
+  );
 
   return (
     <View style={styles.container}>
@@ -40,7 +42,17 @@ const CommonWordItem = ({ word, handleFlashWord, handleDetailsWord }: Props) => 
                 </Text>
               )}
             </View>
-            {visibleMean && <Text style={styles.wordMean}>{mean_word}</Text>}
+            {visibleExplain && (
+              <Text weight={300} style={styles.wordExplain}>
+                {explain_word?.slice(0, 50)}
+                {(explain_word || '').length > 50 && '...'}
+              </Text>
+            )}
+            {visibleMean && (
+              <Text weight={700} style={styles.wordMean}>
+                {mean_word}
+              </Text>
+            )}
           </View>
         </Ripple>
         <View style={styles.wordRight}>
@@ -90,6 +102,7 @@ const styles = StyleSheet.create({
   wordSpelling: {
     color: '#888',
   },
+  wordExplain: {},
   wordMean: {
     fontSize: 14,
     marginTop: 1,

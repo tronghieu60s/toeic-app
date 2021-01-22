@@ -47,7 +47,7 @@ const TabDifficult = memo(({ navigation }: Props) => {
 
   if (isPending) return <Loading />;
 
-  const text = 'Không có từ khó.';
+  const text = 'Không có từ khó. Bạn đang làm rất tốt ^^.';
   if (words.length <= 0 && !isPending) return <CenterUI>{text}</CenterUI>;
 
   return (

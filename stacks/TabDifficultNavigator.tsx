@@ -1,6 +1,11 @@
-import { CardStyleInterpolators, createStackNavigator, HeaderStyleInterpolators } from '@react-navigation/stack';
+import {
+  CardStyleInterpolators,
+  createStackNavigator,
+  HeaderStyleInterpolators,
+} from '@react-navigation/stack';
 import React from 'react';
 import HeaderTitle from '~/components/Header/Title';
+import TabDifficultRight from '~/components/TabDifficult/Header/Right';
 import TabPracticeWordDetails from '~/components/TabPractice/WordDetails';
 import TabPracticeWordDetailHeaderTitle from '~/components/TabPractice/WordDetails/Header/Title';
 import TabDifficultScreen from '~/screens/TabDifficultScreen';
@@ -19,7 +24,10 @@ export default function TabDifficultNavigator(): JSX.Element {
       <TabFavoriteStack.Screen
         name="TabDifficultScreen"
         component={TabDifficultScreen}
-        options={{ headerTitle: () => <HeaderTitle title="Từ khó" /> }}
+        options={{
+          headerTitle: () => <HeaderTitle title="Từ khó" />,
+          headerRight: () => <TabDifficultRight />,
+        }}
       />
       <TabFavoriteStack.Screen
         name="TabPracticeWordDetails"

@@ -3,10 +3,10 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import React, { memo, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { useSelector } from 'react-redux';
+import ModalSetting from '~/components/Common/ModalSetting';
 import { Ripple, View } from '~/components/Themed';
 import { RootState } from '~/redux/reducers/rootReducer';
 import { TabPracticeParamList } from '~/types';
-import TabPracticeWordsHeaderModal from './Modal';
 
 type Props = {
   navigation: StackNavigationProp<TabPracticeParamList, 'TabPracticeWords'>;
@@ -14,6 +14,7 @@ type Props = {
 
 const TabPracticeWordsHeaderRight = memo(({ navigation }: Props) => {
   const [modalVisible, setModalVisible] = useState(false);
+
   const words = useSelector((state: RootState) => state.practice.words);
   const wordsStudy = words.filter((o) => (o.count_study || 0) < 5);
 
@@ -34,7 +35,7 @@ const TabPracticeWordsHeaderRight = memo(({ navigation }: Props) => {
       <Ripple style={styles.button} onPress={() => setModalVisible(true)}>
         <AntDesign name="setting" size={20} color="black" />
       </Ripple>
-      <TabPracticeWordsHeaderModal
+      <ModalSetting
         modalVisible={modalVisible}
         setModalVisible={(value) => setModalVisible(value)}
       />

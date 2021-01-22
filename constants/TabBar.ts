@@ -4,7 +4,7 @@ export default {
     name: 'Luyện tập',
   },
   TabDifficult: {
-    icon: 'rocket1',
+    icon: 'frowno',
     name: 'Từ khó',
   },
   TabAnalysis: {
