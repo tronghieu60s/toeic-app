@@ -1,14 +1,23 @@
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign, Ionicons } from '@expo/vector-icons';
+import { StackNavigationProp } from '@react-navigation/stack';
 import React, { memo, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import ModalSetting from '~/components/Common/ModalSetting';
 import { Ripple, View } from '~/components/Themed';
+import { TabDifficultParamList } from '~/types';
 
-const TabDifficultRight = memo(() => {
+type Props = {
+  navigation: StackNavigationProp<TabDifficultParamList, 'TabDifficultScreen'>;
+};
+
+const TabDifficultRight = memo(({ navigation }: Props) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   return (
     <View style={styles.container}>
+      <Ripple style={styles.button} onPress={() => navigation.navigate('TabDifficultStudy')}>
+        <Ionicons name="ios-flash" size={24} color="black" />
+      </Ripple>
       <Ripple style={styles.button} onPress={() => setModalVisible(true)}>
         <AntDesign name="setting" size={20} color="black" />
       </Ripple>
@@ -33,6 +42,10 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  flash: {
+    width: 20,
+    height: 20,
   },
 });
 

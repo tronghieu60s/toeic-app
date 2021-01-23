@@ -4,16 +4,16 @@ export default {
     name: 'Luyện tập',
   },
   TabDifficult: {
-    icon: 'frowno',
+    icon: 'meh',
     name: 'Từ khó',
   },
   TabAnalysis: {
-    icon: 'piechart',
+    icon: 'linechart',
     name: 'Thống kê',
   },
   TabFavorite: {
-    icon: 'clouddownload',
-    name: 'Tải xuống',
+    icon: 'message1',
+    name: 'Tin mới',
   },
   TabSetting: {
     icon: 'setting',

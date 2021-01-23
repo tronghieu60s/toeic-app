@@ -28,6 +28,7 @@ export type TabDifficultParamList = {
   TabPracticeWordDetails: {
     word: WordType;
   };
+  TabDifficultStudy: undefined;
 };
 
 export type TabFavoriteParamList = {

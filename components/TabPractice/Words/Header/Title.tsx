@@ -13,6 +13,7 @@ type Props = {
 const TabPracticeWordsHeaderTitle = memo(({ route }: Props) => {
   const { name_group, mean_group, pronounce_group } = route.params.group;
   const words = useSelector((state: RootState) => state.practice.words);
+  const wordsComplete = words.filter((o) => (o.count_study || 0) >= 5);
 
   return (
     <View>
@@ -21,8 +22,11 @@ const TabPracticeWordsHeaderTitle = memo(({ route }: Props) => {
           {name_group}
         </Text>
         <Text weight={400} style={styles.count}>
-          (0/
-          {words.length})
+          (
+          {wordsComplete.length}
+          /
+          {words.length}
+          )
         </Text>
       </View>
       <Text style={styles.mean}>
@@ -46,6 +50,7 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
   mean: {
+    width: '80%',
     color: '#5e72e4',
     fontSize: 11,
   },
