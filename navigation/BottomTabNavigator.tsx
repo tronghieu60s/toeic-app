@@ -28,7 +28,7 @@ export default function BottomTabNavigator(): JSX.Element {
         const { routes, index } = navigation.dangerouslyGetState();
         const { state: exploreState } = routes[index];
         let tabBarVisible = true;
-        if (exploreState.index > 0) tabBarVisible = false;
+        if (exploreState && exploreState.index > 0) tabBarVisible = false;
         return {
           tabBarVisible,
           tabBarButton: (props) => <Ripple {...props} />,

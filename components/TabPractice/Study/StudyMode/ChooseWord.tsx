@@ -1,11 +1,10 @@
-import _ from 'lodash';
+import _, { isNull } from 'lodash';
 import React, { memo, useEffect, useState } from 'react';
 import { Dimensions, StyleSheet } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
-import { useSelector } from 'react-redux';
 import { Text, View } from '~/components/Themed';
 import { randomBetweenTwoNumber as rdNum } from '~/helpers/random';
-import { RootState } from '~/redux/reducers/rootReducer';
+import { getWordsByIdGroup } from '~/models/WordsModel';
 import { TypesAnswer, WordType } from '~/types';
 
 type Props = {
@@ -16,19 +15,21 @@ type Props = {
 
 const ChooseWord = memo(({ word, typeAnswer, handleSendAnswer }: Props) => {
   const [selectWords, setSelectWords] = useState(-1);
-
   const [words, setWords] = useState<WordType[]>([]);
-  const wordsState = useSelector((state: RootState) => state.practice.words);
 
   useEffect(() => {
     setSelectWords(-1);
 
-    let words = [...wordsState];
-    words = words.filter((o) => o.id_word !== word.id_word);
-    words = _.shuffle(words).slice(0, 5);
-    words.splice(rdNum(0, 5), 0, word);
-
-    setWords(words);
+    (async () => {
+      const getWords = await getWordsByIdGroup(word);
+      if (!isNull(getWords.data)) {
+        let words = getWords.data;
+        words = words.filter((o) => o.id_word !== word.id_word);
+        words = _.shuffle(words).slice(0, 5);
+        words.splice(rdNum(0, 5), 0, word);
+        setWords(words);
+      }
+    })();
   }, [word]);
 
   const renderWordsSelect = () => {

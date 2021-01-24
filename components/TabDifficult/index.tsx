@@ -51,10 +51,12 @@ const TabDifficult = memo(({ navigation }: Props) => {
   if (words.length <= 0 && !isPending) return <CenterUI>{text}</CenterUI>;
 
   return (
-    <View style={styles.container}>
-      <ScrollView>
-        <View style={styles.group}>{renderWords()}</View>
-      </ScrollView>
+    <View style={{ flex: 1 }}>
+      <View style={styles.container}>
+        <ScrollView>
+          <View style={styles.group}>{renderWords()}</View>
+        </ScrollView>
+      </View>
     </View>
   );
 });
@@ -63,6 +65,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f3f3f3',
+    paddingBottom: 55,
   },
   group: {
     marginVertical: 5,

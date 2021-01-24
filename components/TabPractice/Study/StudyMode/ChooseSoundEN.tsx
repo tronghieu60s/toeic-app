@@ -1,11 +1,10 @@
-import _ from 'lodash';
+import _, { isNull } from 'lodash';
 import React, { memo, useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
-import { useSelector } from 'react-redux';
 import { View } from '~/components/Themed';
 import SoundButton from '~/components/UI/SoundButton';
 import { randomBetweenTwoNumber as rdNum } from '~/helpers/random';
-import { RootState } from '~/redux/reducers/rootReducer';
+import { getWordsByIdGroup } from '~/models/WordsModel';
 import { WordType } from '~/types';
 
 type Props = {
@@ -17,17 +16,20 @@ const ChooseSoundEN = memo(({ word, handleSendAnswer }: Props) => {
   const [selected, setSelected] = useState(-1);
 
   const [words, setWords] = useState<WordType[]>([]);
-  const wordsState = useSelector((state: RootState) => state.practice.words);
 
   useEffect(() => {
     setSelected(-1);
 
-    let words = [...wordsState];
-    words = words.filter((o) => o.id_word !== word.id_word);
-    words = _.shuffle(words).slice(0, 3);
-    words.splice(rdNum(0, 4), 0, word);
-
-    setWords(words);
+    (async () => {
+      const getWords = await getWordsByIdGroup(word);
+      if (!isNull(getWords.data)) {
+        let words = getWords.data;
+        words = words.filter((o) => o.id_word !== word.id_word);
+        words = _.shuffle(words).slice(0, 3);
+        words.splice(rdNum(0, 4), 0, word);
+        setWords(words);
+      }
+    })();
   }, [word]);
 
   const renderSoundButton = () => {

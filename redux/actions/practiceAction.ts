@@ -46,6 +46,17 @@ export const actLoadWordsGroup = (group: GroupType) => async (
   return dispatch(loadWordsGroup(words.data || []));
 };
 
+export const actStudyCorrectDifficult = (word: WordType) => async (
+  dispatch: Dispatch<PracticeAction>,
+): Promise<void> => {
+  const { difficult_study } = word;
+  if (difficult_study === 3) await updateStudies({ ...word, difficult_study: 0 });
+  else await updateStudies({ ...word, difficult_study: (difficult_study || 0) + 1 });
+
+  const wordsDifficult = await getWordsDifficult();
+  return dispatch(loadWordsDifficult(wordsDifficult.data || []));
+};
+
 export const actLoadWordsDifficult = () => async (
   dispatch: Dispatch<PracticeAction>,
 ): Promise<void> => {

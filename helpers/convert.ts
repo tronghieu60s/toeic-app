@@ -8,3 +8,7 @@ export function removeVietnameseTones(str: string) {
     .replace(/Đ/g, 'D');
   return newStr;
 }
+
+export function convertWordsBase(value: string) {
+  return value.trim().toLowerCase();
+}

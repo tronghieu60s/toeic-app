@@ -2,8 +2,10 @@ import { AntDesign, Ionicons } from '@expo/vector-icons';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { memo, useState } from 'react';
 import { StyleSheet } from 'react-native';
+import { useSelector } from 'react-redux';
 import ModalSetting from '~/components/Common/ModalSetting';
 import { Ripple, View } from '~/components/Themed';
+import { RootState } from '~/redux/reducers/rootReducer';
 import { TabDifficultParamList } from '~/types';
 
 type Props = {
@@ -12,12 +14,15 @@ type Props = {
 
 const TabDifficultRight = memo(({ navigation }: Props) => {
   const [modalVisible, setModalVisible] = useState(false);
+  const words = useSelector((state: RootState) => state.practice.wordsDifficult);
 
   return (
     <View style={styles.container}>
-      <Ripple style={styles.button} onPress={() => navigation.navigate('TabDifficultStudy')}>
-        <Ionicons name="ios-flash" size={24} color="black" />
-      </Ripple>
+      {words.length > 0 && (
+        <Ripple style={styles.button} onPress={() => navigation.navigate('TabDifficultStudy')}>
+          <Ionicons name="ios-flash" size={24} color="black" />
+        </Ripple>
+      )}
       <Ripple style={styles.button} onPress={() => setModalVisible(true)}>
         <AntDesign name="setting" size={20} color="black" />
       </Ripple>

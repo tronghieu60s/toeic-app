@@ -4,6 +4,7 @@ import { Animated, Dimensions, Image, StyleSheet } from 'react-native';
 import { Text, View } from '~/components/Themed';
 import SoundButton from '~/components/UI/SoundButton';
 import { lightBulbIcon } from '~/constants/IconSource';
+import { typeAnswersMean, typeAnswersName } from '~/helpers/type-condition';
 import { StatusQuestion, TypesAnswer, WordType } from '~/types';
 
 type Props = {
@@ -25,16 +26,8 @@ const StudyUI = memo(({ status, word, typeAnswer, children }: Props) => {
   }, [word]);
 
   let question = '';
-  if (typeAnswer === 'CHOOSE-NAME-MEAN' || typeAnswer === 'FILL-NAME-MEAN') {
-    question = name_word || '';
-  }
-  if (
-    typeAnswer === 'CHOOSE-MEAN-NAME' ||
-    typeAnswer === 'CHOOSE-MEAN-SOUND' ||
-    typeAnswer === 'FILL-MEAN-NAME'
-  ) {
-    question = mean_word || '';
-  }
+  if (typeAnswersMean(typeAnswer)) question = name_word || '';
+  if (typeAnswersName(typeAnswer)) question = mean_word || '';
 
   useEffect(() => {
     if (status === 'Correct') {

@@ -57,7 +57,7 @@ const CommonWordItem = ({ word, handleFlashWord, handleDetailsWord }: Props) => 
         </Ripple>
         <View style={styles.wordRight}>
           <Ripple style={styles.icon} onPress={handleFlashWord}>
-            <Image style={styles.flash} source={flashIcon[difficult_study || 0]} />
+            <Image style={styles.flash} source={flashIcon[(difficult_study || 0) > 0 ? 1 : 0]} />
           </Ripple>
         </View>
       </View>
