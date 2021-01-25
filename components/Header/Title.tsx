@@ -1,19 +1,16 @@
 import React, { memo } from 'react';
-import { StyleSheet } from 'react-native';
+import { tailwind } from 'tailwind';
 import { Text } from '../Themed';
 
-const HeaderTitle = memo(({ title }: { title: string }) => (
-  <Text weight={700} style={styles.title}>
-    {title}
-  </Text>
-));
+type Props = { title: string };
 
-const styles = StyleSheet.create({
-  title: {
-    fontSize: 18,
-    letterSpacing: 0.5,
-    textTransform: 'capitalize',
-  },
+const HeaderTitle = memo((props: Props) => {
+  const { title } = props;
+  return (
+    <Text weight={700} style={tailwind('text-lg tracking-wider capitalize')}>
+      {title}
+    </Text>
+  );
 });
 
 export default HeaderTitle;

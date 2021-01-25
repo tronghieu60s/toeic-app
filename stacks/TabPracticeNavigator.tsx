@@ -31,9 +31,6 @@ export default function TabPracticeNavigator(): JSX.Element {
         name="TabPracticeScreen"
         component={TabPracticeScreen}
         options={{
-          headerStyle: {
-            height: 100,
-          },
           headerTitle: () => <TabPracticeHeaderTitle />,
         }}
       />
