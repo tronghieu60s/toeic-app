@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Button, StyleSheet } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { Text, View } from '../components/Themed';
-import { toggleTheme } from '../redux/actions/commonAction';
+import { toggleTheme } from '../src/redux/actions/commonAction';
 
 export default function TabFavoriteScreen(): JSX.Element {
   const dispatch = useDispatch();

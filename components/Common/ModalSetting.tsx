@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Text, View } from '~/components/Themed';
 import Switch from '~/components/UI/Switch';
 import { lightBulbIcon } from '~/constants/IconSource';
-import { toggleExplain, toggleMean, togglePronounce } from '~/redux/actions/commonAction';
-import { RootState } from '~/redux/reducers/rootReducer';
+import { toggleExplain, toggleMean, togglePronounce } from '~/src/redux/actions/commonAction';
+import { RootState } from '~/src/redux/reducers/rootReducer';
 
 type Props = {
   modalVisible: boolean;

@@ -5,7 +5,7 @@ import { StyleSheet } from 'react-native';
 import { useSelector } from 'react-redux';
 import ModalSetting from '~/components/Common/ModalSetting';
 import { Ripple, View } from '~/components/Themed';
-import { RootState } from '~/redux/reducers/rootReducer';
+import { RootState } from '~/src/redux/reducers/rootReducer';
 import { TabDifficultParamList } from '~/types';
 
 type Props = {

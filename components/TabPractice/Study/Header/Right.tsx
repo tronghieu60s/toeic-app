@@ -6,7 +6,7 @@ import { StyleSheet } from 'react-native';
 import Ripple from 'react-native-material-ripple';
 import { useSelector } from 'react-redux';
 import { Text, View } from '~/components/Themed';
-import { RootState } from '~/redux/reducers/rootReducer';
+import { RootState } from '~/src/redux/reducers/rootReducer';
 
 const TabPracticeStudyHeaderRight = memo(() => {
   const point = useSelector((state: RootState) => state.practice.point);

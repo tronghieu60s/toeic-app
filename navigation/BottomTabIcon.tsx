@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { Text, View } from '~/components/Themed';
 import Colors from '~/constants/Colors';
 import TabBar from '~/constants/TabBar';
-import { RootState } from '~/redux/reducers/rootReducer';
+import { RootState } from '~/src/redux/reducers/rootReducer';
 import { BottomTabParamList } from '~/types';
 
 type Props = {

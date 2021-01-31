@@ -3,7 +3,7 @@ import React, { memo } from 'react';
 import { StyleSheet } from 'react-native';
 import { useSelector } from 'react-redux';
 import { Text, View } from '~/components/Themed';
-import { RootState } from '~/redux/reducers/rootReducer';
+import { RootState } from '~/src/redux/reducers/rootReducer';
 import { TabPracticeParamList } from '~/types';
 
 type Props = {

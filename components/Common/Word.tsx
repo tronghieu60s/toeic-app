@@ -3,7 +3,7 @@ import { Image } from 'react-native';
 import { useSelector } from 'react-redux';
 import tailwind from 'tailwind-rn';
 import { flashIcon, lightBulbIcon } from '~/constants/IconSource';
-import { RootState } from '~/redux/reducers/rootReducer';
+import { RootState } from '~/src/redux/reducers/rootReducer';
 import { WordType } from '~/types';
 import { Ripple, Text, View } from '../Themed';
 
