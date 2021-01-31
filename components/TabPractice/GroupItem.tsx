@@ -13,7 +13,7 @@ type Props = {
 };
 
 const GroupItem = memo(({ group, navigation }: Props) => {
-  const { name_group, pronounce_group, image_group } = group;
+  const { name_group, pronounce_group = '', image_group } = group;
 
   return (
     <Ripple style={styles.group} onPress={() => navigation.navigate('TabPracticeWords', { group })}>

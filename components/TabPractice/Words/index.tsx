@@ -7,8 +7,8 @@ import CommonWordItem from '~/components/Common/Word';
 import { ScrollView } from '~/components/Themed';
 import CenterUI from '~/components/UI/Center';
 import Loading from '~/components/UI/Loading';
-import { actLoadWordsGroup, actToggleFlashWord } from '~/redux/actions/practiceAction';
-import { RootState } from '~/redux/reducers/rootReducer';
+import { actLoadWordsGroup, actToggleFlashWord } from '~/src/redux/actions/practiceAction';
+import { RootState } from '~/src/redux/reducers/rootReducer';
 import { TabPracticeParamList, WordType } from '~/types';
 
 type Props = {

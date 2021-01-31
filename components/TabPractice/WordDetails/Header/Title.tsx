@@ -2,7 +2,7 @@ import { RouteProp } from '@react-navigation/native';
 import React, { memo } from 'react';
 import { StyleSheet } from 'react-native';
 import { Text, View } from '~/components/Themed';
-import { GroupType, TabPracticeParamList } from '~/types';
+import { TabPracticeParamList } from '~/types';
 
 type Props = {
   route: RouteProp<TabPracticeParamList, 'TabPracticeWordDetails'>;

@@ -23,8 +23,8 @@ import { convertWordsBase, removeVietnameseTones as rmVN } from '~/helpers/conve
 import { randomBetweenTwoNumber as rdNum } from '~/helpers/random';
 import { AUDIO_CORRECT, AUDIO_FINISH, AUDIO_WRONG, playSound } from '~/helpers/sound';
 import { typeAnswersMean, typeAnswersName } from '~/helpers/type-condition';
-import { actStudyCorrectDifficult, increasePoint } from '~/redux/actions/practiceAction';
-import { RootState } from '~/redux/reducers/rootReducer';
+import { actStudyCorrectDifficult, increasePoint } from '~/src/redux/actions/practiceAction';
+import { RootState } from '~/src/redux/reducers/rootReducer';
 import { StatusQuestion, TabDifficultParamList, TypesAnswer, WordType } from '~/types';
 
 const totalQuestions = 10;
