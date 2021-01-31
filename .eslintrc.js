@@ -28,6 +28,7 @@ module.exports = {
     'no-use-before-define': 'off',
     'no-underscore-dangle': 'off',
     'object-curly-newline': 'off',
+    'prefer-arrow-callback': 'off',
     'import/extensions': 'off',
     'import/no-unresolved': 'off',
     'import/prefer-default-export': 'off',

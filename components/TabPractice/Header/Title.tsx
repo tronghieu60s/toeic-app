@@ -1,9 +1,8 @@
 import React from 'react';
-import { Image, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { Text, View } from '~/components/Themed';
 import Colors from '~/constants/Colors';
 import useColorScheme from '~/hooks/useColorScheme';
-import { Text, View } from '~/components/Themed';
-import { lightBulbIcon } from '~/constants/IconSource';
 
 export default function TabPracticeHeaderTitle(): JSX.Element {
   const colorScheme = useColorScheme();
