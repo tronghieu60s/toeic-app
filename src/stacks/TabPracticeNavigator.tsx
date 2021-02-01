@@ -5,16 +5,16 @@ import {
   HeaderStyleInterpolators,
 } from '@react-navigation/stack';
 import React from 'react';
-import TabPracticeHeaderTitle from '~/components/TabPractice/Header/Title';
-import TabPracticeStudy from '~/components/TabPractice/Study';
-import TabPracticeStudyHeaderRight from '~/components/TabPractice/Study/Header/Right';
-import TabPracticeWordDetails from '~/components/TabPractice/WordDetails';
-import TabPracticeWordDetailHeaderTitle from '~/components/TabPractice/WordDetails/Header/Title';
-import TabPracticeWords from '~/components/TabPractice/Words';
-import TabPracticeWordsHeaderRight from '~/components/TabPractice/Words/Header/Right';
-import TabPracticeWordsHeaderTitle from '~/components/TabPractice/Words/Header/Title';
-import { View } from '~/components/Themed';
-import TabPracticeScreen from '~/screens/TabPracticeScreen';
+import TabPracticeHeaderTitle from '~/src/components/TabPractice/Header/Title';
+import TabPracticeStudy from '~/src/components/TabPractice/Study';
+import TabPracticeStudyHeaderRight from '~/src/components/TabPractice/Study/Header/Right';
+import TabPracticeWordDetails from '~/src/components/TabPractice/WordDetails';
+import TabPracticeWordDetailHeaderTitle from '~/src/components/TabPractice/WordDetails/Header/Title';
+import TabPracticeWords from '~/src/components/TabPractice/Words';
+import TabPracticeWordsHeaderRight from '~/src/components/TabPractice/Words/Header/Right';
+import TabPracticeWordsHeaderTitle from '~/src/components/TabPractice/Words/Header/Title';
+import { View } from '~/src/components/Themed';
+import TabPracticeScreen from '~/src/screens/TabPracticeScreen';
 import { TabPracticeParamList } from '~/types';
 
 const TabPracticeStack = createStackNavigator<TabPracticeParamList>();

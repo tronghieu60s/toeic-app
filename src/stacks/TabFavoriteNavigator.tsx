@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import TabFavoriteScreen from '~/screens/TabFavoriteScreen';
+import TabFavoriteScreen from '~/src/screens/TabFavoriteScreen';
 import { TabFavoriteParamList } from '~/types';
 
 const TabFavoriteStack = createStackNavigator<TabFavoriteParamList>();
