@@ -1,6 +1,6 @@
 import { Dispatch } from 'react';
-import { createStudies, updateStudies } from '~/models/StudiesModel';
-import { getWordsByIdGroup, getWordsDifficult } from '~/models/WordsModel';
+import { createStudies, updateStudies } from '~/src/models/StudiesModel';
+import { getWordsByIdGroup, getWordsDifficult } from '~/src/models/WordsModel';
 import { GroupType, WordType } from '~/types';
 
 export const LOAD_WORDS_GROUP = 'LOAD_WORDS_GROUP';

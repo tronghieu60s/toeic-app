@@ -5,14 +5,14 @@ import {
   HeaderStyleInterpolators,
 } from '@react-navigation/stack';
 import React from 'react';
-import HeaderTitle from '~/components/Header/Title';
-import TabDifficultRight from '~/components/TabDifficult/Header/Right';
-import TabDifficultStudy from '~/components/TabDifficult/Study';
-import TabPracticeStudyHeaderRight from '~/components/TabPractice/Study/Header/Right';
-import TabPracticeWordDetails from '~/components/TabPractice/WordDetails';
-import TabPracticeWordDetailHeaderTitle from '~/components/TabPractice/WordDetails/Header/Title';
-import { View } from '~/components/Themed';
-import TabDifficultScreen from '~/screens/TabDifficultScreen';
+import HeaderTitle from '~/src/components/Header/Title';
+import TabDifficultRight from '~/src/components/TabDifficult/Header/Right';
+import TabDifficultStudy from '~/src/components/TabDifficult/Study';
+import TabPracticeStudyHeaderRight from '~/src/components/TabPractice/Study/Header/Right';
+import TabPracticeWordDetails from '~/src/components/TabPractice/WordDetails';
+import TabPracticeWordDetailHeaderTitle from '~/src/components/TabPractice/WordDetails/Header/Title';
+import { View } from '~/src/components/Themed';
+import TabDifficultScreen from '~/src/screens/TabDifficultScreen';
 import { TabDifficultParamList } from '~/types';
 
 const TabFavoriteStack = createStackNavigator<TabDifficultParamList>();
