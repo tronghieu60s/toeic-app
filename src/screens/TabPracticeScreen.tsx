@@ -7,6 +7,7 @@ type Props = {
   navigation: StackNavigationProp<TabPracticeParamList, 'TabPracticeScreen'>;
 };
 
-export default function TabPracticeScreen({ navigation }: Props): JSX.Element {
+export default function TabPracticeScreen(props: Props): JSX.Element {
+  const { navigation } = props;
   return <TabPractice navigation={navigation} />;
 }

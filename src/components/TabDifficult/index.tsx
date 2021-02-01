@@ -51,8 +51,8 @@ const TabDifficult = memo(({ navigation }: Props) => {
 
   return (
     <ScrollView style={tailwind('flex-1')}>
-      <View style={tailwind('flex-1 bg-gray-200 pb-14')}>
-        <View style={tailwind('py-1 bg-gray-200')}>{renderWords()}</View>
+      <View style={{ ...tailwind('flex-1 pb-14'), backgroundColor: '#f3f3f3' }}>
+        <View style={{ ...tailwind('py-1'), backgroundColor: '#f3f3f3' }}>{renderWords()}</View>
       </View>
     </ScrollView>
   );

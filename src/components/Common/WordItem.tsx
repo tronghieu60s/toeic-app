@@ -32,7 +32,7 @@ const WordItem = (props: Props) => {
   const explainWord = `${explain_word.slice(0, 50)}${explain_word.length > 50 ? '...' : ''}`;
 
   return (
-    <View style={tailwind('mx-2 my-1')}>
+    <View style={tailwind('mx-2 my-1 bg-white')}>
       <View style={tailwind('flex-auto flex-row px-4')}>
         <Ripple style={tailwind('flex-auto flex-row')} onPress={handleDetailsWord}>
           <View style={tailwind('justify-center items-center')}>

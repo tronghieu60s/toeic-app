@@ -21,7 +21,9 @@ export default function BottomTabNavigator(): JSX.Element {
       tabBarOptions={{
         showLabel: false,
         activeTintColor: Colors[colorScheme].tint,
-        inactiveTintColor: '#AAA',
+        activeBackgroundColor: Colors[colorScheme].bgColor1,
+        inactiveBackgroundColor: Colors[colorScheme].bgColor1,
+        inactiveTintColor: Colors[colorScheme].tabIconDefault,
         style: { height: 55, position: 'absolute' },
       }}
       screenOptions={({ route, navigation }) => {

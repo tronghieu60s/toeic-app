@@ -35,16 +35,20 @@ const TabPractice = memo(({ navigation }: Props) => {
   if (groups.length <= 0) return <Loading />;
 
   return (
-    <ScrollView style={tailwind('flex-1 bg-gray-200 px-2')}>
-      <View style={tailwind('bg-gray-200 pb-14')}>
+    <ScrollView colorLight style={tailwind('flex-1 px-2')}>
+      <View colorLight style={tailwind('pb-14')}>
         <Text weight={700} style={styles.groupsTitle}>
           General Business
         </Text>
-        <View style={styles.groups}>{renderGroups(0, 5)}</View>
+        <View colorLight style={styles.groups}>
+          {renderGroups(0, 5)}
+        </View>
         <Text weight={700} style={styles.groupsTitle}>
           Office Issues
         </Text>
-        <View style={styles.groups}>{renderGroups(5, 10)}</View>
+        <View colorLight style={styles.groups}>
+          {renderGroups(5, 10)}
+        </View>
       </View>
     </ScrollView>
   );
@@ -52,10 +56,10 @@ const TabPractice = memo(({ navigation }: Props) => {
 
 const styles = StyleSheet.create({
   groups: {
-    ...tailwind('flex-1 flex-row flex-wrap justify-between bg-gray-200'),
+    ...tailwind('flex-1 flex-row flex-wrap justify-between'),
     width: Dimensions.get('window').width - 10,
   },
-  groupsTitle: { ...tailwind('text-lg my-3 ml-2') },
+  groupsTitle: { ...tailwind('text-lg my-2 ml-2') },
 });
 
 export default TabPractice;
