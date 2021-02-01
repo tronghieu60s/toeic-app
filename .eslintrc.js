@@ -22,6 +22,7 @@ module.exports = {
   ],
   rules: {
     camelcase: 'off',
+    'linebreak-style': 'off',
     'global-require': 'off',
     'no-shadow': 'off',
     'no-console': 'off',

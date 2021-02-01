@@ -5,6 +5,7 @@ import {
   HeaderStyleInterpolators,
 } from '@react-navigation/stack';
 import React from 'react';
+import { useSelector } from 'react-redux';
 import HeaderTitle from '~/src/components/Header/Title';
 import TabDifficultRight from '~/src/components/TabDifficult/Header/Right';
 import TabDifficultStudy from '~/src/components/TabDifficult/Study';
@@ -14,13 +15,18 @@ import TabPracticeWordDetailHeaderTitle from '~/src/components/TabPractice/WordD
 import { View } from '~/src/components/Themed';
 import TabDifficultScreen from '~/src/screens/TabDifficultScreen';
 import { TabDifficultParamList } from '~/types';
+import Colors from '../constants/Colors';
+import { RootState } from '../redux/reducers/rootReducer';
 
 const TabFavoriteStack = createStackNavigator<TabDifficultParamList>();
 
 export default function TabDifficultNavigator(): JSX.Element {
+  const colorScheme = useSelector((state: RootState) => state.common.theme);
+
   return (
     <TabFavoriteStack.Navigator
       screenOptions={{
+        headerStyle: { backgroundColor: Colors[colorScheme].background },
         headerStyleInterpolator: HeaderStyleInterpolators.forSlideUp,
         cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
       }}

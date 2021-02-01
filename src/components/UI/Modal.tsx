@@ -21,7 +21,7 @@ export default memo(function Modal(props: Props) {
       <TouchableOpacity
         activeOpacity={1}
         onPressOut={() => setModalVisible(false)}
-        style={tailwind('w-full h-full justify-center items-center bg-gray-900 bg-opacity-70')}
+        style={tailwind('w-full h-full justify-center items-center bg-black bg-opacity-70')}
       >
         <TouchableWithoutFeedback>{children}</TouchableWithoutFeedback>
       </TouchableOpacity>

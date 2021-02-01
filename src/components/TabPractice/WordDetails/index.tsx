@@ -14,8 +14,8 @@ const TabPracticeWordDetails = memo((props: Props) => {
   const { name_word, mean_word, explain_word, pronounce_word } = route.params.word;
 
   return (
-    <View style={tailwind('flex-1 items-center py-28')}>
-      <View style={tailwind('w-9/12 items-center')}>
+    <View colorLight style={tailwind('flex-1 items-center py-28')}>
+      <View colorLight style={tailwind('w-9/12 items-center')}>
         <SoundButton autoPlay size={80} word={route.params.word} />
         <Text weight={700} style={tailwind('text-xl')}>
           {name_word}

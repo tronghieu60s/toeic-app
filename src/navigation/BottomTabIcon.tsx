@@ -21,10 +21,15 @@ export default function BottomTabBarIcon(props: Props): JSX.Element {
   const { name } = route;
 
   return (
-    <View style={{ ...tailwind('items-center'), backgroundColor: Colors[colorScheme].bgColor1 }}>
+    <View style={tailwind('items-center')}>
       <TabBarIcon name={TabBar[name].icon} size={22} color={color} />
       {focused && (
-        <Text weight={700} style={{ ...tailwind('text-xs mt-2'), color: Colors[colorScheme].tint }}>
+        <Text
+          weight={700}
+          lightColor={Colors[colorScheme].tint}
+          darkColor={Colors[colorScheme].tint}
+          style={tailwind('text-xs mt-2')}
+        >
           {TabBar[name].name}
         </Text>
       )}

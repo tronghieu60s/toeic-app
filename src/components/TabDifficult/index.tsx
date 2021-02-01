@@ -5,7 +5,7 @@ import tailwind from 'tailwind-rn';
 import { actLoadWordsDifficult, actToggleFlashWord } from '~/src/redux/actions/practiceAction';
 import { RootState } from '~/src/redux/reducers/rootReducer';
 import { TabDifficultParamList, WordType } from '~/types';
-import CommonWordItem from '../Common/WordItem';
+import WordItem from '../Common/WordItem';
 import { ScrollView, View } from '../Themed';
 import CenterUI from '../UI/Center';
 import Loading from '../UI/Loading';
@@ -34,7 +34,7 @@ const TabDifficult = memo(({ navigation }: Props) => {
   const renderWords = () => {
     let result: React.ReactNode = null;
     result = words.map((word) => (
-      <CommonWordItem
+      <WordItem
         word={word}
         key={word.id_word}
         handleFlashWord={() => handleFlashWord(word)}
@@ -50,9 +50,9 @@ const TabDifficult = memo(({ navigation }: Props) => {
   if (words.length <= 0 && !isPending) return <CenterUI>{text}</CenterUI>;
 
   return (
-    <ScrollView style={tailwind('flex-1')}>
-      <View style={{ ...tailwind('flex-1 pb-14'), backgroundColor: '#f3f3f3' }}>
-        <View style={{ ...tailwind('py-1'), backgroundColor: '#f3f3f3' }}>{renderWords()}</View>
+    <ScrollView colorLight style={tailwind('flex-1')}>
+      <View colorLight style={tailwind('flex-1 pt-3 px-3')}>
+        {renderWords()}
       </View>
     </ScrollView>
   );

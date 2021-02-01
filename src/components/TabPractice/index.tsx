@@ -13,7 +13,8 @@ type Props = {
   navigation: StackNavigationProp<TabPracticeParamList, 'TabPracticeScreen'>;
 };
 
-const TabPractice = memo(({ navigation }: Props) => {
+const TabPractice = memo((props: Props) => {
+  const { navigation } = props;
   const [groups, setGroups] = useState<GroupType[]>([]);
 
   useEffect(() => {

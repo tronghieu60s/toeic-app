@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import tailwind from 'tailwind-rn';
 import ModalSetting from '~/src/components/Common/ModalSetting';
 import { Ripple, View } from '~/src/components/Themed';
+import Colors from '~/src/constants/Colors';
 import { RootState } from '~/src/redux/reducers/rootReducer';
 import { TabDifficultParamList } from '~/types';
 
@@ -15,17 +16,19 @@ type Props = {
 
 const TabDifficultRight = memo(({ navigation }: Props) => {
   const [modalVisible, setModalVisible] = useState(false);
+
+  const theme = useSelector((state: RootState) => state.common.theme);
   const words = useSelector((state: RootState) => state.practice.wordsDifficult);
 
   return (
     <View style={tailwind('w-20 flex-row justify-end items-center mt-2')}>
       {words.length > 0 && (
         <Ripple style={styles.button} onPress={() => navigation.navigate('TabDifficultStudy')}>
-          <Ionicons name="ios-flash" size={22} color="black" />
+          <Ionicons name="ios-flash" size={22} color={Colors[theme].text} />
         </Ripple>
       )}
       <Ripple style={styles.button} onPress={() => setModalVisible(true)}>
-        <AntDesign name="setting" size={20} color="black" />
+        <AntDesign name="setting" size={20} color={Colors[theme].text} />
       </Ripple>
       <ModalSetting
         modalVisible={modalVisible}

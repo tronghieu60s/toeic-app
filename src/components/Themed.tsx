@@ -12,10 +12,10 @@ import Colors from '../constants/Colors';
 import { RootState } from '../redux/reducers/rootReducer';
 
 export function useThemeColor(
-  theme: 'light' | 'dark',
   props: { light?: string; dark?: string },
   colorName: keyof typeof Colors.light & keyof typeof Colors.dark,
 ): string {
+  const theme = useSelector((state: RootState) => state.common.theme);
   const colorFromProps = props[theme];
 
   if (colorFromProps) {
@@ -38,9 +38,7 @@ export type RippleProps = ThemeProps & DefaultRipple['props'];
 
 export function Text(props: TextProps): JSX.Element {
   const { style, weight, lightColor, darkColor, ...otherProps } = props;
-
-  const theme = useSelector((state: RootState) => state.common.theme);
-  const color = useThemeColor(theme, { light: lightColor, dark: darkColor }, 'text');
+  const color = useThemeColor({ light: lightColor, dark: darkColor }, 'text');
 
   return (
     <DefaultText style={[{ color, fontFamily: `san-${weight || 400}` }, style]} {...otherProps} />
@@ -49,10 +47,7 @@ export function Text(props: TextProps): JSX.Element {
 
 export function View(props: ViewProps): JSX.Element {
   const { style, colorLight, lightColor, darkColor, ...otherProps } = props;
-
-  const theme = useSelector((state: RootState) => state.common.theme);
   const backgroundColor = useThemeColor(
-    theme,
     { light: lightColor, dark: darkColor },
     colorLight ? 'background2' : 'background',
   );
@@ -62,10 +57,7 @@ export function View(props: ViewProps): JSX.Element {
 
 export function ScrollView(props: ScrollViewProps): JSX.Element {
   const { style, colorLight, lightColor, darkColor, ...otherProps } = props;
-
-  const theme = useSelector((state: RootState) => state.common.theme);
   const backgroundColor = useThemeColor(
-    theme,
     { light: lightColor, dark: darkColor },
     colorLight ? 'background2' : 'background',
   );
@@ -82,10 +74,7 @@ export function ScrollView(props: ScrollViewProps): JSX.Element {
 
 export function Ripple(props: RippleProps): JSX.Element {
   const { style, colorLight, lightColor, darkColor, ...otherProps } = props;
-
-  const theme = useSelector((state: RootState) => state.common.theme);
   const backgroundColor = useThemeColor(
-    theme,
     { light: lightColor, dark: darkColor },
     colorLight ? 'background2' : 'background',
   );

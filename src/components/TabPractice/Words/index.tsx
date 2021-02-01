@@ -1,11 +1,10 @@
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { memo, useEffect, useState } from 'react';
-import { View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import tailwind from 'tailwind-rn';
-import CommonWordItem from '~/src/components/Common/WordItem';
-import { ScrollView } from '~/src/components/Themed';
+import WordItem from '~/src/components/Common/WordItem';
+import { ScrollView, View } from '~/src/components/Themed';
 import CenterUI from '~/src/components/UI/Center';
 import Loading from '~/src/components/UI/Loading';
 import { actLoadWordsGroup, actToggleFlashWord } from '~/src/redux/actions/practiceAction';
@@ -40,7 +39,7 @@ const TabPracticeWords = memo((props: Props) => {
   const renderWords = () => {
     let result: React.ReactNode = null;
     result = words.map((word) => (
-      <CommonWordItem
+      <WordItem
         word={word}
         key={word.id_word}
         handleFlashWord={() => handleFlashWord(word)}
@@ -56,8 +55,8 @@ const TabPracticeWords = memo((props: Props) => {
   if (words.length <= 0 && !isPending) return <CenterUI>{text}</CenterUI>;
 
   return (
-    <ScrollView style={{ ...tailwind('flex-1'), backgroundColor: '#f3f3f3' }}>
-      <View style={tailwind('my-2')}>{renderWords()}</View>
+    <ScrollView colorLight style={tailwind('flex-1')}>
+      <View colorLight style={tailwind('flex-1 pt-3 px-3')}>{renderWords()}</View>
     </ScrollView>
   );
 });
