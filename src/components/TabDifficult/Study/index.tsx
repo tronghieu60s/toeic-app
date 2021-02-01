@@ -1,4 +1,3 @@
-/* eslint-disable operator-linebreak */
 import { StackNavigationProp } from '@react-navigation/stack';
 import * as Speech from 'expo-speech';
 import React, { memo, useEffect, useState } from 'react';
@@ -7,11 +6,11 @@ import {
   Keyboard,
   LayoutAnimation,
   Platform,
-  StyleSheet,
   UIManager,
   Vibration,
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
+import tailwind from 'tailwind-rn';
 import AlertUI from '~/src/components/TabPractice/Study/AlertUI';
 import BottomUI from '~/src/components/TabPractice/Study/BottomUI';
 import StudyMode from '~/src/components/TabPractice/Study/StudyMode';
@@ -153,7 +152,7 @@ const TabDifficultStudy = memo(({ navigation }: Props) => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={tailwind('w-full flex-1 justify-between')}>
       <ProcessBar percent={(countQuestion * 100) / totalQuestions} />
       {statusStudy && <StudyWord word={wordQuestion} />}
       {!statusStudy && (
@@ -169,14 +168,6 @@ const TabDifficultStudy = memo(({ navigation }: Props) => {
       {status !== 'Waiting' && !statusStudy && <AlertUI status={status} word={wordQuestion} />}
     </View>
   );
-});
-
-const styles = StyleSheet.create({
-  container: {
-    width: '100%',
-    flex: 1,
-    justifyContent: 'space-between',
-  },
 });
 
 export default TabDifficultStudy;

@@ -3,6 +3,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import React, { memo, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { useSelector } from 'react-redux';
+import tailwind from 'tailwind-rn';
 import ModalSetting from '~/src/components/Common/ModalSetting';
 import { Ripple, View } from '~/src/components/Themed';
 import { RootState } from '~/src/redux/reducers/rootReducer';
@@ -17,10 +18,10 @@ const TabDifficultRight = memo(({ navigation }: Props) => {
   const words = useSelector((state: RootState) => state.practice.wordsDifficult);
 
   return (
-    <View style={styles.container}>
+    <View style={tailwind('w-20 flex-row justify-end items-center mt-2')}>
       {words.length > 0 && (
         <Ripple style={styles.button} onPress={() => navigation.navigate('TabDifficultStudy')}>
-          <Ionicons name="ios-flash" size={24} color="black" />
+          <Ionicons name="ios-flash" size={22} color="black" />
         </Ripple>
       )}
       <Ripple style={styles.button} onPress={() => setModalVisible(true)}>
@@ -35,23 +36,7 @@ const TabDifficultRight = memo(({ navigation }: Props) => {
 });
 
 const styles = StyleSheet.create({
-  container: {
-    width: 110,
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-    marginRight: 5,
-  },
-  button: {
-    padding: 7,
-    marginLeft: 5,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  flash: {
-    width: 20,
-    height: 20,
-  },
+  button: { ...tailwind('p-2 ml-1 justify-center items-center') },
 });
 
 export default TabDifficultRight;
