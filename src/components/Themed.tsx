@@ -7,14 +7,15 @@ import {
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import DefaultRipple from 'react-native-material-ripple';
+import { useSelector } from 'react-redux';
 import Colors from '../constants/Colors';
-import useColorScheme from '../hooks/useColorScheme';
+import { RootState } from '../redux/reducers/rootReducer';
 
 export function useThemeColor(
   props: { light?: string; dark?: string },
   colorName: keyof typeof Colors.light & keyof typeof Colors.dark,
 ): string {
-  const theme = useColorScheme();
+  const theme = useSelector((state: RootState) => state.common.theme);
   const colorFromProps = props[theme];
 
   if (colorFromProps) {
@@ -24,6 +25,7 @@ export function useThemeColor(
 }
 
 type ThemeProps = {
+  colorLight?: boolean;
   weight?: 300 | 400 | 600 | 700 | 800;
   lightColor?: string;
   darkColor?: string;
@@ -44,18 +46,25 @@ export function Text(props: TextProps): JSX.Element {
 }
 
 export function View(props: ViewProps): JSX.Element {
-  const { style, lightColor, darkColor, ...otherProps } = props;
-  const backgroundColor = useThemeColor({ light: lightColor, dark: darkColor }, 'background');
+  const { style, colorLight, lightColor, darkColor, ...otherProps } = props;
+  const backgroundColor = useThemeColor(
+    { light: lightColor, dark: darkColor },
+    colorLight ? 'background2' : 'background',
+  );
 
   return <DefaultView style={[{ backgroundColor }, style]} {...otherProps} />;
 }
 
 export function ScrollView(props: ScrollViewProps): JSX.Element {
-  const { style, ...otherProps } = props;
+  const { style, colorLight, lightColor, darkColor, ...otherProps } = props;
+  const backgroundColor = useThemeColor(
+    { light: lightColor, dark: darkColor },
+    colorLight ? 'background2' : 'background',
+  );
 
   return (
     <DefaultScrollView
-      style={[style]}
+      style={[{ backgroundColor }, style]}
       showsVerticalScrollIndicator={false}
       showsHorizontalScrollIndicator={false}
       {...otherProps}
@@ -64,12 +73,17 @@ export function ScrollView(props: ScrollViewProps): JSX.Element {
 }
 
 export function Ripple(props: RippleProps): JSX.Element {
-  const { style, ...otherProps } = props;
+  const { style, colorLight, lightColor, darkColor, ...otherProps } = props;
+  const backgroundColor = useThemeColor(
+    { light: lightColor, dark: darkColor },
+    colorLight ? 'background2' : 'background',
+  );
+
   return (
     <DefaultRipple
       rippleCentered
       rippleContainerBorderRadius={50}
-      style={[style]}
+      style={[{ backgroundColor }, style]}
       {...otherProps}
     />
   );

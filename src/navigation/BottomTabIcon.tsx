@@ -2,6 +2,7 @@ import { AntDesign } from '@expo/vector-icons';
 import { Route } from '@react-navigation/native';
 import React from 'react';
 import { useSelector } from 'react-redux';
+import tailwind from 'tailwind-rn';
 import { Text, View } from '~/src/components/Themed';
 import Colors from '~/src/constants/Colors';
 import TabBar from '~/src/constants/TabBar';
@@ -19,17 +20,16 @@ export default function BottomTabBarIcon(props: Props): JSX.Element {
   const { route, focused, color } = props;
   const { name } = route;
 
-  const textStyle = {
-    color: Colors[colorScheme].tint,
-    fontSize: 12,
-    marginTop: 5,
-  };
-
   return (
-    <View style={{ alignItems: 'center' }}>
+    <View style={tailwind('items-center')}>
       <TabBarIcon name={TabBar[name].icon} size={22} color={color} />
       {focused && (
-        <Text weight={700} style={textStyle}>
+        <Text
+          weight={700}
+          lightColor={Colors[colorScheme].tint}
+          darkColor={Colors[colorScheme].tint}
+          style={tailwind('text-xs mt-2')}
+        >
           {TabBar[name].name}
         </Text>
       )}

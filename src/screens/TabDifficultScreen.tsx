@@ -7,6 +7,7 @@ type Props = {
   navigation: StackNavigationProp<TabDifficultParamList, 'TabDifficultScreen'>;
 };
 
-export default function TabDifficultScreen({ navigation }: Props): JSX.Element {
+export default function TabDifficultScreen(props: Props): JSX.Element {
+  const { navigation } = props;
   return <TabDifficult navigation={navigation} />;
 }

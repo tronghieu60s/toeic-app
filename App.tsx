@@ -11,8 +11,13 @@ export default function App(): JSX.Element {
   const isLoadingComplete = useCachedResources();
 
   if (!isLoadingComplete) {
-    return <View />;
+    return (
+      <Provider store={store}>
+        <View />
+      </Provider>
+    );
   }
+
   return (
     <Provider store={store}>
       <SafeAreaProvider>

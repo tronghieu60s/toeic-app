@@ -1,6 +1,7 @@
 import { RouteProp } from '@react-navigation/native';
 import React, { memo } from 'react';
 import { StyleSheet } from 'react-native';
+import tailwind from 'tailwind-rn';
 import { Text, View } from '~/src/components/Themed';
 import { TabPracticeParamList } from '~/types';
 
@@ -8,13 +9,14 @@ type Props = {
   route: RouteProp<TabPracticeParamList, 'TabPracticeWordDetails'>;
 };
 
-const TabPracticeWordDetailHeaderTitle = memo(({ route }: Props) => {
+const TabPracticeWordDetailHeaderTitle = memo((props: Props) => {
+  const { route } = props;
   const { name_word, pronounce_word, name_group } = route.params.word;
 
   return (
     <View>
-      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-        <Text weight={700} style={styles.name}>
+      <View style={tailwind('flex-row items-center')}>
+        <Text weight={700} style={tailwind('text-base tracking-wide')}>
           {name_group}
         </Text>
       </View>
@@ -28,13 +30,9 @@ const TabPracticeWordDetailHeaderTitle = memo(({ route }: Props) => {
 });
 
 const styles = StyleSheet.create({
-  name: {
-    fontSize: 16,
-    letterSpacing: 0.7,
-  },
   pronounce: {
-    color: '#5e72e4',
     fontSize: 11,
+    color: '#5e72e4',
   },
 });
 

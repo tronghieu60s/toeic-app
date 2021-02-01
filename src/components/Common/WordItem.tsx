@@ -32,37 +32,35 @@ const WordItem = (props: Props) => {
   const explainWord = `${explain_word.slice(0, 50)}${explain_word.length > 50 ? '...' : ''}`;
 
   return (
-    <View style={tailwind('mx-2 my-1')}>
-      <View style={tailwind('flex-auto flex-row px-4')}>
-        <Ripple style={tailwind('flex-auto flex-row')} onPress={handleDetailsWord}>
-          <View style={tailwind('justify-center items-center')}>
-            <Image style={tailwind('w-7 h-7')} source={iconBulb} />
-          </View>
-          <View style={tailwind('justify-center w-10/12 ml-3 py-4')}>
-            <View style={tailwind('flex-row items-center')}>
-              <Text weight={700} style={(tailwind('text-sm'), { color: '#5e72e4' })}>
-                {name_word}
-              </Text>
-              {visiblePronounce && (
-                <Text weight={600} style={{ color: '#888' }}>
-                  {' '}
-                  {pronounce_word}
-                </Text>
-              )}
-            </View>
-            {visibleExplain && <Text weight={300}>{explainWord}</Text>}
-            {visibleMean && (
-              <Text weight={700} style={tailwind('text-sm mt-1')}>
-                {mean_word}
+    <View style={tailwind('flex-auto flex-row mb-3 px-4')}>
+      <Ripple style={tailwind('flex-auto flex-row')} onPress={handleDetailsWord}>
+        <View style={tailwind('justify-center items-center')}>
+          <Image style={tailwind('w-7 h-7')} source={iconBulb} />
+        </View>
+        <View style={tailwind('justify-center w-10/12 ml-3 py-4')}>
+          <View style={tailwind('flex-row items-center')}>
+            <Text weight={700} style={(tailwind('text-sm'), { color: '#5e72e4' })}>
+              {name_word}
+            </Text>
+            {visiblePronounce && (
+              <Text weight={600} style={{ color: '#888' }}>
+                {' '}
+                {pronounce_word}
               </Text>
             )}
           </View>
-        </Ripple>
-        <View style={tailwind('flex-auto justify-center items-center')}>
-          <Ripple onPress={handleFlashWord}>
-            <Image style={tailwind('w-5 h-5')} source={iconFlash} />
-          </Ripple>
+          {visibleExplain && <Text weight={300}>{explainWord}</Text>}
+          {visibleMean && (
+            <Text weight={700} style={tailwind('text-sm mt-1')}>
+              {mean_word}
+            </Text>
+          )}
         </View>
+      </Ripple>
+      <View style={tailwind('flex-auto justify-center items-center')}>
+        <Ripple onPress={handleFlashWord}>
+          <Image style={tailwind('w-5 h-5')} source={iconFlash} />
+        </Ripple>
       </View>
     </View>
   );

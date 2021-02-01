@@ -1,9 +1,7 @@
 import React, { memo } from 'react';
-import { StyleSheet, Switch } from 'react-native';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import Ripple from 'react-native-material-ripple';
-import { Text, View } from '../Themed';
+import { Switch } from 'react-native';
+import tailwind from 'tailwind-rn';
+import { Ripple, Text, View } from '../Themed';
 
 type Props = {
   name: string;
@@ -16,14 +14,14 @@ const SwitchUI = memo((props: Props) => {
   const { name, description, value, onValueChange } = props;
 
   return (
-    <View style={styles.modalItem}>
-      <Ripple style={styles.modalLeft} onPress={onValueChange}>
-        <Text weight={700} style={styles.modalItemName}>
+    <View style={tailwind('flex-row justify-between items-center')}>
+      <Ripple style={tailwind('flex-auto py-2')} onPress={onValueChange}>
+        <Text weight={700} style={{ fontSize: 13 }}>
           {name}
         </Text>
-        <Text style={styles.modalItemDesc}>{description}</Text>
+        <Text style={{ color: '#888', fontSize: 13 }}>{description}</Text>
       </Ripple>
-      <View style={styles.modalRight}>
+      <View style={tailwind('flex-auto')}>
         <Switch
           value={value}
           onValueChange={onValueChange}
@@ -34,28 +32,6 @@ const SwitchUI = memo((props: Props) => {
       </View>
     </View>
   );
-});
-
-const styles = StyleSheet.create({
-  modalItem: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  modalLeft: {
-    flex: 8,
-    paddingVertical: 10,
-  },
-  modalRight: {
-    flex: 1,
-  },
-  modalItemName: {
-    fontSize: 13,
-  },
-  modalItemDesc: {
-    color: '#888',
-    fontSize: 13,
-  },
 });
 
 export default SwitchUI;

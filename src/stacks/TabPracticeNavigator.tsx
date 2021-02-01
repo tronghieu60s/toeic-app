@@ -5,6 +5,8 @@ import {
   HeaderStyleInterpolators,
 } from '@react-navigation/stack';
 import React from 'react';
+import { useSelector } from 'react-redux';
+import tailwind from 'tailwind-rn';
 import TabPracticeHeaderTitle from '~/src/components/TabPractice/Header/Title';
 import TabPracticeStudy from '~/src/components/TabPractice/Study';
 import TabPracticeStudyHeaderRight from '~/src/components/TabPractice/Study/Header/Right';
@@ -16,13 +18,18 @@ import TabPracticeWordsHeaderTitle from '~/src/components/TabPractice/Words/Head
 import { View } from '~/src/components/Themed';
 import TabPracticeScreen from '~/src/screens/TabPracticeScreen';
 import { TabPracticeParamList } from '~/types';
+import Colors from '../constants/Colors';
+import { RootState } from '../redux/reducers/rootReducer';
 
 const TabPracticeStack = createStackNavigator<TabPracticeParamList>();
 
 export default function TabPracticeNavigator(): JSX.Element {
+  const colorScheme = useSelector((state: RootState) => state.common.theme);
+
   return (
     <TabPracticeStack.Navigator
       screenOptions={{
+        headerStyle: { backgroundColor: Colors[colorScheme].background },
         headerStyleInterpolator: HeaderStyleInterpolators.forSlideUp,
         cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
       }}
@@ -30,9 +37,7 @@ export default function TabPracticeNavigator(): JSX.Element {
       <TabPracticeStack.Screen
         name="TabPracticeScreen"
         component={TabPracticeScreen}
-        options={{
-          headerTitle: () => <TabPracticeHeaderTitle />,
-        }}
+        options={{ headerTitle: () => <TabPracticeHeaderTitle /> }}
       />
       <TabPracticeStack.Screen
         name="TabPracticeWords"
@@ -53,11 +58,9 @@ export default function TabPracticeNavigator(): JSX.Element {
         name="TabPracticeStudy"
         component={TabPracticeStudy}
         options={{
-          headerStyle: {
-            backgroundColor: '#47d798',
-          },
+          headerStyle: { backgroundColor: '#47d798' },
           headerBackImage: () => (
-            <View style={{ padding: 8, backgroundColor: 'transparent' }}>
+            <View style={tailwind('p-3 bg-transparent')}>
               <FontAwesome5 name="times" size={20} color="black" />
             </View>
           ),

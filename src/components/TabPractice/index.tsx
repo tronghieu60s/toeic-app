@@ -2,6 +2,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { isNull } from 'lodash';
 import React, { memo, useEffect, useState } from 'react';
 import { Dimensions, StyleSheet } from 'react-native';
+import tailwind from 'tailwind-rn';
 import { getGroups } from '~/src/models/GroupsModel';
 import { GroupType, TabPracticeParamList } from '~/types';
 import { ScrollView, Text, View } from '../Themed';
@@ -12,7 +13,8 @@ type Props = {
   navigation: StackNavigationProp<TabPracticeParamList, 'TabPracticeScreen'>;
 };
 
-const TabPractice = memo(({ navigation }: Props) => {
+const TabPractice = memo((props: Props) => {
+  const { navigation } = props;
   const [groups, setGroups] = useState<GroupType[]>([]);
 
   useEffect(() => {
@@ -34,41 +36,31 @@ const TabPractice = memo(({ navigation }: Props) => {
   if (groups.length <= 0) return <Loading />;
 
   return (
-    <ScrollView style={styles.container}>
-      <View style={{ backgroundColor: '#f3f3f3', paddingBottom: 60 }}>
+    <ScrollView colorLight style={tailwind('flex-1 px-2')}>
+      <View colorLight style={tailwind('pb-14')}>
         <Text weight={700} style={styles.groupsTitle}>
           General Business
         </Text>
-        <View style={styles.groups}>{renderGroups(0, 5)}</View>
+        <View colorLight style={styles.groups}>
+          {renderGroups(0, 5)}
+        </View>
         <Text weight={700} style={styles.groupsTitle}>
           Office Issues
         </Text>
-        <View style={styles.groups}>{renderGroups(5, 10)}</View>
+        <View colorLight style={styles.groups}>
+          {renderGroups(5, 10)}
+        </View>
       </View>
     </ScrollView>
   );
 });
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#f3f3f3',
-    paddingHorizontal: 5,
-  },
   groups: {
-    flex: 1,
+    ...tailwind('flex-1 flex-row flex-wrap justify-between'),
     width: Dimensions.get('window').width - 10,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-    backgroundColor: '#f3f3f3',
   },
-  groupsTitle: {
-    fontSize: 18,
-    marginTop: 10,
-    marginBottom: 10,
-    marginLeft: 15,
-  },
+  groupsTitle: { ...tailwind('text-lg my-2 ml-2') },
 });
 
 export default TabPractice;

@@ -13,12 +13,23 @@ import {
   Vibration,
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
+import tailwind from 'tailwind-rn';
 import { View } from '~/src/components/Themed';
 import ProcessBar from '~/src/components/UI/ProcessBar';
 import { removeVietnameseTones as rmVN } from '~/src/helpers/convert';
 import { randomBetweenTwoNumber as rdNum } from '~/src/helpers/random';
-import { AUDIO_CORRECT, AUDIO_CORRECT_FULL, AUDIO_FINISH, AUDIO_WRONG, playSound } from '~/src/helpers/sound';
-import { actStudyCorrect, actStudyInCorrect, increasePoint } from '~/src/redux/actions/practiceAction';
+import {
+  AUDIO_CORRECT,
+  AUDIO_CORRECT_FULL,
+  AUDIO_FINISH,
+  AUDIO_WRONG,
+  playSound,
+} from '~/src/helpers/sound';
+import {
+  actStudyCorrect,
+  actStudyInCorrect,
+  increasePoint,
+} from '~/src/redux/actions/practiceAction';
 import { RootState } from '~/src/redux/reducers/rootReducer';
 import { StatusQuestion, TabPracticeParamList, TypesAnswer, WordType } from '~/types';
 import AlertUI from './AlertUI';
@@ -197,11 +208,7 @@ const TabPracticeStudy = memo(({ navigation }: Props) => {
 });
 
 const styles = StyleSheet.create({
-  container: {
-    width: '100%',
-    flex: 1,
-    justifyContent: 'space-between',
-  },
+  container: { ...tailwind('w-full flex-1 justify-between') },
 });
 
 export default TabPracticeStudy;
