@@ -2,6 +2,7 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import React, { memo } from 'react';
 import { StyleSheet } from 'react-native';
 import { useSelector } from 'react-redux';
+import tailwind from 'tailwind-rn';
 import { Ripple, Text, View } from '~/src/components/Themed';
 import { RootState } from '~/src/redux/reducers/rootReducer';
 
@@ -14,7 +15,7 @@ const TabPracticeStudyHeaderRight = memo(() => {
         <FontAwesome5 name="volume-mute" size={22} color="black" />
       </Ripple>
       <View style={styles.point}>
-        <Text weight={700} style={styles.pointText}>
+        <Text weight={700} style={tailwind('text-xs')}>
           {point}
         </Text>
       </View>
@@ -23,35 +24,14 @@ const TabPracticeStudyHeaderRight = memo(() => {
 });
 
 const styles = StyleSheet.create({
-  container: {
-    width: 110,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginRight: 20,
-    backgroundColor: 'transparent',
-  },
+  container: { ...tailwind('w-28 flex-row justify-between items-center bg-transparent mr-3') },
   iconVolume: {
-    width: 30,
-    height: 30,
-    justifyContent: 'center',
-    alignItems: 'center',
-    transform: [
-      {
-        rotate: '-10deg',
-      },
-    ],
+    ...tailwind('h-10 w-10 justify-center items-center mr-1'),
+    transform: [{ rotate: '-10deg' }],
   },
   point: {
-    width: 65,
-    borderRadius: 15,
-    justifyContent: 'center',
-    alignItems: 'center',
+    ...tailwind('w-14 rounded-md justify-center items-center py-1'),
     backgroundColor: '#7de3b7',
-    paddingVertical: 3,
-  },
-  pointText: {
-    fontSize: 13,
   },
 });
 

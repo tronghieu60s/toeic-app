@@ -1,7 +1,7 @@
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { memo, useEffect, useState } from 'react';
-import { StyleSheet } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
+import tailwind from 'tailwind-rn';
 import { actLoadWordsDifficult, actToggleFlashWord } from '~/src/redux/actions/practiceAction';
 import { RootState } from '~/src/redux/reducers/rootReducer';
 import { TabDifficultParamList, WordType } from '~/types';
@@ -29,7 +29,6 @@ const TabDifficult = memo(({ navigation }: Props) => {
 
   const handleFlashWord = (word: WordType) => dispatch(actToggleFlashWord(word));
   const handleDetailsWord = (word: WordType) =>
-    // eslint-disable-next-line implicit-arrow-linebreak
     navigation.navigate('TabPracticeWordDetails', { word });
 
   const renderWords = () => {
@@ -51,26 +50,12 @@ const TabDifficult = memo(({ navigation }: Props) => {
   if (words.length <= 0 && !isPending) return <CenterUI>{text}</CenterUI>;
 
   return (
-    <View style={{ flex: 1 }}>
-      <View style={styles.container}>
-        <ScrollView>
-          <View style={styles.group}>{renderWords()}</View>
-        </ScrollView>
+    <ScrollView style={tailwind('flex-1')}>
+      <View style={tailwind('flex-1 bg-gray-200 pb-14')}>
+        <View style={tailwind('py-1 bg-gray-200')}>{renderWords()}</View>
       </View>
-    </View>
+    </ScrollView>
   );
-});
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#f3f3f3',
-    paddingBottom: 55,
-  },
-  group: {
-    marginVertical: 5,
-    backgroundColor: '#f3f3f3',
-  },
 });
 
 export default TabDifficult;

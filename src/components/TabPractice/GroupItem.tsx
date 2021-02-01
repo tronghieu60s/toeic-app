@@ -1,6 +1,7 @@
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { memo } from 'react';
 import { Dimensions, Image, StyleSheet } from 'react-native';
+import tailwind from 'tailwind-rn';
 import { GroupType, TabPracticeParamList } from '~/types';
 import { Ripple, Text } from '../Themed';
 
@@ -12,10 +13,12 @@ type Props = {
 const GroupItem = memo(({ group, navigation }: Props) => {
   const { name_group, pronounce_group = '', image_group } = group;
 
+  const handlePressGroup = () => navigation.navigate('TabPracticeWords', { group });
+
   return (
-    <Ripple style={styles.group} onPress={() => navigation.navigate('TabPracticeWords', { group })}>
-      <Image source={{ uri: image_group }} style={styles.groupImage} />
-      <Text weight={700} style={styles.groupName}>
+    <Ripple style={styles.group} onPress={handlePressGroup}>
+      <Image source={{ uri: image_group }} style={tailwind('w-6 h-6')} />
+      <Text weight={700} style={tailwind('text-sm mt-1')}>
         {name_group}
       </Text>
       <Text weight={300} style={styles.groupPronounce}>
@@ -28,25 +31,13 @@ const GroupItem = memo(({ group, navigation }: Props) => {
 
 const styles = StyleSheet.create({
   group: {
+    ...tailwind('justify-center mb-3 mx-1 p-5 rounded-lg'),
     width: Dimensions.get('window').width / 2 - 15,
-    justifyContent: 'center',
     backgroundColor: '#fff',
-    padding: 20,
-    borderRadius: 10,
-    marginBottom: 10,
-    marginHorizontal: 5,
-  },
-  groupName: {
-    fontSize: 14,
-    marginTop: 2,
-  },
-  groupImage: {
-    width: 25,
-    height: 25,
   },
   groupPronounce: {
+    ...tailwind('text-xs'),
     color: '#888',
-    fontSize: 13,
     marginTop: 2,
   },
 });

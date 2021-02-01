@@ -2,6 +2,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { isNull } from 'lodash';
 import React, { memo, useEffect, useState } from 'react';
 import { Dimensions, StyleSheet } from 'react-native';
+import tailwind from 'tailwind-rn';
 import { getGroups } from '~/src/models/GroupsModel';
 import { GroupType, TabPracticeParamList } from '~/types';
 import { ScrollView, Text, View } from '../Themed';
@@ -34,8 +35,8 @@ const TabPractice = memo(({ navigation }: Props) => {
   if (groups.length <= 0) return <Loading />;
 
   return (
-    <ScrollView style={styles.container}>
-      <View style={{ backgroundColor: '#f3f3f3', paddingBottom: 60 }}>
+    <ScrollView style={tailwind('flex-1 bg-gray-200 px-2')}>
+      <View style={tailwind('bg-gray-200 pb-14')}>
         <Text weight={700} style={styles.groupsTitle}>
           General Business
         </Text>
@@ -50,25 +51,11 @@ const TabPractice = memo(({ navigation }: Props) => {
 });
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#f3f3f3',
-    paddingHorizontal: 5,
-  },
   groups: {
-    flex: 1,
+    ...tailwind('flex-1 flex-row flex-wrap justify-between bg-gray-200'),
     width: Dimensions.get('window').width - 10,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-    backgroundColor: '#f3f3f3',
   },
-  groupsTitle: {
-    fontSize: 18,
-    marginTop: 10,
-    marginBottom: 10,
-    marginLeft: 15,
-  },
+  groupsTitle: { ...tailwind('text-lg my-3 ml-2') },
 });
 
 export default TabPractice;

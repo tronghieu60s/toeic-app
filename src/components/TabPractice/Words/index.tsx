@@ -1,8 +1,9 @@
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { memo, useEffect, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
+import tailwind from 'tailwind-rn';
 import CommonWordItem from '~/src/components/Common/WordItem';
 import { ScrollView } from '~/src/components/Themed';
 import CenterUI from '~/src/components/UI/Center';
@@ -16,9 +17,11 @@ type Props = {
   navigation: StackNavigationProp<TabPracticeParamList, 'TabPracticeWords'>;
 };
 
-const TabPracticeWords = memo(({ route, navigation }: Props) => {
-  const { group } = route.params;
+const TabPracticeWords = memo((props: Props) => {
   const [isPending, setIsPending] = useState(true);
+
+  const { route, navigation } = props;
+  const { group } = route.params;
 
   const dispatch = useDispatch();
   const words = useSelector((state: RootState) => state.practice.words);
@@ -32,7 +35,6 @@ const TabPracticeWords = memo(({ route, navigation }: Props) => {
 
   const handleFlashWord = (word: WordType) => dispatch(actToggleFlashWord(word));
   const handleDetailsWord = (word: WordType) =>
-    // eslint-disable-next-line implicit-arrow-linebreak
     navigation.navigate('TabPracticeWordDetails', { word });
 
   const renderWords = () => {
@@ -54,23 +56,10 @@ const TabPracticeWords = memo(({ route, navigation }: Props) => {
   if (words.length <= 0 && !isPending) return <CenterUI>{text}</CenterUI>;
 
   return (
-    <View style={styles.container}>
-      <ScrollView>
-        <View style={styles.group}>{renderWords()}</View>
-      </ScrollView>
-    </View>
+    <ScrollView style={tailwind('flex-1 bg-gray-200')}>
+      <View style={tailwind('my-2')}>{renderWords()}</View>
+    </ScrollView>
   );
-});
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#f3f3f3',
-  },
-  group: {
-    marginVertical: 5,
-    backgroundColor: '#f3f3f3',
-  },
 });
 
 export default TabPracticeWords;

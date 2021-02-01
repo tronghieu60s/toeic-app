@@ -2,6 +2,7 @@
 import React, { memo } from 'react';
 import { StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import tailwind from 'tailwind-rn';
 import { Text, View } from '~/src/components/Themed';
 import { StatusQuestion } from '~/types';
 
@@ -11,9 +12,15 @@ type Props = {
   handleContinue: () => void;
 };
 
-const BottomUI = memo(({ status, userAnswer, handleContinue }: Props) => {
+const BottomUI = memo((props: Props) => {
+  const { status, userAnswer, handleContinue } = props;
+
+  const textButton = status !== 'Waiting' ? 'Tiếp tục' : 'Kiểm tra';
+
+  const colorTextButton = userAnswer ? '#fff' : '#2a3547';
+  const disabledButton = userAnswer.length === 0 ? true : false;
+
   let colorButton = '#2dce89';
-  const colorText = userAnswer ? '#fff' : '#2a3547';
   if (userAnswer.length === 0) colorButton = '#d7d8dc';
   if (status === 'Correct') colorButton = '#219764';
   if (status === 'Incorrect') colorButton = '#d10a32';
@@ -21,12 +28,12 @@ const BottomUI = memo(({ status, userAnswer, handleContinue }: Props) => {
   return (
     <View style={styles.viewBottom}>
       <TouchableOpacity
-        disabled={userAnswer.length === 0 ? true : false}
+        disabled={disabledButton}
         style={[styles.continue, { backgroundColor: colorButton }]}
         onPress={handleContinue}
       >
-        <Text weight={700} style={[styles.continueText, { color: colorText }]}>
-          {status !== 'Waiting' ? 'Tiếp tục' : 'Kiểm tra'}
+        <Text weight={700} style={[styles.continueText, { color: colorTextButton }]}>
+          {textButton}
         </Text>
       </TouchableOpacity>
     </View>
@@ -34,23 +41,14 @@ const BottomUI = memo(({ status, userAnswer, handleContinue }: Props) => {
 });
 
 const styles = StyleSheet.create({
-  viewBottom: {
-    backgroundColor: 'transparent',
-    paddingHorizontal: 15,
-    marginBottom: 20,
-    zIndex: 100,
-  },
+  viewBottom: { ...tailwind('bg-transparent px-5 mb-4 z-50') },
   continue: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    ...tailwind('justify-center items-center rounded-3xl py-2'),
     backgroundColor: '#2dce89',
-    borderRadius: 15,
-    paddingVertical: 8,
   },
   continueText: {
-    fontSize: 20,
+    ...tailwind('text-xl capitalize'),
     color: '#2c3749',
-    textTransform: 'capitalize',
   },
 });
 

@@ -3,6 +3,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import React, { memo, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { useSelector } from 'react-redux';
+import tailwind from 'tailwind-rn';
 import ModalSetting from '~/src/components/Common/ModalSetting';
 import { Ripple, View } from '~/src/components/Themed';
 import { RootState } from '~/src/redux/reducers/rootReducer';
@@ -19,7 +20,7 @@ const TabPracticeWordsHeaderRight = memo(({ navigation }: Props) => {
   const wordsStudy = words.filter((o) => (o.count_study || 0) < 5);
 
   return (
-    <View style={styles.container}>
+    <View style={tailwind('w-20 flex-row justify-end items-center mr-2')}>
       {words.length > 0 && (
         <>
           {wordsStudy.length > 0 && (
@@ -27,7 +28,7 @@ const TabPracticeWordsHeaderRight = memo(({ navigation }: Props) => {
               <SimpleLineIcons name="graduation" size={22} color="black" />
             </Ripple>
           )}
-          <Ripple style={styles.button} rippleCentered rippleContainerBorderRadius={50}>
+          <Ripple style={styles.button}>
             <Entypo name="time-slot" size={18} color="black" />
           </Ripple>
         </>
@@ -44,19 +45,7 @@ const TabPracticeWordsHeaderRight = memo(({ navigation }: Props) => {
 });
 
 const styles = StyleSheet.create({
-  container: {
-    width: 110,
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-    marginRight: 5,
-  },
-  button: {
-    padding: 7,
-    marginLeft: 5,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+  button: { ...tailwind('p-2 ml-1 justify-center items-center') },
 });
 
 export default TabPracticeWordsHeaderRight;

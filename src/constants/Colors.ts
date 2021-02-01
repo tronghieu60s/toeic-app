@@ -1,4 +1,5 @@
 const tintColorLight = '#5e72e4';
+const bgColorLight = '#f3f3f3';
 const defaultColorLight = '#172b4d';
 const secondaryColorLight = '#f4f5f7';
 const successColorLight = '#2dce89';
@@ -6,6 +7,7 @@ const dangerColorLight = '#f5365c';
 const warningColorLight = '#fb6340';
 
 const tintColorDark = '#fff';
+const bgColorDark = '#000';
 
 export default {
   light: {
@@ -22,7 +24,7 @@ export default {
   },
   dark: {
     text: '#fff',
-    background: '#000',
+    background: bgColorDark,
     tint: tintColorDark,
     tabIconDefault: '#ccc',
     tabIconSelected: tintColorDark,
