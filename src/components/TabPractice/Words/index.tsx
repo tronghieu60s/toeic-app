@@ -3,7 +3,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import React, { memo, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import tailwind from 'tailwind-rn';
-import WordItem from '~/src/components/Common/WordItem';
+import WordItem from '~/src/components/TabPractice/Words/WordItem';
 import { ScrollView, View } from '~/src/components/Themed';
 import CenterUI from '~/src/components/UI/Center';
 import Loading from '~/src/components/UI/Loading';
