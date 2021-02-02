@@ -28,7 +28,7 @@ export default function BottomTabBarIcon(props: Props): JSX.Element {
           weight={700}
           lightColor={Colors[colorScheme].tint}
           darkColor={Colors[colorScheme].tint}
-          style={tailwind('text-xs mt-2')}
+          style={{ fontSize: 12, marginTop: 4 }}
         >
           {TabBar[name].name}
         </Text>

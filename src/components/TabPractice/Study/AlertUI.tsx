@@ -47,7 +47,12 @@ const AlertUI = memo(({ word, status }: Props) => {
             </Text>
           </View>
           <View style={tailwind('bg-transparent items-end')}>
-            <Ripple style={tailwind('p-2')} onPress={onPressReport}>
+            <Ripple
+              lightColor="transparent"
+              darkColor="transparent"
+              style={tailwind('p-2')}
+              onPress={onPressReport}
+            >
               <Feather name="flag" size={20} color="#f4f5f7" />
             </Ripple>
           </View>

@@ -4,7 +4,7 @@ import React, { memo, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { useSelector } from 'react-redux';
 import tailwind from 'tailwind-rn';
-import ModalSetting from '~/src/components/Common/ModalSetting';
+import ModalSetting from '~/src/components/TabPractice/Words/Header/ModalSetting';
 import { Ripple, View } from '~/src/components/Themed';
 import Colors from '~/src/constants/Colors';
 import { RootState } from '~/src/redux/reducers/rootReducer';
@@ -22,7 +22,7 @@ const TabPracticeWordsHeaderRight = memo(({ navigation }: Props) => {
   const wordsStudy = words.filter((o) => (o.count_study || 0) < 5);
 
   return (
-    <View style={tailwind('w-20 flex-row justify-end items-center mr-2')}>
+    <View style={tailwind('flex-row justify-end items-center mr-2')}>
       {words.length > 0 && (
         <>
           {wordsStudy.length > 0 && (
@@ -47,7 +47,7 @@ const TabPracticeWordsHeaderRight = memo(({ navigation }: Props) => {
 });
 
 const styles = StyleSheet.create({
-  button: { ...tailwind('justify-center items-center p-2 ml-1') },
+  button: { ...tailwind('justify-center items-center p-2') },
 });
 
 export default TabPracticeWordsHeaderRight;

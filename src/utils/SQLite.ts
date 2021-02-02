@@ -1,6 +1,5 @@
 /* eslint-disable arrow-body-style */
 import { openDatabase } from 'expo-sqlite';
-import { isNull } from 'lodash';
 import { Alert } from 'react-native';
 import { GroupType, WordType } from '~/types';
 import apiCaller from './ApiCaller';
@@ -53,7 +52,7 @@ const initDbTable = async () => {
 
 const isNewVersionDatabase = () => {
   return executeSql('select * from options where id_option = 1').then((option) => {
-    if (!isNull(option.data)) {
+    if (option.data !== null) {
       // Call Api Get Version DB
       return apiCaller('db.json').then((data) => {
         const baseVer = parseInt(option.data[0].value_option.replace(/\./g, ''), 10);
@@ -82,7 +81,7 @@ const isNewVersionDatabase = () => {
 
 const loadDataGroupsFromApi = async () => {
   await apiCaller('groups.json').then((groups) => {
-    if (!isNull(groups)) {
+    if (groups !== null) {
       let sqlValue = `insert into groups
         (id_group, name_group, pronounce_group, mean_group, image_group)
         values`;
@@ -99,7 +98,7 @@ const loadDataGroupsFromApi = async () => {
 
 const loadDataWordsFromApi = async () => {
   await apiCaller('words.json').then((words) => {
-    if (!isNull(words)) {
+    if (words !== null) {
       let sqlValue = `insert into words
         (id_word, name_word, pronounce_word, explain_word, mean_word, id_group)
         values`;

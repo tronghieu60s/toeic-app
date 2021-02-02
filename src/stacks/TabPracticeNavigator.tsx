@@ -16,8 +16,8 @@ import TabPracticeWords from '~/src/components/TabPractice/Words';
 import TabPracticeWordsHeaderRight from '~/src/components/TabPractice/Words/Header/Right';
 import TabPracticeWordsHeaderTitle from '~/src/components/TabPractice/Words/Header/Title';
 import { View } from '~/src/components/Themed';
-import TabPracticeScreen from '~/src/screens/TabPracticeScreen';
 import { TabPracticeParamList } from '~/types';
+import TabPractice from '../components/TabPractice';
 import Colors from '../constants/Colors';
 import { RootState } from '../redux/reducers/rootReducer';
 
@@ -36,7 +36,7 @@ export default function TabPracticeNavigator(): JSX.Element {
     >
       <TabPracticeStack.Screen
         name="TabPracticeScreen"
-        component={TabPracticeScreen}
+        component={TabPractice}
         options={{ headerTitle: () => <TabPracticeHeaderTitle /> }}
       />
       <TabPracticeStack.Screen

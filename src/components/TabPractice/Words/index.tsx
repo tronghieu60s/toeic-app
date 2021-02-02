@@ -3,7 +3,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import React, { memo, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import tailwind from 'tailwind-rn';
-import WordItem from '~/src/components/Common/WordItem';
+import WordItem from '~/src/components/TabPractice/Words/WordItem';
 import { ScrollView, View } from '~/src/components/Themed';
 import CenterUI from '~/src/components/UI/Center';
 import Loading from '~/src/components/UI/Loading';
@@ -56,7 +56,7 @@ const TabPracticeWords = memo((props: Props) => {
 
   return (
     <ScrollView colorLight style={tailwind('flex-1')}>
-      <View colorLight style={tailwind('flex-1 pt-3 px-3')}>{renderWords()}</View>
+      <View colorLight style={tailwind('flex-1 pt-2 px-3')}>{renderWords()}</View>
     </ScrollView>
   );
 });

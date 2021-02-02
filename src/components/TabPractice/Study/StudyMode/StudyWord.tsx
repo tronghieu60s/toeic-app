@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { StyleSheet } from 'react-native';
+import tailwind from 'tailwind-rn';
 import { Text, View } from '~/src/components/Themed';
 import SoundButton from '~/src/components/UI/SoundButton';
 import { WordType } from '~/types';
@@ -12,69 +12,31 @@ const StudyWord = memo(({ word }: Props) => {
   const { name_word, mean_word, explain_word } = word;
 
   return (
-    <View style={{ height: '90%', zIndex: 1 }}>
-      <View style={styles.viewTop}>
+    <View style={tailwind('w-full h-full flex-1')}>
+      <View colorLight style={tailwind('h-1/3 justify-around items-center')}>
         <SoundButton autoPlay word={word} />
-        <Text weight={700} style={styles.wordName}>
+        <Text weight={700} style={tailwind('text-xl')}>
           {name_word}
         </Text>
       </View>
-      <View style={styles.viewBottom}>
-        <View style={{ alignItems: 'center' }}>
+      <View style={tailwind('w-full justify-center items-center mt-5 px-8')}>
+        <View style={tailwind('items-center')}>
           <Text weight={700} style={{ color: '#9d9d9d' }}>
             VIETNAMESE
           </Text>
-          <Text weight={700} style={styles.wordMean}>
+          <Text weight={700} style={tailwind('text-base text-center mt-1')}>
             {mean_word}
           </Text>
         </View>
-        <View style={{ alignItems: 'center', marginTop: 30 }}>
+        <View style={tailwind('items-center mt-7')}>
           <Text weight={700} style={{ color: '#9d9d9d' }}>
             GIẢI THÍCH
           </Text>
-          <Text style={styles.wordExplain}>{explain_word}</Text>
+          <Text style={tailwind('text-base mt-1 text-center')}>{explain_word}</Text>
         </View>
       </View>
     </View>
   );
-});
-
-const styles = StyleSheet.create({
-  viewTop: {
-    height: '40%',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    backgroundColor: '#fdfaf3',
-  },
-  viewBottom: {
-    width: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 20,
-    paddingHorizontal: 30,
-  },
-  sound: {
-    width: 70,
-    height: 70,
-    backgroundColor: '#ffc000',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 50,
-    transform: [{ rotate: '-10deg' }],
-  },
-  wordName: {
-    fontSize: 22,
-  },
-  wordExplain: {
-    fontSize: 15,
-    marginTop: 3,
-    textAlign: 'center',
-  },
-  wordMean: {
-    fontSize: 17,
-    marginTop: 3,
-    textAlign: 'center',
-  },
 });
 
 export default StudyWord;

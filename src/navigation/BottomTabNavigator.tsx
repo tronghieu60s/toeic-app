@@ -41,7 +41,7 @@ export default function BottomTabNavigator(): JSX.Element {
       <BottomTab.Screen name="TabPractice" component={TabPracticeNavigator} />
       <BottomTab.Screen name="TabDifficult" component={TabDifficultNavigator} />
       <BottomTab.Screen name="TabAnalysis" component={TabFavoriteNavigator} />
-      <BottomTab.Screen name="TabFavorite" component={TabFavoriteNavigator} />
+      {/* <BottomTab.Screen name="TabFavorite" component={TabFavoriteNavigator} /> */}
       <BottomTab.Screen name="TabSetting" component={TabFavoriteNavigator} />
     </BottomTab.Navigator>
   );

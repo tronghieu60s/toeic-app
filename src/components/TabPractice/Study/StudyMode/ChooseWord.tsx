@@ -1,8 +1,8 @@
-import _, { isNull } from 'lodash';
 import React, { memo, useEffect, useState } from 'react';
 import { Dimensions, StyleSheet } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { Text, View } from '~/src/components/Themed';
+import { shuffle } from '~/src/helpers/array';
 import { randomBetweenTwoNumber as rdNum } from '~/src/helpers/random';
 import { getWordsByIdGroup } from '~/src/models/WordsModel';
 import { TypesAnswer, WordType } from '~/types';
@@ -22,10 +22,10 @@ const ChooseWord = memo(({ word, typeAnswer, handleSendAnswer }: Props) => {
 
     (async () => {
       const getWords = await getWordsByIdGroup(word);
-      if (!isNull(getWords.data)) {
+      if (getWords.data !== null) {
         let words = getWords.data;
         words = words.filter((o) => o.id_word !== word.id_word);
-        words = _.shuffle(words).slice(0, 5);
+        words = shuffle(words).slice(0, 5);
         words.splice(rdNum(0, 5), 0, word);
         setWords(words);
       }

@@ -1,7 +1,6 @@
 /* eslint-disable operator-linebreak */
 import { StackNavigationProp } from '@react-navigation/stack';
 import * as Speech from 'expo-speech';
-import { isNull } from 'lodash';
 import React, { memo, useEffect, useState } from 'react';
 import {
   Alert,
@@ -16,7 +15,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import tailwind from 'tailwind-rn';
 import { View } from '~/src/components/Themed';
 import ProcessBar from '~/src/components/UI/ProcessBar';
-import { removeVietnameseTones as rmVN } from '~/src/helpers/convert';
+import { convertWordsBase, removeVietnameseTones as rmVN } from '~/src/helpers/convert';
 import { randomBetweenTwoNumber as rdNum } from '~/src/helpers/random';
 import {
   AUDIO_CORRECT,
@@ -93,10 +92,9 @@ const TabPracticeStudy = memo(({ navigation }: Props) => {
       },
     });
     const { count_study } = wordQuestion;
-    if (isNull(count_study)) setStatusStudy(true);
+    if (count_study === null) setStatusStudy(true);
 
-    // White -> Black -> Red -> Yellow -> Green -> Blue
-    if (isNull(count_study)) setTypeAnswer('CHOOSE-NAME-MEAN');
+    if (count_study === null) setTypeAnswer('CHOOSE-NAME-MEAN');
     if (count_study === 1) setTypeAnswer('CHOOSE-SOUND-MEAN');
     if (count_study === 2) setTypeAnswer('CHOOSE-MEAN-NAME');
     if (count_study === 3) setTypeAnswer('FILL-MEAN-NAME');
@@ -120,26 +118,27 @@ const TabPracticeStudy = memo(({ navigation }: Props) => {
   const handleAnswer = () => {
     Keyboard.dismiss();
 
-    let answer;
+    let answer = '';
     if (
       typeAnswer === 'CHOOSE-MEAN-NAME' ||
       typeAnswer === 'CHOOSE-MEAN-SOUND' ||
       typeAnswer === 'FILL-MEAN-NAME'
     ) {
-      answer = wordQuestion.name_word;
+      answer = wordQuestion.name_word || '';
     }
     if (
       typeAnswer === 'CHOOSE-NAME-MEAN' ||
       typeAnswer === 'FILL-NAME-MEAN' ||
       typeAnswer === 'CHOOSE-SOUND-MEAN'
     ) {
-      answer = wordQuestion.mean_word;
+      answer = wordQuestion.mean_word || '';
     }
 
+    answer = convertWordsBase(answer);
     // Handle Answer - Result
-    const result = userAnswer.trim().toLowerCase();
-    const arrAnswer = (answer || '').split(',').map((item) => item.trim().toLowerCase());
-    const arrAnswerVn = (answer || '').split(',').map((item) => rmVN(item.trim().toLowerCase()));
+    const result = convertWordsBase(userAnswer);
+    const arrAnswer = answer.split(',').map((s) => convertWordsBase(s));
+    const arrAnswerVn = answer.split(',').map((s) => rmVN(convertWordsBase(s)));
 
     const conditionArr = arrAnswer.indexOf(result) !== -1 || arrAnswerVn.indexOf(result) !== -1;
     if (conditionArr || answer === result) {

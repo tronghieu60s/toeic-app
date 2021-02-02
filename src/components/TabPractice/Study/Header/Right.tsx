@@ -11,11 +11,11 @@ const TabPracticeStudyHeaderRight = memo(() => {
 
   return (
     <View style={styles.container}>
-      <Ripple style={styles.iconVolume}>
+      <Ripple style={styles.iconVolume} lightColor="transparent" darkColor="transparent">
         <FontAwesome5 name="volume-mute" size={22} color="black" />
       </Ripple>
       <View style={styles.point}>
-        <Text weight={700} style={tailwind('text-xs')}>
+        <Text weight={700} style={tailwind('text-sm')}>
           {point}
         </Text>
       </View>
@@ -30,7 +30,8 @@ const styles = StyleSheet.create({
     transform: [{ rotate: '-10deg' }],
   },
   point: {
-    ...tailwind('w-14 rounded-md justify-center items-center py-1'),
+    ...tailwind('w-14 rounded-md justify-center items-center'),
+    paddingVertical: 2,
     backgroundColor: '#7de3b7',
   },
 });
