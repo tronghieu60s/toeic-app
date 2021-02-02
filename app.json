@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "toeic-ew",
+    "name": "Toeic Essential Words",
     "slug": "toeic-ew",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -10,7 +10,7 @@
     "splash": {
       "image": "./assets/images/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#fff0"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -26,7 +26,7 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.tronghieu60s.toeicew"
+      "package": "com.tronghieuit.toeicew"
     },
     "web": {
       "favicon": "./assets/images/favicon.png"

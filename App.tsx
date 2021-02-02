@@ -3,7 +3,7 @@ import React from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
 import store from '~/src/redux/store';
-import { Text, View } from './src/components/Themed';
+import Loading from './src/components/UI/Loading';
 import useCachedResources from './src/hooks/useCachedResources';
 import Navigation from './src/navigation';
 
@@ -13,7 +13,7 @@ export default function App(): JSX.Element {
   if (!isLoadingComplete) {
     return (
       <Provider store={store}>
-        <View><Text>Loading...</Text></View>
+        <Loading />
       </Provider>
     );
   }
