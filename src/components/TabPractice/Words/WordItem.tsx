@@ -32,12 +32,12 @@ const WordItem = (props: Props) => {
   const explainWord = `${explain_word.slice(0, 50)}${explain_word.length > 50 ? '...' : ''}`;
 
   return (
-    <View style={tailwind('flex-auto flex-row mb-3 px-3 py-4')}>
+    <View style={tailwind('flex-auto flex-row mb-2 px-3')}>
       <Ripple style={tailwind('flex-auto flex-row')} onPress={handleDetailsWord}>
         <View style={tailwind('justify-center items-center px-2')}>
           <Image style={tailwind('w-7 h-7')} source={iconBulb} />
         </View>
-        <View style={tailwind('justify-center w-10/12 ml-3')}>
+        <View style={tailwind('justify-center w-10/12 ml-3 py-4')}>
           <View style={tailwind('flex-row items-center')}>
             <Text weight={700} style={(tailwind('text-sm'), { color: '#5e72e4' })}>
               {name_word}

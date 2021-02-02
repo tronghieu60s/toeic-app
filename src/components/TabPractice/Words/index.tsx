@@ -56,7 +56,7 @@ const TabPracticeWords = memo((props: Props) => {
 
   return (
     <ScrollView colorLight style={tailwind('flex-1')}>
-      <View colorLight style={tailwind('flex-1 pt-3 px-3')}>{renderWords()}</View>
+      <View colorLight style={tailwind('flex-1 pt-2 px-3')}>{renderWords()}</View>
     </ScrollView>
   );
 });

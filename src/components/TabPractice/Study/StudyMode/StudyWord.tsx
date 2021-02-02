@@ -13,7 +13,7 @@ const StudyWord = memo(({ word }: Props) => {
 
   return (
     <View style={tailwind('w-full h-full flex-1')}>
-      <View colorLight style={tailwind('h-2/5 justify-around items-center')}>
+      <View colorLight style={tailwind('h-1/3 justify-around items-center')}>
         <SoundButton autoPlay word={word} />
         <Text weight={700} style={tailwind('text-xl')}>
           {name_word}

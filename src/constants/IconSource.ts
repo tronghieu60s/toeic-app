@@ -3,7 +3,7 @@ export const lightBulbIcon = [
   require('~/assets/images/lightbulb-0.png'),
   require('~/assets/images/lightbulb-1.png'),
   require('~/assets/images/lightbulb-1.png'),
-  require('~/assets/images/lightbulb-2.png'),
+  require('~/assets/images/lightbulb-1.png'),
   require('~/assets/images/lightbulb-2.png'),
 ];
 

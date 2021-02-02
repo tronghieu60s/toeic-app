@@ -13,8 +13,8 @@ import TabPracticeStudyHeaderRight from '~/src/components/TabPractice/Study/Head
 import TabPracticeWordDetails from '~/src/components/TabPractice/WordDetails';
 import TabPracticeWordDetailHeaderTitle from '~/src/components/TabPractice/WordDetails/Header/Title';
 import { View } from '~/src/components/Themed';
-import TabDifficultScreen from '~/src/screens/TabDifficultScreen';
 import { TabDifficultParamList } from '~/types';
+import TabDifficult from '../components/TabDifficult';
 import Colors from '../constants/Colors';
 import { RootState } from '../redux/reducers/rootReducer';
 
@@ -33,7 +33,7 @@ export default function TabDifficultNavigator(): JSX.Element {
     >
       <TabFavoriteStack.Screen
         name="TabDifficultScreen"
-        component={TabDifficultScreen}
+        component={TabDifficult}
         options={({ navigation }) => ({
           headerTitle: () => <HeaderTitle title="Từ khó" />,
           headerRight: () => <TabDifficultRight navigation={navigation} />,

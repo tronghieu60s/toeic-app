@@ -94,7 +94,6 @@ const TabPracticeStudy = memo(({ navigation }: Props) => {
     const { count_study } = wordQuestion;
     if (count_study === null) setStatusStudy(true);
 
-    // White -> Black -> Red -> Yellow -> Green -> Blue
     if (count_study === null) setTypeAnswer('CHOOSE-NAME-MEAN');
     if (count_study === 1) setTypeAnswer('CHOOSE-SOUND-MEAN');
     if (count_study === 2) setTypeAnswer('CHOOSE-MEAN-NAME');
