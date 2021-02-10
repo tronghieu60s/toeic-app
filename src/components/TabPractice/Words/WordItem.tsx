@@ -57,7 +57,7 @@ const WordItem = (props: Props) => {
           )}
         </View>
       </Ripple>
-      <View style={tailwind('flex-auto justify-center items-center')}>
+      <View style={tailwind('w-1/6 flex-auto justify-center items-center')}>
         <Ripple onPress={handleFlashWord}>
           <Image style={tailwind('w-5 h-5')} source={iconFlash} />
         </Ripple>

@@ -26,7 +26,7 @@ export function useThemeColor(
 
 type ThemeProps = {
   colorLight?: boolean;
-  weight?: 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900;
+  weight?: 300 | 400 | 600 | 700 | 800;
   lightColor?: string;
   darkColor?: string;
 };
@@ -37,11 +37,11 @@ export type ScrollViewProps = ThemeProps & DefaultScrollView['props'];
 export type RippleProps = ThemeProps & DefaultRipple['props'];
 
 export function Text(props: TextProps): JSX.Element {
-  const { style, weight = 400, lightColor, darkColor, ...otherProps } = props;
+  const { style, weight, lightColor, darkColor, ...otherProps } = props;
   const color = useThemeColor({ light: lightColor, dark: darkColor }, 'text');
 
   return (
-    <DefaultText style={[{ color, fontFamily: `san-${weight}` }, style]} {...otherProps} />
+    <DefaultText style={[{ color, fontFamily: `san-${weight || 400}` }, style]} {...otherProps} />
   );
 }
 

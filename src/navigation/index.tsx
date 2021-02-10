@@ -17,7 +17,7 @@ export default function Navigation(): JSX.Element {
   const colorScheme = useSelector((state: RootState) => state.common.theme);
 
   React.useEffect(() => {
-    dispatch(actLoadCommon);
+    dispatch(actLoadCommon());
   }, []);
 
   return (
