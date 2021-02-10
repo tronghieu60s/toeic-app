@@ -1,22 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
+import { View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
 import store from '~/src/redux/store';
-import Loading from './src/components/UI/Loading';
 import useCachedResources from './src/hooks/useCachedResources';
 import Navigation from './src/navigation';
 
 export default function App(): JSX.Element {
   const isLoadingComplete = useCachedResources();
 
-  if (!isLoadingComplete) {
-    return (
-      <Provider store={store}>
-        <Loading />
-      </Provider>
-    );
-  }
+  if (!isLoadingComplete) return <View />;
 
   return (
     <Provider store={store}>

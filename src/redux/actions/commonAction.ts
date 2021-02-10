@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Dispatch } from 'react';
 
@@ -27,10 +28,18 @@ export const loadCommon = (state: CommonState): CommonAction => ({
 });
 
 export const actLoadCommon = () => async (dispatch: Dispatch<CommonAction>): Promise<void> => {
-  const theme = (await AsyncStorage.getItem('theme_storage')) === 'light' ? 'light' : 'dark';
-  const visibleMean = (await AsyncStorage.getItem('visibleMean_storage')) === 'true';
-  const visibleExplain = (await AsyncStorage.getItem('visibleExplain_storage')) === 'true';
-  const visiblePronounce = (await AsyncStorage.getItem('visiblePronounce_storage')) === 'true';
+  const theme_storage = await AsyncStorage.getItem('theme_storage');
+  const visibleMean_storage = await AsyncStorage.getItem('visibleMean_storage');
+  const visibleExplain_storage = await AsyncStorage.getItem('visibleExplain_storage');
+  const visiblePronounce_storage = await AsyncStorage.getItem('visiblePronounce_storage');
+
+  const themeStorage = theme_storage === 'light' ? 'light' : 'dark';
+  const theme = theme_storage !== null ? themeStorage : 'light';
+  const visibleMean = visibleMean_storage !== null ? visibleMean_storage === 'true' : true;
+  const visibleExplain = visibleExplain_storage !== null ? visibleExplain_storage === 'true' : true;
+  // eslint-disable-next-line operator-linebreak
+  const visiblePronounce =
+    visiblePronounce_storage !== null ? visiblePronounce_storage === 'true' : true;
   const state: CommonState = { theme, visibleMean, visibleExplain, visiblePronounce };
   return dispatch(loadCommon(state));
 };
