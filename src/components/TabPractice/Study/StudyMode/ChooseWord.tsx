@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
   },
   word: {
     width: Dimensions.get('window').width / 2 - 30,
-    height: Dimensions.get('window').height / 5,
+    height: '38%',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#e1e4ea',
