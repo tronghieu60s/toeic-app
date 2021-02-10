@@ -1,4 +1,4 @@
-import { AntDesign, Entypo, SimpleLineIcons } from '@expo/vector-icons';
+import { AntDesign, SimpleLineIcons } from '@expo/vector-icons';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { memo, useState } from 'react';
 import { StyleSheet } from 'react-native';
@@ -30,9 +30,9 @@ const TabPracticeWordsHeaderRight = memo(({ navigation }: Props) => {
               <SimpleLineIcons name="graduation" size={22} color={Colors[theme].text} />
             </Ripple>
           )}
-          <Ripple style={styles.button}>
+          {/* <Ripple style={styles.button}>
             <Entypo name="time-slot" size={18} color={Colors[theme].text} />
-          </Ripple>
+          </Ripple> */}
         </>
       )}
       <Ripple style={styles.button} onPress={() => setModalVisible(true)}>
