@@ -13,11 +13,11 @@ const TabPracticeStudyHeaderRight = memo(() => {
       {/* <Ripple style={styles.iconVolume} lightColor="transparent" darkColor="transparent">
         <FontAwesome5 name="volume-mute" size={22} color="black" />
       </Ripple> */}
-      <View style={styles.point}>
+      {/* <View style={styles.point}>
         <Text weight={700} style={tailwind('text-sm')}>
           {point}
         </Text>
-      </View>
+      </View> */}
     </View>
   );
 });
