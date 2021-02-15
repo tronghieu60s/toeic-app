@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "Toeic Essential Words",
+    "scheme": "estudy-toeicew",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/images/splash.png",
@@ -26,7 +26,8 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.tronghieuit.estudytoeicew"
+      "package": "com.tronghieuit.estudytoeicew",
+      "permissions": ["VIBRATE"]
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
