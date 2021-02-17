@@ -1,8 +1,7 @@
-import { Feather } from '@expo/vector-icons';
 import React, { memo, useEffect, useRef } from 'react';
-import { Animated, Dimensions, StyleSheet, ToastAndroid } from 'react-native';
+import { Animated, Dimensions, StyleSheet } from 'react-native';
 import tailwind from 'tailwind-rn';
-import { Ripple, Text, View } from '~/src/components/Themed';
+import { Text, View } from '~/src/components/Themed';
 import { TEXT_CORRECT, TEXT_INCORRECT } from '~/src/constants/Text/Study';
 import { randomBetweenTwoNumber as rdNum } from '~/src/helpers/random';
 import { StatusQuestion, WordType } from '~/types';
@@ -29,8 +28,6 @@ const AlertUI = memo(({ word, status }: Props) => {
       }).start();
     }
   }, []);
-
-  const onPressReport = () => ToastAndroid.show('Chức Năng Này Đang Bảo Trì.', ToastAndroid.SHORT);
 
   return (
     <View style={styles.viewFinish}>
@@ -69,7 +66,7 @@ const styles = StyleSheet.create({
   },
   viewFinishTab: {
     ...tailwind('w-full flex-row justify-between pt-4 px-4'),
-    height: Dimensions.get('window').height / 4,
+    height: 180,
   },
 });
 

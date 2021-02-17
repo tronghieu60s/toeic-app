@@ -1,6 +1,6 @@
 /* eslint-disable operator-linebreak */
 import React, { memo, useEffect, useRef, useState } from 'react';
-import { Animated, Dimensions, Image, StyleSheet } from 'react-native';
+import { Animated, Image, StyleSheet } from 'react-native';
 import tailwind from 'tailwind-rn';
 import { Text, View } from '~/src/components/Themed';
 import SoundButton from '~/src/components/UI/SoundButton';
@@ -16,9 +16,8 @@ type Props = {
 };
 
 const StudyUI = memo(({ status, word, typeAnswer, children }: Props) => {
-  const opacityMean = useRef(new Animated.Value(0)).current;
   const scaleLightBulb = useRef(new Animated.Value(1)).current;
-  const { name_word, mean_word, pronounce_word, explain_word = '', count_study } = word;
+  const { name_word, mean_word, pronounce_word, count_study } = word;
 
   const [countStudy, setCountStudy] = useState(count_study);
 
@@ -34,12 +33,7 @@ const StudyUI = memo(({ status, word, typeAnswer, children }: Props) => {
         toValue: 1.3,
         useNativeDriver: true,
       }).start();
-      Animated.spring(opacityMean, {
-        toValue: 1,
-        useNativeDriver: true,
-      }).start();
     } else {
-      opacityMean.setValue(0);
       scaleLightBulb.setValue(1);
     }
   }, [status]);
@@ -60,12 +54,6 @@ const StudyUI = memo(({ status, word, typeAnswer, children }: Props) => {
                 ` - ${pronounce_word}`}
             </Text>
           </View>
-          <Animated.View style={{ opacity: opacityMean, width: '92%' }}>
-            <Text style={tailwind('mt-1')}>
-              {explain_word.slice(0, 70)}
-              {explain_word.length > 70 && '...'}
-            </Text>
-          </Animated.View>
         </View>
         <Animated.View style={[styles.lightBulb, { transform: [{ scale: scaleLightBulb }] }]}>
           <Image style={tailwind('w-10 h-10')} source={lightBulbIcon[countStudy || 0]} />
@@ -79,7 +67,7 @@ const StudyUI = memo(({ status, word, typeAnswer, children }: Props) => {
 const styles = StyleSheet.create({
   viewTop: {
     ...tailwind('flex-row justify-between px-6 mt-3'),
-    height: Dimensions.get('window').height / 10,
+    height: 70,
   },
   lightBulb: {
     ...tailwind('items-center mt-2'),

@@ -1,4 +1,3 @@
-import { FontAwesome5 } from '@expo/vector-icons';
 import {
   CardStyleInterpolators,
   createStackNavigator,
@@ -9,6 +8,7 @@ import { useSelector } from 'react-redux';
 import HeaderTitle from '~/src/components/Header/Title';
 import TabDifficultRight from '~/src/components/TabDifficult/Header/Right';
 import TabDifficultStudy from '~/src/components/TabDifficult/Study';
+import TabPracticeStudyHeaderBackImage from '~/src/components/TabPractice/Study/Header/BackImage';
 import TabPracticeStudyHeaderRight from '~/src/components/TabPractice/Study/Header/Right';
 import TabPracticeWordDetails from '~/src/components/TabPractice/WordDetails';
 import TabPracticeWordDetailHeaderTitle from '~/src/components/TabPractice/WordDetails/Header/Title';
@@ -50,14 +50,8 @@ export default function TabDifficultNavigator(): JSX.Element {
         name="TabDifficultStudy"
         component={TabDifficultStudy}
         options={{
-          headerStyle: {
-            backgroundColor: '#47d798',
-          },
-          headerBackImage: () => (
-            <View style={{ padding: 8, backgroundColor: 'transparent' }}>
-              <FontAwesome5 name="times" size={20} color="black" />
-            </View>
-          ),
+          headerStyle: { backgroundColor: '#47d798' },
+          headerBackImage: () => <TabPracticeStudyHeaderBackImage />,
           headerTitle: () => <View />,
           headerRight: () => <TabPracticeStudyHeaderRight />,
           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,

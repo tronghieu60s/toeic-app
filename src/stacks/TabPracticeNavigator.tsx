@@ -1,4 +1,3 @@
-import { FontAwesome5 } from '@expo/vector-icons';
 import {
   CardStyleInterpolators,
   createStackNavigator,
@@ -6,7 +5,6 @@ import {
 } from '@react-navigation/stack';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import tailwind from 'tailwind-rn';
 import TabPracticeHeaderTitle from '~/src/components/TabPractice/Header/Title';
 import TabPracticeStudy from '~/src/components/TabPractice/Study';
 import TabPracticeStudyHeaderRight from '~/src/components/TabPractice/Study/Header/Right';
@@ -18,6 +16,7 @@ import TabPracticeWordsHeaderTitle from '~/src/components/TabPractice/Words/Head
 import { View } from '~/src/components/Themed';
 import { TabPracticeParamList } from '~/types';
 import TabPractice from '../components/TabPractice';
+import TabPracticeStudyHeaderBackImage from '../components/TabPractice/Study/Header/BackImage';
 import Colors from '../constants/Colors';
 import { RootState } from '../redux/reducers/rootReducer';
 
@@ -59,11 +58,7 @@ export default function TabPracticeNavigator(): JSX.Element {
         component={TabPracticeStudy}
         options={{
           headerStyle: { backgroundColor: '#47d798' },
-          headerBackImage: () => (
-            <View style={tailwind('p-3 bg-transparent')}>
-              <FontAwesome5 name="times" size={20} color="black" />
-            </View>
-          ),
+          headerBackImage: () => <TabPracticeStudyHeaderBackImage />,
           headerTitle: () => <View />,
           headerRight: () => <TabPracticeStudyHeaderRight />,
           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
