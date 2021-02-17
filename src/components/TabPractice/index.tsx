@@ -1,8 +1,7 @@
 import { StackNavigationProp } from '@react-navigation/stack';
-import { isNull } from 'lodash';
 import React, { memo, useEffect, useState } from 'react';
 import { Dimensions, StyleSheet } from 'react-native';
-import tailwind from 'tailwind-rn';
+import tailwind from '~/tailwind';
 import { getGroups } from '~/src/models/GroupsModel';
 import { GroupType, TabPracticeParamList } from '~/types';
 import { ScrollView, Text, View } from '../Themed';
@@ -20,34 +19,35 @@ const TabPractice = memo((props: Props) => {
   useEffect(() => {
     (async () => {
       const groups = await getGroups();
-      if (!isNull(groups.data)) setGroups(groups.data);
+      if (groups.data !== null) setGroups(groups.data);
     })();
   }, []);
 
   const renderGroups = (order: number, limit: number) => {
     const newGroups = groups.slice(order, order + limit);
     let result: React.ReactNode = null;
-    result = newGroups.map((group) => (
-      <GroupItem key={group.id_group} group={group} navigation={navigation} />
-    ));
+    result = newGroups.map((group) => {
+      const { id_group } = group;
+      return <GroupItem key={id_group} group={group} navigation={navigation} />;
+    });
     return result;
   };
 
   if (groups.length <= 0) return <Loading />;
 
   return (
-    <ScrollView colorLight style={tailwind('flex-1 px-2')}>
-      <View colorLight style={tailwind('pb-14')}>
+    <ScrollView light style={tailwind('flex-1 px-2')}>
+      <View light style={tailwind('pb-14')}>
         <Text weight={700} style={styles.groupsTitle}>
           General Business
         </Text>
-        <View colorLight style={styles.groups}>
+        <View light style={styles.groups}>
           {renderGroups(0, 5)}
         </View>
         <Text weight={700} style={styles.groupsTitle}>
           Office Issues
         </Text>
-        <View colorLight style={styles.groups}>
+        <View light style={styles.groups}>
           {renderGroups(5, 10)}
         </View>
       </View>

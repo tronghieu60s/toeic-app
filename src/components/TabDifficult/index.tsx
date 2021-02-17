@@ -50,8 +50,8 @@ const TabDifficult = memo(({ navigation }: Props) => {
   if (words.length <= 0 && !isPending) return <CenterUI>{text}</CenterUI>;
 
   return (
-    <ScrollView colorLight style={tailwind('flex-1')}>
-      <View colorLight style={tailwind('flex-1 pt-3 px-3 pb-14')}>
+    <ScrollView light style={tailwind('flex-1')}>
+      <View light style={tailwind('flex-1 pt-3 px-3 pb-14')}>
         {renderWords()}
       </View>
     </ScrollView>

@@ -55,8 +55,10 @@ const TabPracticeWords = memo((props: Props) => {
   if (words.length <= 0 && !isPending) return <CenterUI>{text}</CenterUI>;
 
   return (
-    <ScrollView colorLight style={tailwind('flex-1')}>
-      <View colorLight style={tailwind('flex-1 pt-2 px-3')}>{renderWords()}</View>
+    <ScrollView light style={tailwind('flex-1')}>
+      <View light style={tailwind('flex-1 pt-2 pb-1 px-3')}>
+        {renderWords()}
+      </View>
     </ScrollView>
   );
 });

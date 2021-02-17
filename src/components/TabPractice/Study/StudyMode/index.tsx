@@ -1,5 +1,6 @@
+/* eslint-disable curly */
+/* eslint-disable nonblock-statement-body-position */
 import React, { memo } from 'react';
-import { View } from '~/src/components/Themed';
 import { TypesAnswer, WordType } from '~/types';
 import ChooseSoundEN from './ChooseSoundEN';
 import ChooseWord from './ChooseWord';
@@ -14,25 +15,22 @@ type Props = {
 const StudyMode = memo((props: Props) => {
   const { word, typeAnswer, handleSendAnswer } = props;
 
-  return (
-    <View>
-      {typeAnswer === 'CHOOSE-NAME-MEAN' && (
-        <ChooseWord word={word} typeAnswer={typeAnswer} handleSendAnswer={handleSendAnswer} />
-      )}
-      {typeAnswer === 'CHOOSE-MEAN-NAME' && (
-        <ChooseWord word={word} typeAnswer={typeAnswer} handleSendAnswer={handleSendAnswer} />
-      )}
-      {(typeAnswer === 'FILL-NAME-MEAN' || typeAnswer === 'FILL-MEAN-NAME') && (
-        <FillWord word={word} handleSendAnswer={handleSendAnswer} />
-      )}
-      {typeAnswer === 'CHOOSE-MEAN-SOUND' && (
-        <ChooseSoundEN word={word} handleSendAnswer={handleSendAnswer} />
-      )}
-      {typeAnswer === 'CHOOSE-SOUND-MEAN' && (
-        <ChooseWord word={word} typeAnswer={typeAnswer} handleSendAnswer={handleSendAnswer} />
-      )}
-    </View>
-  );
+  if (typeAnswer === 'CHOOSE-NAME-MEAN')
+    return <ChooseWord word={word} typeAnswer={typeAnswer} handleSendAnswer={handleSendAnswer} />;
+
+  if (typeAnswer === 'CHOOSE-MEAN-NAME')
+    return <ChooseWord word={word} typeAnswer={typeAnswer} handleSendAnswer={handleSendAnswer} />;
+
+  if (typeAnswer === 'FILL-NAME-MEAN' || typeAnswer === 'FILL-MEAN-NAME')
+    return <FillWord word={word} handleSendAnswer={handleSendAnswer} />;
+
+  if (typeAnswer === 'CHOOSE-MEAN-SOUND')
+    return <ChooseSoundEN word={word} handleSendAnswer={handleSendAnswer} />;
+
+  if (typeAnswer === 'CHOOSE-SOUND-MEAN')
+    return <ChooseWord word={word} typeAnswer={typeAnswer} handleSendAnswer={handleSendAnswer} />;
+
+  return null;
 });
 
 export default StudyMode;

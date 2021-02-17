@@ -103,17 +103,13 @@ const TabPracticeStudy = memo(({ navigation }: Props) => {
   }, [wordQuestion]);
 
   useEffect(() => {
-    // Handle Button Continue If Count Study === null
     if (statusStudy) {
       setStatus('Correct');
       setUserAnswer('Continue');
     }
   }, [statusStudy]);
 
-  const handleSendAnswer = (value: string) => {
-    const userAnswer = value.trim().toLowerCase();
-    setUserAnswer(userAnswer);
-  };
+  const handleSendAnswer = (value: string) => setUserAnswer(convertWordsBase(value));
 
   const handleAnswer = () => {
     Keyboard.dismiss();

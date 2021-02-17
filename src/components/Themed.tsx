@@ -25,7 +25,7 @@ export function useThemeColor(
 }
 
 type ThemeProps = {
-  colorLight?: boolean;
+  light?: boolean;
   weight?: 300 | 400 | 600 | 700 | 800;
   lightColor?: string;
   darkColor?: string;
@@ -46,20 +46,20 @@ export function Text(props: TextProps): JSX.Element {
 }
 
 export function View(props: ViewProps): JSX.Element {
-  const { style, colorLight, lightColor, darkColor, ...otherProps } = props;
+  const { style, light, lightColor, darkColor, ...otherProps } = props;
   const backgroundColor = useThemeColor(
     { light: lightColor, dark: darkColor },
-    colorLight ? 'background2' : 'background',
+    light ? 'background2' : 'background',
   );
 
   return <DefaultView style={[{ backgroundColor }, style]} {...otherProps} />;
 }
 
 export function ScrollView(props: ScrollViewProps): JSX.Element {
-  const { style, colorLight, lightColor, darkColor, ...otherProps } = props;
+  const { style, light, lightColor, darkColor, ...otherProps } = props;
   const backgroundColor = useThemeColor(
     { light: lightColor, dark: darkColor },
-    colorLight ? 'background2' : 'background',
+    light ? 'background2' : 'background',
   );
 
   return (
@@ -73,10 +73,10 @@ export function ScrollView(props: ScrollViewProps): JSX.Element {
 }
 
 export function Ripple(props: RippleProps): JSX.Element {
-  const { style, colorLight, lightColor, darkColor, ...otherProps } = props;
+  const { style, light, lightColor, darkColor, ...otherProps } = props;
   const backgroundColor = useThemeColor(
     { light: lightColor, dark: darkColor },
-    colorLight ? 'background2' : 'background',
+    light ? 'background2' : 'background',
   );
 
   return (

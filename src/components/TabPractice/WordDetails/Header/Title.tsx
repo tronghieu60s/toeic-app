@@ -1,7 +1,7 @@
 import { RouteProp } from '@react-navigation/native';
 import React, { memo } from 'react';
 import { StyleSheet } from 'react-native';
-import tailwind from 'tailwind-rn';
+import tailwind from '~/tailwind';
 import { Text, View } from '~/src/components/Themed';
 import { TabPracticeParamList } from '~/types';
 

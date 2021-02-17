@@ -21,7 +21,7 @@ const StudyWord = memo(({ word }: Props) => {
       </View>
       <View style={tailwind('w-full justify-center items-center mt-5 px-8')}>
         <View style={tailwind('items-center')}>
-          <Text weight={700} style={{ color: '#9d9d9d' }}>
+          <Text weight={700} style={{ color: '#9d9d9d', fontSize: 12 }}>
             VIETNAMESE
           </Text>
           <Text weight={700} style={tailwind('text-base text-center mt-1')}>
@@ -29,7 +29,7 @@ const StudyWord = memo(({ word }: Props) => {
           </Text>
         </View>
         <View style={tailwind('items-center mt-7')}>
-          <Text weight={700} style={{ color: '#9d9d9d' }}>
+          <Text weight={700} style={{ color: '#9d9d9d', fontSize: 12 }}>
             GIẢI THÍCH
           </Text>
           <Text style={tailwind('text-base mt-1 text-center')}>{explain_word}</Text>
