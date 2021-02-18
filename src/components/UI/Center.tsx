@@ -1,5 +1,5 @@
 import React from 'react';
-import tailwind from 'tailwind-rn';
+import tailwind from '~/tailwind';
 import { Text, View } from '../Themed';
 
 type Props = { children: React.ReactNode };

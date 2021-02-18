@@ -1,11 +1,12 @@
 import { SimpleLineIcons } from '@expo/vector-icons';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Animated, StyleSheet } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import tailwind from '~/tailwind';
 import { SpeechEnglish } from '~/src/helpers/sound';
 import { WordType } from '~/types';
 
-type PropsSound = {
+type Props = {
   word: WordType;
   size?: number;
   selected?: boolean;
@@ -13,20 +14,33 @@ type PropsSound = {
   handleSendAnswer?: (value: string) => void;
 };
 
-const SoundButton = ({ word, size, selected, autoPlay, handleSendAnswer }: PropsSound) => {
+const animatedValue = (toValue: number) => ({ toValue, useNativeDriver: true });
+
+const SoundButton = (props: Props) => {
+  const { word, size, selected, autoPlay, handleSendAnswer } = props;
+  const { name_word = '' } = word;
+
   const soundSize = useRef(new Animated.Value(1)).current;
-  const bgColor = selected ? '#fff' : '#ffc000';
+  const [soundPlayed, setSoundPlayed] = useState(false);
+  const bgColor = soundPlayed || selected ? '#fff' : '#ffc000';
 
   useEffect(() => {
     if (autoPlay) onPress();
-  }, []);
+  }, [word]);
 
   const onPress = () => {
-    if (handleSendAnswer) handleSendAnswer(word.name_word || '');
-    SpeechEnglish(word.name_word || '', {
-      onStart: () => Animated.spring(soundSize, { toValue: 0.85, useNativeDriver: true }).start(),
-      onDone: () => Animated.spring(soundSize, { toValue: 1, useNativeDriver: true }).start(),
-      onStopped: () => Animated.spring(soundSize, { toValue: 1, useNativeDriver: true }).start(),
+    setSoundPlayed(true);
+    if (handleSendAnswer) handleSendAnswer(name_word);
+    SpeechEnglish(name_word, {
+      onStart: () => Animated.spring(soundSize, animatedValue(0.85)).start(),
+      onDone: () => {
+        Animated.spring(soundSize, animatedValue(1)).start();
+        setSoundPlayed(false);
+      },
+      onStopped: () => {
+        Animated.spring(soundSize, animatedValue(1)).start();
+        setSoundPlayed(false);
+      },
     });
   };
 
@@ -51,15 +65,12 @@ SoundButton.defaultProps = {
 
 const styles = StyleSheet.create({
   sound: {
+    ...tailwind('justify-center items-center'),
     backgroundColor: '#ffc000',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 120,
-    transform: [{ rotate: '-10deg' }],
-    marginHorizontal: 20,
-    marginBottom: 20,
     borderWidth: 5,
+    borderRadius: 120,
     borderColor: '#ffc000',
+    transform: [{ rotate: '-10deg' }],
   },
 });
 

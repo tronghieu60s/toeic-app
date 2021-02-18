@@ -18,9 +18,7 @@ export function useThemeColor(
   const theme = useSelector((state: RootState) => state.common.theme);
   const colorFromProps = props[theme];
 
-  if (colorFromProps) {
-    return colorFromProps;
-  }
+  if (colorFromProps) return colorFromProps;
   return Colors[theme][colorName];
 }
 

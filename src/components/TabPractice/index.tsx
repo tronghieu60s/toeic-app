@@ -1,11 +1,11 @@
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { memo, useEffect, useState } from 'react';
 import { Dimensions, StyleSheet } from 'react-native';
-import tailwind from '~/tailwind';
 import { getGroups } from '~/src/models/GroupsModel';
+import tailwind from '~/tailwind';
 import { GroupType, TabPracticeParamList } from '~/types';
 import { ScrollView, Text, View } from '../Themed';
-import Loading from '../UI/Loading';
+import CenterUI from '../UI/Center';
 import GroupItem from './GroupItem';
 
 type Props = {
@@ -15,6 +15,7 @@ type Props = {
 const TabPractice = memo((props: Props) => {
   const { navigation } = props;
   const [groups, setGroups] = useState<GroupType[]>([]);
+  const [groupsRender, setGroupsRender] = useState<{ title: string; data: GroupType[] }[]>([]);
 
   useEffect(() => {
     (async () => {
@@ -23,33 +24,41 @@ const TabPractice = memo((props: Props) => {
     })();
   }, []);
 
-  const renderGroups = (order: number, limit: number) => {
-    const newGroups = groups.slice(order, order + limit);
-    let result: React.ReactNode = null;
-    result = newGroups.map((group) => {
-      const { id_group } = group;
-      return <GroupItem key={id_group} group={group} navigation={navigation} />;
-    });
-    return result;
-  };
+  useEffect(() => {
+    const groupsData = [
+      {
+        title: 'General Business',
+        data: groups.slice(0, 5),
+      },
+      {
+        title: 'Office Issues',
+        data: groups.slice(5, 10),
+      },
+    ];
+    setGroupsRender(groupsData);
+  }, [groups]);
 
-  if (groups.length <= 0) return <Loading />;
+  const renderItems = (groups: { title: string; data: GroupType[] }[]) =>
+    groups.map((group, index) => (
+      <React.Fragment key={index}>
+        <Text weight={700} style={styles.groupsTitle}>
+          {group.title}
+        </Text>
+        <View style={styles.groups}>
+          {group.data.map((item, index) => (
+            <GroupItem key={index} group={item} navigation={navigation} />
+          ))}
+        </View>
+      </React.Fragment>
+    ));
+
+  const text = 'Không có dữ liệu, bạn vui lòng bật Internet và khởi động lại ứng dụng.';
+  if (groups.length <= 0) return <CenterUI>{text}</CenterUI>;
 
   return (
-    <ScrollView light style={tailwind('flex-1 px-2')}>
-      <View light style={tailwind('pb-14')}>
-        <Text weight={700} style={styles.groupsTitle}>
-          General Business
-        </Text>
-        <View light style={styles.groups}>
-          {renderGroups(0, 5)}
-        </View>
-        <Text weight={700} style={styles.groupsTitle}>
-          Office Issues
-        </Text>
-        <View light style={styles.groups}>
-          {renderGroups(5, 10)}
-        </View>
+    <ScrollView style={tailwind('flex-1')}>
+      <View light style={tailwind('pb-14 px-2')}>
+        {renderItems(groupsRender)}
       </View>
     </ScrollView>
   );
@@ -57,7 +66,7 @@ const TabPractice = memo((props: Props) => {
 
 const styles = StyleSheet.create({
   groups: {
-    ...tailwind('flex-1 flex-row flex-wrap justify-between'),
+    ...tailwind('flex-1 flex-row flex-wrap justify-between bg-transparent'),
     width: Dimensions.get('window').width - 10,
   },
   groupsTitle: { ...tailwind('text-lg my-2 ml-2') },

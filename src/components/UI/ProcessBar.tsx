@@ -2,7 +2,9 @@ import React, { memo } from 'react';
 import { Dimensions, StyleSheet } from 'react-native';
 import { View } from '../Themed';
 
-const ProcessBar = memo(({ percent }: { percent: number }) => {
+type Props = { percent: number };
+
+const ProcessBar = memo(({ percent }: Props) => {
   const { width } = Dimensions.get('window');
   const widthProcess = (width * percent) / 100;
 

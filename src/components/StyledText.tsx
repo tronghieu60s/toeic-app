@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 import { Text, TextProps } from './Themed';
 
 // eslint-disable-next-line import/prefer-default-export

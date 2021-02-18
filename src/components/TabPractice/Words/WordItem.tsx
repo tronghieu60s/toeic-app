@@ -9,8 +9,8 @@ import { Ripple, Text, View } from '../../Themed';
 
 type Props = {
   word: WordType;
-  handleFlashWord: () => void;
-  handleDetailsWord: () => void;
+  handleFlashWord: (word: WordType) => void;
+  handleDetailsWord: (word: WordType) => void;
 };
 
 const WordItem = (props: Props) => {
@@ -33,7 +33,7 @@ const WordItem = (props: Props) => {
 
   return (
     <View style={tailwind('flex-auto flex-row mb-2 px-3')}>
-      <Ripple style={tailwind('flex-auto flex-row')} onPress={handleDetailsWord}>
+      <Ripple style={tailwind('flex-auto flex-row')} onPress={() => handleDetailsWord(word)}>
         <View style={tailwind('justify-center items-center px-2')}>
           <Image style={tailwind('w-7 h-7')} source={iconBulb} />
         </View>
@@ -58,7 +58,7 @@ const WordItem = (props: Props) => {
         </View>
       </Ripple>
       <View style={tailwind('w-1/6 flex-auto justify-center items-center')}>
-        <Ripple onPress={handleFlashWord}>
+        <Ripple onPress={() => handleFlashWord(word)}>
           <Image style={tailwind('w-5 h-5')} source={iconFlash} />
         </Ripple>
       </View>

@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { Modal as DefaultModal, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
-import tailwind from 'tailwind-rn';
+import tailwind from '~/tailwind';
 
 type Props = {
   children: JSX.Element;
