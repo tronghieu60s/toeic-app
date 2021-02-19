@@ -22,7 +22,7 @@ const FillWord = memo(({ word, handleSendAnswer }: Props) => {
   };
 
   return (
-    <View style={{ paddingVertical: 60 }}>
+    <View style={{ paddingVertical: 20 }}>
       <TextInput
         multiline
         // autoFocus

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Image } from 'react-native';
 import { useSelector } from 'react-redux';
-import tailwind from 'tailwind-rn';
 import { flashIcon, lightBulbIcon } from '~/src/constants/IconSource';
 import { RootState } from '~/src/redux/reducers/rootReducer';
+import tailwind from '~/tailwind';
 import { WordType } from '~/types';
 import { Ripple, Text, View } from '../../Themed';
 

@@ -1,9 +1,7 @@
-/* eslint-disable operator-linebreak */
 import { StackNavigationProp } from '@react-navigation/stack';
 import * as Speech from 'expo-speech';
 import React, { memo, useEffect, useState } from 'react';
 import {
-  Alert,
   Keyboard,
   LayoutAnimation,
   Platform,
@@ -12,7 +10,6 @@ import {
   Vibration,
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import tailwind from 'tailwind-rn';
 import { View } from '~/src/components/Themed';
 import ProcessBar from '~/src/components/UI/ProcessBar';
 import { convertWordsBase, removeVietnameseTones as rmVN } from '~/src/helpers/convert';
@@ -24,12 +21,14 @@ import {
   AUDIO_WRONG,
   playSound,
 } from '~/src/helpers/sound';
+import { typeAnswersName, typeAnswersMean } from '~/src/helpers/type-condition';
 import {
   actStudyCorrect,
   actStudyInCorrect,
   increasePoint,
 } from '~/src/redux/actions/practiceAction';
 import { RootState } from '~/src/redux/reducers/rootReducer';
+import tailwind from '~/tailwind';
 import { StatusQuestion, TabPracticeParamList, TypesAnswer, WordType } from '~/types';
 import AlertUI from './AlertUI';
 import BottomUI from './BottomUI';
@@ -37,21 +36,20 @@ import StudyMode from './StudyMode';
 import StudyWord from './StudyMode/StudyWord';
 import StudyUI from './StudyUI';
 
-const totalQuestions = 10;
-
-type Props = {
-  navigation: StackNavigationProp<TabPracticeParamList, 'TabPracticeScreen'>;
-};
-
 if (Platform.OS === 'android') {
   if (UIManager.setLayoutAnimationEnabledExperimental) {
     UIManager.setLayoutAnimationEnabledExperimental(true);
   }
 }
 
+type Props = {
+  navigation: StackNavigationProp<TabPracticeParamList, 'TabPracticeScreen'>;
+};
+
 const TabPracticeStudy = memo(({ navigation }: Props) => {
-  const [statusStudy, setStatusStudy] = useState<boolean>();
+  const totalQuestions = 10;
   const [status, setStatus] = useState<StatusQuestion>('Waiting');
+  const [statusStudy, setStatusStudy] = useState<boolean>();
 
   const [userAnswer, setUserAnswer] = useState('');
   const [typeAnswer, setTypeAnswer] = useState<TypesAnswer>('CHOOSE-NAME-MEAN');
@@ -64,26 +62,33 @@ const TabPracticeStudy = memo(({ navigation }: Props) => {
   const [wordQuestion, setWordQuestion] = useState<WordType>(() => words[rdNum(0, words.length)]);
 
   useEffect(() => {
-    navigation.addListener('beforeRemove', (e) => {
-      e.preventDefault();
-
-      Alert.alert(
-        'Thoát phiên học',
-        'Bạn có chắc muốn thoát phiên học này không? Kết quả sẽ được lưu lại.',
-        [
-          { text: 'Hủy', style: 'cancel' },
-          {
-            text: 'Thoát',
-            style: 'destructive',
-            onPress: () => navigation.dispatch(e.data.action),
-          },
-        ],
-      );
-    });
-  }, []);
-
-  useEffect(() => {
     Speech.stop();
+
+    const { count_study } = wordQuestion;
+    switch (count_study) {
+      case null:
+        setStatusStudy(true);
+        setTypeAnswer('CHOOSE-NAME-MEAN');
+        break;
+      case 1:
+        setTypeAnswer('CHOOSE-SOUND-MEAN');
+        break;
+      case 2:
+        setTypeAnswer('CHOOSE-MEAN-NAME');
+        break;
+      case 3:
+        setTypeAnswer('FILL-MEAN-NAME');
+        break;
+      case 4:
+        setTypeAnswer('CHOOSE-MEAN-SOUND');
+        break;
+      case 5:
+        setTypeAnswer('FILL-NAME-MEAN');
+        break;
+      default:
+        break;
+    }
+
     LayoutAnimation.configureNext({
       duration: 200,
       create: {
@@ -91,15 +96,6 @@ const TabPracticeStudy = memo(({ navigation }: Props) => {
         property: LayoutAnimation.Properties.opacity,
       },
     });
-    const { count_study } = wordQuestion;
-    if (count_study === null) setStatusStudy(true);
-
-    if (count_study === null) setTypeAnswer('CHOOSE-NAME-MEAN');
-    if (count_study === 1) setTypeAnswer('CHOOSE-SOUND-MEAN');
-    if (count_study === 2) setTypeAnswer('CHOOSE-MEAN-NAME');
-    if (count_study === 3) setTypeAnswer('FILL-MEAN-NAME');
-    if (count_study === 4) setTypeAnswer('CHOOSE-MEAN-SOUND');
-    if (count_study === 5) setTypeAnswer('FILL-NAME-MEAN');
   }, [wordQuestion]);
 
   useEffect(() => {
@@ -110,62 +106,49 @@ const TabPracticeStudy = memo(({ navigation }: Props) => {
   }, [statusStudy]);
 
   const handleSendAnswer = (value: string) => setUserAnswer(convertWordsBase(value));
-
-  const handleAnswer = () => {
+  const handleAnswer = async () => {
     Keyboard.dismiss();
 
-    let answer = '';
-    if (
-      typeAnswer === 'CHOOSE-MEAN-NAME' ||
-      typeAnswer === 'CHOOSE-MEAN-SOUND' ||
-      typeAnswer === 'FILL-MEAN-NAME'
-    ) {
-      answer = wordQuestion.name_word || '';
-    }
-    if (
-      typeAnswer === 'CHOOSE-NAME-MEAN' ||
-      typeAnswer === 'FILL-NAME-MEAN' ||
-      typeAnswer === 'CHOOSE-SOUND-MEAN'
-    ) {
-      answer = wordQuestion.mean_word || '';
-    }
+    let expected = '';
+    if (typeAnswersName(typeAnswer)) expected = wordQuestion.name_word || '';
+    if (typeAnswersMean(typeAnswer)) expected = wordQuestion.mean_word || '';
+    expected = convertWordsBase(expected);
 
-    answer = convertWordsBase(answer);
-    // Handle Answer - Result
-    const result = convertWordsBase(userAnswer);
-    const arrAnswer = answer.split(',').map((s) => convertWordsBase(s));
-    const arrAnswerVn = answer.split(',').map((s) => rmVN(convertWordsBase(s)));
+    const arrExpected = expected.split(',').map((s) => convertWordsBase(s));
+    const arrExpectedVn = expected.split(',').map((s) => rmVN(convertWordsBase(s)));
 
-    const conditionArr = arrAnswer.indexOf(result) !== -1 || arrAnswerVn.indexOf(result) !== -1;
-    if (conditionArr || answer === result) {
+    const actual = convertWordsBase(userAnswer);
+    const conditionArr = arrExpected.indexOf(actual) !== -1 || arrExpectedVn.indexOf(actual) !== -1;
+
+    if (conditionArr || actual === expected) {
       dispatch(increasePoint(50));
       dispatch(actStudyCorrect(wordQuestion));
-
       setCountQuestion(countQuestion + 1);
 
-      if (wordQuestion.count_study === 4) playSound(AUDIO_CORRECT_FULL);
-      else playSound(AUDIO_CORRECT);
       setStatus('Correct');
+      if (wordQuestion.count_study === 4) await playSound(AUDIO_CORRECT_FULL);
+      else await playSound(AUDIO_CORRECT);
     } else {
       dispatch(actStudyInCorrect(wordQuestion));
 
       Vibration.vibrate(200);
-
-      playSound(AUDIO_WRONG);
+      await playSound(AUDIO_WRONG);
       setStatus('Incorrect');
     }
   };
-
-  const handleContinue = (): void | null => {
+  const handleContinue = () => {
     Speech.stop();
-    if (status === 'Waiting') return handleAnswer();
+    if (status === 'Waiting') {
+      handleAnswer();
+      return;
+    }
 
     // Handle Exit Study
     if (countQuestion === totalQuestions || words.length === 0) {
       playSound(AUDIO_FINISH);
       navigation.removeListener('beforeRemove', (e) => navigation.dispatch(e.data.action));
       navigation.goBack();
-      return null;
+      return;
     }
 
     const wordRandom = words[rdNum(0, words.length)];
@@ -177,8 +160,6 @@ const TabPracticeStudy = memo(({ navigation }: Props) => {
 
     setUserAnswer('');
     setStatus('Waiting');
-
-    return null;
   };
 
   if (!wordQuestion || !typeAnswer) return <View />;

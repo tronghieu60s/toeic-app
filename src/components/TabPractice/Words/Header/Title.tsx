@@ -2,9 +2,9 @@ import { RouteProp } from '@react-navigation/native';
 import React, { memo } from 'react';
 import { StyleSheet } from 'react-native';
 import { useSelector } from 'react-redux';
-import tailwind from 'tailwind-rn';
 import { Text, View } from '~/src/components/Themed';
 import { RootState } from '~/src/redux/reducers/rootReducer';
+import tailwind from '~/tailwind';
 import { TabPracticeParamList } from '~/types';
 
 type Props = {
@@ -38,15 +38,8 @@ const TabPracticeWordsHeaderTitle = memo((props: Props) => {
 });
 
 const styles = StyleSheet.create({
-  count: {
-    ...tailwind('text-xs tracking-wider ml-2'),
-    marginTop: 2,
-  },
-  mean: {
-    ...tailwind('w-10/12'),
-    fontSize: 11,
-    color: '#5e72e4',
-  },
+  count: { ...tailwind('text-xs tracking-wider ml-2'), marginTop: 2 },
+  mean: { ...tailwind('w-10/12'), fontSize: 11, color: '#5e72e4' },
 });
 
 export default TabPracticeWordsHeaderTitle;

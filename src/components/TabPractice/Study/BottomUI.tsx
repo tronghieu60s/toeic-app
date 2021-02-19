@@ -1,9 +1,8 @@
-/* eslint-disable no-unneeded-ternary */
 import React, { memo } from 'react';
 import { StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import tailwind from 'tailwind-rn';
 import { Text, View } from '~/src/components/Themed';
+import tailwind from '~/tailwind';
 import { StatusQuestion } from '~/types';
 
 type Props = {
@@ -16,9 +15,8 @@ const BottomUI = memo((props: Props) => {
   const { status, userAnswer, handleContinue } = props;
 
   const textButton = status !== 'Waiting' ? 'Tiếp tục' : 'Kiểm tra';
-
   const colorTextButton = userAnswer ? '#fff' : '#2a3547';
-  const disabledButton = userAnswer.length === 0 ? true : false;
+  const disabledButton = userAnswer.length === 0;
 
   let colorButton = '#2dce89';
   if (userAnswer.length === 0) colorButton = '#d7d8dc';
@@ -46,10 +44,7 @@ const styles = StyleSheet.create({
     ...tailwind('justify-center items-center rounded-3xl py-2'),
     backgroundColor: '#2dce89',
   },
-  continueText: {
-    ...tailwind('text-xl capitalize'),
-    color: '#2c3749',
-  },
+  continueText: { ...tailwind('text-xl capitalize'), color: '#2c3749' },
 });
 
 export default BottomUI;

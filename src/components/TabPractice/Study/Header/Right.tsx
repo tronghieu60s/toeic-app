@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { StyleSheet } from 'react-native';
 import { useSelector } from 'react-redux';
-import tailwind from 'tailwind-rn';
+import tailwind from '~/tailwind';
 import { Text, View } from '~/src/components/Themed';
 import { RootState } from '~/src/redux/reducers/rootReducer';
 
@@ -13,11 +13,11 @@ const TabPracticeStudyHeaderRight = memo(() => {
       {/* <Ripple style={styles.iconVolume} lightColor="transparent" darkColor="transparent">
         <FontAwesome5 name="volume-mute" size={22} color="black" />
       </Ripple> */}
-      {/* <View style={styles.point}>
+      <View style={styles.point}>
         <Text weight={700} style={tailwind('text-sm')}>
           {point}
         </Text>
-      </View> */}
+      </View>
     </View>
   );
 });

@@ -3,11 +3,11 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import React, { memo, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { useSelector } from 'react-redux';
-import tailwind from 'tailwind-rn';
 import ModalSetting from '~/src/components/TabPractice/Words/Header/ModalSetting';
 import { Ripple, View } from '~/src/components/Themed';
 import Colors from '~/src/constants/Colors';
 import { RootState } from '~/src/redux/reducers/rootReducer';
+import tailwind from '~/tailwind';
 import { TabPracticeParamList } from '~/types';
 
 type Props = {
@@ -23,18 +23,14 @@ const TabPracticeWordsHeaderRight = memo(({ navigation }: Props) => {
 
   return (
     <View style={tailwind('flex-row justify-end items-center mr-2')}>
-      {words.length > 0 && (
-        <>
-          {wordsStudy.length > 0 && (
-            <Ripple style={styles.button} onPress={() => navigation.navigate('TabPracticeStudy')}>
-              <SimpleLineIcons name="graduation" size={22} color={Colors[theme].text} />
-            </Ripple>
-          )}
-          {/* <Ripple style={styles.button}>
+      {wordsStudy.length > 0 && (
+        <Ripple style={styles.button} onPress={() => navigation.navigate('TabPracticeStudy')}>
+          <SimpleLineIcons name="graduation" size={22} color={Colors[theme].text} />
+        </Ripple>
+      )}
+      {/* <Ripple style={styles.button}>
             <Entypo name="time-slot" size={18} color={Colors[theme].text} />
           </Ripple> */}
-        </>
-      )}
       <Ripple style={styles.button} onPress={() => setModalVisible(true)}>
         <AntDesign name="setting" size={20} color={Colors[theme].text} />
       </Ripple>

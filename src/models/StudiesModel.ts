@@ -1,4 +1,3 @@
-/* eslint-disable arrow-body-style */
 import { StudyType } from '~/types';
 import { executeSql } from '~/src/utils/SQLite';
 

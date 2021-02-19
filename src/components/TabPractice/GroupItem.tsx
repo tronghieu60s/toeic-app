@@ -33,11 +33,7 @@ const styles = StyleSheet.create({
     ...tailwind('justify-center mb-3 mx-1 p-5 rounded-lg'),
     width: Dimensions.get('window').width / 2 - 15,
   },
-  groupPronounce: {
-    ...tailwind('text-xs'),
-    color: '#888',
-    marginTop: 2,
-  },
+  groupPronounce: { ...tailwind('text-xs'), color: '#888', marginTop: 2 },
 });
 
 export default GroupItem;

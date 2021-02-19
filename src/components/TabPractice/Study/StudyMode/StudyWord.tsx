@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
-import tailwind from 'tailwind-rn';
 import { Text, View } from '~/src/components/Themed';
 import SoundButton from '~/src/components/UI/SoundButton';
+import tailwind from '~/tailwind';
 import { WordType } from '~/types';
 
 type Props = {
@@ -12,7 +12,7 @@ const StudyWord = memo(({ word }: Props) => {
   const { name_word, mean_word, explain_word } = word;
 
   return (
-    <View style={tailwind('w-full h-full flex-1')}>
+    <View style={tailwind('w-full h-full flex-1 py-3')}>
       <View style={tailwind('h-1/3 justify-between items-center py-4')}>
         <SoundButton autoPlay word={word} />
         <Text weight={700} style={tailwind('text-xl')}>

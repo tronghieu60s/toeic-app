@@ -1,12 +1,13 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import tailwind from 'tailwind-rn';
+import { useSelector } from 'react-redux';
 import { Text, View } from '~/src/components/Themed';
 import Colors from '~/src/constants/Colors';
-import useColorScheme from '~/src/hooks/useColorScheme';
+import { RootState } from '~/src/redux/reducers/rootReducer';
+import tailwind from '~/tailwind';
 
 export default function TabPracticeHeaderTitle(): JSX.Element {
-  const colorScheme = useColorScheme();
+  const colorScheme = useSelector((state: RootState) => state.common.theme);
 
   return (
     <View style={tailwind('flex-row items-center')}>

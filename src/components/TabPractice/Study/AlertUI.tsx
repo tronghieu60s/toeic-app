@@ -1,9 +1,9 @@
 import React, { memo, useEffect, useRef } from 'react';
 import { Animated, Dimensions, StyleSheet } from 'react-native';
-import tailwind from 'tailwind-rn';
 import { Text, View } from '~/src/components/Themed';
 import { TEXT_CORRECT, TEXT_INCORRECT } from '~/src/constants/Text/Study';
 import { randomBetweenTwoNumber as rdNum } from '~/src/helpers/random';
+import tailwind from '~/tailwind';
 import { StatusQuestion, WordType } from '~/types';
 
 type Props = {
@@ -12,9 +12,9 @@ type Props = {
 };
 
 const AlertUI = memo(({ word, status }: Props) => {
+  const { name_word, mean_word } = word;
   const outPosition = useRef(new Animated.Value(Dimensions.get('window').height / 4)).current;
 
-  const { name_word, mean_word } = word;
   const bgColor = status === 'Correct' ? '#2dce89' : '#f5365c';
   const textCorrect = TEXT_CORRECT[rdNum(0, TEXT_CORRECT.length)];
   const textIncorrect = TEXT_INCORRECT[rdNum(0, TEXT_INCORRECT.length)];
@@ -64,10 +64,7 @@ const styles = StyleSheet.create({
     ...tailwind('w-full justify-end items-end absolute bottom-0'),
     backgroundColor: '#fff0',
   },
-  viewFinishTab: {
-    ...tailwind('w-full flex-row justify-between pt-4 px-4'),
-    height: 180,
-  },
+  viewFinishTab: { ...tailwind('w-full flex-row justify-between pt-4 px-4'), height: 180 },
 });
 
 export default AlertUI;

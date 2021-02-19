@@ -6,6 +6,7 @@ import tailwind from '~/tailwind';
 import { GroupType, TabPracticeParamList } from '~/types';
 import { ScrollView, Text, View } from '../Themed';
 import CenterUI from '../UI/Center';
+import Loading from '../UI/Loading';
 import GroupItem from './GroupItem';
 
 type Props = {
@@ -13,6 +14,7 @@ type Props = {
 };
 
 const TabPractice = memo((props: Props) => {
+  const [isPending, setIsPending] = useState(true);
   const { navigation } = props;
   const [groups, setGroups] = useState<GroupType[]>([]);
   const [groupsRender, setGroupsRender] = useState<{ title: string; data: GroupType[] }[]>([]);
@@ -21,6 +23,7 @@ const TabPractice = memo((props: Props) => {
     (async () => {
       const groups = await getGroups();
       if (groups.data !== null) setGroups(groups.data);
+      setIsPending(false);
     })();
   }, []);
 
@@ -53,11 +56,12 @@ const TabPractice = memo((props: Props) => {
     ));
 
   const text = 'Không có dữ liệu, bạn vui lòng bật Internet và khởi động lại ứng dụng.';
+  if (isPending) return <Loading />;
   if (groups.length <= 0) return <CenterUI>{text}</CenterUI>;
 
   return (
     <ScrollView style={tailwind('flex-1')}>
-      <View light style={tailwind('pb-14 px-2')}>
+      <View light style={tailwind('pb-14 px-1')}>
         {renderItems(groupsRender)}
       </View>
     </ScrollView>

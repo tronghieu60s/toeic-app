@@ -1,9 +1,11 @@
 import React, { memo, useEffect, useState } from 'react';
 import { Dimensions, StyleSheet } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import tailwind from '~/tailwind';
 import { Text, View } from '~/src/components/Themed';
 import { shuffle } from '~/src/helpers/array';
 import { randomBetweenTwoNumber as rdNum } from '~/src/helpers/random';
+import { typeAnswersMean, typeAnswersName } from '~/src/helpers/type-condition';
 import { getWordsByIdGroup } from '~/src/models/WordsModel';
 import { TypesAnswer, WordType } from '~/types';
 
@@ -32,17 +34,14 @@ const ChooseWord = memo(({ word, typeAnswer, handleSendAnswer }: Props) => {
     })();
   }, [word]);
 
-  const renderWordsSelect = () => {
-    let result: React.ReactNode = null;
-    result = words.map((word, index) => {
+  const renderWordsSelect = () =>
+    words.map((word, index) => {
       const bgColor = selectWords === index ? '#2dce89' : '#e1e4ea';
       const color = selectWords === index ? '#fff' : '#000';
 
       let name = '';
-      if (typeAnswer === 'CHOOSE-NAME-MEAN' || typeAnswer === 'CHOOSE-SOUND-MEAN') {
-        name = word.mean_word || '';
-      }
-      if (typeAnswer === 'CHOOSE-MEAN-NAME') name = word.name_word || '';
+      if (typeAnswersMean(typeAnswer)) name = word.mean_word || '';
+      if (typeAnswersName(typeAnswer)) name = word.name_word || '';
 
       return (
         <TouchableWithoutFeedback
@@ -57,34 +56,22 @@ const ChooseWord = memo(({ word, typeAnswer, handleSendAnswer }: Props) => {
         </TouchableWithoutFeedback>
       );
     });
-    return result;
-  };
 
   return <View style={styles.container}>{renderWordsSelect()}</View>;
 });
 
 const styles = StyleSheet.create({
   container: {
+    ...tailwind('flex-row flex-wrap mt-3'),
     width: Dimensions.get('window').width - 40,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    paddingVertical: 20,
   },
   word: {
-    width: Dimensions.get('window').width / 2 - 30,
+    ...tailwind('justify-center items-center m-1 px-4 rounded-lg'),
     height: '39%',
-    justifyContent: 'center',
-    alignItems: 'center',
+    width: Dimensions.get('window').width / 2 - 28,
     backgroundColor: '#e1e4ea',
-    marginVertical: 5,
-    marginHorizontal: 5,
-    paddingHorizontal: 15,
-    borderRadius: 7,
   },
-  wordText: {
-    fontSize: 16,
-    textAlign: 'center',
-  },
+  wordText: { ...tailwind('text-base text-center') },
 });
 
 export default ChooseWord;

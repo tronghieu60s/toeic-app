@@ -5,6 +5,7 @@ import SoundButton from '~/src/components/UI/SoundButton';
 import { shuffle } from '~/src/helpers/array';
 import { randomBetweenTwoNumber as rdNum } from '~/src/helpers/random';
 import { getWordsByIdGroup } from '~/src/models/WordsModel';
+import tailwind from '~/tailwind';
 import { WordType } from '~/types';
 
 type Props = {
@@ -14,7 +15,6 @@ type Props = {
 
 const ChooseSoundEN = memo(({ word, handleSendAnswer }: Props) => {
   const [selected, setSelected] = useState(-1);
-
   const [words, setWords] = useState<WordType[]>([]);
 
   useEffect(() => {
@@ -32,32 +32,25 @@ const ChooseSoundEN = memo(({ word, handleSendAnswer }: Props) => {
     })();
   }, [word]);
 
-  const renderSoundButton = () => {
-    let result: React.ReactNode = null;
-    result = words.map((word, index) => (
-      <SoundButton
-        key={word.id_word}
-        word={word}
-        selected={selected === index}
-        handleSendAnswer={(value) => {
-          setSelected(index);
-          handleSendAnswer(value);
-        }}
-      />
+  const renderSoundButton = () =>
+    words.map((word, index) => (
+      <View key={index} style={tailwind('px-4 pb-4')}>
+        <SoundButton
+          word={word}
+          selected={selected === index}
+          handleSendAnswer={(value) => {
+            setSelected(index);
+            handleSendAnswer(value);
+          }}
+        />
+      </View>
     ));
-    return result;
-  };
 
   return <View style={styles.container}>{renderSoundButton()}</View>;
 });
 
 const styles = StyleSheet.create({
-  container: {
-    flexWrap: 'wrap',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    paddingVertical: 40,
-  },
+  container: { ...tailwind('flex-wrap flex-row justify-center'), paddingVertical: 40 },
 });
 
 export default ChooseSoundEN;

@@ -1,11 +1,10 @@
-/* eslint-disable operator-linebreak */
-import React, { memo, useEffect, useRef, useState } from 'react';
-import { Animated, Image, StyleSheet } from 'react-native';
-import tailwind from 'tailwind-rn';
+import React, { memo, useEffect, useState } from 'react';
+import { Image, StyleSheet } from 'react-native';
 import { Text, View } from '~/src/components/Themed';
 import SoundButton from '~/src/components/UI/SoundButton';
 import { lightBulbIcon } from '~/src/constants/IconSource';
 import { typeAnswersMean, typeAnswersName } from '~/src/helpers/type-condition';
+import tailwind from '~/tailwind';
 import { StatusQuestion, TypesAnswer, WordType } from '~/types';
 
 type Props = {
@@ -16,9 +15,7 @@ type Props = {
 };
 
 const StudyUI = memo(({ status, word, typeAnswer, children }: Props) => {
-  const scaleLightBulb = useRef(new Animated.Value(1)).current;
   const { name_word, mean_word, pronounce_word, count_study } = word;
-
   const [countStudy, setCountStudy] = useState(count_study);
 
   useEffect(() => {
@@ -29,12 +26,6 @@ const StudyUI = memo(({ status, word, typeAnswer, children }: Props) => {
     if (status === 'Correct') {
       const newCount = (countStudy || 0) < 5 ? (countStudy || 0) + 1 : countStudy;
       setCountStudy(newCount);
-      Animated.spring(scaleLightBulb, {
-        toValue: 1.3,
-        useNativeDriver: true,
-      }).start();
-    } else {
-      scaleLightBulb.setValue(1);
     }
   }, [status]);
 
@@ -55,9 +46,9 @@ const StudyUI = memo(({ status, word, typeAnswer, children }: Props) => {
             </Text>
           </View>
         </View>
-        <Animated.View style={[styles.lightBulb, { transform: [{ scale: scaleLightBulb }] }]}>
+        <View style={styles.lightBulb}>
           <Image style={tailwind('w-10 h-10')} source={lightBulbIcon[countStudy || 0]} />
-        </Animated.View>
+        </View>
       </View>
       <View style={tailwind('px-5')}>{children}</View>
     </View>
@@ -65,14 +56,8 @@ const StudyUI = memo(({ status, word, typeAnswer, children }: Props) => {
 });
 
 const styles = StyleSheet.create({
-  viewTop: {
-    ...tailwind('flex-row justify-between px-6 mt-3'),
-    height: 70,
-  },
-  lightBulb: {
-    ...tailwind('items-center mt-2'),
-    flex: 1.2,
-  },
+  viewTop: { ...tailwind('flex-row justify-between px-6 mt-3'), height: 70 },
+  lightBulb: { ...tailwind('items-center mt-2'), flex: 1.2 },
 });
 
 export default StudyUI;

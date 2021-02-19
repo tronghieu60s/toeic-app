@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import tailwind from 'tailwind-rn';
+import tailwind from '~/tailwind';
 import { Text } from '../Themed';
 
 type Props = { title: string };

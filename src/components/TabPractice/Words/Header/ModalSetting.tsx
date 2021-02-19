@@ -1,13 +1,13 @@
 import React, { memo } from 'react';
 import { Image, StyleSheet } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import tailwind from 'tailwind-rn';
 import { Text, View } from '~/src/components/Themed';
 import Modal from '~/src/components/UI/Modal';
 import Switch from '~/src/components/UI/Switch';
 import { lightBulbIcon } from '~/src/constants/IconSource';
 import { toggleExplain, toggleMean, togglePronounce } from '~/src/redux/actions/commonAction';
 import { RootState } from '~/src/redux/reducers/rootReducer';
+import tailwind from '~/tailwind';
 
 type Props = {
   modalVisible: boolean;
@@ -57,10 +57,7 @@ const ModalSetting = memo((props: Props) => {
 });
 
 const styles = StyleSheet.create({
-  flash: {
-    width: 35,
-    height: 35,
-  },
+  flash: { width: 35, height: 35 },
 });
 
 export default ModalSetting;

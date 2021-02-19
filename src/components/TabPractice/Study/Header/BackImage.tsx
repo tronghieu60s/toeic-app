@@ -1,6 +1,6 @@
 import { FontAwesome5 } from '@expo/vector-icons';
 import React, { memo } from 'react';
-import tailwind from 'tailwind-rn';
+import tailwind from '~/tailwind';
 import { View } from '~/src/components/Themed';
 
 export default memo(function TabPracticeStudyHeaderBackImage() {
