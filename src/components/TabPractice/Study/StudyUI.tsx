@@ -50,13 +50,14 @@ const StudyUI = memo(({ status, word, typeAnswer, children }: Props) => {
           <Image style={tailwind('w-10 h-10')} source={lightBulbIcon[countStudy || 0]} />
         </View>
       </View>
-      <View style={tailwind('px-5')}>{children}</View>
+      <View style={styles.viewBottom}>{children}</View>
     </View>
   );
 });
 
 const styles = StyleSheet.create({
-  viewTop: { ...tailwind('flex-row justify-between px-6 mt-3'), height: 70 },
+  viewTop: { ...tailwind('flex-row justify-between px-6 mt-3'), flex: 2 },
+  viewBottom: { ...tailwind('px-5'), flex: 8 },
   lightBulb: { ...tailwind('items-center mt-2'), flex: 1.2 },
 });
 

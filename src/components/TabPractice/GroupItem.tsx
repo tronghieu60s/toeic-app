@@ -31,7 +31,7 @@ const GroupItem = memo(({ group, navigation }: Props) => {
 const styles = StyleSheet.create({
   group: {
     ...tailwind('justify-center mb-3 mx-1 p-5 rounded-lg'),
-    width: Dimensions.get('window').width / 2 - 15,
+    width: Dimensions.get('window').width / 2 - 14,
   },
   groupPronounce: { ...tailwind('text-xs'), color: '#888', marginTop: 2 },
 });

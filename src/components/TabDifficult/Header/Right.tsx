@@ -21,14 +21,14 @@ const TabDifficultRight = memo(({ navigation }: Props) => {
   const words = useSelector((state: RootState) => state.practice.wordsDifficult);
 
   return (
-    <View style={tailwind('w-20 flex-row justify-end items-center mt-2')}>
+    <View style={tailwind('w-20 flex-row justify-end items-center mr-2 mt-2')}>
       {words.length > 0 && (
         <Ripple style={styles.button} onPress={() => navigation.navigate('TabDifficultStudy')}>
-          <Ionicons name="ios-flash" size={22} color={Colors[theme].text} />
+          <Ionicons name="ios-flash" size={20} color={Colors[theme].text} />
         </Ripple>
       )}
       <Ripple style={styles.button} onPress={() => setModalVisible(true)}>
-        <AntDesign name="setting" size={20} color={Colors[theme].text} />
+        <AntDesign name="setting" size={19} color={Colors[theme].text} />
       </Ripple>
       <ModalSetting
         modalVisible={modalVisible}

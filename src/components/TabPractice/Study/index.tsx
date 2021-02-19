@@ -52,7 +52,7 @@ const TabPracticeStudy = memo(({ navigation }: Props) => {
   const [statusStudy, setStatusStudy] = useState<boolean>();
 
   const [userAnswer, setUserAnswer] = useState('');
-  const [typeAnswer, setTypeAnswer] = useState<TypesAnswer>('CHOOSE-NAME-MEAN');
+  const [typeAnswer, setTypeAnswer] = useState<TypesAnswer>();
   const [countQuestion, setCountQuestion] = useState(0);
 
   const dispatch = useDispatch();
@@ -110,8 +110,8 @@ const TabPracticeStudy = memo(({ navigation }: Props) => {
     Keyboard.dismiss();
 
     let expected = '';
-    if (typeAnswersName(typeAnswer)) expected = wordQuestion.name_word || '';
-    if (typeAnswersMean(typeAnswer)) expected = wordQuestion.mean_word || '';
+    if (typeAnswersName(typeAnswer || 'CHOOSE-MEAN-NAME')) expected = wordQuestion.name_word || '';
+    if (typeAnswersMean(typeAnswer || 'CHOOSE-MEAN-NAME')) expected = wordQuestion.mean_word || '';
     expected = convertWordsBase(expected);
 
     const arrExpected = expected.split(',').map((s) => convertWordsBase(s));
@@ -167,8 +167,7 @@ const TabPracticeStudy = memo(({ navigation }: Props) => {
   return (
     <View style={styles.container}>
       <ProcessBar percent={(countQuestion * 100) / totalQuestions} />
-      {statusStudy && <StudyWord word={wordQuestion} />}
-      {!statusStudy && (
+      {statusStudy ? <StudyWord word={wordQuestion} /> : (
         <StudyUI status={status} word={wordQuestion} typeAnswer={typeAnswer}>
           <StudyMode
             word={wordQuestion}

@@ -10,6 +10,7 @@ import TabPracticeHeaderTitle from '~/src/components/TabPractice/Header/Title';
 import TabPracticeStudy from '~/src/components/TabPractice/Study';
 import TabPracticeStudyHeaderRight from '~/src/components/TabPractice/Study/Header/Right';
 import TabPracticeWordDetails from '~/src/components/TabPractice/WordDetails';
+import TabPracticeWordDetailsHeaderRight from '~/src/components/TabPractice/WordDetails/Header/Right';
 import TabPracticeWordDetailHeaderTitle from '~/src/components/TabPractice/WordDetails/Header/Title';
 import TabPracticeWords from '~/src/components/TabPractice/Words';
 import TabPracticeWordsHeaderRight from '~/src/components/TabPractice/Words/Header/Right';
@@ -52,6 +53,7 @@ export default function TabPracticeNavigator(): JSX.Element {
         component={TabPracticeWordDetails}
         options={({ route }) => ({
           headerTitle: () => <TabPracticeWordDetailHeaderTitle route={route} />,
+          headerRight: () => <TabPracticeWordDetailsHeaderRight route={route} />,
         })}
       />
       <TabPracticeStack.Screen

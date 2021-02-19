@@ -30,7 +30,6 @@ const SoundButton = (props: Props) => {
 
   const onPress = () => {
     setSoundPlayed(true);
-    if (handleSendAnswer) handleSendAnswer(name_word);
     SpeechEnglish(name_word, {
       onStart: () => Animated.spring(soundSize, animatedValue(0.85)).start(),
       onDone: () => {
@@ -42,6 +41,8 @@ const SoundButton = (props: Props) => {
         setSoundPlayed(false);
       },
     });
+
+    if (handleSendAnswer) handleSendAnswer(name_word);
   };
 
   return (

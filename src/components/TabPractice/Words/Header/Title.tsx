@@ -21,7 +21,7 @@ const TabPracticeWordsHeaderTitle = memo((props: Props) => {
   return (
     <View>
       <View style={tailwind('flex-row items-center')}>
-        <Text weight={700} style={tailwind('text-base tracking-wider')}>
+        <Text weight={700} style={tailwind('text-sm tracking-wider')}>
           {name_group}
         </Text>
         <Text weight={400} style={styles.count}>

@@ -7,10 +7,10 @@ export const AUDIO_CORRECT_FULL = require('~/assets/sounds/audio_fully_grown.m4a
 export const AUDIO_WRONG = require('~/assets/sounds/audio_wrong_answer.m4a');
 export const AUDIO_FINISH = require('~/assets/sounds/audio_session_end.m4a');
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export async function playSound(source: AVPlaybackSource) {
   const { sound } = await Audio.Sound.createAsync(source);
   await sound.playAsync();
+  await sound.unloadAsync();
 }
 
 export async function SpeechEnglish(value: string, option?: any) {

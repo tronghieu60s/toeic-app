@@ -13,9 +13,9 @@ const StudyWord = memo(({ word }: Props) => {
 
   return (
     <View style={tailwind('w-full h-full flex-1 py-3')}>
-      <View style={tailwind('h-1/3 justify-between items-center py-4')}>
+      <View style={tailwind('h-1/3 justify-between items-center py-3')}>
         <SoundButton autoPlay word={word} />
-        <Text weight={700} style={tailwind('text-xl')}>
+        <Text weight={700} style={tailwind('text-xl mt-3 text-center')}>
           {name_word}
         </Text>
       </View>

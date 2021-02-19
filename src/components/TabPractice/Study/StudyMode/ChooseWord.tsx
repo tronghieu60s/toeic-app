@@ -62,8 +62,9 @@ const ChooseWord = memo(({ word, typeAnswer, handleSendAnswer }: Props) => {
 
 const styles = StyleSheet.create({
   container: {
-    ...tailwind('flex-row flex-wrap mt-3'),
+    ...tailwind('flex-row flex-wrap justify-center items-center'),
     width: Dimensions.get('window').width - 40,
+    height: '72%',
   },
   word: {
     ...tailwind('justify-center items-center m-1 px-4 rounded-lg'),

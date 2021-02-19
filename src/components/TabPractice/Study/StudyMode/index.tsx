@@ -2,7 +2,7 @@
 /* eslint-disable nonblock-statement-body-position */
 import React, { memo } from 'react';
 import { TypesAnswer, WordType } from '~/types';
-import ChooseSoundEN from './ChooseSoundEN';
+import ChooseSound from './ChooseSound';
 import ChooseWord from './ChooseWord';
 import FillWord from './FillWord';
 
@@ -25,7 +25,7 @@ const StudyMode = memo((props: Props) => {
     return <FillWord word={word} handleSendAnswer={handleSendAnswer} />;
 
   if (typeAnswer === 'CHOOSE-MEAN-SOUND')
-    return <ChooseSoundEN word={word} handleSendAnswer={handleSendAnswer} />;
+    return <ChooseSound word={word} handleSendAnswer={handleSendAnswer} />;
 
   if (typeAnswer === 'CHOOSE-SOUND-MEAN')
     return <ChooseWord word={word} typeAnswer={typeAnswer} handleSendAnswer={handleSendAnswer} />;

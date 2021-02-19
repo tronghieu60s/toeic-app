@@ -22,17 +22,17 @@ const TabPracticeWordsHeaderRight = memo(({ navigation }: Props) => {
   const wordsStudy = words.filter((o) => (o.count_study || 0) < 5);
 
   return (
-    <View style={tailwind('flex-row justify-end items-center mr-2')}>
+    <View style={tailwind('flex-row justify-end items-center mr-2 mt-2')}>
       {wordsStudy.length > 0 && (
         <Ripple style={styles.button} onPress={() => navigation.navigate('TabPracticeStudy')}>
-          <SimpleLineIcons name="graduation" size={22} color={Colors[theme].text} />
+          <SimpleLineIcons name="graduation" size={19} color={Colors[theme].text} />
         </Ripple>
       )}
       {/* <Ripple style={styles.button}>
             <Entypo name="time-slot" size={18} color={Colors[theme].text} />
           </Ripple> */}
       <Ripple style={styles.button} onPress={() => setModalVisible(true)}>
-        <AntDesign name="setting" size={20} color={Colors[theme].text} />
+        <AntDesign name="setting" size={19} color={Colors[theme].text} />
       </Ripple>
       <ModalSetting
         modalVisible={modalVisible}
