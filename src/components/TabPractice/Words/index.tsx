@@ -45,7 +45,7 @@ const TabPracticeWords = memo((props: Props) => {
   if (words.length <= 0 && !isPending) return <CenterUI>{text}</CenterUI>;
 
   return (
-    <View light style={tailwind('flex-1 px-3')}>
+    <View light style={tailwind('flex-1 px-2')}>
       <FlatList
         data={words}
         renderItem={renderItem}

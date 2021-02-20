@@ -1,13 +1,13 @@
-import { AntDesign, Ionicons } from '@expo/vector-icons';
+import { AntDesign, SimpleLineIcons } from '@expo/vector-icons';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { memo, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { useSelector } from 'react-redux';
-import tailwind from '~/tailwind';
 import ModalSetting from '~/src/components/TabPractice/Words/Header/ModalSetting';
 import { Ripple, View } from '~/src/components/Themed';
 import Colors from '~/src/constants/Colors';
 import { RootState } from '~/src/redux/reducers/rootReducer';
+import tailwind from '~/tailwind';
 import { TabDifficultParamList } from '~/types';
 
 type Props = {
@@ -24,7 +24,7 @@ const TabDifficultRight = memo(({ navigation }: Props) => {
     <View style={tailwind('w-20 flex-row justify-end items-center mr-2 mt-2')}>
       {words.length > 0 && (
         <Ripple style={styles.button} onPress={() => navigation.navigate('TabDifficultStudy')}>
-          <Ionicons name="ios-flash" size={20} color={Colors[theme].text} />
+          <SimpleLineIcons name="graduation" size={19} color={Colors[theme].text} />
         </Ripple>
       )}
       <Ripple style={styles.button} onPress={() => setModalVisible(true)}>
@@ -39,7 +39,7 @@ const TabDifficultRight = memo(({ navigation }: Props) => {
 });
 
 const styles = StyleSheet.create({
-  button: { ...tailwind('p-2 ml-1 justify-center items-center') },
+  button: { ...tailwind('justify-center items-center p-2') },
 });
 
 export default TabDifficultRight;
