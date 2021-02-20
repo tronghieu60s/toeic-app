@@ -38,7 +38,7 @@ const TabPracticeWordsHeaderTitle = memo((props: Props) => {
 });
 
 const styles = StyleSheet.create({
-  count: { ...tailwind('text-xs tracking-wider ml-2'), marginTop: 2 },
+  count: { ...tailwind('ml-2'), fontSize: 11, letterSpacing: 1, marginTop: 2 },
   mean: { ...tailwind('w-10/12'), fontSize: 11, color: '#5e72e4' },
 });
 

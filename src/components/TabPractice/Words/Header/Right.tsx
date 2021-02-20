@@ -1,4 +1,4 @@
-import { AntDesign, SimpleLineIcons } from '@expo/vector-icons';
+import { AntDesign, Entypo, SimpleLineIcons } from '@expo/vector-icons';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { memo, useState } from 'react';
 import { StyleSheet } from 'react-native';
@@ -19,18 +19,19 @@ const TabPracticeWordsHeaderRight = memo(({ navigation }: Props) => {
 
   const theme = useSelector((state: RootState) => state.common.theme);
   const words = useSelector((state: RootState) => state.practice.words);
-  const wordsStudy = words.filter((o) => (o.count_study || 0) < 5);
 
   return (
-    <View style={tailwind('flex-row justify-end items-center mr-2 mt-2')}>
-      {wordsStudy.length > 0 && (
-        <Ripple style={styles.button} onPress={() => navigation.navigate('TabPracticeStudy')}>
-          <SimpleLineIcons name="graduation" size={19} color={Colors[theme].text} />
-        </Ripple>
+    <View style={styles.container}>
+      {words.length > 0 && (
+        <>
+          <Ripple style={styles.button} onPress={() => navigation.navigate('TabPracticeStudy')}>
+            <SimpleLineIcons name="graduation" size={20} color={Colors[theme].text} />
+          </Ripple>
+          <Ripple style={styles.button}>
+            <Entypo name="time-slot" size={17.5} color={Colors[theme].text} />
+          </Ripple>
+        </>
       )}
-      {/* <Ripple style={styles.button}>
-            <Entypo name="time-slot" size={18} color={Colors[theme].text} />
-          </Ripple> */}
       <Ripple style={styles.button} onPress={() => setModalVisible(true)}>
         <AntDesign name="setting" size={19} color={Colors[theme].text} />
       </Ripple>
@@ -43,7 +44,11 @@ const TabPracticeWordsHeaderRight = memo(({ navigation }: Props) => {
 });
 
 const styles = StyleSheet.create({
-  button: { ...tailwind('justify-center items-center p-2') },
+  container: {
+    ...tailwind('flex-row justify-center items-center mr-1 mt-2'),
+    backgroundColor: '#fff0',
+  },
+  button: { ...tailwind('justify-center items-center p-2'), backgroundColor: '#fff0' },
 });
 
 export default TabPracticeWordsHeaderRight;

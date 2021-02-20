@@ -22,7 +22,7 @@ const SoundButton = (props: Props) => {
 
   const soundSize = useRef(new Animated.Value(1)).current;
   const [soundPlayed, setSoundPlayed] = useState(false);
-  const bgColor = soundPlayed || selected ? '#fff' : '#ffc000';
+  const bgColor = soundPlayed || selected ? '#fff' : '#5e72e4';
 
   useEffect(() => {
     if (autoPlay) onPress();
@@ -67,10 +67,10 @@ SoundButton.defaultProps = {
 const styles = StyleSheet.create({
   sound: {
     ...tailwind('justify-center items-center'),
-    backgroundColor: '#ffc000',
+    backgroundColor: '#5e72e4',
     borderWidth: 5,
     borderRadius: 120,
-    borderColor: '#ffc000',
+    borderColor: '#5e72e4',
     transform: [{ rotate: '-10deg' }],
   },
 });

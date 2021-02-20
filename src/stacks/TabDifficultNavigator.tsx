@@ -4,6 +4,7 @@ import {
   HeaderStyleInterpolators,
 } from '@react-navigation/stack';
 import React from 'react';
+import { Alert } from 'react-native';
 import { useSelector } from 'react-redux';
 import HeaderTitle from '~/src/components/Header/Title';
 import TabDifficultRight from '~/src/components/TabDifficult/Header/Right';
@@ -49,12 +50,31 @@ export default function TabDifficultNavigator(): JSX.Element {
       <TabFavoriteStack.Screen
         name="TabDifficultStudy"
         component={TabDifficultStudy}
-        options={{
-          headerStyle: { backgroundColor: '#47d798' },
-          headerBackImage: () => <TabPracticeStudyHeaderBackImage />,
-          headerTitle: () => <View />,
-          headerRight: () => <TabPracticeStudyHeaderRight />,
-          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+        options={({ navigation }) => {
+          navigation.addListener('beforeRemove', (e: any) => {
+            e.preventDefault();
+
+            Alert.alert(
+              'Thoát phiên học',
+              'Bạn có chắc muốn thoát phiên học này không? Kết quả sẽ được lưu lại.',
+              [
+                { text: 'Hủy', style: 'cancel' },
+                {
+                  text: 'Thoát',
+                  style: 'destructive',
+                  onPress: () => navigation.dispatch(e.data.action),
+                },
+              ],
+            );
+          });
+
+          return {
+            headerStyle: { backgroundColor: '#47d798' },
+            headerBackImage: () => <TabPracticeStudyHeaderBackImage />,
+            headerTitle: () => <View />,
+            headerRight: () => <TabPracticeStudyHeaderRight />,
+            cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+          };
         }}
       />
     </TabFavoriteStack.Navigator>

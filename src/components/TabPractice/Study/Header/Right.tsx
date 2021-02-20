@@ -16,24 +16,24 @@ const TabPracticeStudyHeaderRight = memo(() => {
   useEffect(() => {
     Animated.timing(fadePoint, {
       toValue: 0,
-      duration: 100,
+      duration: 200,
       useNativeDriver: true,
     }).start(() => {
       setPrePoint(pointState - point);
       Animated.timing(fadePrePoint, {
         toValue: 1,
-        duration: 300,
+        duration: 400,
         useNativeDriver: true,
       }).start(() => {
         Animated.timing(fadePrePoint, {
           toValue: 0,
-          duration: 300,
+          duration: 200,
           useNativeDriver: true,
         }).start(() => {
           setPoint(pointState);
           Animated.timing(fadePoint, {
             toValue: 1,
-            duration: 100,
+            duration: 200,
             useNativeDriver: true,
           }).start();
         });

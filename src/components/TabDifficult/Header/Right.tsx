@@ -21,7 +21,7 @@ const TabDifficultRight = memo(({ navigation }: Props) => {
   const words = useSelector((state: RootState) => state.practice.wordsDifficult);
 
   return (
-    <View style={tailwind('w-20 flex-row justify-end items-center mr-2 mt-2')}>
+    <View style={tailwind('w-20 flex-row justify-end items-center mr-1 mt-2')}>
       {words.length > 0 && (
         <Ripple style={styles.button} onPress={() => navigation.navigate('TabDifficultStudy')}>
           <SimpleLineIcons name="graduation" size={19} color={Colors[theme].text} />

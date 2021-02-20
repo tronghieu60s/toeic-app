@@ -64,6 +64,19 @@ const TabPracticeStudy = memo(({ navigation }: Props) => {
   useEffect(() => {
     Speech.stop();
 
+    LayoutAnimation.configureNext({
+      duration: 300,
+      create: {
+        type: LayoutAnimation.Types.linear,
+        property: LayoutAnimation.Properties.opacity,
+      },
+      delete: {
+        duration: 200,
+        type: LayoutAnimation.Types.linear,
+        property: LayoutAnimation.Properties.opacity,
+      },
+    });
+
     const { count_study } = wordQuestion;
     switch (count_study) {
       case null:
@@ -88,14 +101,6 @@ const TabPracticeStudy = memo(({ navigation }: Props) => {
       default:
         break;
     }
-
-    LayoutAnimation.configureNext({
-      duration: 200,
-      create: {
-        type: LayoutAnimation.Types.linear,
-        property: LayoutAnimation.Properties.opacity,
-      },
-    });
   }, [wordQuestion]);
 
   useEffect(() => {
@@ -131,9 +136,9 @@ const TabPracticeStudy = memo(({ navigation }: Props) => {
     } else {
       dispatch(actStudyInCorrect(wordQuestion));
 
+      setStatus('Incorrect');
       Vibration.vibrate(200);
       await playSound(AUDIO_WRONG);
-      setStatus('Incorrect');
     }
   };
   const handleContinue = () => {
@@ -167,7 +172,9 @@ const TabPracticeStudy = memo(({ navigation }: Props) => {
   return (
     <View style={styles.container}>
       <ProcessBar percent={(countQuestion * 100) / totalQuestions} />
-      {statusStudy ? <StudyWord word={wordQuestion} /> : (
+      {statusStudy ? (
+        <StudyWord word={wordQuestion} />
+      ) : (
         <StudyUI status={status} word={wordQuestion} typeAnswer={typeAnswer}>
           <StudyMode
             word={wordQuestion}
