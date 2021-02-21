@@ -9,6 +9,7 @@ import { RootStackParamList } from '../../types';
 import BottomTabNavigator from './BottomTabNavigator';
 import LinkingConfiguration from './LinkingConfiguration';
 import { actLoadCommon } from '../redux/actions/commonAction';
+import { actLoadWordsDifficult } from '../redux/actions/practiceAction';
 
 // If you are not familiar with React Navigation, we recommend going through the
 // "Fundamentals" guide: https://reactnavigation.org/docs/getting-started
@@ -18,6 +19,7 @@ export default function Navigation(): JSX.Element {
 
   React.useEffect(() => {
     dispatch(actLoadCommon());
+    dispatch(actLoadWordsDifficult());
   }, []);
 
   return (

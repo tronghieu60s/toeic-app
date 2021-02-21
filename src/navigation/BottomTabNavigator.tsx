@@ -7,7 +7,7 @@ import TabDifficultNavigator from '~/src/stacks/TabDifficultNavigator';
 import TabPracticeNavigator from '~/src/stacks/TabPracticeNavigator';
 import { BottomTabParamList } from '../../types';
 import Colors from '../constants/Colors';
-import BottomTabBarIcon from './BottomTabIcon';
+import BottomTabIcon from './BottomTabIcon';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -33,7 +33,7 @@ export default function BottomTabNavigator(): JSX.Element {
         return {
           tabBarVisible,
           tabBarButton: (props) => <Ripple {...props} />,
-          tabBarIcon: (props) => <BottomTabBarIcon route={route} {...props} />,
+          tabBarIcon: (props) => <BottomTabIcon route={route} {...props} />,
         };
       }}
     >

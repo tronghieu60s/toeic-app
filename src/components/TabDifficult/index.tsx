@@ -1,31 +1,22 @@
 import { StackNavigationProp } from '@react-navigation/stack';
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo } from 'react';
 import { FlatList } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { actLoadWordsDifficult, actToggleFlashWord } from '~/src/redux/actions/practiceAction';
+import { actToggleFlashWord } from '~/src/redux/actions/practiceAction';
 import { RootState } from '~/src/redux/reducers/rootReducer';
 import tailwind from '~/tailwind';
 import { TabDifficultParamList, WordType } from '~/types';
 import WordItem from '../TabPractice/Words/WordItem';
 import { View } from '../Themed';
 import CenterUI from '../UI/Center';
-import Loading from '../UI/Loading';
 
 type Props = {
   navigation: StackNavigationProp<TabDifficultParamList, 'TabDifficultScreen'>;
 };
 
 const TabDifficult = memo(({ navigation }: Props) => {
-  const [isPending, setIsPending] = useState(true);
   const dispatch = useDispatch();
   const words = useSelector((state: RootState) => state.practice.wordsDifficult);
-
-  useEffect(() => {
-    (async () => {
-      await dispatch(actLoadWordsDifficult());
-      setIsPending(false);
-    })();
-  }, []);
 
   const renderItem = ({ item }: { item: WordType }) => (
     <WordItem word={item} handleFlashWord={handleFlashWord} handleDetailsWord={handleDetailsWord} />
@@ -36,8 +27,7 @@ const TabDifficult = memo(({ navigation }: Props) => {
     navigation.navigate('TabPracticeWordDetails', { word });
 
   const text = 'Không có từ khó. Bạn đang làm rất tốt ^^.';
-  if (isPending) return <Loading />;
-  if (words.length <= 0 && !isPending) return <CenterUI>{text}</CenterUI>;
+  if (words.length <= 0) return <CenterUI>{text}</CenterUI>;
 
   return (
     <View light style={tailwind('flex-1 px-2')}>

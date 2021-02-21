@@ -11,7 +11,7 @@ type Props = {
   handleContinue: () => void;
 };
 
-const BottomUI = memo((props: Props) => {
+export default memo(function TabPracticeStudyBottom(props: Props) {
   const { status, userAnswer, handleContinue } = props;
 
   const textButton = status !== 'Waiting' ? 'Tiếp tục' : 'Kiểm tra';
@@ -39,12 +39,10 @@ const BottomUI = memo((props: Props) => {
 });
 
 const styles = StyleSheet.create({
-  viewBottom: { ...tailwind('bg-transparent px-5 mb-4 z-50') },
+  viewBottom: { ...tailwind('bg-transparent px-4 mb-4 z-50') },
   continue: {
-    ...tailwind('justify-center items-center rounded-3xl py-2'),
+    ...tailwind('justify-center items-center rounded-2xl py-2'),
     backgroundColor: '#2dce89',
   },
   continueText: { ...tailwind('text-xl capitalize'), color: '#2c3749' },
 });
-
-export default BottomUI;

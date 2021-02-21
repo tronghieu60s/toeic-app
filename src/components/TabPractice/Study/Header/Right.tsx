@@ -43,7 +43,7 @@ const TabPracticeStudyHeaderRight = memo(() => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.point}>
+      {/* <View style={styles.point}>
         <Animated.View style={{ opacity: fadePoint }}>
           <Text weight={700} style={tailwind('text-sm')}>
             {point}
@@ -54,7 +54,7 @@ const TabPracticeStudyHeaderRight = memo(() => {
             {prePoint}
           </Text>
         </Animated.View>
-      </View>
+      </View> */}
     </View>
   );
 });

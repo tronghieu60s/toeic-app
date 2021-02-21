@@ -16,7 +16,7 @@ const TabPracticeWordsHeaderTitle = memo((props: Props) => {
   const { name_group, mean_group, pronounce_group } = route.params.group;
 
   const words = useSelector((state: RootState) => state.practice.words);
-  const wordsComplete = words.filter((o) => (o.count_study || 0) >= 5);
+  const wordsComplete = words.filter((o) => (o.count_study || 0) >= 6).length;
 
   return (
     <View>
@@ -25,7 +25,7 @@ const TabPracticeWordsHeaderTitle = memo((props: Props) => {
           {name_group}
         </Text>
         <Text weight={400} style={styles.count}>
-          ({wordsComplete.length}/{words.length})
+          ({wordsComplete}/{words.length})
         </Text>
       </View>
       <Text style={styles.mean}>
@@ -38,7 +38,7 @@ const TabPracticeWordsHeaderTitle = memo((props: Props) => {
 });
 
 const styles = StyleSheet.create({
-  count: { ...tailwind('ml-2'), fontSize: 11, letterSpacing: 1, marginTop: 2 },
+  count: { ...tailwind('ml-2'), fontSize: 9, letterSpacing: 1.2, marginTop: 2 },
   mean: { ...tailwind('w-10/12'), fontSize: 11, color: '#5e72e4' },
 });
 

@@ -1,5 +1,5 @@
 import React, { memo, useEffect } from 'react';
-import { Dimensions, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import { View } from '~/src/components/Themed';
 import { WordType } from '~/types';
@@ -22,7 +22,7 @@ const FillWord = memo(({ word, handleSendAnswer }: Props) => {
   };
 
   return (
-    <View style={{ paddingVertical: 20 }}>
+    <View style={{ paddingBottom: 20 }}>
       <TextInput
         multiline
         autoFocus
@@ -38,7 +38,7 @@ const FillWord = memo(({ word, handleSendAnswer }: Props) => {
 const styles = StyleSheet.create({
   input: {
     fontSize: 18,
-    height: Dimensions.get('window').height / 3.5,
+    height: '100%',
     borderColor: '#999999a1',
     borderRadius: 10,
     padding: 20,

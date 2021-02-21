@@ -1,6 +1,7 @@
+import { Feather } from '@expo/vector-icons';
 import React, { memo, useEffect, useRef } from 'react';
-import { Animated, Dimensions, StyleSheet } from 'react-native';
-import { Text, View } from '~/src/components/Themed';
+import { Animated, Dimensions, StyleSheet, ToastAndroid } from 'react-native';
+import { Ripple, Text, View } from '~/src/components/Themed';
 import { TEXT_CORRECT, TEXT_INCORRECT } from '~/src/constants/Text/Study';
 import { randomBetweenTwoNumber as rdNum } from '~/src/helpers/random';
 import tailwind from '~/tailwind';
@@ -11,7 +12,7 @@ type Props = {
   status: StatusQuestion;
 };
 
-const AlertUI = memo(({ word, status }: Props) => {
+export default memo(function TabPracticeStudyAlert({ word, status }: Props) {
   const { name_word, mean_word } = word;
   const outPosition = useRef(new Animated.Value(Dimensions.get('window').height / 4)).current;
 
@@ -29,6 +30,13 @@ const AlertUI = memo(({ word, status }: Props) => {
     }
   }, []);
 
+  const onPressReport = () => {
+    ToastAndroid.show(
+      'Chức năng này đang cập nhật và sẽ được thêm vào các phiên bản sắp tới.',
+      ToastAndroid.SHORT,
+    );
+  };
+
   return (
     <View style={styles.viewFinish}>
       <Animated.View style={{ transform: [{ translateY: outPosition }] }}>
@@ -44,14 +52,14 @@ const AlertUI = memo(({ word, status }: Props) => {
             </Text>
           </View>
           <View style={tailwind('bg-transparent items-end')}>
-            {/* <Ripple
+            <Ripple
               lightColor="transparent"
               darkColor="transparent"
               style={tailwind('p-2')}
               onPress={onPressReport}
             >
               <Feather name="flag" size={20} color="#f4f5f7" />
-            </Ripple> */}
+            </Ripple>
           </View>
         </View>
       </Animated.View>
@@ -66,5 +74,3 @@ const styles = StyleSheet.create({
   },
   viewFinishTab: { ...tailwind('w-full flex-row justify-between pt-4 px-4'), height: 180 },
 });
-
-export default AlertUI;

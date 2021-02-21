@@ -30,11 +30,14 @@ import {
 import { RootState } from '~/src/redux/reducers/rootReducer';
 import tailwind from '~/tailwind';
 import { StatusQuestion, TabPracticeParamList, TypesAnswer, WordType } from '~/types';
-import AlertUI from './AlertUI';
-import BottomUI from './BottomUI';
+import AlertUI from './Alert';
+import BottomUI from './Bottom';
 import StudyMode from './StudyMode';
 import StudyWord from './StudyMode/StudyWord';
-import StudyUI from './StudyUI';
+import StudyUI from './StudyCover';
+import Config from '~/src/constants/Config';
+
+const { total_max } = Config.study;
 
 if (Platform.OS === 'android') {
   if (UIManager.setLayoutAnimationEnabledExperimental) {
@@ -47,7 +50,7 @@ type Props = {
 };
 
 const TabPracticeStudy = memo(({ navigation }: Props) => {
-  const totalQuestions = 10;
+  const totalQuestions = total_max;
   const [status, setStatus] = useState<StatusQuestion>('Waiting');
   const [statusStudy, setStatusStudy] = useState<boolean>();
 
@@ -56,9 +59,7 @@ const TabPracticeStudy = memo(({ navigation }: Props) => {
   const [countQuestion, setCountQuestion] = useState(0);
 
   const dispatch = useDispatch();
-  const words = useSelector((state: RootState) => state.practice.words).filter(
-    (o) => (o.count_study || 0) < 5,
-  );
+  const words = useSelector((state: RootState) => state.practice.words);
   const [wordQuestion, setWordQuestion] = useState<WordType>(() => words[rdNum(0, words.length)]);
 
   useEffect(() => {
@@ -77,17 +78,17 @@ const TabPracticeStudy = memo(({ navigation }: Props) => {
       },
     });
 
-    const { count_study } = wordQuestion;
+    const { count_study = 0 } = wordQuestion;
     switch (count_study) {
       case null:
         setStatusStudy(true);
         setTypeAnswer('CHOOSE-NAME-MEAN');
         break;
       case 1:
-        setTypeAnswer('CHOOSE-SOUND-MEAN');
+        setTypeAnswer('CHOOSE-MEAN-NAME');
         break;
       case 2:
-        setTypeAnswer('CHOOSE-MEAN-NAME');
+        setTypeAnswer('CHOOSE-SOUND-MEAN');
         break;
       case 3:
         setTypeAnswer('FILL-MEAN-NAME');
@@ -99,6 +100,14 @@ const TabPracticeStudy = memo(({ navigation }: Props) => {
         setTypeAnswer('FILL-NAME-MEAN');
         break;
       default:
+        {
+          const rdStudy = rdNum(1, 5);
+          if (rdStudy === 1) setTypeAnswer('CHOOSE-MEAN-NAME');
+          if (rdStudy === 2) setTypeAnswer('CHOOSE-SOUND-MEAN');
+          if (rdStudy === 3) setTypeAnswer('FILL-MEAN-NAME');
+          if (rdStudy === 4) setTypeAnswer('CHOOSE-MEAN-SOUND');
+          if (rdStudy === 5) setTypeAnswer('FILL-NAME-MEAN');
+        }
         break;
     }
   }, [wordQuestion]);
@@ -172,9 +181,8 @@ const TabPracticeStudy = memo(({ navigation }: Props) => {
   return (
     <View style={styles.container}>
       <ProcessBar percent={(countQuestion * 100) / totalQuestions} />
-      {statusStudy ? (
-        <StudyWord word={wordQuestion} />
-      ) : (
+      {statusStudy && <StudyWord word={wordQuestion} />}
+      {!statusStudy && (
         <StudyUI status={status} word={wordQuestion} typeAnswer={typeAnswer}>
           <StudyMode
             word={wordQuestion}

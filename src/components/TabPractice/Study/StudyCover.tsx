@@ -1,8 +1,7 @@
 import React, { memo, useEffect, useState } from 'react';
-import { Image, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { Text, View } from '~/src/components/Themed';
 import SoundButton from '~/src/components/UI/SoundButton';
-import { lightBulbIcon } from '~/src/constants/IconSource';
 import { typeAnswersMean, typeAnswersName } from '~/src/helpers/type-condition';
 import tailwind from '~/tailwind';
 import { StatusQuestion, TypesAnswer, WordType } from '~/types';
@@ -14,7 +13,8 @@ type Props = {
   children: JSX.Element;
 };
 
-const StudyUI = memo(({ status, word, typeAnswer, children }: Props) => {
+export default memo(function TabPracticeStudyStudyCover(props: Props) {
+  const { status, word, typeAnswer, children } = props;
   const { name_word, mean_word, pronounce_word, count_study } = word;
   const [countStudy, setCountStudy] = useState(count_study);
 
@@ -46,9 +46,6 @@ const StudyUI = memo(({ status, word, typeAnswer, children }: Props) => {
             </Text>
           </View>
         </View>
-        <View style={styles.lightBulb}>
-          <Image style={tailwind('w-10 h-10')} source={lightBulbIcon[countStudy || 0]} />
-        </View>
       </View>
       <View style={styles.viewBottom}>{children}</View>
     </View>
@@ -58,7 +55,4 @@ const StudyUI = memo(({ status, word, typeAnswer, children }: Props) => {
 const styles = StyleSheet.create({
   viewTop: { ...tailwind('flex-row justify-between px-6 mt-3'), flex: 2 },
   viewBottom: { ...tailwind('px-5'), flex: 8 },
-  lightBulb: { ...tailwind('items-center mt-2'), flex: 1.2 },
 });
-
-export default StudyUI;
