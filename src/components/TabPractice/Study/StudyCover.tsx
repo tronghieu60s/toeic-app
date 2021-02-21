@@ -38,7 +38,7 @@ export default memo(function TabPracticeStudyStudyCover(props: Props) {
       <View style={styles.viewTop}>
         <View style={{ flex: 8 }}>
           <View style={tailwind('flex-row')}>
-            {typeAnswer === 'CHOOSE-SOUND-MEAN' && <SoundButton size={70} word={word} autoPlay />}
+            {typeAnswer === 'CHOOSE-SOUND-MEAN' && <SoundButton size={70} word={word} />}
             <Text weight={700} style={tailwind('text-lg w-10/12')}>
               {typeAnswer !== 'CHOOSE-SOUND-MEAN' && question}
               {(typeAnswer === 'CHOOSE-NAME-MEAN' || typeAnswer === 'FILL-NAME-MEAN') &&

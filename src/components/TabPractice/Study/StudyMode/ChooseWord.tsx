@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
   container: {
     ...tailwind('flex-row flex-wrap justify-center items-center'),
     width: Dimensions.get('window').width - 40,
-    height: '72%',
+    height: '75%',
   },
   word: {
     ...tailwind('justify-center items-center m-1 px-4 rounded-lg'),

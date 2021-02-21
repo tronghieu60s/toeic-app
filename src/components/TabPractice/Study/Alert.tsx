@@ -69,8 +69,8 @@ export default memo(function TabPracticeStudyAlert({ word, status }: Props) {
 
 const styles = StyleSheet.create({
   viewFinish: {
-    ...tailwind('w-full justify-end items-end absolute bottom-0'),
-    backgroundColor: '#fff0',
+    ...tailwind('w-full h-full justify-end items-end absolute bottom-0'),
+    backgroundColor: '#ffffffbd',
   },
   viewFinishTab: { ...tailwind('w-full flex-row justify-between pt-4 px-4'), height: 180 },
 });

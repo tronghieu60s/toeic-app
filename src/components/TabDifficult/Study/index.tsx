@@ -1,7 +1,7 @@
 import { StackNavigationProp } from '@react-navigation/stack';
 import * as Speech from 'expo-speech';
 import React, { memo, useEffect, useState } from 'react';
-import { Keyboard, LayoutAnimation, Platform, UIManager, Vibration } from 'react-native';
+import { Keyboard, Vibration } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import AlertUI from '~/src/components/TabPractice/Study/Alert';
 import BottomUI from '~/src/components/TabPractice/Study/Bottom';
@@ -12,18 +12,11 @@ import { View } from '~/src/components/Themed';
 import ProcessBar from '~/src/components/UI/ProcessBar';
 import { convertWordsBase, removeVietnameseTones as rmVN } from '~/src/helpers/convert';
 import { randomBetweenTwoNumber as rdNum } from '~/src/helpers/random';
-import { AUDIO_CORRECT, AUDIO_FINISH, AUDIO_WRONG, playSound } from '~/src/helpers/sound';
 import { typeAnswersMean, typeAnswersName } from '~/src/helpers/type-condition';
 import { actStudyCorrectDifficult, increasePoint } from '~/src/redux/actions/practiceAction';
 import { RootState } from '~/src/redux/reducers/rootReducer';
 import tailwind from '~/tailwind';
 import { StatusQuestion, TabDifficultParamList, TypesAnswer, WordType } from '~/types';
-
-if (Platform.OS === 'android') {
-  if (UIManager.setLayoutAnimationEnabledExperimental) {
-    UIManager.setLayoutAnimationEnabledExperimental(true);
-  }
-}
 
 type Props = {
   navigation: StackNavigationProp<TabDifficultParamList, 'TabDifficultStudy'>;
@@ -44,19 +37,6 @@ const TabDifficultStudy = memo(({ navigation }: Props) => {
 
   useEffect(() => {
     Speech.stop();
-
-    LayoutAnimation.configureNext({
-      duration: 300,
-      create: {
-        type: LayoutAnimation.Types.linear,
-        property: LayoutAnimation.Properties.opacity,
-      },
-      delete: {
-        duration: 200,
-        type: LayoutAnimation.Types.linear,
-        property: LayoutAnimation.Properties.opacity,
-      },
-    });
 
     const rdStudy = rdNum(1, 5);
     if (rdStudy === 1) setTypeAnswer('CHOOSE-MEAN-NAME');
@@ -100,12 +80,10 @@ const TabDifficultStudy = memo(({ navigation }: Props) => {
       dispatch(actStudyCorrectDifficult(wordQuestion));
       setCountQuestion(countQuestion + 1);
 
-      playSound(AUDIO_CORRECT);
       setStatus('Correct');
     } else {
       setStatus('Incorrect');
       Vibration.vibrate(200);
-      await playSound(AUDIO_WRONG);
     }
   };
   const handleContinue = () => {
@@ -117,7 +95,6 @@ const TabDifficultStudy = memo(({ navigation }: Props) => {
 
     // Handle Exit Study
     if (countQuestion === totalQuestions || words.length === 0) {
-      playSound(AUDIO_FINISH);
       navigation.removeListener('beforeRemove', (e) => navigation.dispatch(e.data.action));
       navigation.goBack();
       return;

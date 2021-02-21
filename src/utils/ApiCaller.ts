@@ -1,7 +1,8 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { Alert } from 'react-native';
+import Config from '~/src/constants/Config';
 
-const urlApi = 'https://raw.githubusercontent.com/tronghieu60s/toeic-ew-data/master';
+const urlApi = Config.api.data;
 
 export default function apiCaller(
   endpoint: string,

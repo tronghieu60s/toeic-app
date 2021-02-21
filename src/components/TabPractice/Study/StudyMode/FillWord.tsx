@@ -25,7 +25,6 @@ const FillWord = memo(({ word, handleSendAnswer }: Props) => {
     <View style={{ paddingBottom: 20 }}>
       <TextInput
         multiline
-        autoFocus
         value={text}
         style={styles.input}
         placeholder="Nhập nghĩa vào đây..."

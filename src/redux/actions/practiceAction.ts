@@ -73,7 +73,6 @@ export const actStudyCorrect = (word: WordType) => async (
   const { id_word, id_group, id_study, count_study = 0 } = word;
   if (id_study) {
     if (count_study < count_max) await updateStudies({ ...word, count_study: count_study + 1 });
-    else await updateStudies({ ...word, difficult_study: 0 });
   } else await createStudies({ id_study: id_word, count_study: 1 });
 
   const words = await getWordsByIdGroup({ id_group });

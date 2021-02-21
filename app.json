@@ -2,10 +2,10 @@
   "expo": {
     "name": "Toeic Essential Words",
     "slug": "toeic-ew",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "estudy-toeicew",
+    "scheme": "toeic-ew",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/images/splash.png",
@@ -26,7 +26,7 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.tronghieuit.estudytoeicew",
+      "package": "com.tronghieuit.toeicew",
       "permissions": ["VIBRATE"]
     },
     "web": {
