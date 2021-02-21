@@ -37,7 +37,7 @@ const FillWord = memo(({ word, handleSendAnswer }: Props) => {
 const styles = StyleSheet.create({
   input: {
     fontSize: 18,
-    height: '100%',
+    height: '80%',
     borderColor: '#999999a1',
     borderRadius: 10,
     padding: 20,

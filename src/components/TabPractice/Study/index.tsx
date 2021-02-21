@@ -59,8 +59,8 @@ const TabPracticeStudy = memo(({ navigation }: Props) => {
     const newWords = loadWordsStudy(words);
     setWordsStudy(newWords);
 
-    console.log('--- DEBUG ---');
-    newWords.map((o) => console.log(`${o.name_word} - ${o.count_study}`));
+    // console.log('--- DEBUG ---');
+    // newWords.map((o) => console.log(`${o.name_word} - ${o.count_study}`));
   }, [words]);
 
   useEffect(() => {

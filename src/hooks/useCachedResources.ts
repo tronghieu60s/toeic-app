@@ -2,19 +2,27 @@ import { Ionicons } from '@expo/vector-icons';
 import * as Font from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import * as React from 'react';
-import { initDatabase } from '~/src/utils/SQLite';
+import { executeSql, initDbTable, isNewVersionDatabase, loadDataFromApi } from '~/src/utils/SQLite';
+import { delayLoading } from '../helpers/common';
 
-export default function useCachedResources(): boolean {
+type Props = {
+  isLoadingComplete: boolean;
+  processNumber: number;
+  processText: string;
+};
+
+export default function useCachedResources(): Props {
+  const [processText, setProcessText] = React.useState('');
+  const [processNumber, setProcessNumber] = React.useState(0);
   const [isLoadingComplete, setLoadingComplete] = React.useState(false);
 
   // Load any resources or data that we need prior to rendering the app
   React.useEffect(() => {
     async function loadResourcesAndDataAsync() {
       try {
-        // Load Database
-        await initDatabase();
+        setProcessText('Đang khởi tạo dữ liệu.');
 
-        // Load fonts
+        // Load Database and Fonts
         await Font.loadAsync({
           ...Ionicons.font,
           'space-mono': require('~/assets/fonts/SpaceMono-Regular.ttf'),
@@ -24,6 +32,41 @@ export default function useCachedResources(): boolean {
           'san-700': require('~/assets/fonts/OpenSans-Bold.ttf'),
           'san-800': require('~/assets/fonts/OpenSans-ExtraBold.ttf'),
         });
+        await initDbTable();
+
+        await delayLoading();
+        setProcessNumber(20);
+        setProcessText('Đang kiểm tra cập nhật.');
+
+        // Check Update From Server
+        const isNew = await isNewVersionDatabase();
+
+        await delayLoading();
+        setProcessNumber(40);
+
+        // Check Update
+        if (isNew) {
+          // Update
+          setProcessText('Đã tìm thấy bản cập nhật, đang cập nhật.');
+          // Delete All Data Before Load New Data
+          await executeSql('drop table groups;');
+          await executeSql('drop table words;');
+          await initDbTable();
+
+          await delayLoading();
+          setProcessNumber(70);
+          setProcessText('Đang tải dữ liệu.');
+
+          // Load Data From Api
+          await loadDataFromApi();
+          await delayLoading();
+        } else {
+          // Not Update
+          setProcessText('Không có bản cập nhật nào.');
+        }
+
+        setProcessNumber(100);
+        await delayLoading();
 
         SplashScreen.preventAutoHideAsync();
       } catch (e) {
@@ -38,5 +81,5 @@ export default function useCachedResources(): boolean {
     loadResourcesAndDataAsync();
   }, []);
 
-  return isLoadingComplete;
+  return { isLoadingComplete, processNumber, processText };
 }

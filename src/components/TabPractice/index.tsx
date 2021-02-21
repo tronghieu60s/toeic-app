@@ -37,6 +37,38 @@ const TabPractice = memo((props: Props) => {
         title: 'Office Issues',
         data: groups.slice(5, 10),
       },
+      {
+        title: 'Personnel',
+        data: groups.slice(10, 15),
+      },
+      {
+        title: 'Purchasing',
+        data: groups.slice(15, 20),
+      },
+      {
+        title: 'Financing and Budgeting',
+        data: groups.slice(20, 25),
+      },
+      {
+        title: 'Management Issues',
+        data: groups.slice(25, 30),
+      },
+      {
+        title: 'Restaurants and Events',
+        data: groups.slice(30, 35),
+      },
+      {
+        title: 'Travel',
+        data: groups.slice(35, 40),
+      },
+      {
+        title: 'Entertainment',
+        data: groups.slice(40, 45),
+      },
+      {
+        title: 'Health',
+        data: groups.slice(45, 50),
+      },
     ];
     setGroupsRender(groupsData);
   }, [groups]);
@@ -44,9 +76,11 @@ const TabPractice = memo((props: Props) => {
   const renderItems = (groups: { title: string; data: GroupType[] }[]) =>
     groups.map((group, index) => (
       <React.Fragment key={index}>
-        <Text weight={700} style={styles.groupsTitle}>
-          {group.title}
-        </Text>
+        {group.data.length > 0 && (
+          <Text weight={700} style={styles.groupsTitle}>
+            {group.title}
+          </Text>
+        )}
         <View style={styles.groups}>
           {group.data.map((item, index) => (
             <GroupItem key={index} group={item} navigation={navigation} />

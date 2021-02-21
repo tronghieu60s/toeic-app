@@ -12,7 +12,35 @@ type ExecuteSQL = {
   rowsAffected: number;
 };
 
-const initDbTable = async () => {
+export const executeSql = (sql: string, params: any = []): Promise<ExecuteSQL> => {
+  return new Promise((resolve) => {
+    db.transaction((tx) => {
+      tx.executeSql(
+        sql,
+        params,
+        (_, { rows, insertId, rowsAffected }) => {
+          const { _array } = rows;
+          const data = _array.length === 0 ? null : _array;
+          const result: ExecuteSQL = {
+            data,
+            insertId,
+            rowsAffected,
+          };
+          resolve(result);
+        },
+        (_, err) => {
+          console.log(err);
+          Alert.alert(`${err}`);
+          return false;
+        },
+      );
+    });
+  });
+};
+
+// ----
+
+export const initDbTable = async () => {
   await executeSql(
     `create table if not exists options (
     id_option integer primary key not null, 
@@ -50,7 +78,7 @@ const initDbTable = async () => {
   );
 };
 
-const isNewVersionDatabase = () => {
+export const isNewVersionDatabase = () => {
   return executeSql('select * from options where id_option = 1').then((option) => {
     if (option.data !== null) {
       // Call Api Get Version DB
@@ -114,43 +142,9 @@ const loadDataWordsFromApi = async () => {
   });
 };
 
-export const initDatabase = async () => {
-  await initDbTable();
-  const isNew = await isNewVersionDatabase();
-  if (isNew) {
-    // Delete All Data Before Load New Data
-    await executeSql('drop table groups;');
-    await executeSql('drop table words;');
-    await initDbTable();
-
-    // Load Data From Api
-    await loadDataGroupsFromApi();
-    await loadDataWordsFromApi();
-  }
+export const loadDataFromApi = async () => {
+  await loadDataGroupsFromApi();
+  await loadDataWordsFromApi();
 };
 
-export const executeSql = (sql: string, params: any = []): Promise<ExecuteSQL> => {
-  return new Promise((resolve) => {
-    db.transaction((tx) => {
-      tx.executeSql(
-        sql,
-        params,
-        (_, { rows, insertId, rowsAffected }) => {
-          const { _array } = rows;
-          const data = _array.length === 0 ? null : _array;
-          const result: ExecuteSQL = {
-            data,
-            insertId,
-            rowsAffected,
-          };
-          resolve(result);
-        },
-        (_, err) => {
-          console.log(err);
-          Alert.alert(`${err}`);
-          return false;
-        },
-      );
-    });
-  });
-};
+// ----
