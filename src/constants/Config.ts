@@ -5,6 +5,6 @@ export default {
     difficult_max: 4,
   },
   api: {
-    data: 'https://raw.githubusercontent.com/tronghieu60s/toeic-ew-data/master',
+    data: 'https://raw.githubusercontent.com/naruto-tech/etoeic-ew/master',
   },
 };

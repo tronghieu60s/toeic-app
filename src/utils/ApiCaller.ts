@@ -1,5 +1,4 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import { Alert } from 'react-native';
 import Config from '~/src/constants/Config';
 
 const urlApi = Config.api.data;
@@ -12,6 +11,6 @@ export default function apiCaller(
     .then((res) => res.data)
     .catch((err) => {
       console.log(err);
-      Alert.alert(err);
+      // Alert.alert(err);
     });
 }

@@ -2,7 +2,7 @@
   "expo": {
     "name": "Toeic Essential Words",
     "slug": "toeic-ew",
-    "version": "1.0.1",
+    "version": "0.0.1",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "toeic-ew",

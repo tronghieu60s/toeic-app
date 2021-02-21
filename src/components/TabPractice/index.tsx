@@ -2,6 +2,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import React, { memo, useEffect, useState } from 'react';
 import { Dimensions, StyleSheet } from 'react-native';
 import { getGroups } from '~/src/models/GroupsModel';
+import apiCaller from '~/src/utils/ApiCaller';
 import tailwind from '~/tailwind';
 import { GroupType, TabPracticeParamList } from '~/types';
 import { ScrollView, Text, View } from '../Themed';
@@ -15,6 +16,8 @@ type Props = {
 
 const TabPractice = memo((props: Props) => {
   const [isPending, setIsPending] = useState(true);
+  const [message, setMessage] = useState({ content: '', color: '' });
+
   const { navigation } = props;
   const [groups, setGroups] = useState<GroupType[]>([]);
   const [groupsRender, setGroupsRender] = useState<{ title: string; data: GroupType[] }[]>([]);
@@ -23,6 +26,13 @@ const TabPractice = memo((props: Props) => {
     (async () => {
       const groups = await getGroups();
       if (groups.data !== null) setGroups(groups.data);
+
+      const data = await apiCaller('config.json');
+      if (data) {
+        const { message, color_message } = data;
+        setMessage({ content: message, color: color_message });
+      }
+
       setIsPending(false);
     })();
   }, []);
@@ -96,6 +106,17 @@ const TabPractice = memo((props: Props) => {
   return (
     <ScrollView style={tailwind('flex-1')}>
       <View light style={tailwind('pb-14 px-1')}>
+        {(message.content || '').length > 0 && (
+          <View
+            style={tailwind(
+              `px-4 py-3 mt-3 mx-1 rounded-lg bg-${
+                message.color === undefined ? 'blue' : message.color
+              }-500`,
+            )}
+          >
+            <Text style={tailwind('text-white')}>{message.content}</Text>
+          </View>
+        )}
         {renderItems(groupsRender)}
       </View>
     </ScrollView>

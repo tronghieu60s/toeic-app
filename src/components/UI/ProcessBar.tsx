@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
     justifyContent: 'center',
-    borderColor: '#666',
+    borderColor: '#888',
     zIndex: 500,
   },
   process: {

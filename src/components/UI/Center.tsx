@@ -8,8 +8,8 @@ export default function CenterUI(props: Props): JSX.Element {
   const { children } = props;
 
   return (
-    <View style={tailwind('flex-1 justify-center items-center')}>
-      <Text style={{ fontSize: 13 }}>{children}</Text>
+    <View style={tailwind('flex-1 justify-center items-center px-10 pb-20')}>
+      <Text style={{ fontSize: 13, textAlign: 'center' }}>{children}</Text>
     </View>
   );
 }

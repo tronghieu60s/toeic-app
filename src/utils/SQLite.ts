@@ -1,6 +1,5 @@
 /* eslint-disable arrow-body-style */
 import { openDatabase } from 'expo-sqlite';
-import { Alert } from 'react-native';
 import { GroupType, WordType } from '~/types';
 import apiCaller from './ApiCaller';
 
@@ -30,15 +29,13 @@ export const executeSql = (sql: string, params: any = []): Promise<ExecuteSQL> =
         },
         (_, err) => {
           console.log(err);
-          Alert.alert(`${err}`);
+          // Alert.alert(`${err}`);
           return false;
         },
       );
     });
   });
 };
-
-// ----
 
 export const initDbTable = async () => {
   await executeSql(
@@ -79,31 +76,34 @@ export const initDbTable = async () => {
 };
 
 export const isNewVersionDatabase = () => {
-  return executeSql('select * from options where id_option = 1').then((option) => {
-    if (option.data !== null) {
-      // Call Api Get Version DB
-      return apiCaller('db.json').then((data) => {
-        const baseVer = parseInt(option.data[0].value_option.replace(/\./g, ''), 10);
-        const newVer = parseInt(data.version.replace(/\./g, ''), 10);
-        if (newVer > baseVer) {
-          executeSql(
-            `update options
-        set value_option = ?
-        where id_option = 1`,
-            [data.version],
-          );
-          return true;
-        }
-        return false;
-      });
-    }
-    executeSql(
-      `insert into
+  return executeSql('select * from options where id_option = 1').then(async (option) => {
+    if (option.data === null) {
+      const data = await apiCaller('config.json');
+      await executeSql(
+        `insert into
       options(id_option, name_option, value_option)
       values (1, ?, ?)`,
-      ['version_db', '1.0.0'],
-    );
-    return true;
+        ['version_db', data.version],
+      );
+      return true;
+    }
+
+    // Call Api Get Version DB
+    return apiCaller('config.json').then(async (data) => {
+      if (!data) return false;
+      const baseVer = parseInt(option.data[0].value_option.replace(/\./g, ''), 10);
+      const newVer = parseInt(data.version.replace(/\./g, ''), 10);
+      if (newVer > baseVer) {
+        await executeSql(
+          `update options
+        set value_option = ?
+        where id_option = 1`,
+          [data.version],
+        );
+        return true;
+      }
+      return false;
+    });
   });
 };
 
@@ -146,5 +146,3 @@ export const loadDataFromApi = async () => {
   await loadDataGroupsFromApi();
   await loadDataWordsFromApi();
 };
-
-// ----
