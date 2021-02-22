@@ -1,10 +1,14 @@
 import React, { memo, useEffect, useState } from 'react';
-import { StyleSheet } from 'react-native';
+import { Image, StyleSheet } from 'react-native';
 import { Text, View } from '~/src/components/Themed';
 import SoundButton from '~/src/components/UI/SoundButton';
+import Config from '~/src/constants/Config';
+import { lightBulbIcon } from '~/src/constants/IconSource';
 import { typeAnswersMean, typeAnswersName } from '~/src/helpers/type-condition';
 import tailwind from '~/tailwind';
 import { StatusQuestion, TypesAnswer, WordType } from '~/types';
+
+const { count_max } = Config.study;
 
 type Props = {
   word: WordType;
@@ -33,11 +37,26 @@ export default memo(function TabPracticeStudyStudyCover(props: Props) {
   if (typeAnswersMean(typeAnswer)) question = name_word || '';
   if (typeAnswersName(typeAnswer)) question = mean_word || '';
 
+  const iconBulb = lightBulbIcon[(count_study || 0) >= count_max ? 1 : 0];
+  let textDesc = '';
+  if (typeAnswer === 'CHOOSE-NAME-MEAN') textDesc = 'Chọn nghĩa đúng của từ sau:';
+  if (typeAnswer === 'CHOOSE-MEAN-NAME') textDesc = 'Chọn từ đúng của nghĩa sau:';
+  if (typeAnswer === 'CHOOSE-SOUND-MEAN') textDesc = 'Nghe và chọn nghĩa chính xác:';
+  if (typeAnswer === 'FILL-MEAN-NAME') textDesc = 'Nhập từ vựng của nghĩa sau:';
+  if (typeAnswer === 'FILL-NAME-MEAN') textDesc = 'Nhập nghĩa của từ vựng sau:';
+  if (typeAnswer === 'CHOOSE-MEAN-SOUND') {
+    textDesc = 'Nghe và chọn từ vựng chính xác cho nghĩa sau:';
+  }
+
   return (
     <View style={tailwind('w-full flex-1')}>
       <View style={styles.viewTop}>
         <View style={{ flex: 8 }}>
-          <View style={tailwind('flex-row')}>
+          {textDesc.length > 0 && <Text>{textDesc}</Text>}
+          <View style={tailwind('flex-row items-center mt-1')}>
+            <View style={tailwind('mr-2')}>
+              <Image style={tailwind('w-6 h-6')} source={iconBulb} />
+            </View>
             {typeAnswer === 'CHOOSE-SOUND-MEAN' && <SoundButton size={70} word={word} />}
             <Text weight={700} style={tailwind('text-lg w-10/12')}>
               {typeAnswer !== 'CHOOSE-SOUND-MEAN' && question}
@@ -54,5 +73,5 @@ export default memo(function TabPracticeStudyStudyCover(props: Props) {
 
 const styles = StyleSheet.create({
   viewTop: { ...tailwind('flex-row justify-between px-6 mt-3'), flex: 2 },
-  viewBottom: { ...tailwind('px-5'), flex: 8 },
+  viewBottom: { ...tailwind('px-5'), flex: 8, backgroundColor: '#fff0' },
 });

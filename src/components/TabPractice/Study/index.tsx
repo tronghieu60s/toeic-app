@@ -55,6 +55,11 @@ const TabPracticeStudy = memo(({ navigation }: Props) => {
   const [wordQuestion, setWordQuestion] = useState<WordType>(() => words[0]);
 
   useEffect(() => {
+    const newWords = loadWordsStudy(words);
+    setWordQuestion(newWords[rdNum(0, newWords.length)]);
+  }, []);
+
+  useEffect(() => {
     Speech.stop();
     const newWords = loadWordsStudy(words);
     setWordsStudy(newWords);

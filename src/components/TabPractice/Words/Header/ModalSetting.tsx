@@ -1,8 +1,10 @@
 import React, { memo } from 'react';
+import { Image } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { Text, View } from '~/src/components/Themed';
 import Modal from '~/src/components/UI/Modal';
 import Switch from '~/src/components/UI/Switch';
+import { lightBulbIcon } from '~/src/constants/IconSource';
 import { toggleExplain, toggleMean, togglePronounce } from '~/src/redux/actions/commonAction';
 import { RootState } from '~/src/redux/reducers/rootReducer';
 import tailwind from '~/tailwind';
@@ -20,7 +22,12 @@ const ModalSetting = memo((props: Props) => {
   return (
     <Modal {...props}>
       <View style={tailwind('w-11/12 p-5 rounded-lg')}>
-        <Text weight={600} style={tailwind('text-center text-base mb-2')}>
+        <Text weight={700} style={tailwind('text-center text-xl mb-2')}>
+          TOEIC <Text style={{ color: '#5e72e4' }}>Essential Words</Text>
+          {' '}
+          <Image style={tailwind('w-8 h-8')} source={lightBulbIcon[1]} />
+        </Text>
+        <Text weight={600} style={tailwind('text-center text-lg mb-2 mt-2')}>
           Cài Đặt Hiển Thị
         </Text>
         <Switch

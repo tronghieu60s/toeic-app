@@ -23,9 +23,9 @@ export default memo(function TabPracticeWordDetailsHeaderRight(props: Props) {
 
   return (
     <View style={tailwind('flex-row justify-end items-center mx-3 mt-3')}>
-      <Ripple onPress={() => handleFlashWord(word)}>
+      {/* <Ripple onPress={() => handleFlashWord(word)}>
         <Image style={{ width: 18, height: 18 }} source={iconFlash} />
-      </Ripple>
+      </Ripple> */}
     </View>
   );
 });

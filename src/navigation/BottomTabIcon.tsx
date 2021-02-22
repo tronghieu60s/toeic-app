@@ -26,7 +26,7 @@ export default function BottomTabBarIcon(props: Props): JSX.Element {
   number = number >= 10 ? number : `0${number}`;
 
   return (
-    <View style={tailwind('items-center')}>
+    <View style={tailwind('items-center justify-center')}>
       <View>
         <TabBarIcon name={TabBar[name].icon} size={22} color={focused ? '#5e72e4' : '#777'} />
         {numberIconShow && number !== '00' && <Text style={styles.number}>{number}</Text>}

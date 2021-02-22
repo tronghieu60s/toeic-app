@@ -1,5 +1,5 @@
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Animated, StyleSheet, View } from 'react-native';
 
 type Props = {
   percent: number;
@@ -12,14 +12,33 @@ type Props = {
 const ProcessBar = (props: Props) => {
   const { percent, rounded, border, height = 0, color } = props;
 
+  const animVal = new Animated.Value(0);
+  const [prePercent, setPrePercent] = useState(0);
+  const [interpolateBar, setInterpolateBar] = useState(() =>
+    animVal.interpolate({ inputRange: [0, 1], outputRange: ['0%', '50%'] }));
+
+  useEffect(() => {
+    Animated.timing(animVal, {
+      toValue: 1,
+      duration: 800,
+      useNativeDriver: false,
+    }).start();
+
+    const outputRange = [`${prePercent}%`, `${percent}%`];
+    const interpolateBar = animVal.interpolate({ inputRange: [0, 1], outputRange });
+    setInterpolateBar(interpolateBar);
+    setPrePercent(percent);
+  }, [percent]);
+
   const styleContainer = {
     height: height + 2,
+    borderColor: color,
     borderRadius: rounded,
     borderWidth: border,
   };
 
   const styleProcess = {
-    width: `${percent}%`,
+    width: interpolateBar,
     backgroundColor: color,
     height,
     borderRadius: rounded,
@@ -27,7 +46,7 @@ const ProcessBar = (props: Props) => {
 
   return (
     <View style={[styles.container, styleContainer]}>
-      <View style={[styles.process, styleProcess]} />
+      <Animated.View style={[styles.process, styleProcess]} />
     </View>
   );
 };
@@ -43,7 +62,6 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
     justifyContent: 'center',
-    borderColor: '#888',
     zIndex: 500,
   },
   process: {

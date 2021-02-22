@@ -8,6 +8,8 @@ import { WordType } from '~/types';
 import { Ripple, Text, View } from '../../Themed';
 import Config from '~/src/constants/Config';
 
+const { count_max } = Config.study;
+
 type Props = {
   word: WordType;
   handleFlashWord: (word: WordType) => void;
@@ -15,7 +17,6 @@ type Props = {
 };
 
 const WordItem = (props: Props) => {
-  const { count_max } = Config.study;
   const { word, handleFlashWord, handleDetailsWord } = props;
   const {
     name_word,

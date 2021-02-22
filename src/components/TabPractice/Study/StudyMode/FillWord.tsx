@@ -22,7 +22,7 @@ const FillWord = memo(({ word, handleSendAnswer }: Props) => {
   };
 
   return (
-    <View style={{ paddingBottom: 20 }}>
+    <View style={{ marginTop: 40 }}>
       <TextInput
         multiline
         value={text}
@@ -37,7 +37,7 @@ const FillWord = memo(({ word, handleSendAnswer }: Props) => {
 const styles = StyleSheet.create({
   input: {
     fontSize: 18,
-    height: '80%',
+    height: 200,
     borderColor: '#999999a1',
     borderRadius: 10,
     padding: 20,
