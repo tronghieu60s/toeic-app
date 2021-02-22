@@ -1,7 +1,7 @@
 import { StackNavigationProp } from '@react-navigation/stack';
 import * as Speech from 'expo-speech';
 import React, { memo, useEffect, useState } from 'react';
-import { Keyboard, StyleSheet, Vibration } from 'react-native';
+import { Alert, Keyboard, StyleSheet, Vibration } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { View } from '~/src/components/Themed';
 import ProcessBar from '~/src/components/UI/ProcessBar';
@@ -18,7 +18,7 @@ import { RootState } from '~/src/redux/reducers/rootReducer';
 import tailwind from '~/tailwind';
 import { StatusQuestion, TabPracticeParamList, TypesAnswer, WordType } from '~/types';
 import Loading from '../../UI/Loading';
-import Alert from './Alert';
+import AlertUI from './Alert';
 import Bottom from './Bottom';
 import StudyCover from './StudyCover';
 import StudyMode from './StudyMode';
@@ -42,6 +42,7 @@ const loadWordsStudy = (words: WordType[]) => {
 
 const TabPracticeStudy = memo(({ navigation }: Props) => {
   const totalQuestions = total_max;
+  const [countIncorrect, setCountIncorrect] = useState(0);
   const [status, setStatus] = useState<StatusQuestion>('Waiting');
   const [statusStudy, setStatusStudy] = useState<boolean>(false);
 
@@ -119,6 +120,7 @@ const TabPracticeStudy = memo(({ navigation }: Props) => {
 
       setStatus('Correct');
     } else {
+      setCountIncorrect(countIncorrect + 1);
       dispatch(actStudyInCorrect(wordQuestion));
 
       setStatus('Incorrect');
@@ -135,6 +137,10 @@ const TabPracticeStudy = memo(({ navigation }: Props) => {
     if (countQuestion === totalQuestions) {
       navigation.removeListener('beforeRemove', (e) => navigation.dispatch(e.data.action));
       navigation.goBack();
+      Alert.alert(
+        'Bạn đã hoàn thành bài học.',
+        `Tổng số câu hỏi: ${total_max}\nTrả lời sai: ${countIncorrect} lần`,
+      );
       return;
     }
 
@@ -165,7 +171,7 @@ const TabPracticeStudy = memo(({ navigation }: Props) => {
         </StudyCover>
       )}
       <Bottom status={status} userAnswer={userAnswer} handleContinue={handleContinue} />
-      {status !== 'Waiting' && !statusStudy && <Alert status={status} word={wordQuestion} />}
+      {status !== 'Waiting' && !statusStudy && <AlertUI status={status} word={wordQuestion} />}
     </View>
   );
 });

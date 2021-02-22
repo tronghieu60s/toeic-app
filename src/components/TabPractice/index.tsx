@@ -1,6 +1,6 @@
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { memo, useEffect, useState } from 'react';
-import { Dimensions, StyleSheet } from 'react-native';
+import { Dimensions, Image, StyleSheet } from 'react-native';
 import { getGroups } from '~/src/models/GroupsModel';
 import apiCaller from '~/src/utils/ApiCaller';
 import tailwind from '~/tailwind';
@@ -114,7 +114,9 @@ const TabPractice = memo((props: Props) => {
               }-500`,
             )}
           >
-            <Text style={tailwind('text-white')}>{message.content}</Text>
+            <Text style={tailwind('text-white')}>
+              <Image source={require('~/assets/images/smile.gif')} /> {message.content}
+            </Text>
           </View>
         )}
         {renderItems(groupsRender)}

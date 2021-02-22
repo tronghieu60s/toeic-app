@@ -14,6 +14,7 @@ type Props = {
 
 export default memo(function TabPracticeStudyAlert({ word, status }: Props) {
   const { name_word, mean_word } = word;
+  const fadeOpacity = useRef(new Animated.Value(0)).current;
   const outPosition = useRef(new Animated.Value(Dimensions.get('window').height / 4)).current;
 
   const bgColor = status === 'Correct' ? '#2dce89' : '#f5365c';
@@ -24,6 +25,11 @@ export default memo(function TabPracticeStudyAlert({ word, status }: Props) {
     if (status !== 'Waiting') {
       Animated.spring(outPosition, {
         toValue: 0,
+        speed: 100,
+        useNativeDriver: true,
+      }).start();
+      Animated.spring(fadeOpacity, {
+        toValue: 1,
         speed: 30,
         useNativeDriver: true,
       }).start();
@@ -38,7 +44,7 @@ export default memo(function TabPracticeStudyAlert({ word, status }: Props) {
   };
 
   return (
-    <View style={styles.viewFinish}>
+    <Animated.View style={[styles.viewFinish, { opacity: fadeOpacity }]}>
       <Animated.View style={{ transform: [{ translateY: outPosition }] }}>
         <View style={[styles.viewFinishTab, { backgroundColor: bgColor }]}>
           <View style={tailwind('flex-auto bg-transparent')}>
@@ -63,7 +69,7 @@ export default memo(function TabPracticeStudyAlert({ word, status }: Props) {
           </View>
         </View>
       </Animated.View>
-    </View>
+    </Animated.View>
   );
 });
 
