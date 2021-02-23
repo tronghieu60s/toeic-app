@@ -2,8 +2,10 @@ import { SimpleLineIcons } from '@expo/vector-icons';
 import React, { useEffect, useRef, useState } from 'react';
 import { Animated, StyleSheet } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
-import tailwind from '~/tailwind';
+import { useSelector } from 'react-redux';
 import { SpeechEnglish } from '~/src/helpers/sound';
+import { RootState } from '~/src/redux/reducers/rootReducer';
+import tailwind from '~/tailwind';
 import { WordType } from '~/types';
 
 type Props = {
@@ -20,6 +22,9 @@ const SoundButton = (props: Props) => {
   const { word, size, selected, autoPlay, handleSendAnswer } = props;
   const { name_word = '' } = word;
 
+  const common = useSelector((state: RootState) => state.common);
+  const { voiceIdentify, voiceRate, voicePitch } = common;
+
   const soundSize = useRef(new Animated.Value(1)).current;
   const [soundPlayed, setSoundPlayed] = useState(false);
   const bgColor = soundPlayed || selected ? '#fff' : '#5e72e4';
@@ -31,6 +36,9 @@ const SoundButton = (props: Props) => {
   const onPress = () => {
     setSoundPlayed(true);
     SpeechEnglish(name_word, {
+      voice: voiceIdentify,
+      rate: voiceRate,
+      pitch: voicePitch,
       onStart: () => Animated.spring(soundSize, animatedValue(0.85)).start(),
       onDone: () => {
         Animated.spring(soundSize, animatedValue(1)).start();

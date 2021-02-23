@@ -14,10 +14,5 @@ export async function playSound(source: AVPlaybackSource) {
 
 export async function SpeechEnglish(value: string, option?: any) {
   Speech.stop();
-  Speech.speak(value, { language: 'en', voice: 'en-au-x-aud-local', ...option });
-
-  // console.log('--- List Voice ---');
-  // let list = await Speech.getAvailableVoicesAsync();
-  // list = list.filter((o) => o.identifier.slice(0, 2) === 'en');
-  // list.map((o) => console.log(`${o.identifier} - ${o.language}`));
+  Speech.speak(value, { language: 'en', ...option });
 }

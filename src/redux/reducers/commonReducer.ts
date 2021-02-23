@@ -9,25 +9,30 @@ import {
   TOGGLE_MEAN,
   TOGGLE_PRONOUNCE,
   TOGGLE_THEME,
+  SET_VOICE_IDENTIFY,
+  SET_VOICE_RATE,
+  SET_VOICE_PITCH,
 } from '../actions/commonAction';
 
-const commonInitialState: CommonState = {
+const initState: CommonState = {
   theme: 'light',
   visibleMean: true,
   visibleExplain: true,
   visiblePronounce: true,
+  voiceIdentify: 'en-US-language',
+  voiceRate: 1,
+  voicePitch: 1,
+};
+
+const commonInitialState: CommonState = {
+  ...initState,
 };
 
 const common = (state = commonInitialState, action: CommonAction): CommonState => {
   switch (action.type) {
     case LOAD_COMMON: {
       if (action.state) return { ...action.state };
-      return {
-        theme: 'light',
-        visibleMean: true,
-        visibleExplain: true,
-        visiblePronounce: true,
-      };
+      return { ...commonInitialState };
     }
     case TOGGLE_THEME: {
       const theme: ThemeType = state.theme === 'light' ? 'dark' : 'light';
@@ -48,6 +53,21 @@ const common = (state = commonInitialState, action: CommonAction): CommonState =
       const visiblePronounce = !state.visiblePronounce;
       (async () => await AsyncStorage.setItem('visiblePronounce_storage', `${visiblePronounce}`))();
       return { ...state, visiblePronounce };
+    }
+    case SET_VOICE_IDENTIFY: {
+      const voiceIdentify = action.voice || 'en-US-language';
+      (async () => await AsyncStorage.setItem('voiceIdentify_storage', `${voiceIdentify}`))();
+      return { ...state, voiceIdentify };
+    }
+    case SET_VOICE_RATE: {
+      const voiceRate = action.rate || 1;
+      (async () => await AsyncStorage.setItem('voiceRate_storage', `${voiceRate}`))();
+      return { ...state, voiceRate };
+    }
+    case SET_VOICE_PITCH: {
+      const voicePitch = action.pitch || 1;
+      (async () => await AsyncStorage.setItem('voicePitch_storage', `${voicePitch}`))();
+      return { ...state, voicePitch };
     }
     default:
       return state;

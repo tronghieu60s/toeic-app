@@ -2,6 +2,7 @@ import React, { memo } from 'react';
 import { Switch } from 'react-native';
 import tailwind from 'tailwind-rn';
 import { Ripple, Text, View } from '../Themed';
+import SelectText from './SelectText';
 
 type Props = {
   name: string;
@@ -15,12 +16,7 @@ const SwitchUI = memo((props: Props) => {
 
   return (
     <View style={tailwind('flex-row justify-between items-center')}>
-      <Ripple style={tailwind('flex-auto py-2')} onPress={onValueChange}>
-        <Text weight={700} style={{ fontSize: 13 }}>
-          {name}
-        </Text>
-        <Text style={{ color: '#888', fontSize: 13 }}>{description}</Text>
-      </Ripple>
+      <SelectText name={name} description={description} onValueChange={onValueChange} />
       <View style={tailwind('flex-auto')}>
         <Switch
           value={value}
