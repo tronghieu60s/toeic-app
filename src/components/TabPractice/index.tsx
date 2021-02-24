@@ -2,7 +2,6 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { getGroups } from '~/src/models/GroupsModel';
-import apiCaller from '~/src/utils/ApiCaller';
 import tailwind from '~/tailwind';
 import { GroupType, TabPracticeParamList } from '~/types';
 import { ScrollView, Text, View } from '../Themed';
@@ -16,7 +15,6 @@ type Props = {
 
 const TabPractice = React.memo((props: Props) => {
   const [isPending, setIsPending] = useState(true);
-  const [message, setMessage] = useState({ content: '', color: '' });
 
   const { navigation } = props;
   const [groups, setGroups] = useState<GroupType[]>([]);
@@ -26,13 +24,6 @@ const TabPractice = React.memo((props: Props) => {
     (async () => {
       const groups = await getGroups();
       if (groups.data !== null) setGroups(groups.data);
-
-      const data = await apiCaller('config.json');
-      if (data) {
-        const { message, color_message } = data;
-        setMessage({ content: message, color: color_message });
-      }
-
       setIsPending(false);
     })();
   }, []);
@@ -40,43 +31,43 @@ const TabPractice = React.memo((props: Props) => {
   useEffect(() => {
     const groupsData = [
       {
-        title: '#1 General Business',
+        title: '1. General Business',
         data: groups.slice(0, 5),
       },
       {
-        title: '#2 Office Issues',
+        title: '2. Office Issues',
         data: groups.slice(5, 10),
       },
       {
-        title: '#3 Personnel',
+        title: '3. Personnel',
         data: groups.slice(10, 15),
       },
       {
-        title: '#4 Purchasing',
+        title: '4. Purchasing',
         data: groups.slice(15, 20),
       },
       {
-        title: '#5 Financing and Budgeting',
+        title: '5. Financing and Budgeting',
         data: groups.slice(20, 25),
       },
       {
-        title: '#6 Management Issues',
+        title: '6. Management Issues',
         data: groups.slice(25, 30),
       },
       {
-        title: '#7 Restaurants and Events',
+        title: '7. Restaurants and Events',
         data: groups.slice(30, 35),
       },
       {
-        title: '#8 Travel',
+        title: '8. Travel',
         data: groups.slice(35, 40),
       },
       {
-        title: '#9 Entertainment',
+        title: '9. Entertainment',
         data: groups.slice(40, 45),
       },
       {
-        title: '#10 Health',
+        title: '10. Health',
         data: groups.slice(45, 50),
       },
     ];
@@ -106,17 +97,6 @@ const TabPractice = React.memo((props: Props) => {
   return (
     <ScrollView style={tailwind('flex-1')}>
       <View light style={tailwind('pb-14 px-1')}>
-        {(message.content || '').length > 0 && (
-          <View
-            style={tailwind(
-              `px-4 py-3 mt-3 mx-1 rounded-lg bg-${
-                message.color === undefined ? 'blue' : message.color
-              }-500`,
-            )}
-          >
-            <Text style={tailwind('text-white')}>{message.content}</Text>
-          </View>
-        )}
         {renderItems(groupsRender)}
       </View>
     </ScrollView>

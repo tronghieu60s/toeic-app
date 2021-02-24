@@ -30,7 +30,10 @@
       "versionCode": 1,
       "permissions": [
         "VIBRATE"
-      ]
+      ],
+      "config": {
+        "googleMobileAdsAppId": "ca-app-pub-7154201935109039~5622745585"
+      }
     },
     "web": {
       "favicon": "./assets/images/favicon.png"

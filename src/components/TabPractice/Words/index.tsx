@@ -11,6 +11,7 @@ import { actLoadWordsGroup, actToggleFlashWord } from '~/src/redux/actions/pract
 import { RootState } from '~/src/redux/reducers/rootReducer';
 import tailwind from '~/tailwind';
 import { TabPracticeParamList, WordType } from '~/types';
+import AdMobBanner from '../../Ads';
 
 type Props = {
   route: RouteProp<TabPracticeParamList, 'TabPracticeWords'>;
@@ -46,6 +47,7 @@ const TabPracticeWords = memo((props: Props) => {
 
   return (
     <View light style={tailwind('flex-1 px-2')}>
+      <AdMobBanner bannerSize="largeBanner" />
       <FlatList
         data={words}
         renderItem={renderItem}

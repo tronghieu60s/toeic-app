@@ -11,4 +11,7 @@ export default {
   api: {
     data: 'https://raw.githubusercontent.com/tronghieu60s/toeic-ew-data/master',
   },
+  ads: {
+    ad_banner: 'ca-app-pub-7154201935109039/2797271694',
+  },
 };
