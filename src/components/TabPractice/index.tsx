@@ -1,6 +1,6 @@
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useEffect, useState } from 'react';
-import { Dimensions, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { getGroups } from '~/src/models/GroupsModel';
 import apiCaller from '~/src/utils/ApiCaller';
 import tailwind from '~/tailwind';
@@ -40,43 +40,43 @@ const TabPractice = React.memo((props: Props) => {
   useEffect(() => {
     const groupsData = [
       {
-        title: 'General Business',
+        title: '#1 General Business',
         data: groups.slice(0, 5),
       },
       {
-        title: 'Office Issues',
+        title: '#2 Office Issues',
         data: groups.slice(5, 10),
       },
       {
-        title: 'Personnel',
+        title: '#3 Personnel',
         data: groups.slice(10, 15),
       },
       {
-        title: 'Purchasing',
+        title: '#4 Purchasing',
         data: groups.slice(15, 20),
       },
       {
-        title: 'Financing and Budgeting',
+        title: '#5 Financing and Budgeting',
         data: groups.slice(20, 25),
       },
       {
-        title: 'Management Issues',
+        title: '#6 Management Issues',
         data: groups.slice(25, 30),
       },
       {
-        title: 'Restaurants and Events',
+        title: '#7 Restaurants and Events',
         data: groups.slice(30, 35),
       },
       {
-        title: 'Travel',
+        title: '#8 Travel',
         data: groups.slice(35, 40),
       },
       {
-        title: 'Entertainment',
+        title: '#9 Entertainment',
         data: groups.slice(40, 45),
       },
       {
-        title: 'Health',
+        title: '#10 Health',
         data: groups.slice(45, 50),
       },
     ];
@@ -91,11 +91,11 @@ const TabPractice = React.memo((props: Props) => {
             {group.title}
           </Text>
         )}
-        <View style={styles.groups}>
+        <ScrollView horizontal style={styles.groups}>
           {group.data.map((item, index) => (
             <GroupItem key={index} group={item} navigation={navigation} />
           ))}
-        </View>
+        </ScrollView>
       </React.Fragment>
     ));
 
@@ -114,9 +114,7 @@ const TabPractice = React.memo((props: Props) => {
               }-500`,
             )}
           >
-            <Text style={tailwind('text-white')}>
-              {message.content}
-            </Text>
+            <Text style={tailwind('text-white')}>{message.content}</Text>
           </View>
         )}
         {renderItems(groupsRender)}
@@ -126,10 +124,7 @@ const TabPractice = React.memo((props: Props) => {
 });
 
 const styles = StyleSheet.create({
-  groups: {
-    ...tailwind('flex-1 flex-row flex-wrap justify-between bg-transparent'),
-    width: Dimensions.get('window').width - 10,
-  },
+  groups: { ...tailwind('flex-1 flex-row bg-transparent') },
   groupsTitle: { ...tailwind('text-lg my-2 ml-2') },
 });
 

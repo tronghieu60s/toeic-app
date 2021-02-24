@@ -19,10 +19,11 @@ const TabPracticeWordsHeaderTitle = memo((props: Props) => {
   const wordsComplete = words.filter((o) => (o.count_study || 0) >= 6).length;
 
   return (
-    <View>
+    <View style={tailwind('bg-transparent')}>
       <View style={tailwind('flex-row items-center')}>
         <Text weight={700} style={tailwind('text-sm tracking-wider')}>
-          {name_group}
+          {name_group?.slice(0, 20)}
+          {(name_group || '').length > 20 ? '...' : ''}
         </Text>
         <Text weight={400} style={styles.count}>
           ({wordsComplete}/{words.length})
