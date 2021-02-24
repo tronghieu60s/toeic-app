@@ -20,7 +20,7 @@ export type TabPracticeParamList = {
     word: WordType;
   };
   TabPracticeStudy: undefined;
-  TabPracticeStudyItem: undefined;
+  TabPracticeExam: undefined;
 };
 
 export type TabDifficultParamList = {

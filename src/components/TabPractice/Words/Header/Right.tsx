@@ -1,7 +1,7 @@
 import { AntDesign, Entypo, SimpleLineIcons } from '@expo/vector-icons';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { memo, useState } from 'react';
-import { StyleSheet, ToastAndroid } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { useSelector } from 'react-redux';
 import ModalSetting from '~/src/components/TabPractice/Words/Header/ModalSetting';
 import { Ripple, View } from '~/src/components/Themed';
@@ -20,13 +20,6 @@ const TabPracticeWordsHeaderRight = memo(({ navigation }: Props) => {
   const theme = useSelector((state: RootState) => state.common.theme);
   const words = useSelector((state: RootState) => state.practice.words);
 
-  const onPressTimeStudy = () => {
-    ToastAndroid.show(
-      'Chức năng này đang cập nhật và sẽ được thêm vào các phiên bản sắp tới.',
-      ToastAndroid.SHORT,
-    );
-  };
-
   return (
     <View style={styles.container}>
       {words.length > 0 && (
@@ -35,7 +28,7 @@ const TabPracticeWordsHeaderRight = memo(({ navigation }: Props) => {
             <SimpleLineIcons name="graduation" size={20} color={Colors[theme].text} />
             {/* <Text style={styles.number}>10</Text> */}
           </Ripple>
-          <Ripple style={styles.button} onPress={onPressTimeStudy}>
+          <Ripple style={styles.button} onPress={() => navigation.navigate('TabPracticeExam')}>
             <Entypo name="time-slot" size={17.5} color={Colors[theme].text} />
           </Ripple>
         </>
