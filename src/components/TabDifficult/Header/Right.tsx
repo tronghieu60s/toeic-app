@@ -1,6 +1,6 @@
 import { AntDesign, SimpleLineIcons } from '@expo/vector-icons';
 import { StackNavigationProp } from '@react-navigation/stack';
-import React, { memo, useState } from 'react';
+import React, { useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { useSelector } from 'react-redux';
 import ModalSetting from '~/src/components/TabPractice/Words/Header/ModalSetting';
@@ -14,7 +14,7 @@ type Props = {
   navigation: StackNavigationProp<TabDifficultParamList, 'TabDifficultScreen'>;
 };
 
-const TabDifficultRight = memo(({ navigation }: Props) => {
+const TabDifficultRight = React.memo(({ navigation }: Props) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   const theme = useSelector((state: RootState) => state.common.theme);

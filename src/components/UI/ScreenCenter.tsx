@@ -4,7 +4,7 @@ import { Text, View } from '../Themed';
 
 type Props = { children: React.ReactNode };
 
-export default function CenterUI(props: Props): JSX.Element {
+const ScreenCenter = React.memo((props: Props) => {
   const { children } = props;
 
   return (
@@ -12,4 +12,6 @@ export default function CenterUI(props: Props): JSX.Element {
       <Text style={{ fontSize: 13, textAlign: 'center' }}>{children}</Text>
     </View>
   );
-}
+});
+
+export default ScreenCenter;

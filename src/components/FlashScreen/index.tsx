@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React from 'react';
 import { Text, View } from 'react-native';
 import tailwind from '~/tailwind';
 import ProcessBar from '../UI/ProcessBar';
@@ -8,7 +8,8 @@ type Props = {
   processNumber: number;
 };
 
-export default memo(function FlashScreen({ processText, processNumber }: Props) {
+const FlashScreen = React.memo((props: Props) => {
+  const { processText, processNumber } = props;
   return (
     <View style={tailwind('flex-1 justify-center items-center px-10')}>
       <Text style={tailwind('text-center text-xl mb-3 font-bold')}>
@@ -19,3 +20,5 @@ export default memo(function FlashScreen({ processText, processNumber }: Props) 
     </View>
   );
 });
+
+export default FlashScreen;

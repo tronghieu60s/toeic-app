@@ -1,6 +1,6 @@
 import { StackNavigationProp } from '@react-navigation/stack';
 import * as Speech from 'expo-speech';
-import React, { memo, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Alert, Keyboard, StyleSheet, Vibration } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { View } from '~/src/components/Themed';
@@ -17,7 +17,7 @@ import {
 import { RootState } from '~/src/redux/reducers/rootReducer';
 import tailwind from '~/tailwind';
 import { StatusQuestion, TabPracticeParamList, TypesAnswer, WordType } from '~/types';
-import Loading from '../../UI/Loading';
+import ScreenLoading from '../../UI/ScreenLoading';
 import AlertUI from './Alert';
 import Bottom from './Bottom';
 import StudyCover from './StudyCover';
@@ -40,7 +40,7 @@ const loadWordsStudy = (words: WordType[]) => {
   return newWords;
 };
 
-const TabPracticeStudy = memo(({ navigation }: Props) => {
+const TabPracticeStudy = React.memo(({ navigation }: Props) => {
   const totalQuestions = total_max;
   const [countIncorrect, setCountIncorrect] = useState(0);
   const [status, setStatus] = useState<StatusQuestion>('Waiting');
@@ -155,7 +155,7 @@ const TabPracticeStudy = memo(({ navigation }: Props) => {
     setStatus('Waiting');
   };
 
-  if (wordsStudy.length === 0 || !typeAnswer) return <Loading />;
+  if (wordsStudy.length === 0 || !typeAnswer) return <ScreenLoading />;
 
   return (
     <View style={styles.container}>

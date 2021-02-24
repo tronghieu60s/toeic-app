@@ -1,5 +1,5 @@
 import { Feather } from '@expo/vector-icons';
-import React, { memo, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Animated, Dimensions, StyleSheet, ToastAndroid } from 'react-native';
 import { Ripple, Text, View } from '~/src/components/Themed';
 import { TEXT_CORRECT, TEXT_INCORRECT } from '~/src/constants/Text/Study';
@@ -12,7 +12,8 @@ type Props = {
   status: StatusQuestion;
 };
 
-export default memo(function TabPracticeStudyAlert({ word, status }: Props) {
+const TabPracticeStudyAlert = React.memo((props: Props) => {
+  const { word, status } = props;
   const { name_word, mean_word } = word;
   const fadeOpacity = useRef(new Animated.Value(0)).current;
   const outPosition = useRef(new Animated.Value(Dimensions.get('window').height / 4)).current;
@@ -80,3 +81,5 @@ const styles = StyleSheet.create({
   },
   viewFinishTab: { ...tailwind('w-full flex-row justify-between pt-4 px-4'), height: 180 },
 });
+
+export default TabPracticeStudyAlert;

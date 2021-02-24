@@ -1,12 +1,12 @@
-import React, { memo, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Dimensions, StyleSheet } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
-import tailwind from '~/tailwind';
 import { Text, View } from '~/src/components/Themed';
 import { shuffle } from '~/src/helpers/array';
 import { randomBetweenTwoNumber as rdNum } from '~/src/helpers/random';
 import { typeAnswersMean, typeAnswersName } from '~/src/helpers/type-condition';
 import { getWordsByIdGroup } from '~/src/models/WordsModel';
+import tailwind from '~/tailwind';
 import { TypesAnswer, WordType } from '~/types';
 
 type Props = {
@@ -15,7 +15,8 @@ type Props = {
   handleSendAnswer: (value: string) => void;
 };
 
-const ChooseWord = memo(({ word, typeAnswer, handleSendAnswer }: Props) => {
+const ChooseWord = React.memo((props: Props) => {
+  const { word, typeAnswer, handleSendAnswer } = props;
   const [selectWords, setSelectWords] = useState(-1);
   const [words, setWords] = useState<WordType[]>([]);
 

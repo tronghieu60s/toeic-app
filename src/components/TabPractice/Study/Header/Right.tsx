@@ -1,11 +1,11 @@
-import React, { memo, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Animated, StyleSheet } from 'react-native';
 import { useSelector } from 'react-redux';
 import { Text, View } from '~/src/components/Themed';
 import { RootState } from '~/src/redux/reducers/rootReducer';
 import tailwind from '~/tailwind';
 
-const TabPracticeStudyHeaderRight = memo(() => {
+const TabPracticeStudyHeaderRight = React.memo(() => {
   const fadePoint = useRef(new Animated.Value(1)).current;
   const fadePrePoint = useRef(new Animated.Value(0)).current;
 
@@ -43,7 +43,7 @@ const TabPracticeStudyHeaderRight = memo(() => {
 
   return (
     <View style={styles.container}>
-      {/* <View style={styles.point}>
+      <View style={styles.point}>
         <Animated.View style={{ opacity: fadePoint }}>
           <Text weight={700} style={tailwind('text-sm')}>
             {point}
@@ -54,7 +54,7 @@ const TabPracticeStudyHeaderRight = memo(() => {
             {prePoint}
           </Text>
         </Animated.View>
-      </View> */}
+      </View>
     </View>
   );
 });

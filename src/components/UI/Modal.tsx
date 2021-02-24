@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React from 'react';
 import { Modal as DefaultModal, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import tailwind from '~/tailwind';
 
@@ -8,7 +8,7 @@ type Props = {
   setModalVisible: (value: boolean) => void;
 };
 
-export default memo(function Modal(props: Props) {
+const Modal = React.memo((props: Props) => {
   const { children, modalVisible, setModalVisible } = props;
 
   return (
@@ -28,3 +28,5 @@ export default memo(function Modal(props: Props) {
     </DefaultModal>
   );
 });
+
+export default Modal;

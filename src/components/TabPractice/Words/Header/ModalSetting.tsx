@@ -2,13 +2,15 @@ import { SimpleLineIcons } from '@expo/vector-icons';
 import Slider from '@react-native-community/slider';
 import { Picker } from '@react-native-picker/picker';
 import * as Speech from 'expo-speech';
-import React, { memo, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet } from 'react-native';
 import { ScrollView, TextInput } from 'react-native-gesture-handler';
 import { useDispatch, useSelector } from 'react-redux';
 import { Ripple, Text, View } from '~/src/components/Themed';
 import Modal from '~/src/components/UI/Modal';
 import SelectText from '~/src/components/UI/SelectText';
 import Switch from '~/src/components/UI/Switch';
+import { SpeechEnglish } from '~/src/helpers/sound';
 import {
   setVoiceIdentify,
   setVoicePitch,
@@ -19,14 +21,13 @@ import {
 } from '~/src/redux/actions/commonAction';
 import { RootState } from '~/src/redux/reducers/rootReducer';
 import tailwind from '~/tailwind';
-import { SpeechEnglish } from '~/src/helpers/sound';
 
 type Props = {
   modalVisible: boolean;
   setModalVisible: (value: boolean) => void;
 };
 
-const ModalSetting = memo((props: Props) => {
+const ModalSetting = React.memo((props: Props) => {
   const { modalVisible } = props;
   const [textVoice, setTextVoice] = useState('Hello, I am a Robot!');
   const [voices, setVoices] = useState<Speech.Voice[]>([]);
@@ -93,7 +94,7 @@ const ModalSetting = memo((props: Props) => {
             <TitleModal>Cài Đặt Âm Thanh</TitleModal>
             <View style={tailwind('flex-row justify-center items-center mb-2')}>
               <TextInput
-                style={tailwind('w-7/12 h-8 border border-gray-400 px-2')}
+                style={styles.input}
                 onChangeText={(text) => setTextVoice(text)}
                 value={textVoice}
               />
@@ -157,5 +158,13 @@ const TitleModal = ({ children }: { children: string }) => (
     {children}
   </Text>
 );
+
+const styles = StyleSheet.create({
+  input: {
+    ...tailwind('w-7/12 h-8 border px-2'),
+    borderColor: '#dee2e6',
+    borderRadius: 5,
+  },
+});
 
 export default ModalSetting;

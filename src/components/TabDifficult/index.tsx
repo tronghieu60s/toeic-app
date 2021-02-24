@@ -1,5 +1,5 @@
 import { StackNavigationProp } from '@react-navigation/stack';
-import React, { memo } from 'react';
+import React from 'react';
 import { FlatList } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { actToggleFlashWord } from '~/src/redux/actions/practiceAction';
@@ -8,13 +8,13 @@ import tailwind from '~/tailwind';
 import { TabDifficultParamList, WordType } from '~/types';
 import WordItem from '../TabPractice/Words/WordItem';
 import { View } from '../Themed';
-import CenterUI from '../UI/Center';
+import CenterUI from '../UI/ScreenCenter';
 
 type Props = {
   navigation: StackNavigationProp<TabDifficultParamList, 'TabDifficultScreen'>;
 };
 
-const TabDifficult = memo(({ navigation }: Props) => {
+const TabDifficult = React.memo(({ navigation }: Props) => {
   const dispatch = useDispatch();
   const words = useSelector((state: RootState) => state.practice.wordsDifficult);
 

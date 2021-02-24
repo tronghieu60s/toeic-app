@@ -1,8 +1,7 @@
 import { RouteProp } from '@react-navigation/native';
-import React, { memo } from 'react';
-import { Image } from 'react-native';
+import React from 'react';
 import { useDispatch } from 'react-redux';
-import { Ripple, View } from '~/src/components/Themed';
+import { View } from '~/src/components/Themed';
 import { flashIcon } from '~/src/constants/IconSource';
 import { actToggleFlashWord } from '~/src/redux/actions/practiceAction';
 import tailwind from '~/tailwind';
@@ -12,7 +11,7 @@ type Props = {
   route: RouteProp<TabPracticeParamList, 'TabPracticeWordDetails'>;
 };
 
-export default memo(function TabPracticeWordDetailsHeaderRight(props: Props) {
+const TabPracticeWordDetailsHeaderRight = React.memo((props: Props) => {
   const { route } = props;
   const { word } = route.params;
   const { difficult_study = 0 } = word;
@@ -29,3 +28,5 @@ export default memo(function TabPracticeWordDetailsHeaderRight(props: Props) {
     </View>
   );
 });
+
+export default TabPracticeWordDetailsHeaderRight;

@@ -1,15 +1,15 @@
 import { RouteProp } from '@react-navigation/native';
-import React, { memo } from 'react';
+import React from 'react';
 import { StyleSheet } from 'react-native';
-import tailwind from '~/tailwind';
 import { Text, View } from '~/src/components/Themed';
+import tailwind from '~/tailwind';
 import { TabPracticeParamList } from '~/types';
 
 type Props = {
   route: RouteProp<TabPracticeParamList, 'TabPracticeWordDetails'>;
 };
 
-const TabPracticeWordDetailHeaderTitle = memo((props: Props) => {
+const TabPracticeWordDetailHeaderTitle = React.memo((props: Props) => {
   const { route } = props;
   const { name_word, pronounce_word, name_group } = route.params.word;
 

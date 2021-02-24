@@ -1,7 +1,7 @@
-import React, { memo } from 'react';
+import React from 'react';
 import { Switch } from 'react-native';
-import tailwind from 'tailwind-rn';
-import { Ripple, Text, View } from '../Themed';
+import tailwind from '~/tailwind';
+import { View } from '../Themed';
 import SelectText from './SelectText';
 
 type Props = {
@@ -11,7 +11,7 @@ type Props = {
   onValueChange: () => void;
 };
 
-const SwitchUI = memo((props: Props) => {
+const SwitchUI = React.memo((props: Props) => {
   const { name, description, value, onValueChange } = props;
 
   return (

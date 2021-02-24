@@ -1,20 +1,20 @@
 import { StackNavigationProp } from '@react-navigation/stack';
-import React, { memo, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Dimensions, StyleSheet } from 'react-native';
 import { getGroups } from '~/src/models/GroupsModel';
 import apiCaller from '~/src/utils/ApiCaller';
 import tailwind from '~/tailwind';
 import { GroupType, TabPracticeParamList } from '~/types';
 import { ScrollView, Text, View } from '../Themed';
-import CenterUI from '../UI/Center';
-import Loading from '../UI/Loading';
+import ScreenCenter from '../UI/ScreenCenter';
+import ScreenLoading from '../UI/ScreenLoading';
 import GroupItem from './GroupItem';
 
 type Props = {
   navigation: StackNavigationProp<TabPracticeParamList, 'TabPracticeScreen'>;
 };
 
-const TabPractice = memo((props: Props) => {
+const TabPractice = React.memo((props: Props) => {
   const [isPending, setIsPending] = useState(true);
   const [message, setMessage] = useState({ content: '', color: '' });
 
@@ -100,8 +100,8 @@ const TabPractice = memo((props: Props) => {
     ));
 
   const text = 'Không có dữ liệu, bạn vui lòng bật Internet và khởi động lại ứng dụng.';
-  if (isPending) return <Loading />;
-  if (groups.length <= 0) return <CenterUI>{text}</CenterUI>;
+  if (isPending) return <ScreenLoading />;
+  if (groups.length <= 0) return <ScreenCenter>{text}</ScreenCenter>;
 
   return (
     <ScrollView style={tailwind('flex-1')}>

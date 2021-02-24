@@ -6,7 +6,7 @@ import Colors from '~/src/constants/Colors';
 import { RootState } from '~/src/redux/reducers/rootReducer';
 import tailwind from '~/tailwind';
 
-export default function TabPracticeHeaderTitle(): JSX.Element {
+const TabPracticeTitle = React.memo(() => {
   const colorScheme = useSelector((state: RootState) => state.common.theme);
 
   return (
@@ -19,8 +19,10 @@ export default function TabPracticeHeaderTitle(): JSX.Element {
       </Text>
     </View>
   );
-}
+});
 
 const styles = StyleSheet.create({
   text: { ...tailwind('text-lg tracking-wide ml-1') },
 });
+
+export default TabPracticeTitle;

@@ -1,6 +1,6 @@
 /* eslint-disable curly */
 /* eslint-disable nonblock-statement-body-position */
-import React, { memo } from 'react';
+import React from 'react';
 import { TypesAnswer, WordType } from '~/types';
 import ChooseSound from './ChooseSound';
 import ChooseWord from './ChooseWord';
@@ -12,7 +12,7 @@ type Props = {
   handleSendAnswer: (value: string) => void;
 };
 
-const StudyMode = memo((props: Props) => {
+const StudyMode = React.memo((props: Props) => {
   const { word, typeAnswer, handleSendAnswer } = props;
 
   if (typeAnswer === 'CHOOSE-NAME-MEAN')

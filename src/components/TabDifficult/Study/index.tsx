@@ -1,6 +1,6 @@
 import { StackNavigationProp } from '@react-navigation/stack';
 import * as Speech from 'expo-speech';
-import React, { memo, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Keyboard, Vibration } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import AlertUI from '~/src/components/TabPractice/Study/Alert';
@@ -22,7 +22,7 @@ type Props = {
   navigation: StackNavigationProp<TabDifficultParamList, 'TabDifficultStudy'>;
 };
 
-const TabDifficultStudy = memo(({ navigation }: Props) => {
+const TabDifficultStudy = React.memo(({ navigation }: Props) => {
   const totalQuestions = 10;
   const [status, setStatus] = useState<StatusQuestion>('Waiting');
   const [statusStudy, setStatusStudy] = useState<boolean>();

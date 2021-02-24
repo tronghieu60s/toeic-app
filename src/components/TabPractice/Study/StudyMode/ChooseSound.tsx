@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { View } from '~/src/components/Themed';
 import SoundButton from '~/src/components/UI/SoundButton';
@@ -13,7 +13,8 @@ type Props = {
   handleSendAnswer: (value: string) => void;
 };
 
-const ChooseSoundEN = memo(({ word, handleSendAnswer }: Props) => {
+const ChooseSoundEN = React.memo((props: Props) => {
+  const { word, handleSendAnswer } = props;
   const [selected, setSelected] = useState(-1);
   const [words, setWords] = useState<WordType[]>([]);
 

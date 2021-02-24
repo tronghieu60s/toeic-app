@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React from 'react';
 import { Text, View } from '~/src/components/Themed';
 import SoundButton from '~/src/components/UI/SoundButton';
 import tailwind from '~/tailwind';
@@ -8,7 +8,7 @@ type Props = {
   word: WordType;
 };
 
-const StudyWord = memo(({ word }: Props) => {
+const StudyWord = React.memo(({ word }: Props) => {
   const { name_word, mean_word, explain_word } = word;
 
   return (

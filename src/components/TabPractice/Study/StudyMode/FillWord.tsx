@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import { View } from '~/src/components/Themed';
@@ -9,7 +9,7 @@ type Props = {
   handleSendAnswer: (value: string) => void;
 };
 
-const FillWord = memo(({ word, handleSendAnswer }: Props) => {
+const FillWord = React.memo(({ word, handleSendAnswer }: Props) => {
   const [text, onChangeText] = React.useState('');
 
   useEffect(() => {
