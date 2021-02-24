@@ -7,6 +7,7 @@ import TabDifficultNavigator from '~/src/stacks/TabDifficultNavigator';
 import TabPracticeNavigator from '~/src/stacks/TabPracticeNavigator';
 import { BottomTabParamList } from '../../types';
 import Colors from '../constants/Colors';
+import TabSettingNavigator from '../stacks/TabSettingNavigator';
 import BottomTabIcon from './BottomTabIcon';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
@@ -41,7 +42,7 @@ export default function BottomTabNavigator(): JSX.Element {
       <BottomTab.Screen name="TabDifficult" component={TabDifficultNavigator} />
       {/* <BottomTab.Screen name="TabAnalysis" component={TabFavoriteNavigator} /> */}
       {/* <BottomTab.Screen name="TabFavorite" component={TabFavoriteNavigator} /> */}
-      {/* <BottomTab.Screen name="TabSetting" component={TabFavoriteNavigator} /> */}
+      <BottomTab.Screen name="TabSetting" component={TabSettingNavigator} />
     </BottomTab.Navigator>
   );
 }

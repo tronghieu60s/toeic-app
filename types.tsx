@@ -31,6 +31,10 @@ export type TabDifficultParamList = {
   TabDifficultStudy: undefined;
 };
 
+export type TabSettingParamList = {
+  TabSettingScreen: undefined;
+};
+
 export type TabFavoriteParamList = {
   TabFavoriteScreen: undefined;
 };
