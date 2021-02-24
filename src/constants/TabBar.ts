@@ -7,7 +7,7 @@ export default {
     icon: 'meh',
     name: 'Từ khó',
   },
-  TabAnalysis: {
+  TabStatistics: {
     icon: 'linechart',
     name: 'Thống kê',
   },

@@ -6,7 +6,7 @@ export type RootStackParamList = {
 export type BottomTabParamList = {
   TabPractice: undefined;
   TabDifficult: undefined;
-  TabAnalysis: undefined;
+  TabStatistics: undefined;
   // TabMessage: undefined;
   TabSetting: undefined;
 };
