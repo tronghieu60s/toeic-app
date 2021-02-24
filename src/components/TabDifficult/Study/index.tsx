@@ -94,7 +94,7 @@ const TabDifficultStudy = React.memo(({ navigation }: Props) => {
     }
 
     // Handle Exit Study
-    if (countQuestion === totalQuestions || words.length === 0) {
+    if (countQuestion >= totalQuestions || words.length === 0) {
       navigation.removeListener('beforeRemove', (e) => navigation.dispatch(e.data.action));
       navigation.goBack();
       return;

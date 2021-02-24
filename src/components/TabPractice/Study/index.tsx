@@ -134,7 +134,7 @@ const TabPracticeStudy = React.memo(({ navigation }: Props) => {
     }
 
     // Handle Exit Study
-    if (countQuestion === totalQuestions) {
+    if (countQuestion >= totalQuestions) {
       navigation.removeListener('beforeRemove', (e) => navigation.dispatch(e.data.action));
       navigation.goBack();
       Alert.alert(

@@ -9,27 +9,31 @@ import StudyCover from '~/src/components/TabPractice/Study/StudyCover';
 import StudyMode from '~/src/components/TabPractice/Study/StudyMode';
 import { View } from '~/src/components/Themed';
 import ProcessBar from '~/src/components/UI/ProcessBar';
+import Config from '~/src/constants/Config';
 import { convertWordsBase, removeVietnameseTones as rmVN } from '~/src/helpers/convert';
 import { randomBetweenTwoNumber as rdNum } from '~/src/helpers/random';
 import { typeAnswersMean, typeAnswersName } from '~/src/helpers/type-condition';
-import { increasePoint } from '~/src/redux/actions/practiceAction';
+import { actStudyInCorrect, increasePoint } from '~/src/redux/actions/practiceAction';
 import { RootState } from '~/src/redux/reducers/rootReducer';
 import tailwind from '~/tailwind';
 import { StatusQuestion, TabPracticeParamList, TypesAnswer, WordType } from '~/types';
 import ScreenLoading from '../../UI/ScreenLoading';
+
+const { time_max } = Config.study;
 
 type Props = {
   navigation: StackNavigationProp<TabPracticeParamList, 'TabPracticeScreen'>;
 };
 
 const TabPracticeExam = React.memo(({ navigation }: Props) => {
-  const totalQuestions = 30;
-  const [countIncorrect, setCountIncorrect] = useState(0);
+  const totalTime = time_max; // Seconds
+  const [countTime, setCountTime] = useState(0);
   const [status, setStatus] = useState<StatusQuestion>('Waiting');
 
   const [userAnswer, setUserAnswer] = useState('');
   const [typeAnswer, setTypeAnswer] = useState<TypesAnswer>();
-  const [countQuestion, setCountQuestion] = useState(0);
+  const [countCorrect, setCountCorrect] = useState(0);
+  const [countIncorrect, setCountIncorrect] = useState(0);
 
   const dispatch = useDispatch();
   const words = useSelector((state: RootState) => state.practice.words);
@@ -38,16 +42,16 @@ const TabPracticeExam = React.memo(({ navigation }: Props) => {
 
   useEffect(() => {
     const processTime = setInterval(() => {
-      if (countQuestion === totalQuestions) {
+      if (countTime >= totalTime) {
         clearInterval(processTime);
 
         navigation.removeListener('beforeRemove', (e) => navigation.dispatch(e.data.action));
         navigation.goBack();
         Alert.alert(
           'Bạn đã hoàn thành bài học.',
-          `Tổng số câu hỏi: ${totalQuestions}\nTrả lời sai: ${countIncorrect} lần`,
+          `Tổng số câu hỏi: ${countCorrect + countIncorrect}\nTrả lời sai: ${countIncorrect} lần`,
         );
-      } else setCountQuestion(countQuestion + 1);
+      } else setCountTime(countTime + 1);
     }, 1000);
     return () => clearInterval(processTime);
   });
@@ -91,10 +95,12 @@ const TabPracticeExam = React.memo(({ navigation }: Props) => {
     if (conditionArr || actual === expected) {
       dispatch(increasePoint(50));
 
+      setCountCorrect(countCorrect + 1);
       setStatus('Correct');
     } else {
-      setCountIncorrect(countIncorrect + 1);
+      dispatch(actStudyInCorrect(wordQuestion));
 
+      setCountIncorrect(countIncorrect + 1);
       setStatus('Incorrect');
       Vibration.vibrate(200);
     }
@@ -116,7 +122,7 @@ const TabPracticeExam = React.memo(({ navigation }: Props) => {
 
   return (
     <View style={styles.container}>
-      <ProcessBar percent={(countQuestion * 100) / totalQuestions} color="#f5365c" />
+      <ProcessBar percent={(countTime * 100) / totalTime} color="#f5365c" />
       <StudyCover status={status} word={wordQuestion} typeAnswer={typeAnswer}>
         <StudyMode
           word={wordQuestion}

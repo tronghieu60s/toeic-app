@@ -1,30 +1,36 @@
-import { Feather } from '@expo/vector-icons';
 import Slider from '@react-native-community/slider';
 import { Picker } from '@react-native-picker/picker';
 import * as Speech from 'expo-speech';
-import React, { useState } from 'react';
-import { ToastAndroid } from 'react-native';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setVoiceIdentify, setVoicePitch, setVoiceRate } from '~/src/redux/actions/commonAction';
 import { RootState } from '~/src/redux/reducers/rootReducer';
 import tailwind from '~/tailwind';
-import { Ripple, View } from '../Themed';
+import { View } from '../Themed';
 import SelectText from '../UI/SelectText';
 
 const TabSettingAudio = React.memo(() => {
+  const [loadVoices, setLoadVoices] = useState(false);
   const [voices, setVoices] = useState<Speech.Voice[]>([]);
 
   const dispatch = useDispatch();
   const common = useSelector((state: RootState) => state.common);
   const { voiceIdentify, voiceRate, voicePitch } = common;
 
-  const loadNameAudio = async () => {
-    let voices = await Speech.getAvailableVoicesAsync();
-    voices = voices.filter((o) => o.identifier.slice(0, 2) === 'en');
-    voices.sort((a, b) => (a.language > b.language ? 1 : -1));
-    setVoices(voices);
-    ToastAndroid.show('Đã tải dữ liệu.', ToastAndroid.SHORT);
-  };
+  useEffect(() => {
+    if (loadVoices) return;
+    if (voices.length > 0) {
+      setLoadVoices(true);
+      return;
+    }
+
+    (async () => {
+      let voices = await Speech.getAvailableVoicesAsync();
+      voices = voices.filter((o) => o.identifier.slice(0, 2) === 'en');
+      voices.sort((a, b) => (a.language > b.language ? 1 : -1));
+      setVoices(voices);
+    })();
+  });
 
   const renderItemsSelect = (voices: Speech.Voice[]) =>
     voices.map((o, index) => (
@@ -38,18 +44,13 @@ const TabSettingAudio = React.memo(() => {
           name="Giọng Nói Tiếng Anh"
           description="Tải dữ liệu trước khi chọn giọng nói bạn muốn."
         />
-        <View style={tailwind('flex-row justify-around items-center')}>
-          <Ripple style={tailwind('p-2')} onPress={loadNameAudio}>
-            <Feather name="download" size={20} color="black" />
-          </Ripple>
-          <Picker
-            style={tailwind('w-10/12')}
-            selectedValue={voiceIdentify}
-            onValueChange={(itemValue) => dispatch(setVoiceIdentify(itemValue))}
-          >
-            {renderItemsSelect(voices)}
-          </Picker>
-        </View>
+        <Picker
+          style={tailwind('w-10/12')}
+          selectedValue={voiceIdentify}
+          onValueChange={(itemValue) => dispatch(setVoiceIdentify(itemValue))}
+        >
+          {renderItemsSelect(voices)}
+        </Picker>
       </View>
       <View style={tailwind('justify-between')}>
         <SelectText
