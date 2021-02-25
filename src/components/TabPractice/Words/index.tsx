@@ -43,8 +43,8 @@ const TabPracticeWords = memo((props: Props) => {
   return (
     <View light style={tailwind('flex-1 px-2')}>
       <ScrollView light style={tailwind('pt-2 pb-16')}>
-        <AdMobBanner light bannerSize="largeBanner" />
-        <View light style={tailwind('mb-3 mt-2')}>
+        <AdMobBanner light bannerSize="largeBanner" style={tailwind('mb-2')} />
+        <View light style={tailwind('mb-3')}>
           {words.map((item, i) => (
             <WordItem
               key={i}

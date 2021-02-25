@@ -15,14 +15,14 @@ type ThemeProps = {
 export type Props = ThemeProps & DefaultAdMobBanner['props'];
 
 const AdMobBanner = React.memo((props: Props) => {
-  const [noAds, setNoAds] = useState(false);
+  const [noAds, setNoAds] = useState(true);
   const [bannerLoad, setBannerLoad] = useState(true);
 
   useEffect(() => {
     (async () => {
       const config = await apiCaller('config.json');
-      // if (config) setNoAds(config.no_ads);
-      // else setNoAds(true);
+      if (config) setNoAds(config.no_ads);
+      else setNoAds(true);
     })();
   }, []);
 

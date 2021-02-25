@@ -16,7 +16,7 @@ const StudyWord = React.memo(({ word }: Props) => {
     <View style={{ ...tailwind('flex-1 bg-transparent'), width: Dimensions.get('window').width }}>
       <View style={tailwind('py-5 mx-3 my-4 rounded-lg')}>
         <View style={tailwind('justify-between items-center bg-transparent')}>
-          <SoundButton size={90} autoPlay word={word} />
+          <SoundButton size={90} word={word} />
           <Text weight={700} style={tailwind('text-xl mt-7 ml-2 text-center')}>
             {name_word}
           </Text>

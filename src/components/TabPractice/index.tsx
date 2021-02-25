@@ -4,7 +4,6 @@ import { StyleSheet } from 'react-native';
 import { getGroups } from '~/src/models/GroupsModel';
 import tailwind from '~/tailwind';
 import { GroupType, TabPracticeParamList } from '~/types';
-import AdMobBanner from '../Ads';
 import { ScrollView, Text, View } from '../Themed';
 import ScreenCenter from '../UI/ScreenCenter';
 import ScreenLoading from '../UI/ScreenLoading';
@@ -88,7 +87,6 @@ const TabPractice = React.memo((props: Props) => {
             <GroupItem key={index} group={item} navigation={navigation} />
           ))}
         </ScrollView>
-        {index === 1 && <AdMobBanner light bannerSize="largeBanner" />}
       </React.Fragment>
     ));
 
