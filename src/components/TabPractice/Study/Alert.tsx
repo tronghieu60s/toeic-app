@@ -2,8 +2,6 @@ import { Feather } from '@expo/vector-icons';
 import React, { useEffect, useRef } from 'react';
 import { Animated, Dimensions, StyleSheet, ToastAndroid } from 'react-native';
 import { Ripple, Text, View } from '~/src/components/Themed';
-import { TEXT_CORRECT, TEXT_INCORRECT } from '~/src/constants/Text/Study';
-import { randomBetweenTwoNumber as rdNum } from '~/src/helpers/random';
 import tailwind from '~/tailwind';
 import { StatusQuestion, WordType } from '~/types';
 
@@ -19,8 +17,8 @@ const TabPracticeStudyAlert = React.memo((props: Props) => {
   const outPosition = useRef(new Animated.Value(Dimensions.get('window').height / 4)).current;
 
   const bgColor = status === 'Correct' ? '#2dce89' : '#f5365c';
-  const textCorrect = TEXT_CORRECT[rdNum(0, TEXT_CORRECT.length)];
-  const textIncorrect = TEXT_INCORRECT[rdNum(0, TEXT_INCORRECT.length)];
+  const textCorrect = 'Chính xác';
+  const textIncorrect = 'Không chính xác';
 
   useEffect(() => {
     if (status !== 'Waiting') {

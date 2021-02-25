@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { memo } from 'react';
 import tailwind from '~/tailwind';
 import { Text } from '../Themed';
 
 type Props = { title: string };
 
-const HeaderTitle = React.memo((props: Props) => {
+export default memo(function HeaderTitle(props: Props) {
   const { title } = props;
   return (
     <Text weight={700} style={tailwind('text-lg tracking-wider capitalize')}>
@@ -12,5 +12,3 @@ const HeaderTitle = React.memo((props: Props) => {
     </Text>
   );
 });
-
-export default HeaderTitle;

@@ -36,41 +36,6 @@ export const loadCommon = (state: CommonState): CommonAction => ({
   state,
 });
 
-export const actLoadCommon = () => async (dispatch: Dispatch<CommonAction>): Promise<void> => {
-  const theme_storage = await AsyncStorage.getItem('theme_storage');
-  const visibleMean_storage = await AsyncStorage.getItem('visibleMean_storage');
-  const visibleExplain_storage = await AsyncStorage.getItem('visibleExplain_storage');
-  const visiblePronounce_storage = await AsyncStorage.getItem('visiblePronounce_storage');
-  const voiceIdentify_storage = await AsyncStorage.getItem('voiceIdentify_storage');
-  const voiceRate_storage = await AsyncStorage.getItem('voiceRate_storage');
-  const voicePitch_storage = await AsyncStorage.getItem('voicePitch_storage');
-
-  const themeStorage = theme_storage === 'light' ? 'light' : 'dark';
-  const theme = theme_storage !== null ? themeStorage : 'light';
-
-  // Visible
-  const visibleMean = visibleMean_storage !== null ? visibleMean_storage === 'true' : true;
-  const visibleExplain = visibleExplain_storage !== null ? visibleExplain_storage === 'true' : true;
-  const visiblePronounce =
-    visiblePronounce_storage !== null ? visiblePronounce_storage === 'true' : true;
-
-  // Voice
-  const voiceIdentify = voiceIdentify_storage !== null ? voiceIdentify_storage : 'en-US-language';
-  const voiceRate = voiceRate_storage !== null ? parseFloat(voiceRate_storage) : 1;
-  const voicePitch = voicePitch_storage !== null ? parseFloat(voicePitch_storage) : 1;
-
-  const state: CommonState = {
-    theme,
-    visibleMean,
-    visibleExplain,
-    visiblePronounce,
-    voiceIdentify,
-    voiceRate,
-    voicePitch,
-  };
-  return dispatch(loadCommon(state));
-};
-
 export const toggleTheme = (): CommonAction => ({
   type: TOGGLE_THEME,
 });
@@ -101,3 +66,47 @@ export const setVoicePitch = (pitch: number): CommonAction => ({
   type: SET_VOICE_PITCH,
   pitch,
 });
+
+// Redux Thunk Load Common
+const actLoadSettingVisible = async () => {
+  const visibleMean_storage = await AsyncStorage.getItem('visibleMean_storage');
+  const visibleExplain_storage = await AsyncStorage.getItem('visibleExplain_storage');
+  const visiblePronounce_storage = await AsyncStorage.getItem('visiblePronounce_storage');
+
+  // Visible
+  const visibleMean = visibleMean_storage !== null ? visibleMean_storage === 'true' : true;
+  const visibleExplain = visibleExplain_storage !== null ? visibleExplain_storage === 'true' : true;
+  const visiblePronounce =
+    visiblePronounce_storage !== null ? visiblePronounce_storage === 'true' : true;
+
+  return { visibleMean, visibleExplain, visiblePronounce };
+};
+
+const actLoadSettingVoice = async () => {
+  const voiceIdentify_storage = await AsyncStorage.getItem('voiceIdentify_storage');
+  const voiceRate_storage = await AsyncStorage.getItem('voiceRate_storage');
+  const voicePitch_storage = await AsyncStorage.getItem('voicePitch_storage');
+
+  // Voice
+  const voiceIdentify = voiceIdentify_storage !== null ? voiceIdentify_storage : 'en-US-language';
+  const voiceRate = voiceRate_storage !== null ? parseFloat(voiceRate_storage) : 1;
+  const voicePitch = voicePitch_storage !== null ? parseFloat(voicePitch_storage) : 1;
+
+  return { voiceIdentify, voiceRate, voicePitch };
+};
+
+export const actLoadCommon = () => async (dispatch: Dispatch<CommonAction>): Promise<void> => {
+  const theme_storage = await AsyncStorage.getItem('theme_storage');
+  const themeStorage = theme_storage === 'light' ? 'light' : 'dark';
+  const theme = theme_storage !== null ? themeStorage : 'light';
+
+  const loadSettingVisible = await actLoadSettingVisible();
+  const loadSettingVocie = await actLoadSettingVoice();
+
+  const state: CommonState = {
+    theme,
+    ...loadSettingVisible,
+    ...loadSettingVocie,
+  };
+  return dispatch(loadCommon(state));
+};

@@ -6,7 +6,7 @@ import {
 import React from 'react';
 import { Alert } from 'react-native';
 import { useSelector } from 'react-redux';
-import HeaderTitle from '~/src/components/Header/Title';
+import HeaderTitle from '~/src/components/Common/HeaderTitle';
 import TabDifficultRight from '~/src/components/TabDifficult/Header/Right';
 import TabDifficultStudy from '~/src/components/TabDifficult/Study';
 import TabPracticeStudyHeaderBackImage from '~/src/components/TabPractice/Study/Header/BackImage';

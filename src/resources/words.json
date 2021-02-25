@@ -1,0 +1,954 @@
+[
+    {
+        "id_word": "1",
+        "name_word": "abide by",
+        "pronounce_word": "/ə'baid bai/",
+        "explain_word": "to accept or bear (someone or something bad, unpleasant, etc.)",
+        "mean_word": "chịu đựng, trung thành, giữ, tuân theo",
+        "id_group": "1"
+    },
+    {
+        "id_word": "2",
+        "name_word": "agreement",
+        "pronounce_word": "/ə'gri:mənt/",
+        "explain_word": "the act of agreeing",
+        "mean_word": "hợp đồng, hiệp nghị, thỏa thuận",
+        "id_group": "1"
+    },
+    {
+        "id_word": "3",
+        "name_word": "assurance",
+        "pronounce_word": "/ə'∫ɔ:rəns/",
+        "explain_word": "the state of being sure or certain about something",
+        "mean_word": "sự cam đoan, bảo đảm, chắc chắn",
+        "id_group": "1"
+    },
+    {
+        "id_word": "4",
+        "name_word": "cancellation",
+        "pronounce_word": "/ˌkænsəˈleɪʃən/",
+        "explain_word": "a decision to stop doing or planning to do something, the act of canceling something",
+        "mean_word": "sự hủy bỏ, sự hủy",
+        "id_group": "1"
+    },
+    {
+        "id_word": "5",
+        "name_word": "determine",
+        "pronounce_word": "/dɪˈtɚmən/",
+        "explain_word": "to officially decide (something) especially because of evidence or facts",
+        "mean_word": "quyết định, xác định, định rõ",
+        "id_group": "1"
+    },
+    {
+        "id_word": "6",
+        "name_word": "engage",
+        "pronounce_word": "/in'geidʒ/",
+        "explain_word": "to hire (someone) to perform a particular service",
+        "mean_word": "cam kết, hứa, thuê (ai) làm",
+        "id_group": "1"
+    },
+    {
+        "id_word": "7",
+        "name_word": "establish",
+        "pronounce_word": "/ɪˈstæblɪʃ/",
+        "explain_word": "to begin or create (something that is meant to last for a long time)",
+        "mean_word": "lập, thành lập, thiết lập",
+        "id_group": "1"
+    },
+    {
+        "id_word": "8",
+        "name_word": "obligate",
+        "pronounce_word": "/'ɒbligeit/",
+        "explain_word": "to make (a person or organization) do something because the law requires it or because it is the right thing to do",
+        "mean_word": "bắt buộc, ép buộc",
+        "id_group": "1"
+    },
+    {
+        "id_word": "9",
+        "name_word": "party",
+        "pronounce_word": "/'pɑ:ti/",
+        "explain_word": "a social event in which entertainment, food, and drinks are provided",
+        "mean_word": "đảng, phái, tiệc, buổi liên hoan",
+        "id_group": "1"
+    },
+    {
+        "id_word": "10",
+        "name_word": "provision",
+        "pronounce_word": "/prə'viʒn/",
+        "explain_word": "the act or process of supplying or providing something",
+        "mean_word": "sự cung cấp, sự chu cấp",
+        "id_group": "1"
+    },
+    {
+        "id_word": "11",
+        "name_word": "resolve",
+        "pronounce_word": "/rɪˈzɑːlv/",
+        "explain_word": "to settle or solve (something)",
+        "mean_word": "giải quyết, sự kiên quyết",
+        "id_group": "1"
+    },
+    {
+        "id_word": "12",
+        "name_word": "specific",
+        "pronounce_word": "/spɪˈsɪfɪk/",
+        "explain_word": "special or particular",
+        "mean_word": "chi tiết, chính xác, riêng biệt, đặc trưng",
+        "id_group": "1"
+    },
+    {
+        "id_word": "13",
+        "name_word": "attract",
+        "pronounce_word": "/ə'trækt/",
+        "explain_word": "to cause (someone) to like or be interested in something",
+        "mean_word": "thu hút, lôi cuốn, hấp dẫn",
+        "id_group": "2"
+    },
+    {
+        "id_word": "14",
+        "name_word": "compare",
+        "pronounce_word": "/kəm'peə/",
+        "explain_word": "to say that (something) is similar to something else",
+        "mean_word": "so sánh, đối chiếu",
+        "id_group": "2"
+    },
+    {
+        "id_word": "15",
+        "name_word": "competition",
+        "pronounce_word": "/ˌkɑːmpəˈtɪʃən/",
+        "explain_word": "the act or process of trying to get or win something",
+        "mean_word": "cuộc tranh tài, cuộc thi đấu, sự cạnh tranh",
+        "id_group": "2"
+    },
+    {
+        "id_word": "16",
+        "name_word": "consume",
+        "pronounce_word": "/kənˈsuːm/",
+        "explain_word": "to use something, especially fuel, energy or time",
+        "mean_word": "tiêu dùng",
+        "id_group": "2"
+    },
+    {
+        "id_word": "17",
+        "name_word": "convince",
+        "pronounce_word": "/kənˈvɪns/",
+        "explain_word": "to cause (someone) to believe that something is true",
+        "mean_word": "thuyết phục",
+        "id_group": "2"
+    },
+    {
+        "id_word": "18",
+        "name_word": "currently",
+        "pronounce_word": "/'kʌrəntli/",
+        "explain_word": "at the present time",
+        "mean_word": "hiện nay",
+        "id_group": "2"
+    },
+    {
+        "id_word": "19",
+        "name_word": "fad",
+        "pronounce_word": "/fæd/",
+        "explain_word": "something (such as an interest or fashion) that is very popular for a short time",
+        "mean_word": "mốt, sự thích thú tạm thời",
+        "id_group": "2"
+    },
+    {
+        "id_word": "20",
+        "name_word": "inspiration",
+        "pronounce_word": "/,inspə'rei∫n/",
+        "explain_word": "something that makes someone want to do something or that gives someone an idea about what to do or create",
+        "mean_word": "cảm hứng",
+        "id_group": "2"
+    },
+    {
+        "id_word": "21",
+        "name_word": "market",
+        "pronounce_word": "/'mɑ:kit/",
+        "explain_word": "a place where products are bought and sold",
+        "mean_word": "chợ, thị trường",
+        "id_group": "2"
+    },
+    {
+        "id_word": "22",
+        "name_word": "persuasion",
+        "pronounce_word": "/pɚˈsweɪʒən/",
+        "explain_word": "the act of causing people to do or believe something",
+        "mean_word": "sự làm cho tin, sự thuyết phục",
+        "id_group": "2"
+    },
+    {
+        "id_word": "23",
+        "name_word": "productive",
+        "pronounce_word": "/prə'dʌktiv/",
+        "explain_word": "working hard and getting good results / producing or able to produce something especially in large amounts",
+        "mean_word": "sản xuất, có ích",
+        "id_group": "2"
+    },
+    {
+        "id_word": "24",
+        "name_word": "satisfaction",
+        "pronounce_word": "/ˌsætəsˈfækʃən/",
+        "explain_word": "a happy or pleased feeling because of something that you did or something that happened to you",
+        "mean_word": "sự vừa ý, sự thỏa mãn",
+        "id_group": "2"
+    },
+    {
+        "id_word": "25",
+        "name_word": "characteristic",
+        "pronounce_word": "/ˌkerɪktəˈrɪstɪk/",
+        "explain_word": "a distinguishing trait, quality, or property",
+        "mean_word": "đặc thù, đặc trưng riêng",
+        "id_group": "3"
+    },
+    {
+        "id_word": "26",
+        "name_word": "consequence",
+        "pronounce_word": "/'kɔnsikwəns/",
+        "explain_word": "something that happens as a result of a particular action or set of conditions, importance or value",
+        "mean_word": "hậu quả, tầm quan trọng",
+        "id_group": "3"
+    },
+    {
+        "id_word": "27",
+        "name_word": "consider",
+        "pronounce_word": "/kən'sidə/",
+        "explain_word": "to think about something carefully",
+        "mean_word": "xem xét, cân nhắc",
+        "id_group": "3"
+    },
+    {
+        "id_word": "28",
+        "name_word": "cover",
+        "pronounce_word": "/'kʌvə/",
+        "explain_word": "to put something over, on top of, or in front of (something else) especially in order to protect, hide, or close it",
+        "mean_word": "che, phủ, bao hàm, bao quát",
+        "id_group": "3"
+    },
+    {
+        "id_word": "29",
+        "name_word": "expiration",
+        "pronounce_word": "/,ekspaiə'reiʃn/",
+        "explain_word": "the fact of coming to an end or no longer being valid after a period of time",
+        "mean_word": "sự hết hạn",
+        "id_group": "3"
+    },
+    {
+        "id_word": "30",
+        "name_word": "frequently",
+        "pronounce_word": "/ˈfriːkwəntli/",
+        "explain_word": "many times, on many occasions, often",
+        "mean_word": "thường xuyên",
+        "id_group": "3"
+    },
+    {
+        "id_word": "31",
+        "name_word": "imply",
+        "pronounce_word": "/im'plai/",
+        "explain_word": "to express (something) in an indirect way, to suggest (something) without saying or showing it plainly",
+        "mean_word": "ngụ ý, ý nói, hàm ý",
+        "id_group": "3"
+    },
+    {
+        "id_word": "32",
+        "name_word": "promise",
+        "pronounce_word": "/ˈprɑːməs/",
+        "explain_word": "a statement telling someone that you will definitely do something or that something will definitely happen in the future",
+        "mean_word": "lời hứa, lời hẹn, hứa hẹn",
+        "id_group": "3"
+    },
+    {
+        "id_word": "33",
+        "name_word": "protect",
+        "pronounce_word": "/prə'tekt/",
+        "explain_word": "to keep (someone or something) from being harmed, pain, lost, etc",
+        "mean_word": "bảo vệ, che chở",
+        "id_group": "3"
+    },
+    {
+        "id_word": "34",
+        "name_word": "reputation",
+        "pronounce_word": "/,repju:'teiʃn/",
+        "explain_word": "the opinion that people have about what (someone or something) is like, based on what has happened in the past",
+        "mean_word": "danh tiếng, thanh danh, tiếng (tốt hoặc xấu)",
+        "id_group": "3"
+    },
+    {
+        "id_word": "35",
+        "name_word": "require",
+        "pronounce_word": "/ri'kwaiə/",
+        "explain_word": "to need (something), to depend on (someone or something)",
+        "mean_word": "đòi hỏi, yêu cầu",
+        "id_group": "3"
+    },
+    {
+        "id_word": "36",
+        "name_word": "variety",
+        "pronounce_word": "/və'raiəti/",
+        "explain_word": "a number or collection of different things or people, the quality or state of having or including many different things",
+        "mean_word": "sự khác nhau, đa dạng",
+        "id_group": "3"
+    },
+    {
+        "id_word": "37",
+        "name_word": "address",
+        "pronounce_word": "/ə'dres/",
+        "explain_word": "to write on an envelope, package, letter, etc., the name and address of the person or business it is being sent to, to speak to (a person or group)",
+        "mean_word": "địa chỉ, bài nói, diễn văn",
+        "id_group": "4"
+    },
+    {
+        "id_word": "38",
+        "name_word": "avoid",
+        "pronounce_word": "/ə'vɔid/",
+        "explain_word": "to prevent something bad from happening",
+        "mean_word": "tránh, tránh khỏi, ngừa",
+        "id_group": "4"
+    },
+    {
+        "id_word": "39",
+        "name_word": "demonstrate",
+        "pronounce_word": "/'demənstreit/",
+        "explain_word": "to prove (something) by showing examples of it, to show evidence of (something)",
+        "mean_word": "biểu lộ, cho thấy, chứng minh",
+        "id_group": "4"
+    },
+    {
+        "id_word": "40",
+        "name_word": "develop",
+        "pronounce_word": "/di'veləp/",
+        "explain_word": "to cause (something) to grow or become bigger or more advanced",
+        "mean_word": "phát triển, tiến triển",
+        "id_group": "4"
+    },
+    {
+        "id_word": "41",
+        "name_word": "evaluate",
+        "pronounce_word": "/i'væljueit/",
+        "explain_word": "to judge the value or condition of (someone or something) in a careful and thoughtful way",
+        "mean_word": "đánh giá",
+        "id_group": "4"
+    },
+    {
+        "id_word": "42",
+        "name_word": "gather",
+        "pronounce_word": "/'gæðə/",
+        "explain_word": "to bring (things or people) together into a group",
+        "mean_word": "tụ họp, tập hợp, thu thập, thu hoạch",
+        "id_group": "4"
+    },
+    {
+        "id_word": "43",
+        "name_word": "offer",
+        "pronounce_word": "/'ɔfə/",
+        "explain_word": "to give someone the opportunity to accept or take (something)",
+        "mean_word": "đề nghị, đề xuất",
+        "id_group": "4"
+    },
+    {
+        "id_word": "44",
+        "name_word": "primarily",
+        "pronounce_word": "/'praimərili/",
+        "explain_word": "used to indicate the main purpose of something, reason for something, etc",
+        "mean_word": "chính, chủ yếu",
+        "id_group": "4"
+    },
+    {
+        "id_word": "45",
+        "name_word": "risk",
+        "pronounce_word": "/rɪsk/",
+        "explain_word": "the possibility of something bad happening at some time in the future",
+        "mean_word": "nguy cơ, rủi ro, bất trắc",
+        "id_group": "4"
+    },
+    {
+        "id_word": "46",
+        "name_word": "strategy",
+        "pronounce_word": "/ˈstrætədʒi/",
+        "explain_word": "a careful plan or method for achieving a particular goal usually over a long period of time",
+        "mean_word": "chiến lược",
+        "id_group": "4"
+    },
+    {
+        "id_word": "47",
+        "name_word": "substitution",
+        "pronounce_word": "/,sʌbsti'tju:ʃn/",
+        "explain_word": "the act of substituting or replacing one person or thing with another",
+        "mean_word": "sự đổi, sự thay thế",
+        "id_group": "4"
+    },
+    {
+        "id_word": "48",
+        "name_word": "strong",
+        "pronounce_word": "/strɔɳ/",
+        "explain_word": "having great physical power and ability, having a lot of strength",
+        "mean_word": "mạnh mẽ, vững chắc, chắc, vững, bền",
+        "id_group": "4"
+    },
+    {
+        "id_word": "49",
+        "name_word": "accommodate",
+        "pronounce_word": "/ə'kɔmədeit/",
+        "explain_word": "to provide room for (someone), to provide a place to stay and sleep for (someone)",
+        "mean_word": "chứa được, có đủ chỗ ở cho, cung cấp, cấp cho",
+        "id_group": "5"
+    },
+    {
+        "id_word": "50",
+        "name_word": "arrangement",
+        "pronounce_word": "/ə'reindʤmənt/",
+        "explain_word": "the way that things or people are organized for a particular purpose or activity :the way that things or people are arranged",
+        "mean_word": "sự sắp xếp, sự sắp đặt, sự thỏa thuận",
+        "id_group": "5"
+    },
+    {
+        "id_word": "51",
+        "name_word": "association",
+        "pronounce_word": "/ə,sousi'eiʃn/",
+        "explain_word": "a connection or relationship between things or people",
+        "mean_word": "sự kết hợp, sự liên kết, sự giao thiệp",
+        "id_group": "5"
+    },
+    {
+        "id_word": "52",
+        "name_word": "attend",
+        "pronounce_word": "/ə'tend/",
+        "explain_word": "to go to and be present at (an event, meeting, etc.)",
+        "mean_word": "tham dự, có mặt",
+        "id_group": "5"
+    },
+    {
+        "id_word": "53",
+        "name_word": "get in touch",
+        "pronounce_word": "/get in tʌt∫/",
+        "explain_word": "to communicate, contact (somebody)",
+        "mean_word": "liên lạc với, tiếp xúc với, giữ quan hệ với",
+        "id_group": "5"
+    },
+    {
+        "id_word": "54",
+        "name_word": "hold",
+        "pronounce_word": "/həʊld/",
+        "explain_word": "to have or keep (something) in your hand, arms, etc.",
+        "mean_word": "cầm, nắm, giữ",
+        "id_group": "5"
+    },
+    {
+        "id_word": "55",
+        "name_word": "location",
+        "pronounce_word": "/ləʊ'kei∫n/",
+        "explain_word": "a place or position",
+        "mean_word": "vị trí, địa điểm",
+        "id_group": "5"
+    },
+    {
+        "id_word": "56",
+        "name_word": "overcrowded",
+        "pronounce_word": "/ˌoʊvɚˈkraʊdəd/",
+        "explain_word": "filled with too many people or things",
+        "mean_word": "quá đông người, quá đông khách",
+        "id_group": "5"
+    },
+    {
+        "id_word": "57",
+        "name_word": "register",
+        "pronounce_word": "/'redʒistə[r]/",
+        "explain_word": "an official list, book, or system for keeping records of something",
+        "mean_word": "đăng ký, sổ, sổ sách",
+        "id_group": "5"
+    },
+    {
+        "id_word": "58",
+        "name_word": "select",
+        "pronounce_word": "/səˈlɛkt/",
+        "explain_word": "to choose (someone or something) from a group",
+        "mean_word": "chọn, chọn lọc",
+        "id_group": "5"
+    },
+    {
+        "id_word": "59",
+        "name_word": "session",
+        "pronounce_word": "/ˈsɛʃən/",
+        "explain_word": "a period of time that is used to do a particular activity",
+        "mean_word": "phiên, kỳ họp, buổi họp",
+        "id_group": "5"
+    },
+    {
+        "id_word": "60",
+        "name_word": "take part in",
+        "pronounce_word": "/teik pɑ:t in/",
+        "explain_word": "to be involved in something",
+        "mean_word": "tham dự, tham gia",
+        "id_group": "5"
+    },
+    {
+        "id_word": "61",
+        "name_word": "access",
+        "pronounce_word": "/ˈækses/",
+        "explain_word": "the opportunity or right to use something",
+        "mean_word": "lối vào, cửa vào, quyền truy cập, sự truy cập",
+        "id_group": "6"
+    },
+    {
+        "id_word": "62",
+        "name_word": "allocate",
+        "pronounce_word": "/ˈæləkeɪt/",
+        "explain_word": "to divide and give out (something) for a special reason or to particular people, companies, etc.",
+        "mean_word": "phân cấp, phân phối, chia phần",
+        "id_group": "6"
+    },
+    {
+        "id_word": "63",
+        "name_word": "compatible",
+        "pronounce_word": "/kəmˈpætəbəl/",
+        "explain_word": "able to exist together without trouble or conflict, going together well",
+        "mean_word": "tương thích, hợp nhau",
+        "id_group": "6"
+    },
+    {
+        "id_word": "64",
+        "name_word": "delete",
+        "pronounce_word": "/di'li:t/",
+        "explain_word": "to remove (something, such as words, pictures, or computer files) from a document, recording, computer, etc.",
+        "mean_word": "xóa đi, bỏ đi",
+        "id_group": "6"
+    },
+    {
+        "id_word": "65",
+        "name_word": "display",
+        "pronounce_word": "/dis'plei/",
+        "explain_word": "to put (something) where people can see it",
+        "mean_word": "bày ra, trưng bày, phô trương",
+        "id_group": "6"
+    },
+    {
+        "id_word": "66",
+        "name_word": "duplicate",
+        "pronounce_word": "/'dju:plikət/",
+        "explain_word": "exactly the same as something else, to make an exact copy of (something)",
+        "mean_word": "giống hệt, bản sao",
+        "id_group": "6"
+    },
+    {
+        "id_word": "67",
+        "name_word": "failure",
+        "pronounce_word": "/'feiljə[r]/",
+        "explain_word": "the act or result of failing",
+        "mean_word": "hỏng, thất bại, bất thành",
+        "id_group": "6"
+    },
+    {
+        "id_word": "68",
+        "name_word": "figure out",
+        "pronounce_word": "/ˈfɪɡə aʊt/",
+        "explain_word": "to calculate an amount or the cost",
+        "mean_word": "tìm hiểu, đoán ra, tính toán ra, giải ra",
+        "id_group": "6"
+    },
+    {
+        "id_word": "69",
+        "name_word": "ignore",
+        "pronounce_word": "/ig'nɔ:/",
+        "explain_word": "to refuse to show that you hear or see (something or someone)",
+        "mean_word": "làm ngơ, bỏ qua",
+        "id_group": "6"
+    },
+    {
+        "id_word": "70",
+        "name_word": "search",
+        "pronounce_word": "/sə:tʃ/",
+        "explain_word": "an attempt to find someone or something, the act or process of looking for someone or something",
+        "mean_word": "tìm kiếm, khám xét, lục soát, lục tìm",
+        "id_group": "6"
+    },
+    {
+        "id_word": "71",
+        "name_word": "shut down",
+        "pronounce_word": "/ʃʌt daʊn/",
+        "explain_word": "cease to operate or cause to cease operating",
+        "mean_word": "đóng lại, ngừng lại, tắt máy, ngừng hoạt động",
+        "id_group": "6"
+    },
+    {
+        "id_word": "72",
+        "name_word": "warning",
+        "pronounce_word": "/'wɔ:niɳ/",
+        "explain_word": "something (such as an action or a statement) that tells someone about possible danger or trouble",
+        "mean_word": "sự báo trước, lời báo trước, cảnh báo",
+        "id_group": "6"
+    },
+    {
+        "id_word": "73",
+        "name_word": "affordable",
+        "pronounce_word": "/ə'fɔ:d'eibl/",
+        "explain_word": "to be able to pay for (something)",
+        "mean_word": "có đủ khả năng, có đủ điều kiện",
+        "id_group": "7"
+    },
+    {
+        "id_word": "74",
+        "name_word": "as needed",
+        "pronounce_word": "/əz ni:ded/",
+        "explain_word": "according to need",
+        "mean_word": "khi cần, lúc cần, cần thiết",
+        "id_group": "7"
+    },
+    {
+        "id_word": "75",
+        "name_word": "be in charge of",
+        "pronounce_word": "/bi in t∫ɑ:dʒ əv/",
+        "explain_word": "according to need",
+        "mean_word": "chịu trách nhiệm về, đảm nhận về",
+        "id_group": "7"
+    },
+    {
+        "id_word": "76",
+        "name_word": "capacity",
+        "pronounce_word": "/kə'pæsiti/",
+        "explain_word": "the ability to hold or contain people or things - usually singular",
+        "mean_word": "sức chứa, dung tích, năng suất",
+        "id_group": "7"
+    },
+    {
+        "id_word": "77",
+        "name_word": "durable",
+        "pronounce_word": "/ˈdurəbəl/",
+        "explain_word": "staying strong and in good condition over a long period of time",
+        "mean_word": "lâu, bền, lâu bền",
+        "id_group": "7"
+    },
+    {
+        "id_word": "78",
+        "name_word": "initiative",
+        "pronounce_word": "/i'niʃiətiv/",
+        "explain_word": "the power or opportunity to do something before others do",
+        "mean_word": "bắt đầu, khởi đầu, khởi tạo, sáng kiến",
+        "id_group": "7"
+    },
+    {
+        "id_word": "79",
+        "name_word": "physically",
+        "pronounce_word": "/ˈfɪzɪkli/",
+        "explain_word": "related to or involving the body or physical form",
+        "mean_word": "về mặt thể chất, về mặt thân thể",
+        "id_group": "7"
+    },
+    {
+        "id_word": "80",
+        "name_word": "provider",
+        "pronounce_word": "/prə'vaidə[r]/",
+        "explain_word": "a group or company that provides a specified service",
+        "mean_word": "người cung cấp, nhà cung cấp",
+        "id_group": "7"
+    },
+    {
+        "id_word": "81",
+        "name_word": "recur",
+        "pronounce_word": "/ri'kə:/",
+        "explain_word": "to happen or appear again, to occur again",
+        "mean_word": "lặp lại, diễn lại, tái diễn, tái phát",
+        "id_group": "7"
+    },
+    {
+        "id_word": "82",
+        "name_word": "reduction",
+        "pronounce_word": "/ri'dʌkʃn/",
+        "explain_word": "the act of making something smaller in size, amount, number, etc.",
+        "mean_word": "sự giảm bớt, sự hạ, sự rút gọn",
+        "id_group": "7"
+    },
+    {
+        "id_word": "83",
+        "name_word": "stay on top of",
+        "pronounce_word": "/stei ɒn tɒp əv/",
+        "explain_word": "have the newest informatiion",
+        "mean_word": "nắm bắt tình hình",
+        "id_group": "7"
+    },
+    {
+        "id_word": "84",
+        "name_word": "stock",
+        "pronounce_word": "/stɒk/",
+        "explain_word": "the supply of goods available for sale in a store",
+        "mean_word": "kho, kho hàng, vốn [kinh doanh]",
+        "id_group": "7"
+    },
+    {
+        "id_word": "85",
+        "name_word": "appreciation",
+        "pronounce_word": "/ə,pri:ʃi'eiʃn/",
+        "explain_word": "an ability to understand the worth, quality, or importance of something :an ability to appreciate something",
+        "mean_word": "sự đánh giá, sự cảm kích, sự hiểu biết",
+        "id_group": "8"
+    },
+    {
+        "id_word": "86",
+        "name_word": "be made of",
+        "pronounce_word": "/bi meid əv/",
+        "explain_word": "be produced of",
+        "mean_word": "làm bằng, gồm có",
+        "id_group": "8"
+    },
+    {
+        "id_word": "87",
+        "name_word": "bring in",
+        "pronounce_word": "/briŋ in/",
+        "explain_word": "to hire or recruit",
+        "mean_word": "thuê, mướn, tuyển dụng",
+        "id_group": "8"
+    },
+    {
+        "id_word": "88",
+        "name_word": "casually",
+        "pronounce_word": "/ˈkæʒuəli/",
+        "explain_word": "happening by chance, fortuitous",
+        "mean_word": "tình cờ, ngẫu nhiên",
+        "id_group": "8"
+    },
+    {
+        "id_word": "89",
+        "name_word": "code",
+        "pronounce_word": "/koud/",
+        "explain_word": "a set of laws or regulations",
+        "mean_word": "mã, mật mã, mã số, bộ luật, quy định",
+        "id_group": "8"
+    },
+    {
+        "id_word": "90",
+        "name_word": "expose",
+        "pronounce_word": "/iks'pouz/",
+        "explain_word": "to leave (something) without covering or protection",
+        "mean_word": "phơi bày ra, để lộ ra",
+        "id_group": "8"
+    },
+    {
+        "id_word": "91",
+        "name_word": "glimpse",
+        "pronounce_word": "/glimps/",
+        "explain_word": "to look at or see (something or someone) for a very short time",
+        "mean_word": "nhìn lướt qua, thoáng qua",
+        "id_group": "8"
+    },
+    {
+        "id_word": "92",
+        "name_word": "out of",
+        "pronounce_word": "/aʊt əv/",
+        "explain_word": "no longer having",
+        "mean_word": "hết, mất, không còn",
+        "id_group": "8"
+    },
+    {
+        "id_word": "93",
+        "name_word": "outdated",
+        "pronounce_word": "/aut'deitid/",
+        "explain_word": "no longer useful or acceptable, not modern or current",
+        "mean_word": "hết hạn, lỗi thời, lạc hậu",
+        "id_group": "8"
+    },
+    {
+        "id_word": "94",
+        "name_word": "practice",
+        "pronounce_word": "/'præktis/",
+        "explain_word": "to do something again and again in order to become better at it",
+        "mean_word": "sự thực hành, rèn luyện, tập luyện",
+        "id_group": "8"
+    },
+    {
+        "id_word": "95",
+        "name_word": "reinforce",
+        "pronounce_word": "/,ri:in'fɔ:s/",
+        "explain_word": "to strengthen (something, such as clothing or a building) by adding more material for support",
+        "mean_word": "gia cố, củng cố, tăng cường",
+        "id_group": "8"
+    },
+    {
+        "id_word": "96",
+        "name_word": "verbally",
+        "pronounce_word": "/'və:bəli/",
+        "explain_word": "in spoken words and not in writing or actions",
+        "mean_word": "bằng miệng, bằng lời nói",
+        "id_group": "8"
+    },
+    {
+        "id_word": "97",
+        "name_word": "disk",
+        "pronounce_word": "/disk/",
+        "explain_word": "a device for storing information on a computer",
+        "mean_word": "đĩa",
+        "id_group": "9"
+    },
+    {
+        "id_word": "98",
+        "name_word": "facilitate",
+        "pronounce_word": "/fə'siliteit/",
+        "explain_word": "to make (something) easier",
+        "mean_word": "làm cho dễ dàng, làm cho thuận tiện",
+        "id_group": "9"
+    },
+    {
+        "id_word": "99",
+        "name_word": "network",
+        "pronounce_word": "/'netwə:k/",
+        "explain_word": "a system of lines, wires, etc., that are connected to each other",
+        "mean_word": "mạng lưới, kết nối, liên kết",
+        "id_group": "9"
+    },
+    {
+        "id_word": "100",
+        "name_word": "popularity",
+        "pronounce_word": "/,pɔpju'læriti/",
+        "explain_word": "state of being liked, enjoyed, accepted, or done by a large number of people, the quality or state of being popular",
+        "mean_word": "đại chúng, phổ biến, nổi tiếng",
+        "id_group": "9"
+    },
+    {
+        "id_word": "101",
+        "name_word": "process",
+        "pronounce_word": "/ˈprəʊses/",
+        "explain_word": "a series of actions that produce something or that lead to a particular result",
+        "mean_word": "quá trình, tiến trình",
+        "id_group": "9"
+    },
+    {
+        "id_word": "102",
+        "name_word": "replace",
+        "pronounce_word": "/ri'pleis/",
+        "explain_word": "to be used instead of (something)",
+        "mean_word": "thay thế, đặt vào lại chỗ cũ",
+        "id_group": "9"
+    },
+    {
+        "id_word": "103",
+        "name_word": "revolution",
+        "pronounce_word": "/,revə'lu:ʃn/",
+        "explain_word": "the usually violent attempt by many people to end the rule of one government and start a new one",
+        "mean_word": "cuộc cách mạng, vòng, sự xoay vòng",
+        "id_group": "9"
+    },
+    {
+        "id_word": "104",
+        "name_word": "sharp",
+        "pronounce_word": "/ʃɑ:p/",
+        "explain_word": "having a thin edge that is able to cut things or a fine point that is able to make a hole in things",
+        "mean_word": "sắc, nhọn, đột ngột, bất ngờ, rõ nét, sắc nét",
+        "id_group": "9"
+    },
+    {
+        "id_word": "105",
+        "name_word": "skill",
+        "pronounce_word": "/skil/",
+        "explain_word": "the ability to do something that comes from training, experience, or practice",
+        "mean_word": "kỹ năng, sự khéo léo, sự tinh xảo",
+        "id_group": "9"
+    },
+    {
+        "id_word": "106",
+        "name_word": "software",
+        "pronounce_word": "/ˈsɒftweə(r)/",
+        "explain_word": "the programs that run on a computer and perform certain functions",
+        "mean_word": "phần mềm, chương trình máy tính",
+        "id_group": "9"
+    },
+    {
+        "id_word": "107",
+        "name_word": "store",
+        "pronounce_word": "/stɔ:/",
+        "explain_word": "to put (something that is not being used) in a place where it is available, where it can be kept safely, etc.",
+        "mean_word": "cửa hàng, số lượng cất trữ",
+        "id_group": "9"
+    },
+    {
+        "id_word": "108",
+        "name_word": "technically",
+        "pronounce_word": "/ˈteknɪkli/",
+        "explain_word": "according to or among experts",
+        "mean_word": "về mặt kỹ thuật, một cách chuyên môn",
+        "id_group": "9"
+    },
+    {
+        "id_word": "109",
+        "name_word": "assemble",
+        "pronounce_word": "/ə'sembl/",
+        "explain_word": "to collect (things) or gather (people) into one place or group",
+        "mean_word": "tụ tập, tập hợp",
+        "id_group": "10"
+    },
+    {
+        "id_word": "110",
+        "name_word": "beforehand",
+        "pronounce_word": "/bi'fɔ:hænd/",
+        "explain_word": "in advance, at an earlier or previous time",
+        "mean_word": "trước, sớm hơn",
+        "id_group": "10"
+    },
+    {
+        "id_word": "111",
+        "name_word": "complication",
+        "pronounce_word": "/ˌkɑːmplɪˈkeɪʃn/",
+        "explain_word": "something that makes something harder to understand, explain, or deal with",
+        "mean_word": "sự phức tạp, sự rắc rối",
+        "id_group": "10"
+    },
+    {
+        "id_word": "112",
+        "name_word": "courier",
+        "pronounce_word": "/'kuriə/",
+        "explain_word": " a person whose job is to carry messages, packages, etc., from one person or place to another",
+        "mean_word": "người đưa tin, người đưa thư, người chuyển phát",
+        "id_group": "10"
+    },
+    {
+        "id_word": "113",
+        "name_word": "express",
+        "pronounce_word": "/iks'pres/",
+        "explain_word": "fast and direct",
+        "mean_word": "nhanh, hỏa tốc, tốc hành",
+        "id_group": "10"
+    },
+    {
+        "id_word": "114",
+        "name_word": "fold",
+        "pronounce_word": "/fould/",
+        "explain_word": "to bend one part of (something) over or against another part",
+        "mean_word": "nếp gấp, gấp lại, gập",
+        "id_group": "10"
+    },
+    {
+        "id_word": "115",
+        "name_word": "layout",
+        "pronounce_word": "/ˈleɪaʊt/",
+        "explain_word": "the design or arrangement of something :the way something is laid out",
+        "mean_word": "sự bố trí",
+        "id_group": "10"
+    },
+    {
+        "id_word": "116",
+        "name_word": "mention",
+        "pronounce_word": "/'menʃn/",
+        "explain_word": "to talk about, write about, or refer to (something or someone) especially in a brief way",
+        "mean_word": "nói đến, kể đến, đề cập đến",
+        "id_group": "10"
+    },
+    {
+        "id_word": "117",
+        "name_word": "petition",
+        "pronounce_word": "/pi'tiʃn/",
+        "explain_word": "a written document that people sign to show that they want a person or organization to do or change something",
+        "mean_word": "kiến nghị, cầu xin, thỉnh cầu",
+        "id_group": "10"
+    },
+    {
+        "id_word": "118",
+        "name_word": "proof",
+        "pronounce_word": "/pru:f/",
+        "explain_word": "something which shows that something else is true or correct",
+        "mean_word": "chứng cứ, bằng chứng",
+        "id_group": "10"
+    },
+    {
+        "id_word": "120",
+        "name_word": "revise",
+        "pronounce_word": "/ri'vaiz/",
+        "explain_word": "to make changes especially to correct or improve (something)",
+        "mean_word": "xét lại, xem lại, duyệt lại",
+        "id_group": "10"
+    }
+]

@@ -1,0 +1,212 @@
+[
+    {
+        "id_group": "1",
+        "name_group": "Contracts",
+        "mean_group": "hợp đồng",
+        "pronounce_group": "/ˈkäntrakt/",
+        "image_group": "https://i.imgur.com/eyf8Ht9.png"
+    },
+    {
+        "id_group": "2",
+        "name_group": "Marketing",
+        "mean_group": "tiếp thị",
+        "pronounce_group": "/ˈmärkədiNG/",
+        "image_group": "https://i.imgur.com/9R4hxR9.png"
+    },
+    {
+        "id_group": "3",
+        "name_group": "Warranties",
+        "mean_group": "bảo hành",
+        "pronounce_group": "/ˈwôrən(t)ē/",
+        "image_group": "https://i.imgur.com/nEztn1a.png"
+    },
+    {
+        "id_group": "4",
+        "name_group": "Business Planning",
+        "mean_group": "kế hoạch kinh doanh",
+        "pronounce_group": "/ˈbiznəs ˈplaniNG/",
+        "image_group": "https://i.imgur.com/VidmLag.png"
+    },
+    {
+        "id_group": "5",
+        "name_group": "Conferences",
+        "mean_group": "hội nghị",
+        "pronounce_group": "/ˈkänf(ə)rəns/",
+        "image_group": "https://i.imgur.com/y9r53Mm.png"
+    },
+    {
+        "id_group": "6",
+        "name_group": "Computers",
+        "mean_group": "máy vi tính",
+        "pronounce_group": "/kəmˈpyo͞odər/",
+        "image_group": "https://i.imgur.com/ZKxTilT.png"
+    },
+    {
+        "id_group": "7",
+        "name_group": "Office Technology",
+        "mean_group": "công nghệ văn phòng",
+        "pronounce_group": "/ˈôfis,ˈäfis tekˈnäləjē/",
+        "image_group": "https://i.imgur.com/6rrV9ps.png"
+    },
+    {
+        "id_group": "8",
+        "name_group": "Office Procedures",
+        "mean_group": "thủ tục văn phòng",
+        "pronounce_group": "/ˈôfis,ˈäfis prəˈsējər/",
+        "image_group": "https://i.imgur.com/unLcaec.png"
+    },
+    {
+        "id_group": "9",
+        "name_group": "Electronics",
+        "mean_group": "thiết bị điện tử",
+        "pronounce_group": "/əˌlekˈträniks/",
+        "image_group": "https://i.imgur.com/E38mj27.png"
+    },
+    {
+        "id_group": "10",
+        "name_group": "Correspondence",
+        "mean_group": "thư tín",
+        "pronounce_group": "/ˌkôrəˈspändəns/",
+        "image_group": "https://i.imgur.com/ZYmJdH1.png"
+    },
+    {
+        "id_group": "11",
+        "name_group": "Job Advertising and Recruiting",
+        "mean_group": "quảng cáo việc làm và tuyển dụng",
+        "pronounce_group": "/'dʤɔb 'ædvətaiziη ænd ri'kru:tiη/",
+        "image_group": "https://i.imgur.com/g2PFDXE.png"
+    },
+    {
+        "id_group": "12",
+        "name_group": "Applying and Interviewing",
+        "mean_group": "nộp đơn và phỏng vấn",
+        "pronounce_group": "/ə'plaiiη ænd 'intəvju:iη/",
+        "image_group": "https://i.imgur.com/FMqj2vZ.png"
+    },
+    {
+        "id_group": "13",
+        "name_group": "Hiring and Training",
+        "mean_group": "tuyển dụng và đào tạo",
+        "pronounce_group": "/'haiəiη ænd 'treiniŋ/",
+        "image_group": "https://i.imgur.com/ucKwbLw.png"
+    },
+    {
+        "id_group": "14",
+        "name_group": "Salaries and Benefits",
+        "mean_group": "lương và phúc lợi",
+        "pronounce_group": "/'sæləri ænd 'benifit/",
+        "image_group": "https://i.imgur.com/Z6yDDHu.png"
+    },
+    {
+        "id_group": "15",
+        "name_group": "Promotions, Pensions, and Awards",
+        "mean_group": "thăng chức, lương hưu và thưởng",
+        "pronounce_group": "/prə'məʊt∫n 'pen∫n ænd ə'wɔ:d/",
+        "image_group": "https://i.imgur.com/znJIVKB.png"
+    },
+    {
+        "id_group": "16",
+        "name_group": "Shopping",
+        "mean_group": "mua sắm",
+        "pronounce_group": "/'∫ɒpiŋ/",
+        "image_group": "https://i.imgur.com/vuadvSx.png"
+    },
+    {
+        "id_group": "17",
+        "name_group": "Ordering Supplies",
+        "mean_group": "đặt hàng nhà cung cấp",
+        "pronounce_group": "/'ɔ:dəiŋ sə'plaiz/",
+        "image_group": "https://i.imgur.com/cgJ59Hh.png"
+    },
+    {
+        "id_group": "18",
+        "name_group": "Shipping",
+        "mean_group": "vận chuyển hàng hóa",
+        "pronounce_group": "/'∫i:piŋ/",
+        "image_group": "https://i.imgur.com/RLC1mFA.png"
+    },
+    {
+        "id_group": "19",
+        "name_group": "Invoices",
+        "mean_group": "hóa đơn",
+        "pronounce_group": "/'invɔis/",
+        "image_group": "https://i.imgur.com/guVtD8a.png"
+    },
+    {
+        "id_group": "20",
+        "name_group": "Inventory",
+        "mean_group": "hàng tồn kho",
+        "pronounce_group": "/ˈɪnvənˌtori/",
+        "image_group": "https://i.imgur.com/zZHH00I.png"
+    },
+    {
+        "id_group": "21",
+        "name_group": "Banking",
+        "mean_group": "ngân hàng",
+        "pronounce_group": "/'bæŋkiŋ/",
+        "image_group": "https://i.imgur.com/eCU0IGN.png"
+    },
+    {
+        "id_group": "22",
+        "name_group": "Accounting",
+        "mean_group": "kế toán",
+        "pronounce_group": "/ə'kauntiɳ/",
+        "image_group": "https://i.imgur.com/EwMEp5W.png"
+    },
+    {
+        "id_group": "23",
+        "name_group": "Investments",
+        "mean_group": "đầu tư",
+        "pronounce_group": "/in'vestmənt/",
+        "image_group": "https://i.imgur.com/Nw6HHXY.png"
+    },
+    {
+        "id_group": "24",
+        "name_group": "Taxes",
+        "mean_group": "thuế",
+        "pronounce_group": "/tæks/",
+        "image_group": "https://i.imgur.com/e4SvTCU.png"
+    },
+    {
+        "id_group": "25",
+        "name_group": "Financial Statements",
+        "mean_group": "báo cáo tài chính",
+        "pronounce_group": "/fai'næn∫l 'steitmənt/",
+        "image_group": "https://i.imgur.com/hzJ8HVn.png"
+    },
+    {
+        "id_group": "26",
+        "name_group": "Property and Departments",
+        "mean_group": "bất động sản và căn hộ",
+        "pronounce_group": "/ˈprɑːpɚti ænd di'pɑ:tmənt/",
+        "image_group": "https://i.imgur.com/c5OHt2y.png"
+    },
+    {
+        "id_group": "27",
+        "name_group": "Board Meetings and Committees",
+        "mean_group": "họp hội đồng ban quản trị và ủy ban",
+        "pronounce_group": "/bɔ:d 'mi:tiη ænd kə'miti/",
+        "image_group": "https://i.imgur.com/DhVhPmM.png"
+    },
+    {
+        "id_group": "28",
+        "name_group": "Quality Control",
+        "mean_group": "quản lý chất lượng",
+        "pronounce_group": "/'kwɒləti kən'trəʊl/",
+        "image_group": "https://i.imgur.com/B2pnB4Z.png"
+    },
+    {
+        "id_group": "29",
+        "name_group": "Product Development",
+        "mean_group": "phát triển sản phẩm",
+        "pronounce_group": "/'prɒdʌkt di'veləpmənt/",
+        "image_group": "https://i.imgur.com/ATCjGad.png"
+    },
+    {
+        "id_group": "30",
+        "name_group": "Renting and Leasing",
+        "mean_group": "thuê và cho thuê",
+        "pronounce_group": "/rentiη ænd 'li:siɳ/",
+        "image_group": "https://i.imgur.com/QCmZVNE.png"
+    }
+]

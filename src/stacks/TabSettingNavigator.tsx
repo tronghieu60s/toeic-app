@@ -1,7 +1,7 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 import { TabSettingParamList } from '~/types';
-import HeaderTitle from '../components/Header/Title';
+import HeaderTitle from '../components/Common/HeaderTitle';
 import TabSetting from '../components/TabSetting';
 
 const TabSettingStack = createStackNavigator<TabSettingParamList>();

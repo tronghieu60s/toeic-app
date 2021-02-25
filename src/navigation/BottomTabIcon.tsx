@@ -16,10 +16,10 @@ type Props = {
 };
 
 export default function BottomTabBarIcon(props: Props): JSX.Element {
-  const colorScheme = useSelector((state: RootState) => state.common.theme);
   const { route, focused } = props;
   const { name } = route;
 
+  const colorScheme = useSelector((state: RootState) => state.common.theme);
   const wordsDifficult = useSelector((state: RootState) => state.practice.wordsDifficult);
   const numberIconShow = name === 'TabDifficult';
   let number = name === 'TabDifficult' ? wordsDifficult.length : '0';

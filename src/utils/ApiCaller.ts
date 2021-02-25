@@ -1,13 +1,10 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import Config from '~/src/constants/Config';
-
-const urlApi = Config.api.data;
 
 export default function apiCaller(
-  endpoint: string,
+  url: string,
   { method, data }: AxiosRequestConfig = { method: 'GET' },
 ) {
-  return axios({ method, url: `${urlApi}/${endpoint}`, data })
+  return axios({ method, url, data })
     .then((res) => res.data)
     .catch((err) => {
       console.log(err);

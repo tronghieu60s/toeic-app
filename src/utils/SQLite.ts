@@ -1,11 +1,13 @@
 /* eslint-disable arrow-body-style */
 import { openDatabase } from 'expo-sqlite';
 import { GroupType, WordType } from '~/types';
-import apiCaller from './ApiCaller';
+
+const groups = require('~/src/resources/groups');
+const words = require('~/src/resources/words');
 
 const db = openDatabase('database.db');
 
-type ExecuteSQL = {
+export type ExecuteSQL = {
   data: any[];
   insertId: number;
   rowsAffected: number;
@@ -37,14 +39,7 @@ export const executeSql = (sql: string, params: any = []): Promise<ExecuteSQL> =
   });
 };
 
-export const initDbTable = async () => {
-  await executeSql(
-    `create table if not exists options (
-    id_option integer primary key not null, 
-    name_option text, 
-    value_option text
-    );`,
-  );
+export const initDbTable = async (): Promise<void> => {
   await executeSql(
     `create table if not exists groups (
     id_group integer primary key not null, 
@@ -75,74 +70,34 @@ export const initDbTable = async () => {
   );
 };
 
-export const isNewVersionDatabase = () => {
-  return executeSql('select * from options where id_option = 1').then(async (option) => {
-    if (option.data === null) {
-      const data = await apiCaller('config.json');
-      await executeSql(
-        `insert into
-      options(id_option, name_option, value_option)
-      values (1, ?, ?)`,
-        ['version_db', data.version],
-      );
-      return true;
-    }
-
-    // Call Api Get Version DB
-    return apiCaller('config.json').then(async (data) => {
-      if (!data) return false;
-      const baseVer = parseInt(option.data[0].value_option.replace(/\./g, ''), 10);
-      const newVer = parseInt(data.version.replace(/\./g, ''), 10);
-      if (newVer > baseVer) {
-        await executeSql(
-          `update options
-        set value_option = ?
-        where id_option = 1`,
-          [data.version],
-        );
-        return true;
-      }
-      return false;
-    });
-  });
+export const loadDataFromResources = async (): Promise<void> => {
+  await loadDataGroupsFromResources();
+  await loadDataWordsFromResources();
 };
 
-const loadDataGroupsFromApi = async () => {
-  await apiCaller('groups.json').then((groups) => {
-    if (groups !== null) {
-      let sqlValue = `insert into groups
+const loadDataGroupsFromResources = async () => {
+  let sqlValue = `insert into groups
         (id_group, name_group, pronounce_group, mean_group, image_group)
         values`;
-      groups.forEach((group: GroupType, index: number) => {
-        // Loop Add Sql Value
-        sqlValue += `(${group.id_group}, "${group.name_group}",
+  groups.forEach((group: GroupType, index: number) => {
+    // Loop Add Sql Value
+    sqlValue += `(${group.id_group}, "${group.name_group}",
             "${group.pronounce_group}", "${group.mean_group}", "${group.image_group}")`;
-        sqlValue += index === groups.length - 1 ? ';' : ',';
-      });
-      executeSql(sqlValue);
-    }
+    sqlValue += index === groups.length - 1 ? ';' : ',';
   });
+  await executeSql(sqlValue);
 };
 
-const loadDataWordsFromApi = async () => {
-  await apiCaller('words.json').then((words) => {
-    if (words !== null) {
-      let sqlValue = `insert into words
+const loadDataWordsFromResources = async () => {
+  let sqlValue = `insert into words
         (id_word, name_word, pronounce_word, explain_word, mean_word, id_group)
         values`;
-      words.forEach((word: WordType, index: number) => {
-        // Loop Add Sql Value
-        sqlValue += `(${word.id_word}, "${word.name_word}",
+  words.forEach((word: WordType, index: number) => {
+    // Loop Add Sql Value
+    sqlValue += `(${word.id_word}, "${word.name_word}",
             "${word.pronounce_word}", "${word.explain_word}", 
             "${word.mean_word}", ${word.id_group})`;
-        sqlValue += index === words.length - 1 ? ';' : ',';
-      });
-      executeSql(sqlValue);
-    }
+    sqlValue += index === words.length - 1 ? ';' : ',';
   });
-};
-
-export const loadDataFromApi = async () => {
-  await loadDataGroupsFromApi();
-  await loadDataWordsFromApi();
+  await executeSql(sqlValue);
 };

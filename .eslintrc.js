@@ -21,29 +21,28 @@ module.exports = {
     'plugin:import/typescript',
   ],
   rules: {
+    // common
     camelcase: 'off',
-    'operator-linebreak': 'off',
-    'linebreak-style': 'off',
-    'global-require': 'off',
-    'no-shadow': 'off',
     'no-console': 'off',
     'no-use-before-define': 'off',
-    'no-underscore-dangle': 'off',
+    'global-require': 'off',
+    'arrow-body-style': 'off',
     'object-curly-newline': 'off',
     'prefer-arrow-callback': 'off',
-    'implicit-arrow-linebreak': 'off',
-    'import/extensions': 'off',
+
+    // import
     'import/no-unresolved': 'off',
-    'import/prefer-default-export': 'off',
-    'react/display-name': 'off',
-    'react/no-array-index-key': 'off',
+    'import/extensions': 'off',
+
+    // react
     'react/jsx-props-no-spreading': 'off',
-    'react/jsx-one-expression-per-line': 'off',
-    'react/jsx-filename-extension': [1, { extensions: ['.ts', '.tsx'] }],
-    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    'react/display-name': 'off',
+    'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
+
+    // typescript
     '@typescript-eslint/no-explicit-any': 'off',
-    '@typescript-eslint/no-var-requires': 'off',
     '@typescript-eslint/no-use-before-define': 'off',
+    '@typescript-eslint/no-var-requires': 'off',
   },
   settings: {
     'import/resolver': {

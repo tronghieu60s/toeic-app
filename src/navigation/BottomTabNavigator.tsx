@@ -7,7 +7,6 @@ import TabDifficultNavigator from '~/src/stacks/TabDifficultNavigator';
 import TabPracticeNavigator from '~/src/stacks/TabPracticeNavigator';
 import { BottomTabParamList } from '../../types';
 import Colors from '../constants/Colors';
-import TabFavoriteNavigator from '../stacks/TabFavoriteNavigator';
 import TabSettingNavigator from '../stacks/TabSettingNavigator';
 import BottomTabIcon from './BottomTabIcon';
 

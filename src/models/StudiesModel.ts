@@ -1,7 +1,7 @@
 import { StudyType } from '~/types';
-import { executeSql } from '~/src/utils/SQLite';
+import { ExecuteSQL, executeSql } from '~/src/utils/SQLite';
 
-export const createStudies = (parameters: StudyType) => {
+export const createStudies = (parameters: StudyType): Promise<ExecuteSQL> => {
   const { id_study, count_study, difficult_study } = parameters;
   return executeSql('insert into studies(id_study, count_study, difficult_study) values(?, ?, ?)', [
     id_study,
@@ -10,7 +10,7 @@ export const createStudies = (parameters: StudyType) => {
   ]);
 };
 
-export const updateStudies = (parameters: StudyType) => {
+export const updateStudies = (parameters: StudyType): Promise<ExecuteSQL> => {
   const { id_study, count_study, difficult_study } = parameters;
   return executeSql('update studies set count_study = ?, difficult_study = ? where id_study = ?', [
     count_study,

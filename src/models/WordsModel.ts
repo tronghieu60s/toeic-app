@@ -1,8 +1,7 @@
-/* eslint-disable arrow-body-style */
 import { GroupType } from '~/types';
-import { executeSql } from '~/src/utils/SQLite';
+import { ExecuteSQL, executeSql } from '~/src/utils/SQLite';
 
-export const getWordsByIdGroup = ({ id_group }: GroupType) => {
+export const getWordsByIdGroup = ({ id_group }: GroupType): Promise<ExecuteSQL> => {
   return executeSql(
     `select * from words 
   left join groups on groups.id_group = words.id_group 
@@ -12,7 +11,7 @@ export const getWordsByIdGroup = ({ id_group }: GroupType) => {
   );
 };
 
-export const getWordsDifficult = () => {
+export const getWordsDifficult = (): Promise<ExecuteSQL> => {
   return executeSql(
     `select * from words 
   left join groups on groups.id_group = words.id_group 

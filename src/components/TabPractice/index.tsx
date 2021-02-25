@@ -90,7 +90,7 @@ const TabPractice = React.memo((props: Props) => {
       </React.Fragment>
     ));
 
-  const text = 'Không có dữ liệu, bạn vui lòng bật Internet và khởi động lại ứng dụng.';
+  const text = 'Không tải được dữ liệu, vui lòng xóa dữ liệu và khởi động lại ứng dụng.';
   if (isPending) return <ScreenLoading />;
   if (groups.length <= 0) return <ScreenCenter>{text}</ScreenCenter>;
 

@@ -1,3 +1,5 @@
+// test
+
 import { TypesAnswer } from '~/types';
 
 export function typeAnswersName(type: TypesAnswer) {

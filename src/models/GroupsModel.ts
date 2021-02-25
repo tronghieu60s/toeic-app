@@ -1,3 +1,4 @@
-import { executeSql } from '~/src/utils/SQLite';
+import { ExecuteSQL, executeSql } from '~/src/utils/SQLite';
 
-export const getGroups = () => executeSql('select * from groups');
+// eslint-disable-next-line import/prefer-default-export
+export const getGroups = (): Promise<ExecuteSQL> => executeSql('select * from groups');

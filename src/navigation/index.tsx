@@ -4,7 +4,7 @@ import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '~/src/redux/reducers/rootReducer';
 
-import NotFoundScreen from '../screens/NotFoundScreen';
+import NotFoundScreen from '../components/Common/NotFoundScreen';
 import { RootStackParamList } from '../../types';
 import BottomTabNavigator from './BottomTabNavigator';
 import LinkingConfiguration from './LinkingConfiguration';
@@ -18,8 +18,10 @@ export default function Navigation(): JSX.Element {
   const colorScheme = useSelector((state: RootState) => state.common.theme);
 
   React.useEffect(() => {
-    dispatch(actLoadCommon());
-    dispatch(actLoadWordsDifficult());
+    (async () => {
+      await dispatch(actLoadCommon());
+      await dispatch(actLoadWordsDifficult());
+    })();
   }, []);
 
   return (
