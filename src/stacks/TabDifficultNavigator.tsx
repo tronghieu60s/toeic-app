@@ -11,11 +11,12 @@ import TabDifficultRight from '~/src/components/TabDifficult/Header/Right';
 import TabDifficultStudy from '~/src/components/TabDifficult/Study';
 import TabPracticeStudyHeaderBackImage from '~/src/components/TabPractice/Study/Header/BackImage';
 import TabPracticeStudyHeaderRight from '~/src/components/TabPractice/Study/Header/Right';
-import TabPracticeWordDetails from '~/src/components/TabPractice/WordDetails';
 import TabPracticeWordDetailHeaderTitle from '~/src/components/TabPractice/WordDetails/Header/Title';
 import { View } from '~/src/components/Themed';
 import { TabDifficultParamList } from '~/types';
 import TabDifficult from '../components/TabDifficult';
+import TabDifficultWordDetails from '../components/TabDifficult/WordDetails';
+import TabPracticeWordDetailsHeaderRight from '../components/TabPractice/WordDetails/Header/Right';
 import Colors from '../constants/Colors';
 import { RootState } from '../redux/reducers/rootReducer';
 
@@ -42,9 +43,10 @@ export default function TabDifficultNavigator(): JSX.Element {
       />
       <TabFavoriteStack.Screen
         name="TabPracticeWordDetails"
-        component={TabPracticeWordDetails}
+        component={TabDifficultWordDetails}
         options={({ route }) => ({
           headerTitle: () => <TabPracticeWordDetailHeaderTitle route={route} />,
+          headerRight: () => <TabPracticeWordDetailsHeaderRight />,
         })}
       />
       <TabFavoriteStack.Screen
