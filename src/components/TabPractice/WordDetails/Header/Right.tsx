@@ -1,32 +1,36 @@
-import { RouteProp } from '@react-navigation/native';
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import { View } from '~/src/components/Themed';
-import { flashIcon } from '~/src/constants/IconSource';
-import { actToggleFlashWord } from '~/src/redux/actions/practiceAction';
+import { AntDesign } from '@expo/vector-icons';
+import React, { useState } from 'react';
+import { StyleSheet } from 'react-native';
+import { useSelector } from 'react-redux';
+import { Ripple, View } from '~/src/components/Themed';
+import Colors from '~/src/constants/Colors';
+import { RootState } from '~/src/redux/reducers/rootReducer';
 import tailwind from '~/tailwind';
-import { TabPracticeParamList, WordType } from '~/types';
+import TabPracticeWordDetailsHeaderModalSetting from './ModalSetting';
 
-type Props = {
-  route: RouteProp<TabPracticeParamList, 'TabPracticeWordDetails'>;
-};
-
-const TabPracticeWordDetailsHeaderRight = React.memo((props: Props) => {
-  const { route } = props;
-  const { word } = route.params;
-  const { difficult_study = 0 } = word;
-  const iconFlash = flashIcon[difficult_study > 0 ? 1 : 0];
-
-  const dispatch = useDispatch();
-  const handleFlashWord = (word: WordType) => dispatch(actToggleFlashWord(word));
+const TabPracticeWordDetailsHeaderRight = React.memo(() => {
+  const [modalVisible, setModalVisible] = useState(false);
+  const theme = useSelector((state: RootState) => state.common.theme);
 
   return (
-    <View style={tailwind('flex-row justify-end items-center mx-3 mt-3')}>
-      {/* <Ripple onPress={() => handleFlashWord(word)}>
-        <Image style={{ width: 18, height: 18 }} source={iconFlash} />
-      </Ripple> */}
+    <View style={styles.container}>
+      <Ripple style={styles.button} onPress={() => setModalVisible(true)}>
+        <AntDesign name="setting" size={19} color={Colors[theme].text} />
+      </Ripple>
+      <TabPracticeWordDetailsHeaderModalSetting
+        modalVisible={modalVisible}
+        setModalVisible={(value) => setModalVisible(value)}
+      />
     </View>
   );
+});
+
+const styles = StyleSheet.create({
+  container: {
+    ...tailwind('flex-row justify-center items-center mr-1 mt-2'),
+    backgroundColor: '#fff0',
+  },
+  button: { ...tailwind('justify-center items-center p-2'), backgroundColor: '#fff0' },
 });
 
 export default TabPracticeWordDetailsHeaderRight;

@@ -1,10 +1,9 @@
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { memo, useEffect, useState } from 'react';
-import { FlatList } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import WordItem from '~/src/components/TabPractice/Words/WordItem';
-import { View } from '~/src/components/Themed';
+import { ScrollView, View } from '~/src/components/Themed';
 import ScreenCenter from '~/src/components/UI/ScreenCenter';
 import ScreenLoading from '~/src/components/UI/ScreenLoading';
 import { actLoadWordsGroup, actToggleFlashWord } from '~/src/redux/actions/practiceAction';
@@ -33,10 +32,6 @@ const TabPracticeWords = memo((props: Props) => {
     })();
   }, []);
 
-  const renderItem = ({ item }: { item: WordType }) => (
-    <WordItem word={item} handleFlashWord={handleFlashWord} handleDetailsWord={handleDetailsWord} />
-  );
-
   const handleFlashWord = (word: WordType) => dispatch(actToggleFlashWord(word));
   const handleDetailsWord = (word: WordType) =>
     navigation.navigate('TabPracticeWordDetails', { word });
@@ -47,14 +42,19 @@ const TabPracticeWords = memo((props: Props) => {
 
   return (
     <View light style={tailwind('flex-1 px-2')}>
-      <AdMobBanner bannerSize="largeBanner" />
-      <FlatList
-        data={words}
-        renderItem={renderItem}
-        keyExtractor={(item, index) => index.toString()}
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={tailwind('pt-2 pb-1')}
-      />
+      <ScrollView light style={tailwind('pt-2 pb-16')}>
+        <AdMobBanner light bannerSize="largeBanner" />
+        <View light style={tailwind('mb-3 mt-2')}>
+          {words.map((item, i) => (
+            <WordItem
+              key={i}
+              word={item}
+              handleFlashWord={handleFlashWord}
+              handleDetailsWord={handleDetailsWord}
+            />
+          ))}
+        </View>
+      </ScrollView>
     </View>
   );
 });

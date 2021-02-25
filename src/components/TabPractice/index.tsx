@@ -4,6 +4,7 @@ import { StyleSheet } from 'react-native';
 import { getGroups } from '~/src/models/GroupsModel';
 import tailwind from '~/tailwind';
 import { GroupType, TabPracticeParamList } from '~/types';
+import AdMobBanner from '../Ads';
 import { ScrollView, Text, View } from '../Themed';
 import ScreenCenter from '../UI/ScreenCenter';
 import ScreenLoading from '../UI/ScreenLoading';
@@ -87,6 +88,7 @@ const TabPractice = React.memo((props: Props) => {
             <GroupItem key={index} group={item} navigation={navigation} />
           ))}
         </ScrollView>
+        {index === 1 && <AdMobBanner light bannerSize="largeBanner" />}
       </React.Fragment>
     ));
 
@@ -95,7 +97,7 @@ const TabPractice = React.memo((props: Props) => {
   if (groups.length <= 0) return <ScreenCenter>{text}</ScreenCenter>;
 
   return (
-    <ScrollView style={tailwind('flex-1')}>
+    <ScrollView light style={tailwind('flex-1')}>
       <View light style={tailwind('pb-14 px-1')}>
         {renderItems(groupsRender)}
       </View>
@@ -105,7 +107,7 @@ const TabPractice = React.memo((props: Props) => {
 
 const styles = StyleSheet.create({
   groups: { ...tailwind('flex-1 flex-row bg-transparent') },
-  groupsTitle: { ...tailwind('text-lg my-2 ml-2') },
+  groupsTitle: { ...tailwind('text-sm my-2 ml-2') },
 });
 
 export default TabPractice;
