@@ -1,4 +1,4 @@
-export const generateRandomChars = (length: number) => {
+export const generateRandomChars = (length: number): string => {
   let result = '';
   const characters = 'abcdefghijklmnopqrstuvwxyz';
   const charactersLength = characters.length;
@@ -8,5 +8,6 @@ export const generateRandomChars = (length: number) => {
   return result;
 };
 
-export const randomBetweenTwoNumber = (num1: number, num2: number): number =>
-  Math.floor(Math.random() * num2) + num1;
+export const randomBetweenTwoNumber = (num1: number, num2: number): number => {
+  return Math.floor(Math.random() * num2) + num1;
+};

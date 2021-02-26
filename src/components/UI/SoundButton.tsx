@@ -7,6 +7,7 @@ import { SpeechEnglish } from '~/src/helpers/sound';
 import { RootState } from '~/src/redux/reducers/rootReducer';
 import tailwind from '~/tailwind';
 import { WordType } from '~/types';
+import { View } from '../Themed';
 
 type Props = {
   word: WordType;
@@ -66,7 +67,9 @@ export default function SoundButton(props: Props): JSX.Element {
         onPress={onPress}
         style={[styles.sound, { width: size, height: size, backgroundColor: bgColor }]}
       >
-        <SimpleLineIcons name="volume-2" size={28} color="black" />
+        <View style={{ backgroundColor: 'transparent' }}>
+          <SimpleLineIcons name="volume-2" size={(size || 100) / 3} color="black" />
+        </View>
       </TouchableWithoutFeedback>
     </Animated.View>
   );
@@ -74,11 +77,9 @@ export default function SoundButton(props: Props): JSX.Element {
 
 const styles = StyleSheet.create({
   sound: {
-    ...tailwind('justify-center items-center'),
+    ...tailwind('justify-center items-center rounded'),
     backgroundColor: '#5e72e4',
-    borderWidth: 5,
-    borderRadius: 120,
     borderColor: '#5e72e4',
-    transform: [{ rotate: '-10deg' }],
+    borderWidth: 4,
   },
 });

@@ -1,6 +1,6 @@
 import { Dispatch } from 'react';
 import { createStudies, updateStudies } from '~/src/models/StudiesModel';
-import { getWordsByIdGroup, getWordsDifficult } from '~/src/models/WordsModel';
+import { getWordsByIdGroup, getWordsByIdWord, getWordsDifficult } from '~/src/models/WordsModel';
 import { GroupType, WordType } from '~/types';
 import Config from '~/src/constants/Config';
 
@@ -45,7 +45,7 @@ export const actLoadWordsGroup = (group: GroupType) => async (
   dispatch: Dispatch<PracticeAction>,
 ): Promise<void> => {
   const { id_group } = group;
-  const words = await getWordsByIdGroup({ id_group });
+  const words = await getWordsByIdGroup(id_group);
   return dispatch(loadWordsGroup(words.data || []));
 };
 
@@ -67,16 +67,23 @@ export const actLoadWordsDifficult = () => async (
   return dispatch(loadWordsDifficult(words.data || []));
 };
 
-export const actStudyCorrect = (word: WordType) => async (
+export const actStudyCorrect = (id_word: number) => async (
   dispatch: Dispatch<PracticeAction>,
 ): Promise<void> => {
-  const { id_word, id_group, id_study, count_study = 0 } = word;
-  if (id_study) {
-    if (count_study < count_max) await updateStudies({ ...word, count_study: count_study + 1 });
-  } else await createStudies({ id_study: id_word, count_study: 1 });
+  const wordExecute = await getWordsByIdWord(id_word);
+  if (wordExecute.data) {
+    const word = wordExecute.data[0];
+    const { id_group, id_study, count_study = 0 } = word;
+    if (id_study) {
+      if (count_study < count_max) await updateStudies({ ...word, count_study: count_study + 1 });
+    } else {
+      await createStudies({ id_study: id_word, count_study: 1 });
+    }
 
-  const words = await getWordsByIdGroup({ id_group });
-  return dispatch(loadWordsGroup(words.data || []));
+    const words = await getWordsByIdGroup(id_group);
+    return dispatch(loadWordsGroup(words.data));
+  }
+  return undefined;
 };
 
 export const actStudyInCorrect = (word: WordType) => async (
@@ -89,7 +96,7 @@ export const actStudyInCorrect = (word: WordType) => async (
     const wordsDifficult = await getWordsDifficult();
     await dispatch(loadWordsDifficult(wordsDifficult.data || []));
 
-    const words = await getWordsByIdGroup({ id_group });
+    const words = await getWordsByIdGroup(id_group);
     return dispatch(loadWordsGroup(words.data || []));
   }
 
@@ -103,7 +110,7 @@ export const actToggleFlashWord = (word: WordType) => async (
   if (id_study) await updateStudies({ ...word, difficult_study: difficult_study ? 0 : 1 });
   else await createStudies({ id_study: id_word, difficult_study: 1 });
 
-  const words = await getWordsByIdGroup({ id_group });
+  const words = await getWordsByIdGroup(id_group);
   dispatch(loadWordsGroup(words.data || []));
   const wordsDifficult = await getWordsDifficult();
   return dispatch(loadWordsDifficult(wordsDifficult.data || []));

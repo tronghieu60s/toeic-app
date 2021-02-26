@@ -1,41 +1,30 @@
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo } from 'react';
 import { Image, StyleSheet } from 'react-native';
 import { Text, View } from '~/src/components/Themed';
 import SoundButton from '~/src/components/UI/SoundButton';
 import Config from '~/src/constants/Config';
 import { lightBulbIcon } from '~/src/constants/IconSource';
-import { typeAnswersMean, typeAnswersName } from '~/src/helpers/type-condition';
+import Layout from '~/src/constants/Layout';
+import { isTypeAnswersMean, isTypeAnswersName } from '~/src/helpers/study';
 import tailwind from '~/tailwind';
-import { StatusQuestion, TypesAnswer, WordType } from '~/types';
+import { TypesAnswer, WordType } from '~/types';
 
+const { width } = Layout.window;
 const { count_max } = Config.study;
 
 type Props = {
   word: WordType;
-  status: StatusQuestion;
   typeAnswer: TypesAnswer;
   children: JSX.Element;
 };
 
 export default memo(function TabPracticeStudyStudyCover(props: Props) {
-  const { status, word, typeAnswer, children } = props;
+  const { word, typeAnswer, children } = props;
   const { name_word, mean_word, pronounce_word, count_study } = word;
-  const [countStudy, setCountStudy] = useState(count_study);
-
-  useEffect(() => {
-    setCountStudy(word.count_study);
-  }, [word]);
-
-  useEffect(() => {
-    if (status === 'Correct') {
-      const newCount = (countStudy || 0) < 5 ? (countStudy || 0) + 1 : countStudy;
-      setCountStudy(newCount);
-    }
-  }, [status]);
 
   let question = '';
-  if (typeAnswersMean(typeAnswer)) question = name_word || '';
-  if (typeAnswersName(typeAnswer)) question = mean_word || '';
+  if (isTypeAnswersMean(typeAnswer)) question = name_word || '';
+  if (isTypeAnswersName(typeAnswer)) question = mean_word || '';
 
   const iconBulb = lightBulbIcon[(count_study || 0) >= count_max ? 1 : 0];
   let textDesc = '';
@@ -49,7 +38,7 @@ export default memo(function TabPracticeStudyStudyCover(props: Props) {
   }
 
   return (
-    <View style={tailwind('w-full flex-1')}>
+    <View style={{ ...tailwind('flex-1'), width }}>
       <View style={styles.viewTop}>
         <View style={{ flex: 8 }}>
           {textDesc.length > 0 && <Text>{textDesc}</Text>}

@@ -6,20 +6,20 @@ import tailwind from '~/tailwind';
 import { StatusQuestion } from '~/types';
 
 type Props = {
+  answer: string;
   status: StatusQuestion;
-  userAnswer: string;
   handleContinue: () => void;
 };
 
 export default memo(function TabPracticeStudyBottom(props: Props) {
-  const { status, userAnswer, handleContinue } = props;
+  const { answer, status, handleContinue } = props;
 
   const textButton = status !== 'Waiting' ? 'Tiếp tục' : 'Kiểm tra';
-  const colorTextButton = userAnswer ? '#fff' : '#2a3547';
-  const disabledButton = userAnswer.length === 0;
+  const colorTextButton = answer ? '#fff' : '#2a3547';
+  const disabledButton = answer.length === 0;
 
   let colorButton = '#2dce89';
-  if (userAnswer.length === 0) colorButton = '#d7d8dc';
+  if (answer.length === 0) colorButton = '#d7d8dc';
   if (status === 'Correct') colorButton = '#219764';
   if (status === 'Incorrect') colorButton = '#d10a32';
 

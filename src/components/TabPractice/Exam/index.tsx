@@ -12,7 +12,6 @@ import ProcessBar from '~/src/components/UI/ProcessBar';
 import Config from '~/src/constants/Config';
 import { convertWordsBase, removeVietnameseTones as rmVN } from '~/src/helpers/convert';
 import { randomBetweenTwoNumber as rdNum } from '~/src/helpers/random';
-import { typeAnswersMean, typeAnswersName } from '~/src/helpers/type-condition';
 import { actStudyInCorrect, increasePoint } from '~/src/redux/actions/practiceAction';
 import { RootState } from '~/src/redux/reducers/rootReducer';
 import tailwind from '~/tailwind';
@@ -82,8 +81,8 @@ const TabPracticeExam = React.memo(({ navigation }: Props) => {
     Keyboard.dismiss();
 
     let expected = '';
-    if (typeAnswersName(typeAnswer || 'CHOOSE-MEAN-NAME')) expected = wordQuestion.name_word || '';
-    if (typeAnswersMean(typeAnswer || 'CHOOSE-MEAN-NAME')) expected = wordQuestion.mean_word || '';
+    // if (typeAnswersName(typeAnswer || 'CHOOSE-MEAN-NAME')) expected = wordQuestion.name_word || '';
+    // if (typeAnswersMean(typeAnswer || 'CHOOSE-MEAN-NAME')) expected = wordQuestion.mean_word || '';
     expected = convertWordsBase(expected);
 
     const arrExpected = expected.split(',').map((s) => convertWordsBase(s));

@@ -22,7 +22,7 @@ export default memo(function ChooseSound(props: Props) {
     setSelected(-1);
 
     (async () => {
-      const getWords = await getWordsByIdGroup(word);
+      const getWords = await getWordsByIdGroup(word.id_group);
       if (getWords.data !== null) {
         let words = getWords.data;
         words = words.filter((o) => o.id_word !== word.id_word);

@@ -21,7 +21,7 @@ export const executeSql = (sql: string, params: any = []): Promise<ExecuteSQL> =
         params,
         (_, { rows, insertId, rowsAffected }) => {
           const { _array } = rows;
-          const data = _array.length === 0 ? null : _array;
+          const data = _array.length === 0 ? [] : _array;
           const result: ExecuteSQL = {
             data,
             insertId,

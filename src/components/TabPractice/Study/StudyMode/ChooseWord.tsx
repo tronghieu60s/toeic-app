@@ -4,7 +4,7 @@ import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { Text, View } from '~/src/components/Themed';
 import { shuffle } from '~/src/helpers/array';
 import { randomBetweenTwoNumber as rdNum } from '~/src/helpers/random';
-import { typeAnswersMean, typeAnswersName } from '~/src/helpers/type-condition';
+import { isTypeAnswersMean, isTypeAnswersName } from '~/src/helpers/study';
 import { getWordsByIdGroup } from '~/src/models/WordsModel';
 import tailwind from '~/tailwind';
 import { TypesAnswer, WordType } from '~/types';
@@ -24,7 +24,7 @@ export default memo(function ChooseWord(props: Props) {
     setSelectWords(-1);
 
     (async () => {
-      const getWords = await getWordsByIdGroup(word);
+      const getWords = await getWordsByIdGroup(word.id_group);
       if (getWords.data !== null) {
         let words = getWords.data;
         words = words.filter((o) => o.id_word !== word.id_word);
@@ -41,8 +41,8 @@ export default memo(function ChooseWord(props: Props) {
       const color = selectWords === index ? '#fff' : '#000';
 
       let name = '';
-      if (typeAnswersMean(typeAnswer)) name = word.mean_word || '';
-      if (typeAnswersName(typeAnswer)) name = word.name_word || '';
+      if (isTypeAnswersName(typeAnswer)) name = word.name_word || '';
+      if (isTypeAnswersMean(typeAnswer)) name = word.mean_word || '';
 
       return (
         <TouchableWithoutFeedback

@@ -1,9 +1,11 @@
 import React, { memo } from 'react';
-import { Dimensions } from 'react-native';
 import { Text, View } from '~/src/components/Themed';
 import SoundButton from '~/src/components/UI/SoundButton';
+import Layout from '~/src/constants/Layout';
 import tailwind from '~/tailwind';
 import { WordType } from '~/types';
+
+const { width } = Layout.window;
 
 type Props = {
   word: WordType;
@@ -13,10 +15,10 @@ export default memo(function StudyWord({ word }: Props) {
   const { name_word, mean_word, explain_word } = word;
 
   return (
-    <View style={{ ...tailwind('flex-1 bg-transparent'), width: Dimensions.get('window').width }}>
+    <View style={{ ...tailwind('flex-1 bg-transparent'), width }}>
       <View style={tailwind('py-5 m-2 rounded-lg')}>
         <View style={tailwind('justify-between items-center bg-transparent')}>
-          <SoundButton size={90} word={word} />
+          <SoundButton size={70} word={word} />
           <Text weight={700} style={tailwind('text-xl mt-7 ml-2 text-center')}>
             {name_word}
           </Text>
