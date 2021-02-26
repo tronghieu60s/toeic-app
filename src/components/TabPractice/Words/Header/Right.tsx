@@ -14,7 +14,7 @@ type Props = {
   navigation: StackNavigationProp<TabPracticeParamList, 'TabPracticeWords'>;
 };
 
-const TabPracticeWordsHeaderRight = memo(({ navigation }: Props) => {
+export default memo(function TabPracticeWordsHeaderRight({ navigation }: Props) {
   const [modalVisible, setModalVisible] = useState(false);
 
   const theme = useSelector((state: RootState) => state.common.theme);
@@ -62,5 +62,3 @@ const styles = StyleSheet.create({
     borderRadius: 15,
   },
 });
-
-export default TabPracticeWordsHeaderRight;

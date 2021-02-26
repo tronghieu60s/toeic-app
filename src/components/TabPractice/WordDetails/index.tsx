@@ -1,6 +1,6 @@
 import { Entypo, Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { RouteProp } from '@react-navigation/native';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { memo, useEffect, useRef, useState } from 'react';
 import {
   Dimensions,
   NativeScrollEvent,
@@ -21,7 +21,7 @@ type Props = {
   route: RouteProp<TabPracticeParamList, 'TabPracticeWordDetails'>;
 };
 
-const TabPracticeWordDetails = React.memo((props: Props) => {
+export default memo(function TabPracticeWordDetails(props: Props) {
   const { word } = props.route.params;
   const { width } = Dimensions.get('window');
   const scroll = useRef<ScrollView>(null);
@@ -109,5 +109,3 @@ const TabPracticeWordDetails = React.memo((props: Props) => {
 const styles = StyleSheet.create({
   icon: { ...tailwind('w-10 h-10 justify-center items-center') },
 });
-
-export default TabPracticeWordDetails;

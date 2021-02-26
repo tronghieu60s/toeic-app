@@ -1,5 +1,5 @@
 import { StackNavigationProp } from '@react-navigation/stack';
-import React, { useEffect, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { getGroups } from '~/src/models/GroupsModel';
 import tailwind from '~/tailwind';
@@ -13,10 +13,9 @@ type Props = {
   navigation: StackNavigationProp<TabPracticeParamList, 'TabPracticeScreen'>;
 };
 
-const TabPractice = React.memo((props: Props) => {
-  const [isPending, setIsPending] = useState(true);
-
+export default memo(function TabPractice(props: Props) {
   const { navigation } = props;
+  const [isPending, setIsPending] = useState(true);
   const [groups, setGroups] = useState<GroupType[]>([]);
   const [groupsRender, setGroupsRender] = useState<{ title: string; data: GroupType[] }[]>([]);
 
@@ -74,8 +73,8 @@ const TabPractice = React.memo((props: Props) => {
     setGroupsRender(groupsData);
   }, [groups]);
 
-  const renderItems = (groups: { title: string; data: GroupType[] }[]) =>
-    groups.map((group, index) => (
+  const renderItems = (groups: { title: string; data: GroupType[] }[]) => {
+    return groups.map((group, index) => (
       <React.Fragment key={index}>
         {group.data.length > 0 && (
           <Text weight={700} style={styles.groupsTitle}>
@@ -89,6 +88,7 @@ const TabPractice = React.memo((props: Props) => {
         </ScrollView>
       </React.Fragment>
     ));
+  };
 
   const text = 'Không tải được dữ liệu, vui lòng xóa dữ liệu và khởi động lại ứng dụng.';
   if (isPending) return <ScreenLoading />;
@@ -96,7 +96,7 @@ const TabPractice = React.memo((props: Props) => {
 
   return (
     <ScrollView light style={tailwind('flex-1')}>
-      <View light style={tailwind('pb-14 px-1')}>
+      <View light style={tailwind('pb-14 pt-1 px-1')}>
         {renderItems(groupsRender)}
       </View>
     </ScrollView>
@@ -107,5 +107,3 @@ const styles = StyleSheet.create({
   groups: { ...tailwind('flex-1 flex-row bg-transparent') },
   groupsTitle: { ...tailwind('text-sm my-2 ml-2') },
 });
-
-export default TabPractice;

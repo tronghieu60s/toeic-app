@@ -1,5 +1,5 @@
 import { RouteProp } from '@react-navigation/native';
-import React from 'react';
+import React, { memo } from 'react';
 import { StyleSheet } from 'react-native';
 import { Text, View } from '~/src/components/Themed';
 import tailwind from '~/tailwind';
@@ -9,7 +9,7 @@ type Props = {
   route: RouteProp<TabPracticeParamList, 'TabPracticeWordDetails'>;
 };
 
-const TabPracticeWordDetailHeaderTitle = React.memo((props: Props) => {
+export default memo(function TabPracticeWordDetailHeaderTitle(props: Props) {
   const { route } = props;
   const { name_word, pronounce_word, name_group } = route.params.word;
 
@@ -30,10 +30,5 @@ const TabPracticeWordDetailHeaderTitle = React.memo((props: Props) => {
 });
 
 const styles = StyleSheet.create({
-  pronounce: {
-    fontSize: 11,
-    color: '#5e72e4',
-  },
+  pronounce: { fontSize: 11, color: '#5e72e4' },
 });
-
-export default TabPracticeWordDetailHeaderTitle;

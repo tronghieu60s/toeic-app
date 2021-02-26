@@ -1,7 +1,7 @@
 import Slider from '@react-native-community/slider';
 import { Picker } from '@react-native-picker/picker';
 import * as Speech from 'expo-speech';
-import React, { useEffect, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setVoiceIdentify, setVoicePitch, setVoiceRate } from '~/src/redux/actions/commonAction';
 import { RootState } from '~/src/redux/reducers/rootReducer';
@@ -9,7 +9,7 @@ import tailwind from '~/tailwind';
 import { View } from '../Themed';
 import SelectText from '../UI/SelectText';
 
-const TabSettingAudio = React.memo(() => {
+export default memo(function TabSettingAudio() {
   const [loadVoices, setLoadVoices] = useState(false);
   const [voices, setVoices] = useState<Speech.Voice[]>([]);
 
@@ -32,10 +32,11 @@ const TabSettingAudio = React.memo(() => {
     })();
   });
 
-  const renderItemsSelect = (voices: Speech.Voice[]) =>
-    voices.map((o, index) => (
+  const renderItemsSelect = (voices: Speech.Voice[]) => {
+    return voices.map((o, index) => (
       <Picker.Item key={index} label={`${o.language} | ${o.identifier}`} value={o.identifier} />
     ));
+  };
 
   return (
     <>
@@ -87,5 +88,3 @@ const TabSettingAudio = React.memo(() => {
     </>
   );
 });
-
-export default TabSettingAudio;

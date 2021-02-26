@@ -24,9 +24,11 @@ module.exports = {
     // common
     camelcase: 'off',
     'no-console': 'off',
+    'no-shadow': 'off',
     'no-use-before-define': 'off',
     'global-require': 'off',
     'arrow-body-style': 'off',
+    'operator-linebreak': 'off',
     'object-curly-newline': 'off',
     'prefer-arrow-callback': 'off',
 
@@ -35,6 +37,7 @@ module.exports = {
     'import/extensions': 'off',
 
     // react
+    'react/no-array-index-key': 'off',
     'react/jsx-props-no-spreading': 'off',
     'react/display-name': 'off',
     'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],

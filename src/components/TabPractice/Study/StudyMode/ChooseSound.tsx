@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { View } from '~/src/components/Themed';
 import SoundButton from '~/src/components/UI/SoundButton';
@@ -13,7 +13,7 @@ type Props = {
   handleSendAnswer: (value: string) => void;
 };
 
-const ChooseSoundEN = React.memo((props: Props) => {
+export default memo(function ChooseSound(props: Props) {
   const { word, handleSendAnswer } = props;
   const [selected, setSelected] = useState(-1);
   const [words, setWords] = useState<WordType[]>([]);
@@ -33,8 +33,8 @@ const ChooseSoundEN = React.memo((props: Props) => {
     })();
   }, [word]);
 
-  const renderSoundButton = () =>
-    words.map((word, index) => (
+  const renderSoundButton = () => {
+    return words.map((word, index) => (
       <View key={index} style={tailwind('px-4 pb-4')}>
         <SoundButton
           word={word}
@@ -46,6 +46,7 @@ const ChooseSoundEN = React.memo((props: Props) => {
         />
       </View>
     ));
+  };
 
   return <View style={styles.container}>{renderSoundButton()}</View>;
 });
@@ -53,5 +54,3 @@ const ChooseSoundEN = React.memo((props: Props) => {
 const styles = StyleSheet.create({
   container: { ...tailwind('flex-wrap flex-row justify-center'), paddingVertical: 40 },
 });
-
-export default ChooseSoundEN;

@@ -42,13 +42,13 @@ const loadWordsStudy = (words: WordType[]) => {
 
 const TabPracticeStudy = React.memo(({ navigation }: Props) => {
   const totalQuestions = total_max;
-  const [countIncorrect, setCountIncorrect] = useState(0);
   const [status, setStatus] = useState<StatusQuestion>('Waiting');
   const [statusStudy, setStatusStudy] = useState<boolean>(false);
 
   const [userAnswer, setUserAnswer] = useState('');
   const [typeAnswer, setTypeAnswer] = useState<TypesAnswer>();
   const [countQuestion, setCountQuestion] = useState(0);
+  const [countIncorrect, setCountIncorrect] = useState(0);
 
   const dispatch = useDispatch();
   const words = useSelector((state: RootState) => state.practice.words);

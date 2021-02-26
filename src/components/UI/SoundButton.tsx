@@ -16,9 +16,16 @@ type Props = {
   handleSendAnswer?: (value: string) => void;
 };
 
+SoundButton.defaultProps = {
+  size: 100,
+  selected: false,
+  autoPlay: false,
+  handleSendAnswer: null,
+};
+
 const animatedValue = (toValue: number) => ({ toValue, useNativeDriver: true });
 
-const SoundButton = (props: Props) => {
+export default function SoundButton(props: Props): JSX.Element {
   const { word, size, selected, autoPlay, handleSendAnswer } = props;
   const { name_word = '' } = word;
 
@@ -63,14 +70,7 @@ const SoundButton = (props: Props) => {
       </TouchableWithoutFeedback>
     </Animated.View>
   );
-};
-
-SoundButton.defaultProps = {
-  size: 100,
-  selected: false,
-  autoPlay: false,
-  handleSendAnswer: null,
-};
+}
 
 const styles = StyleSheet.create({
   sound: {
@@ -82,5 +82,3 @@ const styles = StyleSheet.create({
     transform: [{ rotate: '-10deg' }],
   },
 });
-
-export default SoundButton;

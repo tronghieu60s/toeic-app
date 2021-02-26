@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleExplain, toggleMean, togglePronounce } from '~/src/redux/actions/commonAction';
 import { RootState } from '~/src/redux/reducers/rootReducer';
 import SwitchCustom from '../UI/SwitchCustom';
 
-const TabSettingVisible = React.memo(() => {
+export default memo(function TabSettingVisible() {
   const dispatch = useDispatch();
   const common = useSelector((state: RootState) => state.common);
   const { visibleMean, visibleExplain, visiblePronounce } = common;
@@ -32,5 +32,3 @@ const TabSettingVisible = React.memo(() => {
     </>
   );
 });
-
-export default TabSettingVisible;

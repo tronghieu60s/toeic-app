@@ -1,6 +1,4 @@
-/* eslint-disable curly */
-/* eslint-disable nonblock-statement-body-position */
-import React from 'react';
+import React, { memo } from 'react';
 import { TypesAnswer, WordType } from '~/types';
 import ChooseSound from './ChooseSound';
 import ChooseWord from './ChooseWord';
@@ -12,25 +10,28 @@ type Props = {
   handleSendAnswer: (value: string) => void;
 };
 
-const StudyMode = React.memo((props: Props) => {
+export default memo(function StudyMode(props: Props) {
   const { word, typeAnswer, handleSendAnswer } = props;
 
-  if (typeAnswer === 'CHOOSE-NAME-MEAN')
+  if (typeAnswer === 'CHOOSE-NAME-MEAN') {
     return <ChooseWord word={word} typeAnswer={typeAnswer} handleSendAnswer={handleSendAnswer} />;
+  }
 
-  if (typeAnswer === 'CHOOSE-MEAN-NAME')
+  if (typeAnswer === 'CHOOSE-MEAN-NAME') {
     return <ChooseWord word={word} typeAnswer={typeAnswer} handleSendAnswer={handleSendAnswer} />;
+  }
 
-  if (typeAnswer === 'FILL-NAME-MEAN' || typeAnswer === 'FILL-MEAN-NAME')
+  if (typeAnswer === 'FILL-NAME-MEAN' || typeAnswer === 'FILL-MEAN-NAME') {
     return <FillWord word={word} handleSendAnswer={handleSendAnswer} />;
+  }
 
-  if (typeAnswer === 'CHOOSE-MEAN-SOUND')
+  if (typeAnswer === 'CHOOSE-MEAN-SOUND') {
     return <ChooseSound word={word} handleSendAnswer={handleSendAnswer} />;
+  }
 
-  if (typeAnswer === 'CHOOSE-SOUND-MEAN')
+  if (typeAnswer === 'CHOOSE-SOUND-MEAN') {
     return <ChooseWord word={word} typeAnswer={typeAnswer} handleSendAnswer={handleSendAnswer} />;
+  }
 
   return null;
 });
-
-export default StudyMode;

@@ -3,19 +3,23 @@ import { Animated, StyleSheet, View } from 'react-native';
 
 type Props = {
   percent: number;
-  rounded?: number;
-  border?: number;
   height?: number;
   color?: string;
 };
 
-const ProcessBar = (props: Props) => {
-  const { percent, rounded, border, height = 0, color } = props;
+ProcessBar.defaultProps = {
+  height: 3,
+  color: '#2dce89',
+};
+
+export default function ProcessBar(props: Props): JSX.Element {
+  const { percent, height = 0, color } = props;
 
   const animVal = new Animated.Value(0);
   const [prePercent, setPrePercent] = useState(0);
-  const [interpolateBar, setInterpolateBar] = useState(() =>
-    animVal.interpolate({ inputRange: [0, 1], outputRange: ['0%', '50%'] }));
+  const [interpolateBar, setInterpolateBar] = useState(() => {
+    return animVal.interpolate({ inputRange: [0, 1], outputRange: ['0%', '50%'] });
+  });
 
   useEffect(() => {
     Animated.timing(animVal, {
@@ -30,33 +34,21 @@ const ProcessBar = (props: Props) => {
     setPrePercent(percent);
   }, [percent]);
 
-  const styleContainer = {
-    height: height + 2,
-    borderColor: color,
-    borderRadius: rounded,
-    borderWidth: border,
-  };
-
-  const styleProcess = {
-    width: interpolateBar,
-    backgroundColor: color,
-    height,
-    borderRadius: rounded,
-  };
-
   return (
-    <View style={[styles.container, styleContainer]}>
-      <Animated.View style={[styles.process, styleProcess]} />
+    <View style={styles.container}>
+      <Animated.View
+        style={[
+          styles.process,
+          {
+            height,
+            width: interpolateBar,
+            backgroundColor: color,
+          },
+        ]}
+      />
     </View>
   );
-};
-
-ProcessBar.defaultProps = {
-  rounded: 0,
-  border: 0,
-  height: 3,
-  color: '#2dce89',
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -69,5 +61,3 @@ const styles = StyleSheet.create({
     backgroundColor: '#2dce89',
   },
 });
-
-export default ProcessBar;

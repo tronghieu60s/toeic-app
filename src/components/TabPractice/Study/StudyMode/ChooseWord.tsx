@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { Dimensions, StyleSheet } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { Text, View } from '~/src/components/Themed';
@@ -15,7 +15,7 @@ type Props = {
   handleSendAnswer: (value: string) => void;
 };
 
-const ChooseWord = React.memo((props: Props) => {
+export default memo(function ChooseWord(props: Props) {
   const { word, typeAnswer, handleSendAnswer } = props;
   const [selectWords, setSelectWords] = useState(-1);
   const [words, setWords] = useState<WordType[]>([]);
@@ -35,8 +35,8 @@ const ChooseWord = React.memo((props: Props) => {
     })();
   }, [word]);
 
-  const renderWordsSelect = () =>
-    words.map((word, index) => {
+  const renderWordsSelect = () => {
+    return words.map((word, index) => {
       const bgColor = selectWords === index ? '#2dce89' : '#e1e4ea';
       const color = selectWords === index ? '#fff' : '#000';
 
@@ -57,6 +57,7 @@ const ChooseWord = React.memo((props: Props) => {
         </TouchableWithoutFeedback>
       );
     });
+  };
 
   return <View style={styles.container}>{renderWordsSelect()}</View>;
 });
@@ -75,5 +76,3 @@ const styles = StyleSheet.create({
   },
   wordText: { ...tailwind('text-base text-center') },
 });
-
-export default ChooseWord;

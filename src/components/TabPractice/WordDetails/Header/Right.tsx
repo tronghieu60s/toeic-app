@@ -1,5 +1,5 @@
 import { AntDesign } from '@expo/vector-icons';
-import React, { useState } from 'react';
+import React, { memo, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { useSelector } from 'react-redux';
 import { Ripple, View } from '~/src/components/Themed';
@@ -8,7 +8,7 @@ import { RootState } from '~/src/redux/reducers/rootReducer';
 import tailwind from '~/tailwind';
 import TabPracticeWordDetailsHeaderModalSetting from './ModalSetting';
 
-const TabPracticeWordDetailsHeaderRight = React.memo(() => {
+export default memo(function TabPracticeWordDetailsHeaderRight() {
   const [modalVisible, setModalVisible] = useState(false);
   const theme = useSelector((state: RootState) => state.common.theme);
 
@@ -32,5 +32,3 @@ const styles = StyleSheet.create({
   },
   button: { ...tailwind('justify-center items-center p-2'), backgroundColor: '#fff0' },
 });
-
-export default TabPracticeWordDetailsHeaderRight;

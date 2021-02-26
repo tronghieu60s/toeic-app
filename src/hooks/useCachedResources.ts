@@ -3,7 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Font from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import * as React from 'react';
-import { initDbTable, loadDataFromResources } from '~/src/utils/SQLite';
+import { executeSql, initDbTable, loadDataFromResources } from '~/src/utils/SQLite';
 import { delayLoading } from '../helpers/common';
 
 type ReturnValue = {
@@ -36,6 +36,10 @@ export default function useCachedResources(): ReturnValue {
         await initDbTable();
         const firstLoading = await AsyncStorage.getItem('@first_loading');
         if (firstLoading !== 'true') {
+          await executeSql('drop table groups;');
+          await executeSql('drop table words;');
+          await initDbTable();
+
           await loadDataFromResources();
           await AsyncStorage.setItem('@first_loading', 'true');
         }

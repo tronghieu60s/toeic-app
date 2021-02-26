@@ -1,5 +1,5 @@
 import { SimpleLineIcons } from '@expo/vector-icons';
-import React, { useState } from 'react';
+import React, { memo, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import { useSelector } from 'react-redux';
@@ -10,7 +10,7 @@ import tailwind from '~/tailwind';
 import TabSettingAudio from './Audio';
 import TabSettingVisible from './Visible';
 
-const TabSetting = React.memo(() => {
+export default memo(function TabSetting() {
   const [textVoice, setTextVoice] = useState('Hello, I am a Robot!');
 
   const common = useSelector((state: RootState) => state.common);
@@ -26,12 +26,12 @@ const TabSetting = React.memo(() => {
 
   return (
     <ScrollView light style={tailwind('p-2')}>
-      <View light style={tailwind('pb-14')}>
-        <View style={tailwind('p-3 rounded-lg mb-3')}>
+      <View light style={tailwind('pb-16')}>
+        <View style={tailwind('p-3 rounded-lg mb-2')}>
           <TitleModal>Cài Đặt Hiển Thị</TitleModal>
           <TabSettingVisible />
         </View>
-        <View style={tailwind('p-3 rounded-lg mb-3')}>
+        <View style={tailwind('p-3 rounded-lg mb-2')}>
           <TitleModal>Cài Đặt Âm Thanh</TitleModal>
           <View style={tailwind('flex-row items-center mb-2')}>
             <TextInput
@@ -63,5 +63,3 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
 });
-
-export default TabSetting;

@@ -1,5 +1,5 @@
 import { RouteProp } from '@react-navigation/native';
-import React from 'react';
+import React, { memo } from 'react';
 import tailwind from '~/tailwind';
 import { TabPracticeParamList } from '~/types';
 import AdMobBanner from '../../Ads';
@@ -10,7 +10,7 @@ type Props = {
   route: RouteProp<TabPracticeParamList, 'TabPracticeWordDetails'>;
 };
 
-const TabDifficultWordDetails = React.memo((props: Props) => {
+export default memo(function TabDifficultWordDetails(props: Props) {
   const { word } = props.route.params;
 
   return (
@@ -22,5 +22,3 @@ const TabDifficultWordDetails = React.memo((props: Props) => {
     </View>
   );
 });
-
-export default TabDifficultWordDetails;

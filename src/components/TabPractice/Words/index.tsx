@@ -17,10 +17,10 @@ type Props = {
   navigation: StackNavigationProp<TabPracticeParamList, 'TabPracticeWords'>;
 };
 
-const TabPracticeWords = memo((props: Props) => {
-  const [isPending, setIsPending] = useState(true);
+export default memo(function TabPracticeWords(props: Props) {
   const { route, navigation } = props;
   const { group } = route.params;
+  const [isPending, setIsPending] = useState(true);
 
   const dispatch = useDispatch();
   const words = useSelector((state: RootState) => state.practice.words);
@@ -33,8 +33,9 @@ const TabPracticeWords = memo((props: Props) => {
   }, []);
 
   const handleFlashWord = (word: WordType) => dispatch(actToggleFlashWord(word));
-  const handleDetailsWord = (word: WordType) =>
+  const handleDetailsWord = (word: WordType) => {
     navigation.navigate('TabPracticeWordDetails', { word });
+  };
 
   const text = 'Bài học này đang cập nhật. Vui lòng quay lại sau.';
   if (isPending) return <ScreenLoading />;
@@ -58,5 +59,3 @@ const TabPracticeWords = memo((props: Props) => {
     </View>
   );
 });
-
-export default TabPracticeWords;

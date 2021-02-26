@@ -8,7 +8,7 @@ type Props = {
   onValueChange?: () => void;
 };
 
-const SelectText = (props: Props) => {
+export default function SelectText(props: Props): JSX.Element {
   const { name, description, onValueChange } = props;
   return (
     <Ripple style={tailwind('flex-auto py-2')} onPress={onValueChange}>
@@ -18,10 +18,8 @@ const SelectText = (props: Props) => {
       <Text style={{ color: '#888', fontSize: 13 }}>{description}</Text>
     </Ripple>
   );
-};
+}
 
 SelectText.defaultProps = {
   onValueChange: null,
 };
-
-export default SelectText;

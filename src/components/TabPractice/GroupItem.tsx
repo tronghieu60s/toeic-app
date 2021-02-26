@@ -1,5 +1,5 @@
 import { StackNavigationProp } from '@react-navigation/stack';
-import React from 'react';
+import React, { memo } from 'react';
 import { Dimensions, Image, StyleSheet } from 'react-native';
 import tailwind from '~/tailwind';
 import { GroupType, TabPracticeParamList } from '~/types';
@@ -10,7 +10,8 @@ type Props = {
   navigation: StackNavigationProp<TabPracticeParamList, 'TabPracticeScreen'>;
 };
 
-const GroupItem = React.memo(({ group, navigation }: Props) => {
+export default memo(function GroupItem(props: Props) {
+  const { group, navigation } = props;
   const { name_group, pronounce_group = '', image_group } = group;
   const handlePressGroup = () => navigation.navigate('TabPracticeWords', { group });
 
@@ -36,5 +37,3 @@ const styles = StyleSheet.create({
   },
   groupPronounce: { ...tailwind('text-xs'), color: '#888', marginTop: 2 },
 });
-
-export default GroupItem;

@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { memo } from 'react';
 import tailwind from '~/tailwind';
 import { Text, View } from '../Themed';
 
 type Props = { children: React.ReactNode };
 
-const ScreenCenter = React.memo((props: Props) => {
+export default memo(function ScreenCenter(props: Props) {
   const { children } = props;
 
   return (
@@ -13,5 +13,3 @@ const ScreenCenter = React.memo((props: Props) => {
     </View>
   );
 });
-
-export default ScreenCenter;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Image } from 'react-native';
 import { useSelector } from 'react-redux';
 import { flashIcon, lightBulbIcon } from '~/src/constants/IconSource';
@@ -16,7 +16,7 @@ type Props = {
   handleDetailsWord: (word: WordType) => void;
 };
 
-const WordItem = (props: Props) => {
+export default memo(function WordItem(props: Props) {
   const { word, handleFlashWord, handleDetailsWord } = props;
   const {
     name_word,
@@ -70,6 +70,4 @@ const WordItem = (props: Props) => {
       </View>
     </View>
   );
-};
-
-export default WordItem;
+});

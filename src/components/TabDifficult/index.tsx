@@ -1,5 +1,5 @@
 import { StackNavigationProp } from '@react-navigation/stack';
-import React from 'react';
+import React, { memo } from 'react';
 import { FlatList } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { actToggleFlashWord } from '~/src/redux/actions/practiceAction';
@@ -14,17 +14,18 @@ type Props = {
   navigation: StackNavigationProp<TabDifficultParamList, 'TabDifficultScreen'>;
 };
 
-const TabDifficult = React.memo(({ navigation }: Props) => {
+export default memo(function TabDifficult({ navigation }: Props) {
   const dispatch = useDispatch();
   const words = useSelector((state: RootState) => state.practice.wordsDifficult);
+
+  const handleFlashWord = (word: WordType) => dispatch(actToggleFlashWord(word));
+  const handleDetailsWord = (word: WordType) => {
+    navigation.navigate('TabPracticeWordDetails', { word });
+  };
 
   const renderItem = ({ item }: { item: WordType }) => (
     <WordItem word={item} handleFlashWord={handleFlashWord} handleDetailsWord={handleDetailsWord} />
   );
-
-  const handleFlashWord = (word: WordType) => dispatch(actToggleFlashWord(word));
-  const handleDetailsWord = (word: WordType) =>
-    navigation.navigate('TabPracticeWordDetails', { word });
 
   const text = 'Không có từ khó. Bạn đang làm rất tốt ^^.';
   if (words.length <= 0) return <CenterUI>{text}</CenterUI>;
@@ -36,10 +37,8 @@ const TabDifficult = React.memo(({ navigation }: Props) => {
         renderItem={renderItem}
         keyExtractor={(item, index) => index.toString()}
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={tailwind('pt-2 pb-14')}
+        contentContainerStyle={tailwind('pb-14 pt-2')}
       />
     </View>
   );
 });
-
-export default TabDifficult;

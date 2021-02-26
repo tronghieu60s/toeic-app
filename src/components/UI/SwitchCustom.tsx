@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Switch } from 'react-native';
 import tailwind from '~/tailwind';
 import { View } from '../Themed';
@@ -11,7 +11,7 @@ type Props = {
   onValueChange: () => void;
 };
 
-const SwitchUI = React.memo((props: Props) => {
+export default memo(function SwitchCustom(props: Props) {
   const { name, description, value, onValueChange } = props;
 
   return (
@@ -29,5 +29,3 @@ const SwitchUI = React.memo((props: Props) => {
     </View>
   );
 });
-
-export default SwitchUI;

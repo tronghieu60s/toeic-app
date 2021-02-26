@@ -17,7 +17,7 @@ type Props = {
   children: JSX.Element;
 };
 
-const TabPracticeStudyStudyCover = memo((props: Props) => {
+export default memo(function TabPracticeStudyStudyCover(props: Props) {
   const { status, word, typeAnswer, children } = props;
   const { name_word, mean_word, pronounce_word, count_study } = word;
   const [countStudy, setCountStudy] = useState(count_study);
@@ -57,7 +57,7 @@ const TabPracticeStudyStudyCover = memo((props: Props) => {
             <View style={tailwind('mr-2')}>
               <Image style={tailwind('w-6 h-6')} source={iconBulb} />
             </View>
-            {typeAnswer === 'CHOOSE-SOUND-MEAN' && <SoundButton size={70} word={word} />}
+            {typeAnswer === 'CHOOSE-SOUND-MEAN' && <SoundButton size={60} word={word} />}
             <Text weight={700} style={tailwind('text-lg w-10/12')}>
               {typeAnswer !== 'CHOOSE-SOUND-MEAN' && question}
               {(typeAnswer === 'CHOOSE-NAME-MEAN' || typeAnswer === 'FILL-NAME-MEAN') &&
@@ -75,5 +75,3 @@ const styles = StyleSheet.create({
   viewTop: { ...tailwind('flex-row justify-between px-6 mt-3'), flex: 2 },
   viewBottom: { ...tailwind('px-5'), flex: 8, backgroundColor: '#fff0' },
 });
-
-export default TabPracticeStudyStudyCover;

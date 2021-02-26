@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Text, View } from '~/src/components/Themed';
@@ -11,7 +11,7 @@ type Props = {
   handleContinue: () => void;
 };
 
-const TabPracticeStudyBottom = React.memo((props: Props) => {
+export default memo(function TabPracticeStudyBottom(props: Props) {
   const { status, userAnswer, handleContinue } = props;
 
   const textButton = status !== 'Waiting' ? 'Tiếp tục' : 'Kiểm tra';
@@ -46,5 +46,3 @@ const styles = StyleSheet.create({
   },
   continueText: { ...tailwind('text-xl capitalize'), color: '#2c3749' },
 });
-
-export default TabPracticeStudyBottom;

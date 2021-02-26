@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { memo, useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import { View } from '~/src/components/Themed';
@@ -9,7 +9,8 @@ type Props = {
   handleSendAnswer: (value: string) => void;
 };
 
-const FillWord = React.memo(({ word, handleSendAnswer }: Props) => {
+export default memo(function FillWord(props: Props) {
+  const { word, handleSendAnswer } = props;
   const [text, onChangeText] = React.useState('');
 
   useEffect(() => {
@@ -46,5 +47,3 @@ const styles = StyleSheet.create({
     textAlignVertical: 'top',
   },
 });
-
-export default FillWord;
