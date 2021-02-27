@@ -117,6 +117,8 @@ export const actLoadWordsStudy = (words: WordType[]): WordStudy[] => {
   return wordsStudy;
 };
 
+export const actLoadWordsExam = (words: WordType[]): WordStudy[] => {};
+
 // Load Words Difficult
 // console.log('---- List ----');
 // wordsStudy.map((o) => console.log(`${o.data.name_word} - ${o.type}`));
@@ -138,14 +140,15 @@ const loadWordsDifficultMaxTotal = (words: WordType[]): WordType[] => {
     if (curNumWords >= total_max) break;
 
     const word = words[i];
-    if ((word.difficult_study || 1) < difficult_max) {
-      for (let j = 0; j < difficult_max - (word.difficult_study || 1); j += 1) {
+    if ((word.difficult_study || 1) <= difficult_max) {
+      for (let j = 0; j <= difficult_max - (word.difficult_study || 1); j += 1) {
         if (curNumWords >= total_max) break;
         newWords.push(word);
         curNumWords += 1;
       }
     }
   }
+  console.log(newWords.length);
   return newWords;
 };
 
@@ -162,5 +165,7 @@ export const actLoadWordsDifficultStudy = (words: WordType[]): WordStudy[] => {
   let wordsLoad = loadWordsDifficultWithSet(words);
   wordsLoad = loadWordsDifficultMaxTotal(wordsLoad);
   const wordsStudy = loadWordsDifficultTypeAnswerWords(wordsLoad);
+  // console.log('---- List ----');
+  // wordsStudy.map((o) => console.log(`${o.data.name_word} - ${o.data.difficult_study}`));
   return wordsStudy;
 };

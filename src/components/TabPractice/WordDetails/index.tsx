@@ -93,9 +93,9 @@ export default memo(function TabPracticeWordDetails(props: Props) {
           <Ripple style={styles.icon} onPress={onPressToggleAutoPlay}>
             <Ionicons name={autoPlay ? 'md-pause' : 'md-play'} size={20} color="black" />
           </Ripple>
-          <Ripple style={styles.icon}>
+          {/* <Ripple style={styles.icon}>
             <MaterialIcons name="replay" size={22} color="black" />
-          </Ripple>
+          </Ripple> */}
           <Ripple style={styles.icon} onPress={onPressNextWord}>
             <Ionicons name="ios-arrow-forward" size={22} color="black" />
           </Ripple>

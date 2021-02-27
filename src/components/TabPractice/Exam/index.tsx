@@ -1,43 +1,52 @@
 import { StackNavigationProp } from '@react-navigation/stack';
-import * as Speech from 'expo-speech';
-import React, { useEffect, useState } from 'react';
+import React, { memo, useEffect, useRef, useState } from 'react';
 import { Alert, Keyboard, StyleSheet, Vibration } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import { useDispatch, useSelector } from 'react-redux';
-import AlertUI from '~/src/components/TabPractice/Study/Alert';
-import Bottom from '~/src/components/TabPractice/Study/Bottom';
-import StudyCover from '~/src/components/TabPractice/Study/StudyCover';
-import StudyMode from '~/src/components/TabPractice/Study/StudyMode';
 import { View } from '~/src/components/Themed';
 import ProcessBar from '~/src/components/UI/ProcessBar';
 import Config from '~/src/constants/Config';
+import Layout from '~/src/constants/Layout';
+import { shuffle } from '~/src/helpers/array';
 import { convertWordsBase, removeVietnameseTones as rmVN } from '~/src/helpers/convert';
-import { randomBetweenTwoNumber as rdNum } from '~/src/helpers/random';
-import { actStudyInCorrect, increasePoint } from '~/src/redux/actions/practiceAction';
+import {
+  actLoadWordsExam,
+  isTypeAnswersMean,
+  isTypeAnswersName,
+  WordStudy,
+} from '~/src/helpers/study';
+import { increasePoint } from '~/src/redux/actions/practiceAction';
 import { RootState } from '~/src/redux/reducers/rootReducer';
 import tailwind from '~/tailwind';
-import { StatusQuestion, TabPracticeParamList, TypesAnswer, WordType } from '~/types';
+import { StatusQuestion, TabPracticeParamList } from '~/types';
 import ScreenLoading from '../../UI/ScreenLoading';
+import AlertBottom from '../Study/Alert';
+import Bottom from '../Study/Bottom';
+import StudyCover from '../Study/StudyCover';
+import StudyMode from '../Study/StudyMode';
 
+const { width } = Layout.window;
 const { time_max } = Config.study;
 
 type Props = {
   navigation: StackNavigationProp<TabPracticeParamList, 'TabPracticeScreen'>;
 };
 
-const TabPracticeExam = React.memo(({ navigation }: Props) => {
+export default memo(function TabPracticeExam({ navigation }: Props) {
   const totalTime = time_max; // Seconds
+  const scroll = useRef<ScrollView>(null);
   const [countTime, setCountTime] = useState(0);
+  const [isPending, setIsPending] = useState(true);
   const [status, setStatus] = useState<StatusQuestion>('Waiting');
 
-  const [userAnswer, setUserAnswer] = useState('');
-  const [typeAnswer, setTypeAnswer] = useState<TypesAnswer>();
+  const [answer, setAnswer] = useState('');
+  const [currentNum, setCurrentNum] = useState(0);
   const [countCorrect, setCountCorrect] = useState(0);
   const [countIncorrect, setCountIncorrect] = useState(0);
 
   const dispatch = useDispatch();
-  const words = useSelector((state: RootState) => state.practice.words);
-  const [wordsStudy, setWordsStudy] = useState<WordType[]>([]);
-  const [wordQuestion, setWordQuestion] = useState<WordType>(() => words[0]);
+  const wordsState = useSelector((state: RootState) => state.practice.words);
+  const [words, setWords] = useState<WordStudy[]>([]);
 
   useEffect(() => {
     const processTime = setInterval(() => {
@@ -56,81 +65,84 @@ const TabPracticeExam = React.memo(({ navigation }: Props) => {
   });
 
   useEffect(() => {
-    const newWords = words;
-    setWordQuestion(newWords[rdNum(0, newWords.length)]);
+    const words = actLoadWordsExam(wordsState);
+    setWords(shuffle(words));
+
+    setIsPending(false);
   }, []);
 
   useEffect(() => {
-    Speech.stop();
-    const newWords = words;
-    setWordsStudy(newWords);
-  }, [words]);
+    scroll?.current?.scrollTo({
+      x: width * currentNum,
+      animated: true,
+    });
+  }, [currentNum]);
 
-  useEffect(() => {
-    if (wordQuestion === null) return;
-    const rdStudy = rdNum(1, 5);
-    if (rdStudy === 1) setTypeAnswer('CHOOSE-MEAN-NAME');
-    if (rdStudy === 2) setTypeAnswer('CHOOSE-SOUND-MEAN');
-    if (rdStudy === 3) setTypeAnswer('FILL-MEAN-NAME');
-    if (rdStudy === 4) setTypeAnswer('CHOOSE-MEAN-SOUND');
-    if (rdStudy === 5) setTypeAnswer('FILL-NAME-MEAN');
-  }, [wordQuestion]);
-
-  const handleSendAnswer = (value: string) => setUserAnswer(convertWordsBase(value));
-  const handleAnswer = async () => {
+  const handleSendAnswer = (value: string) => setAnswer(convertWordsBase(value));
+  const handleCheckAnswer = () => {
     Keyboard.dismiss();
 
+    const word = words[currentNum];
     let expected = '';
-    // if (typeAnswersName(typeAnswer || 'CHOOSE-MEAN-NAME')) expected = wordQuestion.name_word || '';
-    // if (typeAnswersMean(typeAnswer || 'CHOOSE-MEAN-NAME')) expected = wordQuestion.mean_word || '';
+    if (isTypeAnswersName(word.type)) expected = word.data.name_word || '';
+    if (isTypeAnswersMean(word.type)) expected = word.data.mean_word || '';
     expected = convertWordsBase(expected);
 
     const arrExpected = expected.split(',').map((s) => convertWordsBase(s));
     const arrExpectedVn = expected.split(',').map((s) => rmVN(convertWordsBase(s)));
 
-    const actual = convertWordsBase(userAnswer);
-    const conditionArr = arrExpected.indexOf(actual) !== -1 || arrExpectedVn.indexOf(actual) !== -1;
+    const actual = convertWordsBase(answer);
+    const checkEqual =
+      arrExpected.indexOf(actual) !== -1 ||
+      arrExpectedVn.indexOf(actual) !== -1 ||
+      actual === expected;
 
-    if (conditionArr || actual === expected) {
+    if (checkEqual) {
       dispatch(increasePoint(50));
-
       setCountCorrect(countCorrect + 1);
+
       setStatus('Correct');
     } else {
-      dispatch(actStudyInCorrect(wordQuestion));
-
       setCountIncorrect(countIncorrect + 1);
+
       setStatus('Incorrect');
       Vibration.vibrate(200);
     }
   };
-  const handleContinue = () => {
-    if (status === 'Waiting') {
-      handleAnswer();
-      return;
-    }
+  const handleContinue = (): any => {
+    if (status === 'Waiting') return handleCheckAnswer();
 
-    const wordRandom = wordsStudy[rdNum(0, wordsStudy.length)];
-    setWordQuestion(wordRandom);
-
-    setUserAnswer('');
+    setAnswer('');
     setStatus('Waiting');
+    setCurrentNum(currentNum + 1);
+    return true;
   };
 
-  if (wordsStudy.length === 0 || !typeAnswer) return <ScreenLoading />;
+  if (isPending || words.length <= 0) return <ScreenLoading />;
 
   return (
     <View style={styles.container}>
-      <ProcessBar percent={(countTime * 100) / totalTime} color="#f5365c" />
-      <StudyCover status={status} word={wordQuestion} typeAnswer={typeAnswer}>
-        <StudyMode
-          word={wordQuestion}
-          typeAnswer={typeAnswer}
-          handleSendAnswer={handleSendAnswer}
-        />
-      </StudyCover>
-      <Bottom status={status} userAnswer={userAnswer} handleContinue={handleContinue} />
-      {status !== 'Waiting' && <AlertUI status={status} word={wordQuestion} />}
+      <ProcessBar height={4} percent={(countTime * 100) / totalTime} color="#5e72e4" />
+      <ScrollView
+        ref={scroll}
+        horizontal
+        decelerationRate="fast"
+        scrollEnabled={false}
+        showsHorizontalScrollIndicator={false}
+        style={{ backgroundColor: '#f3f3f3' }}
+        snapToInterval={width}
+      >
+        {words.map((word, index) => {
+          const { data, type } = word;
+          return (
+            <StudyCover key={index} word={data} typeAnswer={type}>
+              <StudyMode word={data} typeAnswer={type} handleSendAnswer={handleSendAnswer} />
+            </StudyCover>
+          );
+        })}
+      </ScrollView>
+      <Bottom status={status} answer={answer} handleContinue={handleContinue} />
+      {status !== 'Waiting' && <AlertBottom word={words[currentNum].data} status={status} />}
     </View>
   );
 });
@@ -138,5 +150,3 @@ const TabPracticeExam = React.memo(({ navigation }: Props) => {
 const styles = StyleSheet.create({
   container: { ...tailwind('w-full flex-1 justify-between') },
 });
-
-export default TabPracticeExam;

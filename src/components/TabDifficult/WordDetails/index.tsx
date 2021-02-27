@@ -2,7 +2,7 @@ import { RouteProp } from '@react-navigation/native';
 import React, { memo } from 'react';
 import tailwind from '~/tailwind';
 import { TabPracticeParamList } from '~/types';
-import AdMobBanner from '../../Ads';
+import { AdMobBanner } from '../../Ads';
 import StudyWord from '../../TabPractice/Study/StudyMode/StudyWord';
 import { View } from '../../Themed';
 

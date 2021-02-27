@@ -56,7 +56,6 @@ export const actStudyCorrectDifficult = (id_word: number) => async (
   if (wordExecute.data) {
     const word = wordExecute.data[0];
     const { difficult_study = 0 } = word;
-    console.log(difficult_study);
     if (difficult_study >= difficult_max) await updateStudies({ ...word, difficult_study: 0 });
     else await updateStudies({ ...word, difficult_study: difficult_study + 1 });
 

@@ -61,6 +61,7 @@ export type GroupType = {
   explain_group?: string;
   mean_group?: string;
   image_group?: string;
+  lock_group?: number;
 };
 
 export type WordType = GroupType &

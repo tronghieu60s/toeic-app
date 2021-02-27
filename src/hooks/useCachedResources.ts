@@ -11,6 +11,8 @@ type ReturnValue = {
   processText: string;
 };
 
+const { version_data } = require('~/src/resources/config');
+
 export default function useCachedResources(): ReturnValue {
   const [processText, setProcessText] = React.useState('');
   const [isLoadingComplete, setLoadingComplete] = React.useState(false);
@@ -35,13 +37,19 @@ export default function useCachedResources(): ReturnValue {
         // Load Database
         await initDbTable();
         const firstLoading = await AsyncStorage.getItem('@first_loading');
-        if (firstLoading !== 'true') {
+        const previousVersion = (await AsyncStorage.getItem('@previous_version')) || '0';
+        const previousVersionNum = parseInt(previousVersion.replace(/\./g, ''), 10);
+        const newVersionDataNum = parseInt(version_data.replace(/\./g, ''), 10);
+
+        if (firstLoading !== 'true' || newVersionDataNum > previousVersionNum) {
+          console.log('New Data. Downloading...');
           await executeSql('drop table groups;');
           await executeSql('drop table words;');
           await initDbTable();
 
           await loadDataFromResources();
           await AsyncStorage.setItem('@first_loading', 'true');
+          await AsyncStorage.setItem('@previous_version', version_data);
         }
         await delayLoading();
 

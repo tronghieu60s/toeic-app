@@ -1,5 +1,5 @@
 import { StackNavigationProp } from '@react-navigation/stack';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { memo, useEffect, useRef, useState } from 'react';
 import { Alert, Keyboard, StyleSheet, Vibration } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useDispatch, useSelector } from 'react-redux';
@@ -37,7 +37,7 @@ type Props = {
   navigation: StackNavigationProp<TabPracticeParamList, 'TabPracticeScreen'>;
 };
 
-const TabPracticeStudy = React.memo(({ navigation }: Props) => {
+export default memo(function TabPracticeStudy({ navigation }: Props) {
   const scroll = useRef<ScrollView>(null);
   const [isPending, setIsPending] = useState(true);
   const [status, setStatus] = useState<StatusQuestion>('Waiting');
@@ -52,7 +52,7 @@ const TabPracticeStudy = React.memo(({ navigation }: Props) => {
 
   useEffect(() => {
     const words = actLoadWordsStudy(wordsState);
-    setWords(shuffle(words).slice(0, 2));
+    setWords(shuffle(words));
 
     setIsPending(false);
   }, []);
@@ -148,5 +148,3 @@ const TabPracticeStudy = React.memo(({ navigation }: Props) => {
 const styles = StyleSheet.create({
   container: { ...tailwind('w-full flex-1 justify-between') },
 });
-
-export default TabPracticeStudy;
