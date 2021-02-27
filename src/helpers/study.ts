@@ -4,7 +4,7 @@ import Config from '../constants/Config';
 import { shuffle } from './array';
 
 const numOfASet = 4;
-const { total_max, count_max } = Config.study;
+const { total_max, count_max, difficult_max } = Config.study;
 
 export type WordStudy = {
   type: TypesAnswer;
@@ -19,26 +19,33 @@ export function isTypeAnswersMean(type: TypesAnswer): boolean {
   return type === 'CHOOSE-NAME-MEAN' || type === 'CHOOSE-SOUND-MEAN' || type === 'FILL-NAME-MEAN';
 }
 
+export const getTypeAnswerRandom = (): TypesAnswer => {
+  let typeAnswer: TypesAnswer = 'CHOOSE-NAME-MEAN';
+  const rdStudy = rdNum(0, 5);
+  if (rdStudy === 0) typeAnswer = 'CHOOSE-NAME-MEAN';
+  if (rdStudy === 1) typeAnswer = 'CHOOSE-MEAN-NAME';
+  if (rdStudy === 2) typeAnswer = 'CHOOSE-SOUND-MEAN';
+  if (rdStudy === 3) typeAnswer = 'FILL-MEAN-NAME';
+  if (rdStudy === 4) typeAnswer = 'FILL-NAME-MEAN';
+  if (rdStudy === 5) typeAnswer = 'CHOOSE-MEAN-SOUND';
+  return typeAnswer;
+};
+
 export const getTypeAnswer = (count_study: number): TypesAnswer => {
   let typeAnswer: TypesAnswer = 'CHOOSE-NAME-MEAN';
   if (count_study === 0) typeAnswer = 'CHOOSE-NAME-MEAN';
   if (count_study === 1) typeAnswer = 'CHOOSE-MEAN-NAME';
   if (count_study === 2) typeAnswer = 'CHOOSE-SOUND-MEAN';
   if (count_study === 3) typeAnswer = 'FILL-MEAN-NAME';
-  if (count_study === 4) typeAnswer = 'CHOOSE-MEAN-SOUND';
-  if (count_study === 5) typeAnswer = 'FILL-NAME-MEAN';
-  if (count_study > 5) {
-    const rdStudy = rdNum(1, 5);
-    if (rdStudy === 1) typeAnswer = 'CHOOSE-MEAN-NAME';
-    if (rdStudy === 2) typeAnswer = 'CHOOSE-SOUND-MEAN';
-    if (rdStudy === 3) typeAnswer = 'FILL-MEAN-NAME';
-    if (rdStudy === 4) typeAnswer = 'CHOOSE-MEAN-SOUND';
-    if (rdStudy === 5) typeAnswer = 'FILL-NAME-MEAN';
-  }
+  if (count_study === 4) typeAnswer = 'FILL-NAME-MEAN';
+  if (count_study === 5) typeAnswer = 'CHOOSE-MEAN-SOUND';
+  if (count_study > 5) typeAnswer = getTypeAnswerRandom();
   return typeAnswer;
 };
 
-const loadWordsStudy = (words: WordType[]): WordType[] => {
+// Load Words Study
+
+const loadWordsStudyWithSet = (words: WordType[]): WordType[] => {
   let newWords = words
     .sort((a, b) => ((a.count_study || 0) < (b.count_study || 0) ? 1 : -1))
     .filter((o) => ((o.count_study || 0) < count_max ? o : null));
@@ -49,7 +56,7 @@ const loadWordsStudy = (words: WordType[]): WordType[] => {
   return newWords;
 };
 
-const loadWordsMaxTotal = (words: WordType[]): WordType[] => {
+const loadWordsStudyMaxTotal = (words: WordType[]): WordType[] => {
   let wordsState = [];
   if (words.length > numOfASet) {
     for (let i = 0; i < 4; i += 1) {
@@ -87,7 +94,7 @@ const loadWordsMaxTotal = (words: WordType[]): WordType[] => {
   return newWords;
 };
 
-const loadTypeAnswerWords = (words: WordType[]): WordStudy[] => {
+const loadWordsStudyTypeAnswerWords = (words: WordType[]): WordStudy[] => {
   const listWords: WordStudy[] = [];
   for (let i = 0; i < words.length; i += 1) {
     const { count_study = 0 } = words[i];
@@ -104,8 +111,56 @@ const loadTypeAnswerWords = (words: WordType[]): WordStudy[] => {
 };
 
 export const actLoadWordsStudy = (words: WordType[]): WordStudy[] => {
-  let wordsLoad = loadWordsStudy(words);
-  wordsLoad = loadWordsMaxTotal(wordsLoad);
-  const wordsStudy = loadTypeAnswerWords(wordsLoad);
+  let wordsLoad = loadWordsStudyWithSet(words);
+  wordsLoad = loadWordsStudyMaxTotal(wordsLoad);
+  const wordsStudy = loadWordsStudyTypeAnswerWords(wordsLoad);
+  return wordsStudy;
+};
+
+// Load Words Difficult
+
+const loadWordsDifficultWithSet = (words: WordType[]): WordType[] => {
+  let newWords = words.sort((a, b) => {
+    return (a.difficult_study || 1) < (b.difficult_study || 1) ? 1 : -1;
+  });
+  const wordFirst = newWords.every((o) => o.difficult_study === 1);
+  newWords = wordFirst ? shuffle(newWords).slice(0, numOfASet) : newWords.slice(0, numOfASet);
+  return newWords;
+};
+
+const loadWordsDifficultMaxTotal = (words: WordType[]): WordType[] => {
+  let curNumWords = 0;
+  const newWords: WordType[] = [];
+
+  for (let i = 0; i < words.length; i += 1) {
+    if (curNumWords >= total_max) break;
+
+    const word = words[i];
+    if ((word.difficult_study || 1) < difficult_max) {
+      for (let j = 0; j < difficult_max - (word.difficult_study || 1); j += 1) {
+        if (curNumWords >= total_max) break;
+        newWords.push(word);
+        curNumWords += 1;
+      }
+    }
+  }
+  return newWords;
+};
+
+const loadWordsDifficultTypeAnswerWords = (words: WordType[]): WordStudy[] => {
+  const listWords: WordStudy[] = [];
+  for (let i = 0; i < words.length; i += 1) {
+    const typeAnswer = getTypeAnswerRandom();
+    listWords.push({ type: typeAnswer, data: words[i] });
+  }
+  return listWords;
+};
+
+export const actLoadWordsDifficultStudy = (words: WordType[]): WordStudy[] => {
+  let wordsLoad = loadWordsDifficultWithSet(words);
+  wordsLoad = loadWordsDifficultMaxTotal(wordsLoad);
+  const wordsStudy = loadWordsDifficultTypeAnswerWords(wordsLoad);
+  // console.log('---- List ----');
+  // wordsStudy.map((o) => console.log(`${o.data.name_word} - ${o.type}`));
   return wordsStudy;
 };

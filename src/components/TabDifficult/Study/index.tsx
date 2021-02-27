@@ -1,6 +1,6 @@
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useEffect, useRef, useState } from 'react';
-import { Alert, Keyboard, ScrollView, StyleSheet, Vibration } from 'react-native';
+import { Keyboard, ScrollView, StyleSheet, Vibration } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import AlertBottom from '~/src/components/TabPractice/Study/Alert';
 import Bottom from '~/src/components/TabPractice/Study/Bottom';
@@ -8,7 +8,6 @@ import StudyCover from '~/src/components/TabPractice/Study/StudyCover';
 import StudyMode from '~/src/components/TabPractice/Study/StudyMode';
 import { View } from '~/src/components/Themed';
 import ProcessBar from '~/src/components/UI/ProcessBar';
-import Config from '~/src/constants/Config';
 import Layout from '~/src/constants/Layout';
 import { shuffle } from '~/src/helpers/array';
 import { convertWordsBase, removeVietnameseTones as rmVN } from '~/src/helpers/convert';
@@ -20,7 +19,6 @@ import { StatusQuestion, TabDifficultParamList } from '~/types';
 import ScreenLoading from '../../UI/ScreenLoading';
 
 const { width } = Layout.window;
-const { total_max } = Config.study;
 
 type Props = {
   navigation: StackNavigationProp<TabDifficultParamList, 'TabDifficultStudy'>;
@@ -36,7 +34,7 @@ const TabDifficultStudy = React.memo(({ navigation }: Props) => {
   const [countIncorrect, setCountIncorrect] = useState(0);
 
   const dispatch = useDispatch();
-  const wordsState = useSelector((state: RootState) => state.practice.words);
+  const wordsState = useSelector((state: RootState) => state.practice.wordsDifficult);
   const [words, setWords] = useState<WordStudy[]>([]);
 
   useEffect(() => {
@@ -80,13 +78,13 @@ const TabDifficultStudy = React.memo(({ navigation }: Props) => {
     } else {
       setCountIncorrect(countIncorrect + 1);
 
+      setStatus('Incorrect');
+      Vibration.vibrate(200);
+
       const newWords = [...words];
       const incorrectWords = words[currentNum];
       newWords.push(incorrectWords);
       setWords(newWords);
-
-      setStatus('Incorrect');
-      Vibration.vibrate(200);
     }
   };
   const handleContinue = (): any => {
@@ -94,10 +92,7 @@ const TabDifficultStudy = React.memo(({ navigation }: Props) => {
     if (currentNum + 1 >= words.length) {
       navigation.removeListener('beforeRemove', (e) => navigation.dispatch(e.data.action));
       navigation.goBack();
-      return Alert.alert(
-        'Bạn đã hoàn thành bài học.',
-        `Tổng số câu hỏi: ${total_max}\nTrả lời sai: ${countIncorrect} lần`,
-      );
+      return true;
     }
 
     setAnswer('');
