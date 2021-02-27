@@ -27,7 +27,7 @@
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.tronghieuit.toeicew",
-      "versionCode": 1,
+      "versionCode": 2,
       "permissions": [
         "VIBRATE"
       ],

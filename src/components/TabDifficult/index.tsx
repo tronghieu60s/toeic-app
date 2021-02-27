@@ -27,9 +27,6 @@ export default memo(function TabDifficult({ navigation }: Props) {
     <WordItem word={item} handleFlashWord={handleFlashWord} handleDetailsWord={handleDetailsWord} />
   );
 
-  console.log('---- List ----');
-  words.map((o) => console.log(`${o.name_word} - ${o.difficult_study}`));
-
   const text = 'Không có từ khó. Bạn đang làm rất tốt ^^.';
   if (words.length <= 0) return <CenterUI>{text}</CenterUI>;
 
