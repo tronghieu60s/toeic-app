@@ -1,6 +1,7 @@
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useEffect, useRef, useState } from 'react';
-import { Alert, FlatList, Keyboard, StyleSheet, Vibration } from 'react-native';
+import { Alert, Keyboard, StyleSheet, Vibration } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import { useDispatch, useSelector } from 'react-redux';
 import { View } from '~/src/components/Themed';
 import ProcessBar from '~/src/components/UI/ProcessBar';
@@ -36,7 +37,7 @@ type Props = {
 };
 
 const TabPracticeStudy = React.memo(({ navigation }: Props) => {
-  const scroll = useRef<FlatList>(null);
+  const scroll = useRef<ScrollView>(null);
   const [isPending, setIsPending] = useState(true);
   const [status, setStatus] = useState<StatusQuestion>('Waiting');
 
@@ -56,18 +57,26 @@ const TabPracticeStudy = React.memo(({ navigation }: Props) => {
   }, []);
 
   useEffect(() => {
-    scroll?.current?.scrollToIndex({
-      index: currentNum,
+    scroll?.current?.scrollTo({
+      x: width * currentNum,
       animated: true,
     });
   }, [currentNum]);
 
   const handleSendAnswer = (value: string) => setAnswer(convertWordsBase(value));
+  const handleEndStudy = () => {
+    navigation.removeListener('beforeRemove', (e) => navigation.dispatch(e.data.action));
+    navigation.goBack();
+    return Alert.alert(
+      'Bạn đã hoàn thành bài học.',
+      `Tổng số câu hỏi: ${total_max}\nTrả lời sai: ${countIncorrect} lần`,
+    );
+  };
   const handleCheckAnswer = () => {
     Keyboard.dismiss();
 
-    let expected = '';
     const word = words[currentNum];
+    let expected = '';
     if (isTypeAnswersName(word.type)) expected = word.data.name_word || '';
     if (isTypeAnswersMean(word.type)) expected = word.data.mean_word || '';
     expected = convertWordsBase(expected);
@@ -89,11 +98,7 @@ const TabPracticeStudy = React.memo(({ navigation }: Props) => {
     } else {
       setCountIncorrect(countIncorrect + 1);
       dispatch(actStudyInCorrect(word.data.id_word));
-
-      const newWords = [...words];
-      const incorrectWords = words[currentNum];
-      newWords.push(incorrectWords);
-      setWords(newWords);
+      setWords([...words, words[currentNum]]);
 
       setStatus('Incorrect');
       Vibration.vibrate(200);
@@ -101,14 +106,7 @@ const TabPracticeStudy = React.memo(({ navigation }: Props) => {
   };
   const handleContinue = (): any => {
     if (status === 'Waiting') return handleCheckAnswer();
-    if (currentNum + 1 >= words.length) {
-      navigation.removeListener('beforeRemove', (e) => navigation.dispatch(e.data.action));
-      navigation.goBack();
-      return Alert.alert(
-        'Bạn đã hoàn thành bài học.',
-        `Tổng số câu hỏi: ${total_max}\nTrả lời sai: ${countIncorrect} lần`,
-      );
-    }
+    if (currentNum + 1 >= words.length) return handleEndStudy();
 
     setAnswer('');
     setStatus('Waiting');
@@ -116,24 +114,12 @@ const TabPracticeStudy = React.memo(({ navigation }: Props) => {
     return true;
   };
 
-  const renderItem = ({ item }: { item: WordStudy }) => {
-    const { data, type } = item;
-    return (
-      <StudyCover word={data} typeAnswer={type}>
-        <StudyMode word={data} typeAnswer={type} handleSendAnswer={handleSendAnswer} />
-      </StudyCover>
-    );
-  };
-
-  if (isPending) return <ScreenLoading />;
+  if (isPending || words.length <= 0) return <ScreenLoading />;
 
   return (
     <View style={styles.container}>
       <ProcessBar percent={(currentNum * 100) / words.length} />
-      <FlatList
-        data={words}
-        renderItem={renderItem}
-        keyExtractor={(item, index) => index.toString()}
+      <ScrollView
         ref={scroll}
         horizontal
         decelerationRate="fast"
@@ -141,7 +127,16 @@ const TabPracticeStudy = React.memo(({ navigation }: Props) => {
         showsHorizontalScrollIndicator={false}
         style={{ backgroundColor: '#f3f3f3' }}
         snapToInterval={width}
-      />
+      >
+        {words.map((word, index) => {
+          const { data, type } = word;
+          return (
+            <StudyCover key={index} word={data} typeAnswer={type}>
+              <StudyMode word={data} typeAnswer={type} handleSendAnswer={handleSendAnswer} />
+            </StudyCover>
+          );
+        })}
+      </ScrollView>
       <Bottom status={status} answer={answer} handleContinue={handleContinue} />
       {status !== 'Waiting' && <AlertBottom word={words[currentNum].data} status={status} />}
     </View>

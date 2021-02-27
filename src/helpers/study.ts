@@ -118,6 +118,8 @@ export const actLoadWordsStudy = (words: WordType[]): WordStudy[] => {
 };
 
 // Load Words Difficult
+// console.log('---- List ----');
+// wordsStudy.map((o) => console.log(`${o.data.name_word} - ${o.type}`));
 
 const loadWordsDifficultWithSet = (words: WordType[]): WordType[] => {
   let newWords = words.sort((a, b) => {
@@ -160,7 +162,5 @@ export const actLoadWordsDifficultStudy = (words: WordType[]): WordStudy[] => {
   let wordsLoad = loadWordsDifficultWithSet(words);
   wordsLoad = loadWordsDifficultMaxTotal(wordsLoad);
   const wordsStudy = loadWordsDifficultTypeAnswerWords(wordsLoad);
-  // console.log('---- List ----');
-  // wordsStudy.map((o) => console.log(`${o.data.name_word} - ${o.type}`));
   return wordsStudy;
 };

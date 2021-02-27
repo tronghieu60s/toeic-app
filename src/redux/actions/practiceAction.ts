@@ -98,15 +98,12 @@ export const actStudyInCorrect = (id_word: number) => async (
   const wordExecute = await getWordsByIdWord(id_word);
   if (wordExecute.data) {
     const word = wordExecute.data[0];
-    const { id_study, id_group, count_study } = word;
+    const { id_study, count_study } = word;
     if (id_study && count_study >= 1) {
       await updateStudies({ ...word, difficult_study: 1 });
 
       const wordsDifficult = await getWordsDifficult();
       await dispatch(loadWordsDifficult(wordsDifficult.data || []));
-
-      const words = await getWordsByIdGroup(id_group);
-      return dispatch(loadWordsGroup(words.data || []));
     }
   }
 
