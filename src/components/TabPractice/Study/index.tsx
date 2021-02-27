@@ -1,6 +1,6 @@
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useEffect, useRef, useState } from 'react';
-import { Alert, Keyboard, ScrollView, StyleSheet, Vibration } from 'react-native';
+import { Alert, FlatList, Keyboard, StyleSheet, Vibration } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { View } from '~/src/components/Themed';
 import ProcessBar from '~/src/components/UI/ProcessBar';
@@ -14,7 +14,11 @@ import {
   isTypeAnswersName,
   WordStudy,
 } from '~/src/helpers/study';
-import { actStudyCorrect, increasePoint } from '~/src/redux/actions/practiceAction';
+import {
+  actStudyCorrect,
+  actStudyInCorrect,
+  increasePoint,
+} from '~/src/redux/actions/practiceAction';
 import { RootState } from '~/src/redux/reducers/rootReducer';
 import tailwind from '~/tailwind';
 import { StatusQuestion, TabPracticeParamList } from '~/types';
@@ -32,11 +36,10 @@ type Props = {
 };
 
 const TabPracticeStudy = React.memo(({ navigation }: Props) => {
-  const scroll = useRef<ScrollView>(null);
+  const scroll = useRef<FlatList>(null);
   const [isPending, setIsPending] = useState(true);
   const [status, setStatus] = useState<StatusQuestion>('Waiting');
 
-  const totalQuestions = total_max;
   const [answer, setAnswer] = useState('');
   const [currentNum, setCurrentNum] = useState(0);
   const [countIncorrect, setCountIncorrect] = useState(0);
@@ -53,8 +56,8 @@ const TabPracticeStudy = React.memo(({ navigation }: Props) => {
   }, []);
 
   useEffect(() => {
-    scroll?.current?.scrollTo({
-      x: width * currentNum,
+    scroll?.current?.scrollToIndex({
+      index: currentNum,
       animated: true,
     });
   }, [currentNum]);
@@ -85,6 +88,12 @@ const TabPracticeStudy = React.memo(({ navigation }: Props) => {
       setStatus('Correct');
     } else {
       setCountIncorrect(countIncorrect + 1);
+      dispatch(actStudyInCorrect(word.data.id_word));
+
+      const newWords = [...words];
+      const incorrectWords = words[currentNum];
+      newWords.push(incorrectWords);
+      setWords(newWords);
 
       setStatus('Incorrect');
       Vibration.vibrate(200);
@@ -107,12 +116,24 @@ const TabPracticeStudy = React.memo(({ navigation }: Props) => {
     return true;
   };
 
+  const renderItem = ({ item }: { item: WordStudy }) => {
+    const { data, type } = item;
+    return (
+      <StudyCover word={data} typeAnswer={type}>
+        <StudyMode word={data} typeAnswer={type} handleSendAnswer={handleSendAnswer} />
+      </StudyCover>
+    );
+  };
+
   if (isPending) return <ScreenLoading />;
 
   return (
     <View style={styles.container}>
-      <ProcessBar percent={(currentNum * 100) / totalQuestions} />
-      <ScrollView
+      <ProcessBar percent={(currentNum * 100) / words.length} />
+      <FlatList
+        data={words}
+        renderItem={renderItem}
+        keyExtractor={(item, index) => index.toString()}
         ref={scroll}
         horizontal
         decelerationRate="fast"
@@ -120,16 +141,7 @@ const TabPracticeStudy = React.memo(({ navigation }: Props) => {
         showsHorizontalScrollIndicator={false}
         style={{ backgroundColor: '#f3f3f3' }}
         snapToInterval={width}
-      >
-        {words.map((word, index) => {
-          const { data, type } = word;
-          return (
-            <StudyCover key={index} word={data} typeAnswer={type}>
-              <StudyMode word={data} typeAnswer={type} handleSendAnswer={handleSendAnswer} />
-            </StudyCover>
-          );
-        })}
-      </ScrollView>
+      />
       <Bottom status={status} answer={answer} handleContinue={handleContinue} />
       {status !== 'Waiting' && <AlertBottom word={words[currentNum].data} status={status} />}
     </View>

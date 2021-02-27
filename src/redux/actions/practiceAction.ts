@@ -86,18 +86,22 @@ export const actStudyCorrect = (id_word: number) => async (
   return undefined;
 };
 
-export const actStudyInCorrect = (word: WordType) => async (
+export const actStudyInCorrect = (id_word: number) => async (
   dispatch: Dispatch<PracticeAction>,
 ): Promise<void> => {
-  const { id_study, id_group, count_study = 0 } = word;
-  if (id_study && count_study >= 1) {
-    await updateStudies({ ...word, difficult_study: 1 });
+  const wordExecute = await getWordsByIdWord(id_word);
+  if (wordExecute.data) {
+    const word = wordExecute.data[0];
+    const { id_study, id_group, count_study } = word;
+    if (id_study && count_study >= 1) {
+      await updateStudies({ ...word, difficult_study: 1 });
 
-    const wordsDifficult = await getWordsDifficult();
-    await dispatch(loadWordsDifficult(wordsDifficult.data || []));
+      const wordsDifficult = await getWordsDifficult();
+      await dispatch(loadWordsDifficult(wordsDifficult.data || []));
 
-    const words = await getWordsByIdGroup(id_group);
-    return dispatch(loadWordsGroup(words.data || []));
+      const words = await getWordsByIdGroup(id_group);
+      return dispatch(loadWordsGroup(words.data || []));
+    }
   }
 
   return undefined;
