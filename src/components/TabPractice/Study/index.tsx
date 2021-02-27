@@ -23,6 +23,7 @@ import {
 import { RootState } from '~/src/redux/reducers/rootReducer';
 import tailwind from '~/tailwind';
 import { StatusQuestion, TabPracticeParamList } from '~/types';
+import { AdMobInterstitial } from '../../Ads';
 import ScreenLoading from '../../UI/ScreenLoading';
 import AlertBottom from './Alert';
 import Bottom from './Bottom';
@@ -51,7 +52,7 @@ const TabPracticeStudy = React.memo(({ navigation }: Props) => {
 
   useEffect(() => {
     const words = actLoadWordsStudy(wordsState);
-    setWords(shuffle(words));
+    setWords(shuffle(words).slice(0, 2));
 
     setIsPending(false);
   }, []);
@@ -64,13 +65,14 @@ const TabPracticeStudy = React.memo(({ navigation }: Props) => {
   }, [currentNum]);
 
   const handleSendAnswer = (value: string) => setAnswer(convertWordsBase(value));
-  const handleEndStudy = () => {
+  const handleEndStudy = async () => {
     navigation.removeListener('beforeRemove', (e) => navigation.dispatch(e.data.action));
     navigation.goBack();
-    return Alert.alert(
+    Alert.alert(
       'Bạn đã hoàn thành bài học.',
       `Tổng số câu hỏi: ${total_max}\nTrả lời sai: ${countIncorrect} lần`,
     );
+    await AdMobInterstitial();
   };
   const handleCheckAnswer = () => {
     Keyboard.dismiss();

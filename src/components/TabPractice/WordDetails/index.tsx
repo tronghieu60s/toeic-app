@@ -13,7 +13,7 @@ import { actToggleFlashWord } from '~/src/redux/actions/practiceAction';
 import { RootState } from '~/src/redux/reducers/rootReducer';
 import tailwind from '~/tailwind';
 import { TabPracticeParamList } from '~/types';
-import AdMobBanner from '../../Ads';
+import { AdMobBanner } from '../../Ads';
 import { Ripple, View } from '../../Themed';
 import StudyWord from '../Study/StudyMode/StudyWord';
 
