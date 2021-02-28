@@ -950,5 +950,965 @@
         "explain_word": "to make changes especially to correct or improve (something)",
         "mean_word": "xét lại, xem lại, duyệt lại",
         "id_group": "10"
+    },
+    {
+        "id_word": "121",
+        "name_word": "abundant",
+        "pronounce_word": "/ə'bʌndənt/",
+        "explain_word": "existing or occurring in large amounts",
+        "mean_word": "phong phú, thừa thãi, nhiều",
+        "id_group": "11"
+    },
+    {
+        "id_word": "122",
+        "name_word": "accomplishment",
+        "pronounce_word": "/ə'kʌmpli∫mənt/",
+        "explain_word": "something done, achieved, or accomplished successfully",
+        "mean_word": "thành tựu, thành tích, sự hoàn thành",
+        "id_group": "11"
+    },
+    {
+        "id_word": "123",
+        "name_word": "bring together",
+        "pronounce_word": "/briŋ tə'geðə/",
+        "explain_word": "to join, to gather",
+        "mean_word": "gom lại, nhóm lại, họp lại",
+        "id_group": "11"
+    },
+    {
+        "id_word": "124",
+        "name_word": "candidate",
+        "pronounce_word": "/'kændidət/",
+        "explain_word": "a person who is trying to be elected",
+        "mean_word": "ứng cử viên, thí sinh, người dự thi",
+        "id_group": "11"
+    },
+    {
+        "id_word": "125",
+        "name_word": "come up with",
+        "pronounce_word": "/kʌm ʌp wið/",
+        "explain_word": "produce something, especially when pressured or challenged",
+        "mean_word": "đưa ra, phát hiện, khám phá",
+        "id_group": "11"
+    },
+    {
+        "id_word": "126",
+        "name_word": "commensurate",
+        "pronounce_word": "/kə'men∫ərət/",
+        "explain_word": "equal or similar to something in size, amount, or degree",
+        "mean_word": "xứng với, tương xứng với",
+        "id_group": "11"
+    },
+    {
+        "id_word": "127",
+        "name_word": "match",
+        "pronounce_word": "/'mæt∫/",
+        "explain_word": "someone or something that is equal to or as good as another person or thing",
+        "mean_word": "xứng, hợp, ngang tài, ngang sức",
+        "id_group": "11"
+    },
+    {
+        "id_word": "128",
+        "name_word": "profile",
+        "pronounce_word": "/ˈproʊˌfajəl/",
+        "explain_word": "to give a brief description that provides information about (someone or something)",
+        "mean_word": "tiểu sử, tiểu sử sơ lược",
+        "id_group": "11"
+    },
+    {
+        "id_word": "129",
+        "name_word": "qualification",
+        "pronounce_word": "/kwɒlifi'kei∫n/",
+        "explain_word": "a special skill or type of experience or knowledge that makes someone suitable to do a particular job or activity",
+        "mean_word": "tư cách, khả năng, năng lực",
+        "id_group": "11"
+    },
+    {
+        "id_word": "130",
+        "name_word": "recruit",
+        "pronounce_word": "/ri'kru:t/",
+        "explain_word": "to find suitable people and get them to join a company, an organization, the armed forces, etc.",
+        "mean_word": "tuyển dụng, lính mới, tân binh",
+        "id_group": "11"
+    },
+    {
+        "id_word": "131",
+        "name_word": "submit",
+        "pronounce_word": "/səbˈmɪt/",
+        "explain_word": "to give (a document, proposal, piece of writing, etc.) to someone so that it can be considered or approved",
+        "mean_word": "đệ trình, gợi ý, biện luận",
+        "id_group": "11"
+    },
+    {
+        "id_word": "132",
+        "name_word": "time-consuming",
+        "pronounce_word": "/taim kən'sju:miŋ/",
+        "explain_word": "take up a lot of time",
+        "mean_word": "tốn nhiều thời gian, dài dòng",
+        "id_group": "11"
+    },
+    {
+        "id_word": "133",
+        "name_word": "ability",
+        "pronounce_word": "/əˈbɪləti/",
+        "explain_word": "the power or skill to do something",
+        "mean_word": "năng lực, khả năng, tài năng",
+        "id_group": "12"
+    },
+    {
+        "id_word": "134",
+        "name_word": "apply",
+        "pronounce_word": "/əˈplaɪ/",
+        "explain_word": "to ask formally for something (such as a job, admission to a school, a loan, etc.) usually in writing",
+        "mean_word": "nộp, ứng tuyển, xin việc, tim việc",
+        "id_group": "12"
+    },
+    {
+        "id_word": "135",
+        "name_word": "background",
+        "pronounce_word": "/ˈbækˌgraʊnd/",
+        "explain_word": "the experiences, knowledge, education, etc., in a person's past",
+        "mean_word": "kiến thức, kinh nghiệm",
+        "id_group": "12"
+    },
+    {
+        "id_word": "136",
+        "name_word": "be ready for",
+        "pronounce_word": "/be 'redi fə/",
+        "explain_word": "in a suitable state for an activity, action, or situation; fully prepared.",
+        "mean_word": "sẵn sàng cho",
+        "id_group": "12"
+    },
+    {
+        "id_word": "137",
+        "name_word": "call in",
+        "pronounce_word": "/kɒ:l in/",
+        "explain_word": "to ask to come, to beckon",
+        "mean_word": "yêu cầu, mời tới",
+        "id_group": "12"
+    },
+    {
+        "id_word": "138",
+        "name_word": "confidence",
+        "pronounce_word": "/'kɒnfidəns/",
+        "explain_word": "a feeling or belief that you can do something well or succeed at something",
+        "mean_word": "sự tin, sự tin cậy, sự tin tưởng",
+        "id_group": "12"
+    },
+    {
+        "id_word": "139",
+        "name_word": "constantly",
+        "pronounce_word": "/'kɒnstəntli/",
+        "explain_word": "all the time, repeatedly",
+        "mean_word": "luôn luôn, liên tục, liên miên",
+        "id_group": "12"
+    },
+    {
+        "id_word": "140",
+        "name_word": "expert",
+        "pronounce_word": "/'ekspɜ:t/",
+        "explain_word": "a person who has special skill or knowledge relating to a particular subject",
+        "mean_word": "chuyên gia, chuyên viên",
+        "id_group": "12"
+    },
+    {
+        "id_word": "141",
+        "name_word": "follow up",
+        "pronounce_word": "/'fɒləʊ ʌp/",
+        "explain_word": "to continue, to take additional steps",
+        "mean_word": "theo sau, bám miết, tiếp theo, kế tiếp",
+        "id_group": "12"
+    },
+    {
+        "id_word": "142",
+        "name_word": "hesitant",
+        "pronounce_word": "/'hezitənt/",
+        "explain_word": "slow to act or speak especially because you are nervous or unsure about what to do, feeling or showing hesitation",
+        "mean_word": "do dự, lưỡng lự, chần chừ",
+        "id_group": "12"
+    },
+    {
+        "id_word": "143",
+        "name_word": "present",
+        "pronounce_word": "/'preznt/",
+        "explain_word": "something that you give to someone especially as a way of showing affection or thanks",
+        "mean_word": "hiện nay, hiện tại, quà biếu, món quà",
+        "id_group": "12"
+    },
+    {
+        "id_word": "144",
+        "name_word": "weakly",
+        "pronounce_word": "/'wi:kli/",
+        "explain_word": "in a way that lacks strength or force",
+        "mean_word": "một cách yếu ớt",
+        "id_group": "12"
+    },
+    {
+        "id_word": "145",
+        "name_word": "conduct",
+        "pronounce_word": "/'kɒndʌkt/",
+        "explain_word": "the way that a person behaves in a particular place or situation",
+        "mean_word": "hạnh kiểm, tư cách, cách cư xử",
+        "id_group": "13"
+    },
+    {
+        "id_word": "146",
+        "name_word": "generate",
+        "pronounce_word": "/ˈʤɛnəˌreɪt/",
+        "explain_word": "to produce (something) or cause (something) to be produced",
+        "mean_word": "tạo ra, phát ra",
+        "id_group": "13"
+    },
+    {
+        "id_word": "147",
+        "name_word": "hire",
+        "pronounce_word": "/ˈhajɚ/",
+        "explain_word": "to give work or a job to (someone) in exchange for wages or a salary [+ obj]",
+        "mean_word": "thuê, mướn, [+ out] cho thuê, cho mướn",
+        "id_group": "13"
+    },
+    {
+        "id_word": "148",
+        "name_word": "keep up with",
+        "pronounce_word": "/ki:p ʌp wið/",
+        "explain_word": "follow up, to stay equal with",
+        "mean_word": "theo kịp, bắt kịp, đạt cho bằng được",
+        "id_group": "13"
+    },
+    {
+        "id_word": "149",
+        "name_word": "look up to",
+        "pronounce_word": "/lʊk ʌp to/",
+        "explain_word": "have a great deal of respect for someone",
+        "mean_word": "tôn kính, kính trọng, khâm phục",
+        "id_group": "13"
+    },
+    {
+        "id_word": "150",
+        "name_word": "mentor",
+        "pronounce_word": "/'mentɔ:[r]/",
+        "explain_word": "someone who teaches or gives help and advice to a less experienced and often younger person",
+        "mean_word": "người hướng dẫn, người cố vấn",
+        "id_group": "13"
+    },
+    {
+        "id_word": "151",
+        "name_word": "on track",
+        "pronounce_word": "/on træk/",
+        "explain_word": "acting or thinking in a way that is likely to achieve what is required",
+        "mean_word": "tiếp tục làm, giữ cho một việc nào đó",
+        "id_group": "13"
+    },
+    {
+        "id_word": "152",
+        "name_word": "reject",
+        "pronounce_word": "/ri'dʒekt/",
+        "explain_word": "to refuse to believe, accept, or consider (something)",
+        "mean_word": "loại ra, loại bỏ, bác bỏ, ghét bỏ",
+        "id_group": "13"
+    },
+    {
+        "id_word": "153",
+        "name_word": "set up",
+        "pronounce_word": "/'set ʌp/",
+        "explain_word": "to establish, to arrange",
+        "mean_word": "thiết lập, tạo dựng",
+        "id_group": "13"
+    },
+    {
+        "id_word": "154",
+        "name_word": "success",
+        "pronounce_word": "/sək'ses/",
+        "explain_word": "the fact of getting or achieving wealth, respect, or fame",
+        "mean_word": "thành công",
+        "id_group": "13"
+    },
+    {
+        "id_word": "155",
+        "name_word": "training",
+        "pronounce_word": "/'treiniŋ/",
+        "explain_word": "a process by which someone is taught the skills that are needed for an art, profession, or job",
+        "mean_word": "sự rèn luyện, sự đào tạo, sự tập dượt",
+        "id_group": "13"
+    },
+    {
+        "id_word": "156",
+        "name_word": "update",
+        "pronounce_word": "/,ʌp'deit/",
+        "explain_word": "to change (something) by including the most recent information",
+        "mean_word": "cập nhật, hiện đại hóa",
+        "id_group": "13"
+    },
+    {
+        "id_word": "157",
+        "name_word": "basis",
+        "pronounce_word": "/'beisis/",
+        "explain_word": "something (such as an idea or set of ideas) from which another thing develops or can develop",
+        "mean_word": "nền tảng, cơ sở, căn cứ",
+        "id_group": "14"
+    },
+    {
+        "id_word": "158",
+        "name_word": "benefit",
+        "pronounce_word": "/'benifit/",
+        "explain_word": "a good or helpful result or effect [count]",
+        "mean_word": "lợi, lợi ít, phúc lợi",
+        "id_group": "14"
+    },
+    {
+        "id_word": "159",
+        "name_word": "compensate",
+        "pronounce_word": "/'kɒmpenseit/",
+        "explain_word": "to provide something good as a balance against something bad or undesirable :to make up for some defect or weakness",
+        "mean_word": "bù, bù đắp, đền bù",
+        "id_group": "14"
+    },
+    {
+        "id_word": "160",
+        "name_word": "delicately",
+        "pronounce_word": "/'delikətli/",
+        "explain_word": "in a manner displaying fineness of texture or structure and intricate workmanship",
+        "mean_word": "tinh vi, tinh xảo, tế nhị",
+        "id_group": "14"
+    },
+    {
+        "id_word": "161",
+        "name_word": "eligible",
+        "pronounce_word": "/'elidʒəbl/",
+        "explain_word": "able to be chosen for something :able to do or receive something",
+        "mean_word": "đủ tư cách, thích hợp",
+        "id_group": "14"
+    },
+    {
+        "id_word": "162",
+        "name_word": "flexibly",
+        "pronounce_word": "/'fleksəbli/",
+        "explain_word": "able to change to suit new conditions or situations",
+        "mean_word": "mềm dẻo, linh hoạt, linh động",
+        "id_group": "14"
+    },
+    {
+        "id_word": "163",
+        "name_word": "negotiate",
+        "pronounce_word": "/ni'gəɜ∫ieit/",
+        "explain_word": "to discuss something formally in order to make an agreement [no obj]",
+        "mean_word": "thương lượng, đàm phán",
+        "id_group": "14"
+    },
+    {
+        "id_word": "164",
+        "name_word": "raise",
+        "pronounce_word": "/reiz/",
+        "explain_word": "to lift or move (something or someone) to a higher position",
+        "mean_word": "nâng lên, đưa lên, giơ lên, kéo lên",
+        "id_group": "14"
+    },
+    {
+        "id_word": "165",
+        "name_word": "retire",
+        "pronounce_word": "/ri'taiə[r]/",
+        "explain_word": "to stop a job or career because you have reached the age when you are not allowed to work anymore or do not need or want to work anymore",
+        "mean_word": "nghỉ hưu, cho nghỉ hưu",
+        "id_group": "14"
+    },
+    {
+        "id_word": "166",
+        "name_word": "vested",
+        "pronounce_word": "/'vestid/",
+        "explain_word": "to give somebody the legal right or power to do something",
+        "mean_word": "được trao, được ban, được phong",
+        "id_group": "14"
+    },
+    {
+        "id_word": "167",
+        "name_word": "wage",
+        "pronounce_word": "/ˈweɪʤ/",
+        "explain_word": "an amount of money that a worker is paid based on the number of hours, days, etc.",
+        "mean_word": "tiền công, tiền lương",
+        "id_group": "14"
+    },
+    {
+        "id_word": "168",
+        "name_word": "be aware of",
+        "pronounce_word": "/be ə'weə əv/",
+        "explain_word": "having or showing realization, perception, or knowledge",
+        "mean_word": "am hiểu, nhận biết, có ý thức, biết, biết được",
+        "id_group": "14"
+    },
+    {
+        "id_word": "169",
+        "name_word": "achievement",
+        "pronounce_word": "/əˈʧiːvmənt/",
+        "explain_word": "something that has been done or achieved through effort :a result of hard work",
+        "mean_word": "thành quả, thành tựu, sự đạt được, sự giành được",
+        "id_group": "15"
+    },
+    {
+        "id_word": "170",
+        "name_word": "contribute",
+        "pronounce_word": "/kən'tribju:t/",
+        "explain_word": "to give (something, such as money, goods, or time) to help a person, group, cause, or organization",
+        "mean_word": "góp, đóng góp, góp phần",
+        "id_group": "15"
+    },
+    {
+        "id_word": "171",
+        "name_word": "dedication",
+        "pronounce_word": "/dedi'kei∫n/",
+        "explain_word": "a feeling of very strong support for or loyalty to someone or something",
+        "mean_word": "cống hiến, hiến dâng, tận tâm, tận tụy",
+        "id_group": "15"
+    },
+    {
+        "id_word": "172",
+        "name_word": "look forward to",
+        "pronounce_word": "/lʊk 'fɔ:wəd to/",
+        "explain_word": "await something eagerly",
+        "mean_word": "mong đợi, mong chờ, trông mong",
+        "id_group": "15"
+    },
+    {
+        "id_word": "173",
+        "name_word": "look to",
+        "pronounce_word": "/lʊk to/",
+        "explain_word": "direct one's gaze toward someone or something or in a specified direction.",
+        "mean_word": "tin vào, trông cậy vào, mong đợi ở",
+        "id_group": "15"
+    },
+    {
+        "id_word": "174",
+        "name_word": "loyal",
+        "pronounce_word": "/'lɔiəl/",
+        "explain_word": "having or showing complete and constant support for someone or something",
+        "mean_word": "trung thành",
+        "id_group": "15"
+    },
+    {
+        "id_word": "175",
+        "name_word": "merit",
+        "pronounce_word": "/'merit/",
+        "explain_word": "a good quality or feature that deserves to be praised",
+        "mean_word": "giá trị, công lao, công trạng",
+        "id_group": "15"
+    },
+    {
+        "id_word": "176",
+        "name_word": "obviously",
+        "pronounce_word": "/'ɒbviəsli/",
+        "explain_word": "in a way that is easy to see, understand, or recognize",
+        "mean_word": "rõ ràng, hiển nhiên",
+        "id_group": "15"
+    },
+    {
+        "id_word": "177",
+        "name_word": "productive",
+        "pronounce_word": "/prə'dʌktiv/",
+        "explain_word": "doing or achieving a lot :working hard and getting good results",
+        "mean_word": "hữu ích, có năng suất",
+        "id_group": "15"
+    },
+    {
+        "id_word": "178",
+        "name_word": "promote",
+        "pronounce_word": "/prə'məʊt/",
+        "explain_word": "to change the rank or position of (someone) to a higher or more important one",
+        "mean_word": "thăng cấp, thăng chức, đề bạt, đẩy mạnh",
+        "id_group": "15"
+    },
+    {
+        "id_word": "179",
+        "name_word": "recognition",
+        "pronounce_word": "/rekəg'ni∫n/",
+        "explain_word": "the act of accepting that something is true or important or that it exists",
+        "mean_word": "sự thừa nhận, sự ghi nhận",
+        "id_group": "15"
+    },
+    {
+        "id_word": "180",
+        "name_word": "value",
+        "pronounce_word": "/ˈvælju/",
+        "explain_word": "the amount of money that something is worth, the price or cost of something",
+        "mean_word": "giá, giá cả, giá trị",
+        "id_group": "15"
+    },
+    {
+        "id_word": "181",
+        "name_word": "bargain",
+        "pronounce_word": "/ˈbɑɚgən/",
+        "explain_word": "an agreement in which people or groups say they will do or give something in exchange for something else",
+        "mean_word": "sự thương lượng, sự mặc cả",
+        "id_group": "16"
+    },
+    {
+        "id_word": "182",
+        "name_word": "bear",
+        "pronounce_word": "/beə[r]/",
+        "explain_word": "to be able to accept and deal with something unpleasant",
+        "mean_word": "chịu đựng, cam chịu",
+        "id_group": "16"
+    },
+    {
+        "id_word": "183",
+        "name_word": "behaviour",
+        "pronounce_word": "/bi'heivjə[r]/",
+        "explain_word": "the way that somebody behaves, especially towards other people",
+        "mean_word": "cách ứng xử, tư cách, thái độ, hành vi",
+        "id_group": "16"
+    },
+    {
+        "id_word": "184",
+        "name_word": "checkout",
+        "pronounce_word": "/ˈʧɛkˌaʊt/",
+        "explain_word": "the place or area where goods are paid for in a store (such as a supermarket)",
+        "mean_word": "thanh toán, quầy thanh toán",
+        "id_group": "16"
+    },
+    {
+        "id_word": "185",
+        "name_word": "comfort",
+        "pronounce_word": "/'kʌmfət/",
+        "explain_word": "a state or situation in which you are relaxed and do not have any physically unpleasant feelings caused by pain, heat, cold, etc.",
+        "mean_word": "sự thoải mái, thoải mái, dễ dàng",
+        "id_group": "16"
+    },
+    {
+        "id_word": "186",
+        "name_word": "expand",
+        "pronounce_word": "/ik'spænd/",
+        "explain_word": "to increase in size, range, or amount: to become bigger",
+        "mean_word": "mở rộng, trải rộng, giãn ra, nở ra",
+        "id_group": "16"
+    },
+    {
+        "id_word": "187",
+        "name_word": "explore",
+        "pronounce_word": "/ik'splɔ:[r]/",
+        "explain_word": "to look at (something) in a careful way to learn more about it :to study or analyze (something)",
+        "mean_word": "khảo sát, thăm dò, khám phá",
+        "id_group": "16"
+    },
+    {
+        "id_word": "188",
+        "name_word": "item",
+        "pronounce_word": "/ˈaɪtəm/",
+        "explain_word": "an individual thing, a separate part or thing",
+        "mean_word": "món, mục, mặt hàng",
+        "id_group": "16"
+    },
+    {
+        "id_word": "189",
+        "name_word": "mandatory",
+        "pronounce_word": "/'mændətəri/",
+        "explain_word": "required by a law or rule",
+        "mean_word": "bắt buộc",
+        "id_group": "16"
+    },
+    {
+        "id_word": "190",
+        "name_word": "merchandise",
+        "pronounce_word": "/'mɜ:t∫əndaiz/",
+        "explain_word": "goods that are bought and sold",
+        "mean_word": "hàng hoá",
+        "id_group": "16"
+    },
+    {
+        "id_word": "191",
+        "name_word": "strictly",
+        "pronounce_word": "/'striktli/",
+        "explain_word": "with a lot of control and rules that must be obeyed",
+        "mean_word": "hoàn toàn, tuyệt đối",
+        "id_group": "16"
+    },
+    {
+        "id_word": "192",
+        "name_word": "trend",
+        "pronounce_word": "/ˈtrɛnd/",
+        "explain_word": "a general direction of change :a way of behaving, proceeding, etc., that is developing and becoming more common",
+        "mean_word": "chiều hướng, xu hướng",
+        "id_group": "16"
+    },
+    {
+        "id_word": "193",
+        "name_word": "diversify",
+        "pronounce_word": "/dai'vɜ:sifai/",
+        "explain_word": "to change (something) so that it has more different kinds of people or things [+ obj]",
+        "mean_word": "đa dạng hóa",
+        "id_group": "17"
+    },
+    {
+        "id_word": "194",
+        "name_word": "enterprise",
+        "pronounce_word": "/ˈɛntɚˌpraɪz/",
+        "explain_word": "a project or activity that involves many people and that is often difficult",
+        "mean_word": "sự táo bạo, lòng dũng cảm, hãng, doanh nghiệp",
+        "id_group": "17"
+    },
+    {
+        "id_word": "195",
+        "name_word": "essentially",
+        "pronounce_word": "/i'sen∫əli/",
+        "explain_word": "used to emphasize the basic, fundamental, or intrinsic nature of a person, thing, or situation.",
+        "mean_word": "về cơ bản, nhất thiết",
+        "id_group": "17"
+    },
+    {
+        "id_word": "196",
+        "name_word": "everyday",
+        "pronounce_word": "/'evridei/",
+        "explain_word": "routine, common",
+        "mean_word": "hằng ngày",
+        "id_group": "17"
+    },
+    {
+        "id_word": "197",
+        "name_word": "function",
+        "pronounce_word": "/ˈfʌŋkʃən/",
+        "explain_word": "the special purpose or activity for which a thing exists or is used [count]",
+        "mean_word": "chức năng",
+        "id_group": "17"
+    },
+    {
+        "id_word": "198",
+        "name_word": "maintain",
+        "pronounce_word": "/meɪnˈteɪn/",
+        "explain_word": "to cause (something) to exist or continue without changing",
+        "mean_word": "giữ, duy trì, bảo quản, bảo dưỡng",
+        "id_group": "17"
+    },
+    {
+        "id_word": "199",
+        "name_word": "obtain",
+        "pronounce_word": "/əb'tein/",
+        "explain_word": "to get something, especially by making an effort",
+        "mean_word": "đạt được, thu được, giành được",
+        "id_group": "17"
+    },
+    {
+        "id_word": "200",
+        "name_word": "prerequisite",
+        "pronounce_word": "/pri:'rekwizit/",
+        "explain_word": "something that you officially must have or do before you can have or do something else",
+        "mean_word": "tiên quyết, điều kiện trước hết",
+        "id_group": "17"
+    },
+    {
+        "id_word": "201",
+        "name_word": "quality",
+        "pronounce_word": "/'kwɒləti/",
+        "explain_word": "how good or bad something is",
+        "mean_word": "chất lượng, phẩm chất",
+        "id_group": "17"
+    },
+    {
+        "id_word": "202",
+        "name_word": "smooth",
+        "pronounce_word": "/ˈsmuːð/",
+        "explain_word": "having a flat, even surface :not rough :not having any bumps, ridges, or uneven parts",
+        "mean_word": "nhẵn, phẳng, êm, trôi chảy",
+        "id_group": "17"
+    },
+    {
+        "id_word": "203",
+        "name_word": "source",
+        "pronounce_word": "/sɔ:s/",
+        "explain_word": "someone or something that provides what is wanted or needed",
+        "mean_word": "nguồn, nguồn gốc",
+        "id_group": "17"
+    },
+    {
+        "id_word": "204",
+        "name_word": "stationery",
+        "pronounce_word": "/'stei∫nənri/",
+        "explain_word": "materials (such as paper, pens, and ink) that are used for writing or typing",
+        "mean_word": "đồ dùng văn phòng, văn phòng phẩm",
+        "id_group": "17"
+    },
+    {
+        "id_word": "205",
+        "name_word": "accurately",
+        "pronounce_word": "/'ækjərətli/",
+        "explain_word": "in a way that is correct in all details, exactly",
+        "mean_word": "chính xác, đúng đắn, xác đáng",
+        "id_group": "18"
+    },
+    {
+        "id_word": "206",
+        "name_word": "carrier",
+        "pronounce_word": "/'kæriə[r]/",
+        "explain_word": "someone or something that carries something",
+        "mean_word": "người chở, vật chở",
+        "id_group": "18"
+    },
+    {
+        "id_word": "207",
+        "name_word": "fulfill",
+        "pronounce_word": "/fʊlˈfɪl/",
+        "explain_word": "to do what is required by (something, such as a promise or a contract)",
+        "mean_word": "thực hiện, thi hành, hoàn thành",
+        "id_group": "18"
+    },
+    {
+        "id_word": "208",
+        "name_word": "catalog",
+        "pronounce_word": "/ˈkætəˌlɑːg/",
+        "explain_word": "a book containing a list of things that you can buy, use, etc., and often pictures",
+        "mean_word": "bản liệt kê, quyển danh mục",
+        "id_group": "18"
+    },
+    {
+        "id_word": "209",
+        "name_word": "integral",
+        "pronounce_word": "/'intigrəl/",
+        "explain_word": "very important and necessary",
+        "mean_word": "trọn vẹn, đầy đủ, cần thiết, không thể thiếu",
+        "id_group": "18"
+    },
+    {
+        "id_word": "210",
+        "name_word": "inventory",
+        "pronounce_word": "/'invəntri/",
+        "explain_word": "a complete list of the things that are in a place",
+        "mean_word": "kiểm kê, tóm tắt",
+        "id_group": "18"
+    },
+    {
+        "id_word": "211",
+        "name_word": "minimize",
+        "pronounce_word": "/ˈmɪnəˌmaɪz/",
+        "explain_word": "to make (something bad or not wanted) as small as possible",
+        "mean_word": "giảm thiểu, giảm đến mức tối thiểu, đánh giá thấp",
+        "id_group": "18"
+    },
+    {
+        "id_word": "212",
+        "name_word": "on hand",
+        "pronounce_word": "/on hænd/",
+        "explain_word": "available",
+        "mean_word": "có thể dùng được, có sẵn",
+        "id_group": "18"
+    },
+    {
+        "id_word": "213",
+        "name_word": "remember",
+        "pronounce_word": "/ri'membə[r]/ ",
+        "explain_word": "to have or keep an image or idea in your mind of (something or someone from the past)",
+        "mean_word": "nhớ, ghi nhớ",
+        "id_group": "18"
+    },
+    {
+        "id_word": "214",
+        "name_word": "ship",
+        "pronounce_word": "/ˈʃɪp/",
+        "explain_word": "a large boat used for traveling long distances over the sea",
+        "mean_word": "tàu thủy, (mỹ) máy bay",
+        "id_group": "18"
+    },
+    {
+        "id_word": "215",
+        "name_word": "sufficiently",
+        "pronounce_word": "/sə'fi∫ntli/",
+        "explain_word": "enough for a particular purpose; as much as you need",
+        "mean_word": "đủ, có đủ",
+        "id_group": "18"
+    },
+    {
+        "id_word": "216",
+        "name_word": "supply",
+        "pronounce_word": "/səˈplaɪ/",
+        "explain_word": "the amount of something that is available to be used",
+        "mean_word": "cung cấp, cung ứng",
+        "id_group": "18"
+    },
+    {
+        "id_word": "217",
+        "name_word": "charge",
+        "pronounce_word": "/tʃɑ:dʤ/",
+        "explain_word": "to ask an amount of money for goods or a service",
+        "mean_word": "tính phí, tiền công, thù lao",
+        "id_group": "19"
+    },
+    {
+        "id_word": "218",
+        "name_word": "compile",
+        "pronounce_word": "/kəmˈpajəl/",
+        "explain_word": "to create (a CD, book, list, etc.) by gathering things (such as songs or pieces of writing or information)",
+        "mean_word": "sưu tập, biên sọan",
+        "id_group": "19"
+    },
+    {
+        "id_word": "219",
+        "name_word": "customer",
+        "pronounce_word": "/'kʌstəmə[r]/",
+        "explain_word": "someone who buys goods or services from a business",
+        "mean_word": "khách hàng",
+        "id_group": "19"
+    },
+    {
+        "id_word": "220",
+        "name_word": "discount",
+        "pronounce_word": "/ˈdɪsˌkaʊnt/",
+        "explain_word": "an amount taken off a regular price :a price reduction",
+        "mean_word": "sự chiết khấu, tiền chiết khấu, bớt giá",
+        "id_group": "19"
+    },
+    {
+        "id_word": "221",
+        "name_word": "efficient",
+        "pronounce_word": "/i'fi∫nt/",
+        "explain_word": "capable of producing desired results without wasting materials, time, or energy",
+        "mean_word": "có năng lực, có khả năng",
+        "id_group": "19"
+    },
+    {
+        "id_word": "222",
+        "name_word": "estimate",
+        "pronounce_word": "/ˈɛstəmət/",
+        "explain_word": "a guess that you make based on the information you have about the size, amount, etc., of something",
+        "mean_word": "sự ước lượng, sự ước tính",
+        "id_group": "19"
+    },
+    {
+        "id_word": "223",
+        "name_word": "impose",
+        "pronounce_word": "/im'pəʊz/",
+        "explain_word": "to cause (something, such as a tax, fine, rule, or punishment) to affect someone or something by using your authority",
+        "mean_word": "đánh thuế, lạm dụng, lợi dụng, bắt gánh vác",
+        "id_group": "19"
+    },
+    {
+        "id_word": "224",
+        "name_word": "mistake",
+        "pronounce_word": "/məˈsteɪk/",
+        "explain_word": "something that is not correct :a wrong action, statement, or judgment :error",
+        "mean_word": "lỗi, sai lầm, nhầm",
+        "id_group": "19"
+    },
+    {
+        "id_word": "225",
+        "name_word": "order",
+        "pronounce_word": "/'ɔ:də[r]/",
+        "explain_word": "a request for food or drinks made at a restaurant",
+        "mean_word": "đơn đặt hàng, thứ tự, trật tự, thứ, bậc",
+        "id_group": "19"
+    },
+    {
+        "id_word": "226",
+        "name_word": "promptly",
+        "pronounce_word": "/ˈprɑːmptli/",
+        "explain_word": "in a prompt manner :without delay",
+        "mean_word": "mau lẹ, nhanh chóng",
+        "id_group": "19"
+    },
+    {
+        "id_word": "227",
+        "name_word": "rectify",
+        "pronounce_word": "/ˈrɛktəˌfaɪ/",
+        "explain_word": "to correct (something that is wrong)",
+        "mean_word": "sửa cho đúng, sửa",
+        "id_group": "19"
+    },
+    {
+        "id_word": "228",
+        "name_word": "terms",
+        "pronounce_word": "/tɜ:mz/",
+        "explain_word": "the conditions that people offer, demand, or accept when they make an agreement, an arrangement, or a contract",
+        "mean_word": "điều kiện, điều khoản",
+        "id_group": "19"
+    },
+    {
+        "id_word": "229",
+        "name_word": "adjustment",
+        "pronounce_word": "/əˈʤʌstmənt/",
+        "explain_word": "a small change that improves something or makes it work better",
+        "mean_word": "sự hiệu chỉnh, sự điều chỉnh",
+        "id_group": "20"
+    },
+    {
+        "id_word": "230",
+        "name_word": "automatically",
+        "pronounce_word": "/ˌɔːtəˈmætɪkli/",
+        "explain_word": "having controls that work without needing a person to operate them",
+        "mean_word": "một cách tự động",
+        "id_group": "20"
+    },
+    {
+        "id_word": "231",
+        "name_word": "crucial",
+        "pronounce_word": "/'kru:∫l/",
+        "explain_word": "extremely important",
+        "mean_word": "cốt yếu, quyết định",
+        "id_group": "20"
+    },
+    {
+        "id_word": "232",
+        "name_word": "discrepancy",
+        "pronounce_word": "/di'skrepənsi/",
+        "explain_word": "a difference especially between things that should be the same",
+        "mean_word": "sự khác biệt, sự không nhất quán",
+        "id_group": "20"
+    },
+    {
+        "id_word": "233",
+        "name_word": "disturb",
+        "pronounce_word": "/dɪˈstɚb/",
+        "explain_word": "to stop (someone) from working, sleeping, etc. :to interrupt or bother (someone or something)",
+        "mean_word": "xáo lộn, làm nhiễu loạn, phá vỡ",
+        "id_group": "20"
+    },
+    {
+        "id_word": "234",
+        "name_word": "liability",
+        "pronounce_word": "/laiə'biləti/",
+        "explain_word": "the state of being legally responsible for something :the state of being liable for something",
+        "mean_word": "trách nhiệm pháp lý, nghĩa vụ pháp lý",
+        "id_group": "20"
+    },
+    {
+        "id_word": "235",
+        "name_word": "reflection",
+        "pronounce_word": "/rɪˈflɛkʃən/",
+        "explain_word": "an image that is seen in a mirror or on a shiny surface",
+        "mean_word": "sự phản chiếu, sự phản xạ",
+        "id_group": "20"
+    },
+    {
+        "id_word": "236",
+        "name_word": "run",
+        "pronounce_word": "/rʌn/",
+        "explain_word": "to operate or function; to make something do this",
+        "mean_word": "chạy, vận hành, hoạt động",
+        "id_group": "20"
+    },
+    {
+        "id_word": "237",
+        "name_word": "scan",
+        "pronounce_word": "/skæn/",
+        "explain_word": "to look at every part of something carefully, especially because you are looking for a particular thing or person",
+        "mean_word": "xem lướt, xem qua, đọc lướt",
+        "id_group": "20"
+    },
+    {
+        "id_word": "238",
+        "name_word": "subtract",
+        "pronounce_word": "/səb'trækt/",
+        "explain_word": "to take a number or an amount away from another number or amount",
+        "mean_word": "trừ đi, khấu trừ",
+        "id_group": "20"
+    },
+    {
+        "id_word": "239",
+        "name_word": "tedious",
+        "pronounce_word": "/ˈtiːdijəs/",
+        "explain_word": "boring and too slow or long",
+        "mean_word": "chán ngắt, tẻ nhạt",
+        "id_group": "20"
+    },
+    {
+        "id_word": "240",
+        "name_word": "verify",
+        "pronounce_word": "/ˈverəˌfaɪ/",
+        "explain_word": "to prove, show, find out, or state that (something) is true or correct",
+        "mean_word": "kiểm tra lại, xác minh",
+        "id_group": "20"
     }
 ]
