@@ -44,7 +44,7 @@ export default memo(function TabSettingAudio() {
       <View style={tailwind('justify-between mb-2')}>
         <SelectText
           name="Giọng Nói Tiếng Anh"
-          description="Tải dữ liệu trước khi chọn giọng nói bạn muốn."
+          description="Lựa chọn giọng nói theo vùng bạn muốn."
         />
         <View style={tailwind('items-center')}>
           <Picker

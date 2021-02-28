@@ -117,7 +117,10 @@ export const actLoadWordsStudy = (words: WordType[]): WordStudy[] => {
   return wordsStudy;
 };
 
-export const actLoadWordsExam = (words: WordType[]): WordStudy[] => {};
+export const actLoadWordsExam = (words: WordType[]): WordStudy[] => {
+  console.log('test');
+  return null;
+};
 
 // Load Words Difficult
 // console.log('---- List ----');
