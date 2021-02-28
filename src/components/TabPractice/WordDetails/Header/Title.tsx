@@ -11,19 +11,21 @@ type Props = {
 
 export default memo(function TabPracticeWordDetailHeaderTitle(props: Props) {
   const { route } = props;
-  const { name_word, pronounce_word, name_group } = route.params.word;
+  const { name_word, mean_word, pronounce_word } = route.params.word;
 
   return (
     <View>
       <View style={tailwind('flex-row items-center')}>
-        <Text weight={700} style={tailwind('text-sm tracking-wide')}>
-          {name_group}
+        <Text weight={700} style={tailwind('text-sm capitalize tracking-wide')}>
+          {name_word?.slice(0, 20)}
+          {(name_word || '').length > 20 ? '...' : ''}
         </Text>
       </View>
       <Text style={styles.pronounce}>
-        {name_word}
-        {' - '}
         {pronounce_word}
+        {' - '}
+        {mean_word?.slice(0, 20)}
+        {(mean_word || '').length > 20 ? '...' : ''}
       </Text>
     </View>
   );

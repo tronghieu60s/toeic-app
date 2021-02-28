@@ -31,7 +31,7 @@ export default function SoundButton(props: Props): JSX.Element {
   const { name_word = '' } = word;
 
   const common = useSelector((state: RootState) => state.common);
-  const { voiceIdentify, voiceRate, voicePitch } = common;
+  const { voiceIdentify: voice, voiceRate: rate, voicePitch: pitch } = common;
 
   const soundSize = useRef(new Animated.Value(1)).current;
   const [soundPlayed, setSoundPlayed] = useState(false);
@@ -42,21 +42,13 @@ export default function SoundButton(props: Props): JSX.Element {
   }, [word]);
 
   const onPress = () => {
+    const onStart = () => Animated.spring(soundSize, animatedValue(0.85)).start();
+    const onDone = () => {
+      Animated.spring(soundSize, animatedValue(1)).start();
+      setSoundPlayed(false);
+    };
     setSoundPlayed(true);
-    SpeechEnglish(name_word, {
-      voice: voiceIdentify,
-      rate: voiceRate,
-      pitch: voicePitch,
-      onStart: () => Animated.spring(soundSize, animatedValue(0.85)).start(),
-      onDone: () => {
-        Animated.spring(soundSize, animatedValue(1)).start();
-        setSoundPlayed(false);
-      },
-      onStopped: () => {
-        Animated.spring(soundSize, animatedValue(1)).start();
-        setSoundPlayed(false);
-      },
-    });
+    SpeechEnglish(name_word, { voice, rate, pitch, onStart, onDone, onStopped: onDone });
 
     if (handleSendAnswer) handleSendAnswer(name_word);
   };

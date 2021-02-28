@@ -33,9 +33,10 @@ export default memo(function TabSettingAudio() {
   });
 
   const renderItemsSelect = (voices: Speech.Voice[]) => {
-    return voices.map((o, index) => (
-      <Picker.Item key={index} label={`${o.language} | ${o.identifier}`} value={o.identifier} />
-    ));
+    return voices.map((o, index) => {
+      const label = `${o.language} | ${o.identifier}`.toUpperCase();
+      return <Picker.Item key={index} label={label} value={o.identifier} />;
+    });
   };
 
   return (
@@ -45,13 +46,15 @@ export default memo(function TabSettingAudio() {
           name="Giọng Nói Tiếng Anh"
           description="Tải dữ liệu trước khi chọn giọng nói bạn muốn."
         />
-        <Picker
-          style={tailwind('w-10/12')}
-          selectedValue={voiceIdentify}
-          onValueChange={(itemValue) => dispatch(setVoiceIdentify(itemValue))}
-        >
-          {renderItemsSelect(voices)}
-        </Picker>
+        <View style={tailwind('items-center')}>
+          <Picker
+            style={tailwind('w-10/12')}
+            selectedValue={voiceIdentify}
+            onValueChange={(itemValue) => dispatch(setVoiceIdentify(itemValue))}
+          >
+            {renderItemsSelect(voices)}
+          </Picker>
+        </View>
       </View>
       <View style={tailwind('justify-between')}>
         <SelectText
