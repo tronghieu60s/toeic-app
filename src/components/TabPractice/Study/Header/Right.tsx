@@ -66,7 +66,8 @@ const styles = StyleSheet.create({
     transform: [{ rotate: '-10deg' }],
   },
   point: {
-    ...tailwind('w-14 rounded-md justify-center items-center mt-3'),
+    ...tailwind('rounded-md justify-center items-center mt-3'),
+    width: 70,
     paddingVertical: 2,
     backgroundColor: '#7de3b7',
   },

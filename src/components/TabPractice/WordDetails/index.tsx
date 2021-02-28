@@ -48,21 +48,18 @@ export default memo(function TabPracticeWordDetails(props: Props) {
   });
 
   useEffect(() => {
-    const index = words.findIndex((o) => o.id_word === word.id_word);
-    setNewCurNum(index);
-    setIsPending(false);
+    scroll?.current?.scrollTo({ x: width * curNum, animated: false });
+  }, [curNum]);
+
+  useEffect(() => {
     (async () => {
       const play_sound = await AsyncStorage.getItem('@play_sound');
       setPlaySound(play_sound === 'true');
+      setIsPending(false);
+      const index = words.findIndex((o) => o.id_word === word.id_word);
+      setNewCurNum(index);
     })();
   }, []);
-
-  useEffect(() => {
-    scroll?.current?.scrollTo({
-      x: width * curNum,
-      animated: true,
-    });
-  }, [curNum]);
 
   const setNewCurNum = (curNum: number) => {
     setCurNum(curNum);

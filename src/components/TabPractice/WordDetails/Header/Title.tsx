@@ -24,8 +24,8 @@ export default memo(function TabPracticeWordDetailHeaderTitle(props: Props) {
       <Text style={styles.pronounce}>
         {pronounce_word}
         {' - '}
-        {mean_word?.slice(0, 20)}
-        {(mean_word || '').length > 20 ? '...' : ''}
+        {mean_word?.slice(0, 30)}
+        {(mean_word || '').length > 30 ? '...' : ''}
       </Text>
     </View>
   );

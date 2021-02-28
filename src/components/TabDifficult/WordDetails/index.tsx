@@ -17,7 +17,7 @@ export default memo(function TabDifficultWordDetails(props: Props) {
     <View light style={tailwind('flex-1')}>
       <StudyWord word={word} />
       <View style={tailwind('w-full absolute bottom-0')}>
-        <AdMobBanner light bannerSize="smartBannerLandscape" />
+        <AdMobBanner light bannerSize="banner" />
       </View>
     </View>
   );
