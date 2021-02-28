@@ -49,7 +49,7 @@ export default memo(function TabPracticeWords(props: Props) {
     </>
   );
 
-  const text = 'Không tải được dữ liệu, vui lòng xóa dữ liệu và khởi động lại ứng dụng.';
+  const text = 'Bài học này đang cập nhật. Vui lòng quay lại sau.';
   if (isPending) return <ScreenLoading />;
   if (words.length <= 0 && !isPending) return <ScreenCenter>{text}</ScreenCenter>;
 

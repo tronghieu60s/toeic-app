@@ -3,6 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Font from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import * as React from 'react';
+import { ToastAndroid } from 'react-native';
 import { executeSql, initDbTable, loadDataFromResources } from '~/src/utils/SQLite';
 import { delayLoading } from '../helpers/common';
 
@@ -36,20 +37,20 @@ export default function useCachedResources(): ReturnValue {
 
         // Load Database
         await initDbTable();
-        const firstLoading = await AsyncStorage.getItem('@first_loading');
         const previousVersion = (await AsyncStorage.getItem('@previous_version')) || '0';
-        const previousVersionNum = parseInt(previousVersion.replace(/\./g, ''), 10);
-        const newVersionDataNum = parseInt(version_data.replace(/\./g, ''), 10);
+        const previousVersionNum = parseInt(previousVersion, 10);
+        const newVersionDataNum = parseInt(version_data, 10);
 
-        if (firstLoading !== 'true' || newVersionDataNum > previousVersionNum) {
+        console.log(newVersionDataNum, previousVersionNum);
+        if (newVersionDataNum > previousVersionNum) {
           console.log('New Data. Downloading...');
           await executeSql('drop table groups;');
           await executeSql('drop table words;');
           await initDbTable();
 
           await loadDataFromResources();
-          await AsyncStorage.setItem('@first_loading', 'true');
           await AsyncStorage.setItem('@previous_version', version_data);
+          ToastAndroid.show('Đã cập nhật dữ liệu mới nhất!', ToastAndroid.SHORT);
         }
         await delayLoading();
 

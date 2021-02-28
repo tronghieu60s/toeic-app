@@ -2,7 +2,7 @@
   "expo": {
     "name": "Toeic Essential Words",
     "slug": "toeic-ew",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "toeic-ew",
@@ -27,7 +27,7 @@
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.tronghieuit.toeicew",
-      "versionCode": 5,
+      "versionCode": 6,
       "permissions": [
         "VIBRATE"
       ],
