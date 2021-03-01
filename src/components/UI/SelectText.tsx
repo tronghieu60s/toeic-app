@@ -4,7 +4,7 @@ import { Ripple, Text } from '../Themed';
 
 type Props = {
   name: string;
-  description: string;
+  description?: string;
   onValueChange?: () => void;
 };
 
@@ -15,11 +15,14 @@ export default function SelectText(props: Props): JSX.Element {
       <Text weight={700} style={{ fontSize: 13 }}>
         {name}
       </Text>
-      <Text style={{ color: '#888', fontSize: 13 }}>{description}</Text>
+      {(description || '').length > 0 && (
+        <Text style={{ color: '#888', fontSize: 13 }}>{description}</Text>
+      )}
     </Ripple>
   );
 }
 
 SelectText.defaultProps = {
+  description: '',
   onValueChange: null,
 };

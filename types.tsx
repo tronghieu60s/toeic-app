@@ -21,6 +21,9 @@ export type TabPracticeParamList = {
   };
   TabPracticeStudy: undefined;
   TabPracticeExam: undefined;
+  TabPracticeReport: {
+    word: WordType;
+  };
 };
 
 export type TabDifficultParamList = {

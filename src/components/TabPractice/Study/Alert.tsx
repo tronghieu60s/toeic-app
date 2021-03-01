@@ -1,6 +1,6 @@
 import { Feather } from '@expo/vector-icons';
 import React, { memo, useEffect, useRef } from 'react';
-import { Animated, Dimensions, StyleSheet, ToastAndroid } from 'react-native';
+import { Animated, Dimensions, StyleSheet } from 'react-native';
 import { Ripple, Text, View } from '~/src/components/Themed';
 import tailwind from '~/tailwind';
 import { StatusQuestion, WordType } from '~/types';
@@ -8,10 +8,11 @@ import { StatusQuestion, WordType } from '~/types';
 type Props = {
   word: WordType;
   status: StatusQuestion;
+  onPressReport: () => void;
 };
 
 export default memo(function TabPracticeStudyAlert(props: Props) {
-  const { word, status } = props;
+  const { word, status, onPressReport } = props;
   const { name_word, mean_word } = word;
   const fadeOpacity = useRef(new Animated.Value(0)).current;
   const outPosition = useRef(new Animated.Value(Dimensions.get('window').height / 4)).current;
@@ -34,13 +35,6 @@ export default memo(function TabPracticeStudyAlert(props: Props) {
       }).start();
     }
   }, []);
-
-  const onPressReport = () => {
-    ToastAndroid.show(
-      'Chức năng này đang cập nhật và sẽ được thêm vào các phiên bản sắp tới.',
-      ToastAndroid.SHORT,
-    );
-  };
 
   return (
     <Animated.View style={[styles.viewFinish, { opacity: fadeOpacity }]}>

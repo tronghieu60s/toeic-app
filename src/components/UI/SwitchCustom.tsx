@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React from 'react';
 import { Switch } from 'react-native';
 import tailwind from '~/tailwind';
 import { View } from '../Themed';
@@ -6,12 +6,12 @@ import SelectText from './SelectText';
 
 type Props = {
   name: string;
-  description: string;
+  description?: string;
   value: boolean;
   onValueChange: () => void;
 };
 
-export default memo(function SwitchCustom(props: Props) {
+export default function SwitchCustom(props: Props): JSX.Element {
   const { name, description, value, onValueChange } = props;
 
   return (
@@ -28,4 +28,8 @@ export default memo(function SwitchCustom(props: Props) {
       </View>
     </View>
   );
-});
+}
+
+SwitchCustom.defaultProps = {
+  description: '',
+};

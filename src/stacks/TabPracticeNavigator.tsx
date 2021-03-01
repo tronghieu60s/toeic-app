@@ -7,6 +7,7 @@ import React from 'react';
 import { Alert } from 'react-native';
 import { useSelector } from 'react-redux';
 import TabPracticeHeaderTitle from '~/src/components/TabPractice/Header/Title';
+import TabPracticeReport from '~/src/components/TabPractice/Report';
 import TabPracticeStudy from '~/src/components/TabPractice/Study';
 import TabPracticeStudyHeaderRight from '~/src/components/TabPractice/Study/Header/Right';
 import TabPracticeWordDetails from '~/src/components/TabPractice/WordDetails';
@@ -17,6 +18,7 @@ import TabPracticeWordsHeaderRight from '~/src/components/TabPractice/Words/Head
 import TabPracticeWordsHeaderTitle from '~/src/components/TabPractice/Words/Header/Title';
 import { View } from '~/src/components/Themed';
 import { TabPracticeParamList } from '~/types';
+import HeaderTitle from '../components/Common/HeaderTitle';
 import TabPractice from '../components/TabPractice';
 import TabPracticeExam from '../components/TabPractice/Exam';
 import TabPracticeStudyHeaderBackImage from '../components/TabPractice/Study/Header/BackImage';
@@ -48,6 +50,13 @@ export default function TabPracticeNavigator(): JSX.Element {
           headerTitle: () => <TabPracticeWordsHeaderTitle route={route} />,
           headerRight: () => <TabPracticeWordsHeaderRight navigation={navigation} />,
         })}
+      />
+      <TabPracticeStack.Screen
+        name="TabPracticeReport"
+        component={TabPracticeReport}
+        options={{
+          headerTitle: () => <HeaderTitle title="Báo Lỗi" />,
+        }}
       />
       <TabPracticeStack.Screen
         name="TabPracticeWordDetails"

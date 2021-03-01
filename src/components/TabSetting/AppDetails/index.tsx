@@ -1,3 +1,4 @@
+import Constants from 'expo-constants';
 import * as Linking from 'expo-linking';
 import React, { memo } from 'react';
 import { Image } from 'react-native';
@@ -21,7 +22,11 @@ export default memo(function TabSettingAppDetails() {
         </Text>
       </View>
       <View style={tailwind('flex-row items-center mb-1')}>
-        <Text weight={700}>Phiên bản cơ sở:</Text>
+        <Text weight={700}>Thiết bị:</Text>
+        <Text style={tailwind('ml-2 text-sm tracking-widest')}>{Constants.deviceName}</Text>
+      </View>
+      <View style={tailwind('flex-row items-center mb-1')}>
+        <Text weight={700}>Phiên bản ứng dụng cơ sở:</Text>
         <Text style={tailwind('ml-2 text-sm tracking-widest')}>{version}</Text>
       </View>
       <View style={tailwind('flex-row items-center mb-1')}>

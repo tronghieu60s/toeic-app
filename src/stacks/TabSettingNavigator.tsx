@@ -1,4 +1,8 @@
-import { createStackNavigator } from '@react-navigation/stack';
+import {
+  CardStyleInterpolators,
+  createStackNavigator,
+  HeaderStyleInterpolators,
+} from '@react-navigation/stack';
 import React from 'react';
 import { TabSettingParamList } from '~/types';
 import HeaderTitle from '../components/Common/HeaderTitle';
@@ -9,7 +13,12 @@ const TabSettingStack = createStackNavigator<TabSettingParamList>();
 
 export default function TabSettingNavigator(): JSX.Element {
   return (
-    <TabSettingStack.Navigator>
+    <TabSettingStack.Navigator
+      screenOptions={{
+        headerStyleInterpolator: HeaderStyleInterpolators.forSlideUp,
+        cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+      }}
+    >
       <TabSettingStack.Screen
         name="TabSettingScreen"
         component={TabSetting}
