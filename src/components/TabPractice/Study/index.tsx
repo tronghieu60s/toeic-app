@@ -8,13 +8,8 @@ import ProcessBar from '~/src/components/UI/ProcessBar';
 import Config from '~/src/constants/Config';
 import Layout from '~/src/constants/Layout';
 import { shuffle } from '~/src/helpers/array';
-import { convertWordsBase, removeVietnameseTones as rmVN } from '~/src/helpers/convert';
-import {
-  actLoadWordsStudy,
-  isTypeAnswersMean,
-  isTypeAnswersName,
-  WordStudy,
-} from '~/src/helpers/study';
+import { convertWordsBase } from '~/src/helpers/convert';
+import { actLoadWordsStudy, handleStudyCheckAnswer, WordStudy } from '~/src/helpers/study';
 import {
   actStudyCorrect,
   actStudyInCorrect,
@@ -66,8 +61,11 @@ export default memo(function TabPracticeStudy({ navigation }: Props) {
 
   const handleSendAnswer = (value: string) => setAnswer(convertWordsBase(value));
   const handleEndStudy = async () => {
+    words.forEach((word) => dispatch(actStudyCorrect(word.data.id_word)));
+
     navigation.removeListener('beforeRemove', (e) => navigation.dispatch(e.data.action));
     navigation.goBack();
+
     Alert.alert(
       'Bạn đã hoàn thành bài học.',
       `Tổng số câu hỏi: ${total_max}\nTrả lời sai: ${countIncorrect} lần`,
@@ -78,23 +76,10 @@ export default memo(function TabPracticeStudy({ navigation }: Props) {
     Keyboard.dismiss();
 
     const word = words[currentNum];
-    let expected = '';
-    if (isTypeAnswersName(word.type)) expected = word.data.name_word || '';
-    if (isTypeAnswersMean(word.type)) expected = word.data.mean_word || '';
-    expected = convertWordsBase(expected);
-
-    const arrExpected = expected.split(',').map((s) => convertWordsBase(s));
-    const arrExpectedVn = expected.split(',').map((s) => rmVN(convertWordsBase(s)));
-
-    const actual = convertWordsBase(answer);
-    const checkEqual =
-      arrExpected.indexOf(actual) !== -1 ||
-      arrExpectedVn.indexOf(actual) !== -1 ||
-      actual === expected;
+    const checkEqual = handleStudyCheckAnswer({ answer, word: word.data, type: word.type });
 
     if (checkEqual) {
       dispatch(increasePoint(50));
-      dispatch(actStudyCorrect(word.data.id_word));
 
       setStatus('Correct');
     } else {

@@ -81,6 +81,7 @@ export default memo(function TabPracticeWordDetails(props: Props) {
   const onPressNextWord = () => setNewCurNum(curNum >= words.length - 1 ? 0 : curNum + 1);
   const onPressToggleDifficult = () => dispatch(actToggleFlashWord(words[curNum]));
 
+  const iconVolume = playSound ? 'volume-up' : 'volume-off';
   const flashColor = (words[curNum].difficult_study || 0) > 0 ? '#5e72e4' : 'black';
 
   if (isPending) return <ScreenLoading />;
@@ -110,7 +111,7 @@ export default memo(function TabPracticeWordDetails(props: Props) {
             <Ionicons name={autoPlay ? 'md-pause' : 'md-play'} size={20} color="black" />
           </Ripple>
           <Ripple style={styles.icon} onPress={onPressSetPlaySound}>
-            <MaterialIcons name={`volume-${playSound ? 'up' : 'off'}`} size={22} color="black" />
+            <MaterialIcons name={iconVolume} size={22} color="black" />
           </Ripple>
           <Ripple style={styles.icon} onPress={onPressNextWord}>
             <Ionicons name="ios-arrow-forward" size={22} color="black" />

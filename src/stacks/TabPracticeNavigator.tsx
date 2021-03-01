@@ -66,7 +66,7 @@ export default function TabPracticeNavigator(): JSX.Element {
 
             Alert.alert(
               'Thoát phiên học',
-              'Bạn có chắc muốn thoát phiên học này không? Kết quả sẽ được lưu lại.',
+              'Bạn có chắc muốn thoát phiên học này không? Dữ liệu học sẽ được hủy bỏ.',
               [
                 { text: 'Hủy', style: 'cancel' },
                 {

@@ -1,3 +1,4 @@
+import { convertWordsBase, removeVietnameseTones as rmVN } from '~/src/helpers/convert';
 import { randomBetweenTwoNumber as rdNum } from '~/src/helpers/random';
 import { TypesAnswer, WordType } from '~/types';
 import Config from '../constants/Config';
@@ -41,6 +42,28 @@ export const getTypeAnswer = (count_study: number): TypesAnswer => {
   if (count_study === 5) typeAnswer = 'CHOOSE-MEAN-SOUND';
   if (count_study > 5) typeAnswer = getTypeAnswerRandom();
   return typeAnswer;
+};
+
+export const handleStudyCheckAnswer = (props: {
+  answer: string;
+  word: WordType;
+  type: TypesAnswer;
+}): boolean => {
+  const { answer, word, type } = props;
+  let expected = '';
+  if (isTypeAnswersName(type)) expected = word.name_word || '';
+  if (isTypeAnswersMean(type)) expected = word.mean_word || '';
+  expected = convertWordsBase(expected);
+
+  const arrExpected = expected.split(',').map((s) => convertWordsBase(s));
+  const arrExpectedVn = expected.split(',').map((s) => rmVN(convertWordsBase(s)));
+
+  const actual = convertWordsBase(answer);
+  const checkEqual =
+    arrExpected.indexOf(actual) !== -1 ||
+    arrExpectedVn.indexOf(actual) !== -1 ||
+    actual === expected;
+  return checkEqual;
 };
 
 // Load Words Study

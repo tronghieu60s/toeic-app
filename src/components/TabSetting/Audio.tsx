@@ -50,7 +50,7 @@ export default memo(function TabSettingAudio() {
           <Picker
             style={tailwind('w-10/12')}
             selectedValue={voiceIdentify}
-            onValueChange={(itemValue) => dispatch(setVoiceIdentify(itemValue))}
+            onValueChange={(itemValue) => dispatch(setVoiceIdentify(itemValue.toString()))}
           >
             {renderItemsSelect(voices)}
           </Picker>

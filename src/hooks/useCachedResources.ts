@@ -6,6 +6,7 @@ import * as React from 'react';
 import { ToastAndroid } from 'react-native';
 import { executeSql, initDbTable, loadDataFromResources } from '~/src/utils/SQLite';
 import { delayLoading } from '../helpers/common';
+import { SpeechEnglish } from '../helpers/sound';
 
 type ReturnValue = {
   isLoadingComplete: boolean;
@@ -37,12 +38,14 @@ export default function useCachedResources(): ReturnValue {
 
         // Load Database
         await initDbTable();
+        // Init Sound Speech
+        await SpeechEnglish('');
         const previousVersion = (await AsyncStorage.getItem('@previous_version')) || '0';
         const previousVersionNum = parseInt(previousVersion, 10);
         const newVersionDataNum = parseInt(version_data, 10);
 
-        console.log(newVersionDataNum, previousVersionNum);
-        if (newVersionDataNum > previousVersionNum) {
+        console.log(`${newVersionDataNum} - ${previousVersionNum}`);
+        if (newVersionDataNum !== previousVersionNum) {
           console.log('New Data. Downloading...');
           await executeSql('drop table groups;');
           await executeSql('drop table words;');
