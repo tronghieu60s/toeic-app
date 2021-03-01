@@ -138,5 +138,40 @@
         "mean_group": "hàng tồn kho",
         "pronounce_group": "/ˈɪnvənˌtori/",
         "image_group": "https://i.imgur.com/zZHH00I.png"
+    },
+    {
+        "id_group": "21",
+        "name_group": "Banking",
+        "mean_group": "ngân hàng",
+        "pronounce_group": "/'bæŋkiŋ/",
+        "image_group": "https://i.imgur.com/eCU0IGN.png"
+    },
+    {
+        "id_group": "22",
+        "name_group": "Accounting",
+        "mean_group": "kế toán",
+        "pronounce_group": "/ə'kauntiɳ/",
+        "image_group": "https://i.imgur.com/EwMEp5W.png"
+    },
+    {
+        "id_group": "23",
+        "name_group": "Investments",
+        "mean_group": "đầu tư",
+        "pronounce_group": "/in'vestmənt/",
+        "image_group": "https://i.imgur.com/Nw6HHXY.png"
+    },
+    {
+        "id_group": "24",
+        "name_group": "Taxes",
+        "mean_group": "thuế",
+        "pronounce_group": "/tæks/",
+        "image_group": "https://i.imgur.com/e4SvTCU.png"
+    },
+    {
+        "id_group": "25",
+        "name_group": "Financial Statements",
+        "mean_group": "báo cáo tài chính",
+        "pronounce_group": "/fai'næn∫l 'steitmənt/",
+        "image_group": "https://i.imgur.com/hzJ8HVn.png"
     }
 ]

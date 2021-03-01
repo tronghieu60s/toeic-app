@@ -39,8 +39,8 @@ export type TabSettingParamList = {
   TabSettingAppDetails: undefined;
 };
 
-export type TabFavoriteParamList = {
-  TabFavoriteScreen: undefined;
+export type TabStatisticsParamList = {
+  TabStatisticsScreen: undefined;
 };
 
 export type StatusQuestion = 'Waiting' | 'Correct' | 'Incorrect';
@@ -65,7 +65,6 @@ export type GroupType = {
   explain_group?: string;
   mean_group?: string;
   image_group?: string;
-  lock_group?: number;
 };
 
 export type WordType = GroupType &

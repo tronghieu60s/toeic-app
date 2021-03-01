@@ -46,8 +46,7 @@ export const initDbTable = async (): Promise<void> => {
     name_group text, 
     pronounce_group text,
     mean_group text,
-    image_group text,
-    lock_group integer
+    image_group text
     );`,
   );
   await executeSql(
@@ -78,12 +77,12 @@ export const loadDataFromResources = async (): Promise<void> => {
 
 const loadDataGroupsFromResources = async () => {
   let sqlValue = `insert into groups
-        (id_group, name_group, pronounce_group, mean_group, image_group, lock_group)
+        (id_group, name_group, pronounce_group, mean_group, image_group)
         values`;
   groups.forEach((group: GroupType, index: number) => {
     // Loop Add Sql Value
     sqlValue += `(${group.id_group}, "${group.name_group}",
-            "${group.pronounce_group}", "${group.mean_group}", "${group.image_group}", ${index === 0 ? 0 : 1})`;
+            "${group.pronounce_group}", "${group.mean_group}", "${group.image_group}")`;
     sqlValue += index === groups.length - 1 ? ';' : ',';
   });
   await executeSql(sqlValue);

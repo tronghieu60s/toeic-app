@@ -12,7 +12,7 @@ type Props = {
 };
 
 export default memo(function StudyWord({ word }: Props) {
-  const { name_word, mean_word, explain_word } = word;
+  const { name_word, pronounce_word, mean_word, explain_word } = word;
 
   return (
     <View style={{ ...tailwind('flex-1 bg-transparent'), width }}>
@@ -21,6 +21,9 @@ export default memo(function StudyWord({ word }: Props) {
           <SoundButton size={70} word={word} />
           <Text weight={700} style={tailwind('text-xl mt-7 ml-2 text-center')}>
             {name_word}
+          </Text>
+          <Text weight={600} style={tailwind('mt-2 ml-2 text-center text-gray-700')}>
+            {pronounce_word}
           </Text>
         </View>
         <View style={tailwind('w-full justify-center items-center mt-5 px-8 bg-transparent')}>

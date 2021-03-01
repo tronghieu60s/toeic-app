@@ -1,4 +1,4 @@
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign, Feather, Ionicons } from '@expo/vector-icons';
 import { Route } from '@react-navigation/native';
 import React from 'react';
 import { StyleSheet } from 'react-native';
@@ -28,7 +28,12 @@ export default function BottomTabBarIcon(props: Props): JSX.Element {
   return (
     <View style={tailwind('items-center justify-center')}>
       <View>
-        <TabBarIcon name={TabBar[name].icon} size={22} color={focused ? '#5e72e4' : '#777'} />
+        <TabBarIcon
+          name={TabBar[name].icon}
+          type={TabBar[name].type}
+          size={22}
+          color={focused ? '#5e72e4' : '#777'}
+        />
         {numberIconShow && number !== '00' && <Text style={styles.number}>{number}</Text>}
       </View>
       {focused && (
@@ -45,17 +50,23 @@ export default function BottomTabBarIcon(props: Props): JSX.Element {
   );
 }
 
+type TabBarType = { name: string; type: string; color: string; size: number };
+
 // You can explore the built-in icon families and icons on the web at:
 // https://icons.expo.fyi/
-function TabBarIcon(props: { name: string; color: string; size: number }) {
-  return <AntDesign style={{ marginBottom: -3 }} {...props} />;
+function TabBarIcon(props: TabBarType) {
+  const { type } = props;
+  if (type === 'AntDesign') return <AntDesign style={{ marginBottom: -3 }} {...props} />;
+  if (type === 'Feather') return <Feather style={{ marginBottom: -3 }} {...props} />;
+  if (type === 'Ionicons') return <Ionicons style={{ marginBottom: -3 }} {...props} />;
+  return <></>;
 }
 
 const styles = StyleSheet.create({
   number: {
     fontSize: 6,
     color: '#fff',
-    backgroundColor: '#f5365c',
+    backgroundColor: '#5e72e4',
     position: 'absolute',
     bottom: -5,
     right: -3,
