@@ -1,4 +1,5 @@
-import { FontAwesome, Ionicons, SimpleLineIcons } from '@expo/vector-icons';
+import { AntDesign, Entypo, FontAwesome, MaterialIcons, SimpleLineIcons } from '@expo/vector-icons';
+import { StackNavigationProp } from '@react-navigation/stack';
 import * as Linking from 'expo-linking';
 import React, { memo, useState } from 'react';
 import { Share, StyleSheet } from 'react-native';
@@ -8,6 +9,7 @@ import { Ripple, ScrollView, Text, View } from '~/src/components/Themed';
 import { SpeechEnglish } from '~/src/helpers/sound';
 import { RootState } from '~/src/redux/reducers/rootReducer';
 import tailwind from '~/tailwind';
+import { TabSettingParamList } from '~/types';
 import TabSettingAudio from './Audio';
 import TabSettingVisible from './Visible';
 
@@ -17,7 +19,11 @@ type LinkingProps = {
   onPress: () => void;
 };
 
-export default memo(function TabSetting() {
+type Props = {
+  navigation: StackNavigationProp<TabSettingParamList, 'TabSettingScreen'>;
+};
+
+export default memo(function TabSetting({ navigation }: Props) {
   const [textVoice, setTextVoice] = useState('Hello, I am a Robot!');
 
   const common = useSelector((state: RootState) => state.common);
@@ -75,11 +81,26 @@ export default memo(function TabSetting() {
               return Linking.openURL('mailto:estudy.techapp@gmail.com');
             }}
           >
-            <Ionicons name="md-chatboxes" size={24} color="#5e72e4" />
+            <MaterialIcons name="message" size={22} color="#5e72e4" />
           </LinkingBlock>
           <LinkingBlock title="Chia sẻ" onPress={onShare}>
-            <Ionicons name="md-share" size={24} color="#5e72e4" />
+            <Entypo name="share" size={22} color="#5e72e4" />
           </LinkingBlock>
+        </View>
+        <View style={tailwind('p-3 rounded-lg mb-2')}>
+          <TitleModal>Khác</TitleModal>
+          {/* <NormalBlock
+            title="Dữ liệu học tập"
+            onPress={}
+          />
+          <NormalBlock
+            title="Sao lưu và khôi phục"
+            onPress={}
+          /> */}
+          <NormalBlock
+            title="Thông tin ứng dụng"
+            onPress={() => navigation.navigate('TabSettingAppDetails')}
+          />
         </View>
       </View>
     </ScrollView>
@@ -103,6 +124,24 @@ function LinkingBlock(props: LinkingProps) {
       <Text weight={700} style={tailwind('ml-2')}>
         {title}
       </Text>
+    </Ripple>
+  );
+}
+
+function NormalBlock(props: { title: string; onPress: () => void }) {
+  const { title, onPress } = props;
+
+  return (
+    <Ripple
+      rippleCentered={false}
+      rippleContainerBorderRadius={0}
+      style={tailwind('flex-row justify-between items-center py-3')}
+      onPress={onPress}
+    >
+      <Text weight={600} style={tailwind('ml-2')}>
+        {title}
+      </Text>
+      <AntDesign name="right" size={15} color="black" />
     </Ripple>
   );
 }

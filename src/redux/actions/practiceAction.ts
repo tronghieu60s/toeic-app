@@ -53,16 +53,13 @@ export const actStudyCorrectDifficult = (id_word: number) => async (
   dispatch: Dispatch<PracticeAction>,
 ): Promise<void> => {
   const wordExecute = await getWordsByIdWord(id_word);
-  if (wordExecute.data) {
-    const word = wordExecute.data[0];
-    const { difficult_study = 0 } = word;
-    if (difficult_study >= difficult_max) await updateStudies({ ...word, difficult_study: 0 });
-    else await updateStudies({ ...word, difficult_study: difficult_study + 1 });
+  const word = wordExecute.data[0];
+  const { difficult_study = 0 } = word;
+  if (difficult_study >= difficult_max) await updateStudies({ ...word, difficult_study: 0 });
+  else await updateStudies({ ...word, difficult_study: difficult_study + 1 });
 
-    const wordsDifficult = await getWordsDifficult();
-    return dispatch(loadWordsDifficult(wordsDifficult.data || []));
-  }
-  return undefined;
+  const wordsDifficult = await getWordsDifficult();
+  return dispatch(loadWordsDifficult(wordsDifficult.data || []));
 };
 
 export const actLoadWordsDifficult = () => async (
@@ -76,34 +73,31 @@ export const actStudyCorrect = (id_word: number) => async (
   dispatch: Dispatch<PracticeAction>,
 ): Promise<void> => {
   const wordExecute = await getWordsByIdWord(id_word);
-  if (wordExecute.data) {
-    const word = wordExecute.data[0];
-    const { id_group, id_study, count_study = 0 } = word;
-    if (id_study) {
-      if (count_study < count_max) await updateStudies({ ...word, count_study: count_study + 1 });
-    } else {
-      await createStudies({ id_study: id_word, count_study: 1 });
-    }
-
-    const words = await getWordsByIdGroup(id_group);
-    return dispatch(loadWordsGroup(words.data));
+  const word = { ...wordExecute.data[0] };
+  const { id_group, id_study, count_study = 0 } = word;
+  if (id_study) {
+    if (count_study < count_max) await updateStudies({ ...word, count_study: count_study + 1 });
+  } else {
+    await createStudies({ id_study: id_word, count_study: 1 });
   }
-  return undefined;
+
+  const words = await getWordsByIdGroup(id_group);
+  return dispatch(loadWordsGroup(words.data));
 };
 
 export const actStudyInCorrect = (id_word: number) => async (
   dispatch: Dispatch<PracticeAction>,
 ): Promise<void> => {
   const wordExecute = await getWordsByIdWord(id_word);
-  if (wordExecute.data) {
-    const word = wordExecute.data[0];
-    const { id_study, count_study } = word;
-    if (id_study && count_study >= 1) {
-      await updateStudies({ ...word, difficult_study: 1 });
+  const word = wordExecute.data[0];
+  const { id_group, id_study, count_study } = word;
+  if (id_study && count_study >= 1) {
+    await updateStudies({ ...word, difficult_study: 1 });
 
-      const wordsDifficult = await getWordsDifficult();
-      await dispatch(loadWordsDifficult(wordsDifficult.data || []));
-    }
+    const words = await getWordsByIdGroup(id_group);
+    await dispatch(loadWordsGroup(words.data));
+    const wordsDifficult = await getWordsDifficult();
+    await dispatch(loadWordsDifficult(wordsDifficult.data || []));
   }
 
   return undefined;

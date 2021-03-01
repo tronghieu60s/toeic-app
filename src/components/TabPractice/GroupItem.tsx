@@ -13,6 +13,7 @@ type Props = {
 export default memo(function GroupItem(props: Props) {
   const { group, navigation } = props;
   const { name_group, pronounce_group = '', image_group, lock_group = 1 } = group;
+
   const handlePressGroup = async () => {
     // if (lock_group === 0) navigation.navigate('TabPracticeWords', { group });
     navigation.navigate('TabPracticeWords', { group });

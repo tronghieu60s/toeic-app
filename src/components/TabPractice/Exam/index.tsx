@@ -8,17 +8,13 @@ import ProcessBar from '~/src/components/UI/ProcessBar';
 import Config from '~/src/constants/Config';
 import Layout from '~/src/constants/Layout';
 import { shuffle } from '~/src/helpers/array';
-import { convertWordsBase, removeVietnameseTones as rmVN } from '~/src/helpers/convert';
-import {
-  actLoadWordsExam,
-  isTypeAnswersMean,
-  isTypeAnswersName,
-  WordStudy,
-} from '~/src/helpers/study';
+import { convertWordsBase } from '~/src/helpers/convert';
+import { actLoadWordsExam, handleStudyCheckAnswer, WordStudy } from '~/src/helpers/study';
 import { increasePoint } from '~/src/redux/actions/practiceAction';
 import { RootState } from '~/src/redux/reducers/rootReducer';
 import tailwind from '~/tailwind';
 import { StatusQuestion, TabPracticeParamList } from '~/types';
+import { AdMobInterstitial } from '../../Ads';
 import ScreenLoading from '../../UI/ScreenLoading';
 import AlertBottom from '../Study/Alert';
 import Bottom from '../Study/Bottom';
@@ -57,19 +53,30 @@ export default memo(function TabPracticeExam({ navigation }: Props) {
         navigation.goBack();
         Alert.alert(
           'Bạn đã hoàn thành bài học.',
-          `Tổng số câu hỏi: ${countCorrect + countIncorrect}\nTrả lời sai: ${countIncorrect} lần`,
+          `Thời gian: ${time_max}\nTổng số câu hỏi: ${
+            countCorrect + countIncorrect
+          }\nTrả lời sai: ${countIncorrect} lần`,
         );
+        AdMobInterstitial();
       } else setCountTime(countTime + 1);
     }, 1000);
     return () => clearInterval(processTime);
   });
 
   useEffect(() => {
-    const words = actLoadWordsExam(wordsState);
+    const words = actLoadWordsExam(wordsState, 3);
     setWords(shuffle(words));
 
     setIsPending(false);
   }, []);
+
+  useEffect(() => {
+    if (words.length - currentNum === 1) {
+      const loadWords = actLoadWordsExam(wordsState, 3);
+      const newWords = [...words, ...shuffle(loadWords)];
+      setWords(newWords);
+    }
+  }, [countCorrect, countIncorrect]);
 
   useEffect(() => {
     scroll?.current?.scrollTo({
@@ -83,19 +90,7 @@ export default memo(function TabPracticeExam({ navigation }: Props) {
     Keyboard.dismiss();
 
     const word = words[currentNum];
-    let expected = '';
-    if (isTypeAnswersName(word.type)) expected = word.data.name_word || '';
-    if (isTypeAnswersMean(word.type)) expected = word.data.mean_word || '';
-    expected = convertWordsBase(expected);
-
-    const arrExpected = expected.split(',').map((s) => convertWordsBase(s));
-    const arrExpectedVn = expected.split(',').map((s) => rmVN(convertWordsBase(s)));
-
-    const actual = convertWordsBase(answer);
-    const checkEqual =
-      arrExpected.indexOf(actual) !== -1 ||
-      arrExpectedVn.indexOf(actual) !== -1 ||
-      actual === expected;
+    const checkEqual = handleStudyCheckAnswer({ answer, word: word.data, type: word.type });
 
     if (checkEqual) {
       dispatch(increasePoint(50));

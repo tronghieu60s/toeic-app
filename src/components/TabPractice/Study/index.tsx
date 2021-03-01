@@ -61,8 +61,6 @@ export default memo(function TabPracticeStudy({ navigation }: Props) {
 
   const handleSendAnswer = (value: string) => setAnswer(convertWordsBase(value));
   const handleEndStudy = async () => {
-    words.forEach((word) => dispatch(actStudyCorrect(word.data.id_word)));
-
     navigation.removeListener('beforeRemove', (e) => navigation.dispatch(e.data.action));
     navigation.goBack();
 
@@ -80,6 +78,7 @@ export default memo(function TabPracticeStudy({ navigation }: Props) {
 
     if (checkEqual) {
       dispatch(increasePoint(50));
+      dispatch(actStudyCorrect(word.data.id_word));
 
       setStatus('Correct');
     } else {

@@ -117,17 +117,10 @@ const loadWordsStudyMaxTotal = (words: WordType[]): WordType[] => {
   return newWords;
 };
 
-const loadWordsStudyTypeAnswerWords = (words: WordType[]): WordStudy[] => {
+const loadWordsTypeAnswerRandom = (words: WordType[]): WordStudy[] => {
   const listWords: WordStudy[] = [];
   for (let i = 0; i < words.length; i += 1) {
-    const { count_study = 0 } = words[i];
-    let typeAnswer = getTypeAnswer(count_study);
-    if (i >= 1 && words[i].name_word === words[i - 1].name_word) {
-      typeAnswer = getTypeAnswer(count_study + 1);
-      if (i >= 2 && words[i].name_word === words[i - 2].name_word) {
-        typeAnswer = getTypeAnswer(count_study + 2);
-      }
-    }
+    const typeAnswer = getTypeAnswerRandom();
     listWords.push({ type: typeAnswer, data: words[i] });
   }
   return listWords;
@@ -136,13 +129,8 @@ const loadWordsStudyTypeAnswerWords = (words: WordType[]): WordStudy[] => {
 export const actLoadWordsStudy = (words: WordType[]): WordStudy[] => {
   let wordsLoad = loadWordsStudyWithSet(words);
   wordsLoad = loadWordsStudyMaxTotal(wordsLoad);
-  const wordsStudy = loadWordsStudyTypeAnswerWords(wordsLoad);
+  const wordsStudy = loadWordsTypeAnswerRandom(wordsLoad);
   return wordsStudy;
-};
-
-export const actLoadWordsExam = (words: WordType[]): WordStudy[] => {
-  console.log('test');
-  return null;
 };
 
 // Load Words Difficult
@@ -178,20 +166,19 @@ const loadWordsDifficultMaxTotal = (words: WordType[]): WordType[] => {
   return newWords;
 };
 
-const loadWordsDifficultTypeAnswerWords = (words: WordType[]): WordStudy[] => {
-  const listWords: WordStudy[] = [];
-  for (let i = 0; i < words.length; i += 1) {
-    const typeAnswer = getTypeAnswerRandom();
-    listWords.push({ type: typeAnswer, data: words[i] });
-  }
-  return listWords;
-};
-
 export const actLoadWordsDifficultStudy = (words: WordType[]): WordStudy[] => {
   let wordsLoad = loadWordsDifficultWithSet(words);
   wordsLoad = loadWordsDifficultMaxTotal(wordsLoad);
-  const wordsStudy = loadWordsDifficultTypeAnswerWords(wordsLoad);
-  // console.log('---- List ----');
-  // wordsStudy.map((o) => console.log(`${o.data.name_word} - ${o.data.difficult_study}`));
+  const wordsStudy = loadWordsTypeAnswerRandom(wordsLoad);
   return wordsStudy;
+};
+
+// Load Word Exam
+export const actLoadWordsExam = (words: WordType[], numOfWords: number): WordStudy[] => {
+  const listWords: WordStudy[] = [];
+  for (let i = 0; i < numOfWords; i += 1) {
+    const typeAnswer = getTypeAnswerRandom();
+    listWords.push({ type: typeAnswer, data: words[rdNum(0, words.length)] });
+  }
+  return listWords;
 };
