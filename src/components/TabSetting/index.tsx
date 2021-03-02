@@ -45,7 +45,7 @@ export default memo(function TabSetting({ navigation }: Props) {
 
   return (
     <ScrollView light style={tailwind('p-2')}>
-      <View light style={tailwind('pb-2')}>
+      <View light style={tailwind('pb-2 pb-16')}>
         <ContentBlock title="Cài Đặt Hiển Thị">
           <TabSettingVisible />
         </ContentBlock>

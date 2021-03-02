@@ -1,3 +1,4 @@
+import { Entypo, FontAwesome5, Ionicons } from '@expo/vector-icons';
 import React, { memo } from 'react';
 import { StyleSheet } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
@@ -6,6 +7,7 @@ import { LineChartData } from 'react-native-chart-kit/dist/line-chart/LineChart'
 import Layout from '~/src/constants/Layout';
 import tailwind from '~/tailwind';
 import { ScrollView, Text, View } from '../Themed';
+import ButtonDefault from '../UI/ButtonDefault';
 import ContentBlock from '../UI/ContentBlock';
 
 const { width: screenWidth } = Layout.window;
@@ -18,6 +20,11 @@ const chartConfig: AbstractChartConfig = {
   labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
   style: { borderRadius: 16 },
   useShadowColorFromDataset: true,
+  propsForBackgroundLines: {
+    strokeDasharray: '4',
+    strokeWidth: 0.25,
+    stroke: 'rgba(0, 0, 0, .50)',
+  },
 };
 
 export default memo(function TabStatistics() {
@@ -39,12 +46,33 @@ export default memo(function TabStatistics() {
 
   return (
     <ScrollView light style={tailwind('p-2')}>
+      <ContentBlock title="Bản thân">
+        <View style={tailwind('flex-row justify-around mb-2')}>
+          <View>
+            <ExperienceBlock text="Streak" number={5}>
+              <FontAwesome5 name="fire" size={22} color="#FF5A00" />
+            </ExperienceBlock>
+            <ExperienceBlock text="Từ đã học" number={5}>
+              <FontAwesome5 name="graduation-cap" size={20} color="#2dce89" />
+            </ExperienceBlock>
+          </View>
+          <View>
+            <ExperienceBlock text="Tổng điểm KN" number={12000}>
+              <Ionicons name="md-flash" size={22} color="#FFE808" />
+            </ExperienceBlock>
+            <ExperienceBlock text="T.gian học (phút)" number={120}>
+              <Entypo name="time-slot" size={20} color="#5e72e4" />
+            </ExperienceBlock>
+          </View>
+        </View>
+      </ContentBlock>
       <ContentBlock title="Số từ đã học gần đây">
         <View>
           <Text style={styles.textChart}>Mục tiêu: 30</Text>
+          <View style={styles.absoluteView} />
           <LineChart
             data={data}
-            width={screenWidth - 20}
+            width={screenWidth}
             height={160}
             chartConfig={chartConfig}
             fromZero
@@ -54,11 +82,33 @@ export default memo(function TabStatistics() {
             withShadow={false}
             style={tailwind('-ml-7 my-1')}
           />
+          <ButtonDefault title="Đặt mục tiêu hằng ngày" onPress={() => console.log('test')} />
         </View>
       </ContentBlock>
     </ScrollView>
   );
 });
+
+type TypeExperienceBlock = {
+  text: string;
+  number: number;
+  children: JSX.Element;
+};
+
+export function ExperienceBlock(props: TypeExperienceBlock): JSX.Element {
+  const { text, number, children } = props;
+  return (
+    <View style={tailwind('flex-row items-center mb-2')}>
+      <View style={tailwind('w-6 items-center')}>{children}</View>
+      <View style={tailwind('ml-2')}>
+        <Text weight={700} style={tailwind('text-base tracking-wider')}>
+          {number}
+        </Text>
+        <Text style={tailwind('text-xs text-gray-500')}>{text}</Text>
+      </View>
+    </View>
+  );
+}
 
 const styles = StyleSheet.create({
   textChart: {
@@ -66,6 +116,14 @@ const styles = StyleSheet.create({
     position: 'absolute',
     fontSize: 10,
     left: '13%',
+    zIndex: 500,
+  },
+  absoluteView: {
+    width: '7%',
+    height: 160,
+    position: 'absolute',
+    right: -10,
+    top: 0,
     zIndex: 500,
   },
 });

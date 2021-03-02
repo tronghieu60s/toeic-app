@@ -25,7 +25,7 @@ export default function BottomTabNavigator(): JSX.Element {
         activeBackgroundColor: Colors[colorScheme].background,
         inactiveBackgroundColor: Colors[colorScheme].background,
         inactiveTintColor: Colors[colorScheme].tabIconDefault,
-        style: { height: 55 },
+        style: { height: 55, position: 'absolute' },
       }}
       screenOptions={({ route, navigation }) => {
         const { routes, index } = navigation.dangerouslyGetState();

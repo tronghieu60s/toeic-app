@@ -96,7 +96,7 @@ export default memo(function TabPractice(props: Props) {
 
   return (
     <ScrollView light style={tailwind('flex-1')}>
-      <View light style={tailwind('pt-1 px-1')}>
+      <View light style={tailwind('pt-1 px-1 pb-14')}>
         {renderItems(groupsRender)}
       </View>
     </ScrollView>

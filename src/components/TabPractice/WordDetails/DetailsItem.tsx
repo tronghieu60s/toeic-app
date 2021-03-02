@@ -11,7 +11,7 @@ type Props = {
   word: WordType;
 };
 
-export default memo(function StudyWord({ word }: Props) {
+export default memo(function DetailsItem({ word }: Props) {
   const { name_word, pronounce_word, mean_word, explain_word } = word;
 
   return (
@@ -29,7 +29,7 @@ export default memo(function StudyWord({ word }: Props) {
         <View style={tailwind('w-full justify-center items-center mt-5 px-8 bg-transparent')}>
           <View style={tailwind('items-center  bg-transparent')}>
             <Text weight={700} style={{ color: '#9d9d9d', fontSize: 12 }}>
-              VIETNAMESE
+              TIẾNG VIỆT
             </Text>
             <Text weight={700} style={tailwind('text-base text-center mt-1')}>
               {mean_word}

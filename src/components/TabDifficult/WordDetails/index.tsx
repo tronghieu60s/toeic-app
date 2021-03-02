@@ -5,7 +5,7 @@ import { loadWordDetails } from '~/src/redux/actions/practiceAction';
 import tailwind from '~/tailwind';
 import { TabPracticeParamList } from '~/types';
 import { AdMobBanner } from '../../Ads';
-import StudyWord from '../../TabPractice/Study/StudyMode/StudyWord';
+import StudyWord from '../../TabPractice/WordDetails/DetailsItem';
 import { View } from '../../Themed';
 
 type Props = {

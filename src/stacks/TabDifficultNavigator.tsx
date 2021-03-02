@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 import HeaderTitle from '~/src/components/Common/HeaderTitle';
 import TabDifficultRight from '~/src/components/TabDifficult/Header/Right';
 import TabDifficultStudy from '~/src/components/TabDifficult/Study';
+import TabPracticeReport from '~/src/components/TabPractice/Report';
 import TabPracticeStudyHeaderBackImage from '~/src/components/TabPractice/Study/Header/BackImage';
 import TabPracticeStudyHeaderRight from '~/src/components/TabPractice/Study/Header/Right';
 import TabPracticeWordDetailHeaderTitle from '~/src/components/TabPractice/WordDetails/Header/Title';
@@ -44,9 +45,9 @@ export default function TabDifficultNavigator(): JSX.Element {
       <TabFavoriteStack.Screen
         name="TabPracticeWordDetails"
         component={TabDifficultWordDetails}
-        options={({ route }) => ({
-          headerTitle: () => <TabPracticeWordDetailHeaderTitle route={route} />,
-          headerRight: () => <TabPracticeWordDetailsHeaderRight />,
+        options={({ navigation }) => ({
+          headerTitle: () => <TabPracticeWordDetailHeaderTitle />,
+          headerRight: () => <TabPracticeWordDetailsHeaderRight navigation={navigation} />,
         })}
       />
       <TabFavoriteStack.Screen
@@ -77,6 +78,13 @@ export default function TabDifficultNavigator(): JSX.Element {
             headerRight: () => <TabPracticeStudyHeaderRight />,
             cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
           };
+        }}
+      />
+      <TabFavoriteStack.Screen
+        name="TabPracticeReport"
+        component={TabPracticeReport}
+        options={{
+          headerTitle: () => <HeaderTitle title="Báo Lỗi" />,
         }}
       />
     </TabFavoriteStack.Navigator>

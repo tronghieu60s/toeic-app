@@ -37,7 +37,7 @@ export default memo(function TabDifficult({ navigation }: Props) {
         renderItem={renderItem}
         keyExtractor={(item, index) => index.toString()}
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={tailwind('pt-2')}
+        contentContainerStyle={tailwind('pt-2 pb-14')}
       />
     </View>
   );

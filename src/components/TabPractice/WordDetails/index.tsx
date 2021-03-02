@@ -18,7 +18,7 @@ import { TabPracticeParamList } from '~/types';
 import { AdMobBanner } from '../../Ads';
 import { Ripple, View } from '../../Themed';
 import ScreenLoading from '../../UI/ScreenLoading';
-import StudyWord from '../Study/StudyMode/StudyWord';
+import StudyWord from './DetailsItem';
 
 type Props = {
   route: RouteProp<TabPracticeParamList, 'TabPracticeWordDetails'>;

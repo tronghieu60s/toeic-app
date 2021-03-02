@@ -2,7 +2,7 @@ import { RouteProp } from '@react-navigation/native';
 import Constants from 'expo-constants';
 import * as Linking from 'expo-linking';
 import React, { memo, useState } from 'react';
-import { Alert, Button, StyleSheet, ToastAndroid } from 'react-native';
+import { Button, StyleSheet, ToastAndroid } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import tailwind from '~/tailwind';
 import { TabPracticeParamList } from '~/types';

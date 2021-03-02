@@ -137,7 +137,15 @@ export default memo(function TabPracticeExam({ navigation }: Props) {
         })}
       </ScrollView>
       <Bottom status={status} answer={answer} handleContinue={handleContinue} />
-      {status !== 'Waiting' && <AlertBottom word={words[currentNum].data} status={status} />}
+      {status !== 'Waiting' && (
+        <AlertBottom
+          word={words[currentNum].data}
+          status={status}
+          onPressReport={() => {
+            navigation.navigate('TabPracticeReport', { word: words[currentNum].data });
+          }}
+        />
+      )}
     </View>
   );
 });

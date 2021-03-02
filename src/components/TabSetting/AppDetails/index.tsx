@@ -22,7 +22,7 @@ export default memo(function TabSettingAppDetails() {
         >
           Từ Vựng Toeic Cần Thiết - Toeic Essential Words
         </Text>
-        <Text style={tailwind('text-xs mt-1')}>{textChannels}</Text>
+        <Text style={tailwind('text-xs tracking-widest mt-1')}>{textChannels}</Text>
       </View>
       <View style={tailwind('flex-row items-center mb-1')}>
         <Text weight={700}>Thiết bị:</Text>
