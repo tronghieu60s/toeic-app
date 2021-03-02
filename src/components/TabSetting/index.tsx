@@ -10,6 +10,7 @@ import { SpeechEnglish } from '~/src/helpers/sound';
 import { RootState } from '~/src/redux/reducers/rootReducer';
 import tailwind from '~/tailwind';
 import { TabSettingParamList } from '~/types';
+import ContentBlock from '../UI/ContentBlock';
 import TabSettingAudio from './Audio';
 import TabSettingVisible from './Visible';
 
@@ -45,50 +46,50 @@ export default memo(function TabSetting({ navigation }: Props) {
   return (
     <ScrollView light style={tailwind('p-2')}>
       <View light style={tailwind('pb-2')}>
-        <View style={tailwind('p-3 rounded-lg mb-2')}>
-          <TitleModal>Cài Đặt Hiển Thị</TitleModal>
+        <ContentBlock title="Cài Đặt Hiển Thị">
           <TabSettingVisible />
-        </View>
-        <View style={tailwind('p-3 rounded-lg mb-2')}>
-          <TitleModal>Cài Đặt Âm Thanh</TitleModal>
-          <View style={tailwind('flex-row justify-center items-center my-2')}>
-            <TextInput
-              style={styles.input}
-              onChangeText={(text) => setTextVoice(text)}
-              value={textVoice}
-            />
-            <Ripple style={tailwind('p-2')} onPress={onPressSpeechButton}>
-              <SimpleLineIcons name="volume-2" size={17} color="black" />
-            </Ripple>
+        </ContentBlock>
+        <ContentBlock title="Cài Đặt Âm Thanh">
+          <View>
+            <View style={tailwind('flex-row justify-center items-center my-2')}>
+              <TextInput
+                style={styles.input}
+                onChangeText={(text) => setTextVoice(text)}
+                value={textVoice}
+              />
+              <Ripple style={tailwind('p-2')} onPress={onPressSpeechButton}>
+                <SimpleLineIcons name="volume-2" size={17} color="black" />
+              </Ripple>
+            </View>
+            <TabSettingAudio />
           </View>
-          <TabSettingAudio />
-        </View>
-        <View style={tailwind('p-3 rounded-lg mb-2')}>
-          <TitleModal>Cộng Đồng</TitleModal>
-          <LinkingBlock
-            title="Đánh giá ứng dụng 5 sao"
-            onPress={() => {
-              return Linking.openURL(
-                'https://play.google.com/store/apps/details?id=com.tronghieuit.toeicew',
-              );
-            }}
-          >
-            <FontAwesome name="star" size={23} color="#5e72e4" />
-          </LinkingBlock>
-          <LinkingBlock
-            title="Phản hồi"
-            onPress={() => {
-              return Linking.openURL('mailto:estudy.techapp@gmail.com');
-            }}
-          >
-            <MaterialIcons name="message" size={22} color="#5e72e4" />
-          </LinkingBlock>
-          <LinkingBlock title="Chia sẻ" onPress={onShare}>
-            <Entypo name="share" size={22} color="#5e72e4" />
-          </LinkingBlock>
-        </View>
-        <View style={tailwind('p-3 rounded-lg mb-2')}>
-          <TitleModal>Khác</TitleModal>
+        </ContentBlock>
+        <ContentBlock title="Cộng Đồng">
+          <View>
+            <LinkingBlock
+              title="Đánh giá ứng dụng 5 sao"
+              onPress={() => {
+                return Linking.openURL(
+                  'https://play.google.com/store/apps/details?id=com.tronghieuit.toeicew',
+                );
+              }}
+            >
+              <FontAwesome name="star" size={23} color="#5e72e4" />
+            </LinkingBlock>
+            <LinkingBlock
+              title="Phản hồi"
+              onPress={() => {
+                return Linking.openURL('mailto:estudy.techapp@gmail.com');
+              }}
+            >
+              <MaterialIcons name="message" size={22} color="#5e72e4" />
+            </LinkingBlock>
+            <LinkingBlock title="Chia sẻ" onPress={onShare}>
+              <Entypo name="share" size={22} color="#5e72e4" />
+            </LinkingBlock>
+          </View>
+        </ContentBlock>
+        <ContentBlock title="Khác">
           {/* <NormalBlock
             title="Dữ liệu học tập"
             onPress={}
@@ -101,19 +102,11 @@ export default memo(function TabSetting({ navigation }: Props) {
             title="Thông tin ứng dụng"
             onPress={() => navigation.navigate('TabSettingAppDetails')}
           />
-        </View>
+        </ContentBlock>
       </View>
     </ScrollView>
   );
 });
-
-function TitleModal({ children }: { children: string }) {
-  return (
-    <Text weight={700} style={{ ...tailwind('mb-4'), fontSize: 13, color: '#5e72e4' }}>
-      {children}
-    </Text>
-  );
-}
 
 function LinkingBlock(props: LinkingProps) {
   const { title, onPress, children } = props;

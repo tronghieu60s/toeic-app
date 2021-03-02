@@ -14,9 +14,9 @@ export default {
     name: 'Thống kê',
     type: 'Feather',
   },
-  TabFavorite: {
-    icon: 'message1',
-    name: 'Tin mới',
+  TabDictionary: {
+    icon: 'search1',
+    name: 'Từ Điển',
     type: 'AntDesign',
   },
   TabSetting: {

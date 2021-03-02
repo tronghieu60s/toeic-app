@@ -1,5 +1,7 @@
 import { RouteProp } from '@react-navigation/native';
-import React, { memo } from 'react';
+import React, { memo, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { loadWordDetails } from '~/src/redux/actions/practiceAction';
 import tailwind from '~/tailwind';
 import { TabPracticeParamList } from '~/types';
 import { AdMobBanner } from '../../Ads';
@@ -12,6 +14,11 @@ type Props = {
 
 export default memo(function TabDifficultWordDetails(props: Props) {
   const { word } = props.route.params;
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(loadWordDetails(word));
+  }, []);
 
   return (
     <View light style={tailwind('flex-1')}>

@@ -8,7 +8,7 @@ import tailwind from '~/tailwind';
 import { TabDifficultParamList, WordType } from '~/types';
 import WordItem from '../TabPractice/Words/WordItem';
 import { View } from '../Themed';
-import CenterUI from '../UI/ScreenCenter';
+import ScreenEmpty from '../UI/ScreenEmpty';
 
 type Props = {
   navigation: StackNavigationProp<TabDifficultParamList, 'TabDifficultScreen'>;
@@ -27,8 +27,8 @@ export default memo(function TabDifficult({ navigation }: Props) {
     <WordItem word={item} handleFlashWord={handleFlashWord} handleDetailsWord={handleDetailsWord} />
   );
 
-  const text = 'Không có từ khó. Bạn đang làm rất tốt ^^.';
-  if (words.length <= 0) return <CenterUI>{text}</CenterUI>;
+  const text = 'Không có từ khó.\nBạn đang làm rất tốt ^^.';
+  if (words.length <= 0) return <ScreenEmpty>{text}</ScreenEmpty>;
 
   return (
     <View light style={tailwind('flex-1 px-2')}>

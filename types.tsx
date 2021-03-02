@@ -7,7 +7,7 @@ export type BottomTabParamList = {
   TabPractice: undefined;
   TabDifficult: undefined;
   TabStatistics: undefined;
-  // TabMessage: undefined;
+  TabDictionary: undefined;
   TabSetting: undefined;
 };
 
