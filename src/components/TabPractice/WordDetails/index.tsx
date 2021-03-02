@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { SpeechEnglish } from '~/src/helpers/sound';
-import { actToggleFlashWord } from '~/src/redux/actions/practiceAction';
+import { actToggleFlashWord, loadWordDetails } from '~/src/redux/actions/practiceAction';
 import { RootState } from '~/src/redux/reducers/rootReducer';
 import tailwind from '~/tailwind';
 import { TabPracticeParamList } from '~/types';
@@ -48,11 +48,8 @@ export default memo(function TabPracticeWordDetails(props: Props) {
   });
 
   useEffect(() => {
-    scroll?.current?.scrollTo({ x: width * curNum, animated: false });
-  }, [curNum]);
-
-  useEffect(() => {
     (async () => {
+      await dispatch(loadWordDetails(word));
       const play_sound = await AsyncStorage.getItem('@play_sound');
       setPlaySound(play_sound === 'true');
       setIsPending(false);
@@ -61,8 +58,13 @@ export default memo(function TabPracticeWordDetails(props: Props) {
     })();
   }, []);
 
+  useEffect(() => {
+    scroll?.current?.scrollTo({ x: width * curNum, animated: false });
+  }, [curNum]);
+
   const setNewCurNum = (curNum: number) => {
     setCurNum(curNum);
+    dispatch(loadWordDetails(words[curNum]));
     if (playSound) SpeechEnglish(words[curNum].name_word || '', { voice, rate, pitch });
   };
   const onPressSetPlaySound = async () => {

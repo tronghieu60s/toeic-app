@@ -5,14 +5,16 @@ import { Image } from 'react-native';
 import tailwind from '~/tailwind';
 import { ScrollView, Text, View } from '../../Themed';
 
-const { expo } = require('~/app.json');
 const { version_data } = require('~/src/resources/config');
 
-const { version } = expo;
 export default memo(function TabSettingAppDetails() {
+  const textChannels = `@${
+    Constants.manifest.releaseChannel?.toUpperCase() || 'DEVELOPMENT'
+  } - 2021`;
+
   return (
     <ScrollView style={tailwind('h-full bg-white px-7')}>
-      <View style={tailwind('items-center mb-5')}>
+      <View style={tailwind('items-center mb-6')}>
         <Image style={tailwind('w-28 h-28')} source={require('~/assets/images/icon.png')} />
         <Text
           weight={600}
@@ -20,6 +22,7 @@ export default memo(function TabSettingAppDetails() {
         >
           Từ Vựng Toeic Cần Thiết - Toeic Essential Words
         </Text>
+        <Text style={tailwind('text-xs mt-1')}>{textChannels}</Text>
       </View>
       <View style={tailwind('flex-row items-center mb-1')}>
         <Text weight={700}>Thiết bị:</Text>
@@ -27,7 +30,7 @@ export default memo(function TabSettingAppDetails() {
       </View>
       <View style={tailwind('flex-row items-center mb-1')}>
         <Text weight={700}>Phiên bản ứng dụng cơ sở:</Text>
-        <Text style={tailwind('ml-2 text-sm tracking-widest')}>{version}</Text>
+        <Text style={tailwind('ml-2 text-sm tracking-widest')}>{Constants.manifest.version}</Text>
       </View>
       <View style={tailwind('flex-row items-center mb-1')}>
         <Text weight={700}>Phiên bản dữ liệu ứng dụng:</Text>

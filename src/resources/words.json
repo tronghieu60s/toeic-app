@@ -1910,5 +1910,485 @@
         "explain_word": "to prove, show, find out, or state that (something) is true or correct",
         "mean_word": "kiểm tra lại, xác minh",
         "id_group": "20"
+    },
+    {
+        "id_word": "241",
+        "name_word": "accept",
+        "pronounce_word": "/ɪkˈsɛpt/",
+        "explain_word": "to receive or take (something offered) [+ obj]",
+        "mean_word": "nhận, chấp nhận, thừa nhận",
+        "id_group": "21"
+    },
+    {
+        "id_word": "242",
+        "name_word": "balance",
+        "pronounce_word": "/ˈbæləns/",
+        "explain_word": "the state of having your weight spread equally so that you do not fall",
+        "mean_word": "cái cân, sự cân bằng, số dư tài khoản",
+        "id_group": "21"
+    },
+    {
+        "id_word": "243",
+        "name_word": "borrow",
+        "pronounce_word": "/'bɒrəʊ/",
+        "explain_word": "to take and use (something that belongs to someone else) for a period of time before returning it",
+        "mean_word": "vay, mượn",
+        "id_group": "21"
+    },
+    {
+        "id_word": "244",
+        "name_word": "cautiously",
+        "pronounce_word": "/'kɔ:∫əsli/",
+        "explain_word": "in a way that deliberately avoids potential problems or dangers",
+        "mean_word": "thận trọng, cẩn thận",
+        "id_group": "21"
+    },
+    {
+        "id_word": "245",
+        "name_word": "deduct",
+        "pronounce_word": "/di'dʌkt/",
+        "explain_word": "to take away (something, especially an amount of money) from a total",
+        "mean_word": "khấu đi, trừ đi",
+        "id_group": "21"
+    },
+    {
+        "id_word": "246",
+        "name_word": "dividend",
+        "pronounce_word": "/'dividend/",
+        "explain_word": "finance :an amount of a company's profits that the company pays to people who own stock in the company",
+        "mean_word": "tiền lãi cổ phần, số bị chia",
+        "id_group": "21"
+    },
+    {
+        "id_word": "247",
+        "name_word": "down payment",
+        "pronounce_word": "/daʊn 'peimənt/",
+        "explain_word": "an initial partial payment",
+        "mean_word": "tiền trả trước",
+        "id_group": "21"
+    },
+    {
+        "id_word": "248",
+        "name_word": "mortgage",
+        "pronounce_word": "/'mɔ:gidʒ/",
+        "explain_word": "a legal agreement in which a person borrows money to buy property (such as a house) and pays back the money over a period of years",
+        "mean_word": "cầm cố, thế chấp",
+        "id_group": "21"
+    },
+    {
+        "id_word": "249",
+        "name_word": "restricted",
+        "pronounce_word": "/ris'triktid/",
+        "explain_word": "having a set limit",
+        "mean_word": "bị hạn chế, có giới hạn",
+        "id_group": "21"
+    },
+    {
+        "id_word": "250",
+        "name_word": "signature",
+        "pronounce_word": "/'signət∫ə[r]/",
+        "explain_word": "a person's name written in that person's handwriting",
+        "mean_word": "chữ ký, sự ký tên",
+        "id_group": "21"
+    },
+    {
+        "id_word": "251",
+        "name_word": "take out",
+        "pronounce_word": "/teik aʊt/",
+        "explain_word": "withdrawal",
+        "mean_word": "rút tiền",
+        "id_group": "21"
+    },
+    {
+        "id_word": "252",
+        "name_word": "transaction",
+        "pronounce_word": "/træn'zæk∫n/",
+        "explain_word": "a business deal :an occurrence in which goods, services, or money are passed from one person, account, etc., to another",
+        "mean_word": "sự giao dịch, công việc kinh doanh",
+        "id_group": "21"
+    },
+    {
+        "id_word": "253",
+        "name_word": "accounting",
+        "pronounce_word": "/ə'kauntiɳ/",
+        "explain_word": "the skill, system, or job of keeping the financial records of a business or person - often used before another noun",
+        "mean_word": "công việc kế toán, sự thanh toán, tính toán",
+        "id_group": "22"
+    },
+    {
+        "id_word": "254",
+        "name_word": "accumulate",
+        "pronounce_word": "/əˈkjuːmjəˌleɪt/",
+        "explain_word": "to gather or acquire (something) gradually as time passes",
+        "mean_word": "tích lũy, tích góp, gom góp",
+        "id_group": "22"
+    },
+    {
+        "id_word": "255",
+        "name_word": "asset",
+        "pronounce_word": "/ˈæˌsɛt/",
+        "explain_word": "a valuable person or thing",
+        "mean_word": "tài sản, của cải",
+        "id_group": "22"
+    },
+    {
+        "id_word": "256",
+        "name_word": "audit",
+        "pronounce_word": "/'ɔ:dit/",
+        "explain_word": "a complete and careful examination of the financial records of a business or person [count]",
+        "mean_word": "sự kiểm tra sổ sách, kiểm toán",
+        "id_group": "22"
+    },
+    {
+        "id_word": "257",
+        "name_word": "budget",
+        "pronounce_word": "/'bʌdʒit/",
+        "explain_word": "an amount of money available for spending that is based on a plan for how it will be spent [count]",
+        "mean_word": "ngân quỹ, ngân sách",
+        "id_group": "22"
+    },
+    {
+        "id_word": "258",
+        "name_word": "build up",
+        "pronounce_word": "/bild ʌp/",
+        "explain_word": "to increase over time",
+        "mean_word": "tăng cường, gom lại, tích lại",
+        "id_group": "22"
+    },
+    {
+        "id_word": "259",
+        "name_word": "client",
+        "pronounce_word": "/'klaiənt/",
+        "explain_word": "a person who pays a professional person or organization for services",
+        "mean_word": "khách, khách hàng",
+        "id_group": "22"
+    },
+    {
+        "id_word": "260",
+        "name_word": "debt",
+        "pronounce_word": "/det/",
+        "explain_word": "an amount of money that you owe to a person, bank, company, etc.",
+        "mean_word": "nợ, món nợ",
+        "id_group": "22"
+    },
+    {
+        "id_word": "261",
+        "name_word": "outstanding",
+        "pronounce_word": "/,aʊt'stændiŋ/",
+        "explain_word": "not yet paid, continuing to exist",
+        "mean_word": "còn tồn tại, chưa giải quyết xong",
+        "id_group": "22"
+    },
+    {
+        "id_word": "262",
+        "name_word": "profitably",
+        "pronounce_word": "/prɒ'fittəbli/",
+        "explain_word": "in a way that yields profit or financial gain.",
+        "mean_word": "có lời, sinh lãi",
+        "id_group": "22"
+    },
+    {
+        "id_word": "263",
+        "name_word": "reconcile",
+        "pronounce_word": "/'rekənsail/",
+        "explain_word": "to find a way of making (two different ideas, facts, etc.) exist or be true at the same time",
+        "mean_word": "hòa giải, giảng hòa, dung hòa",
+        "id_group": "22"
+    },
+    {
+        "id_word": "264",
+        "name_word": "turnover",
+        "pronounce_word": "/'tɜ:n,əʊvə/",
+        "explain_word": "the amount of money that is received in sales by a store or company [count]",
+        "mean_word": "doanh số, doanh thu",
+        "id_group": "22"
+    },
+    {
+        "id_word": "265",
+        "name_word": "aggressively",
+        "pronounce_word": "/ə'gresivli/",
+        "explain_word": "in a manner resulting from or betraying aggression.",
+        "mean_word": "xông xáo, năng nổ, hùng hổ",
+        "id_group": "23"
+    },
+    {
+        "id_word": "266",
+        "name_word": "attitude",
+        "pronounce_word": "/'ætitju:d/",
+        "explain_word": "the way you think and feel about someone or something",
+        "mean_word": "thái độ, quan điểm, tư thế",
+        "id_group": "23"
+    },
+    {
+        "id_word": "267",
+        "name_word": "commit",
+        "pronounce_word": "/kə'mit/",
+        "explain_word": "to say that (someone or something) will definitely do something :to make (someone or something) obligated to do something [+ obj]",
+        "mean_word": "ủy nhiệm, hứa, cam kết",
+        "id_group": "23"
+    },
+    {
+        "id_word": "268",
+        "name_word": "conservative",
+        "pronounce_word": "/kən'sɜ:vətiv/",
+        "explain_word": "believing in the value of established and traditional practices in politics and society :relating to or supporting political conservatism",
+        "mean_word": "bảo thủ, dè dặt",
+        "id_group": "23"
+    },
+    {
+        "id_word": "269",
+        "name_word": "fund",
+        "pronounce_word": "/fʌnd/",
+        "explain_word": "an amount of money that is used for a special purpose",
+        "mean_word": "quỹ, nguồn tiền, tài trợ",
+        "id_group": "23"
+    },
+    {
+        "id_word": "270",
+        "name_word": "invest",
+        "pronounce_word": "/in'vest/",
+        "explain_word": "to use money to earn more money :to use your money to purchase stock in a company, to buy property, etc., in order to make future profit [no obj]",
+        "mean_word": "đầu tư, ",
+        "id_group": "23"
+    },
+    {
+        "id_word": "271",
+        "name_word": "long-term",
+        "pronounce_word": "/lɔη-tɜ:m/",
+        "explain_word": "involing long time period",
+        "mean_word": "dài hạn, dài ngày, lâu dài",
+        "id_group": "23"
+    },
+    {
+        "id_word": "272",
+        "name_word": "portfolio",
+        "pronounce_word": "/pɔ:'fəʊliəʊ/",
+        "explain_word": "a set of drawings, paintings, or photographs that are presented together in a folder",
+        "mean_word": "danh mục nghề nghiệp, danh sách vốn đầu tư",
+        "id_group": "23"
+    },
+    {
+        "id_word": "273",
+        "name_word": "pull out",
+        "pronounce_word": "/pʊl aʊt/",
+        "explain_word": "to withdraw, to stop",
+        "mean_word": "rút ra, rút khỏi, thôi không tham gia",
+        "id_group": "23"
+    },
+    {
+        "id_word": "274",
+        "name_word": "resource",
+        "pronounce_word": "/ri'sɔ:s/",
+        "explain_word": "something that a country has and can use to increase its wealth",
+        "mean_word": "tài nguyên, tài sản",
+        "id_group": "23"
+    },
+    {
+        "id_word": "275",
+        "name_word": "return",
+        "pronounce_word": "/ri'tɜ:n/",
+        "explain_word": "to come or go to a place again :to come back or go back again",
+        "mean_word": "tiền lãi, trở lại, đáp lại",
+        "id_group": "23"
+    },
+    {
+        "id_word": "276",
+        "name_word": "wisely",
+        "pronounce_word": "/'waizli/",
+        "explain_word": "in a way that shows experience, knowledge, and good judgment.",
+        "mean_word": "khôn ngoan, từng trải, thông thái",
+        "id_group": "23"
+    },
+    {
+        "id_word": "277",
+        "name_word": "calculation",
+        "pronounce_word": "/,kælkjʊ'lei∫n/",
+        "explain_word": "a process or result of calculating something [count]",
+        "mean_word": "sự tính toán, sự cân nhắc",
+        "id_group": "24"
+    },
+    {
+        "id_word": "278",
+        "name_word": "deadline",
+        "pronounce_word": "/'dedlain/",
+        "explain_word": "a date or time when something must be finished :the last day, hour, or minute that something will be accepted [count]",
+        "mean_word": "thời hạn cuối cùng, hạn chót",
+        "id_group": "24"
+    },
+    {
+        "id_word": "279",
+        "name_word": "file",
+        "pronounce_word": "/fail/",
+        "explain_word": "a device (such as a box, folder, or cabinet) in which documents that you want to keep are stored so that they can be found easily",
+        "mean_word": "hồ sơ, giấy tờ, ngăn kéo, hộp",
+        "id_group": "24"
+    },
+    {
+        "id_word": "280",
+        "name_word": "fill out",
+        "pronounce_word": "/fil aʊt/",
+        "explain_word": "to complete",
+        "mean_word": "hoàn tất, hoàn thành, điền vào",
+        "id_group": "24"
+    },
+    {
+        "id_word": "281",
+        "name_word": "give up",
+        "pronounce_word": "/giv ʌp/",
+        "explain_word": "to quit, to stop",
+        "mean_word": "bỏ, từ bỏ, thôi",
+        "id_group": "24"
+    },
+    {
+        "id_word": "282",
+        "name_word": "joint",
+        "pronounce_word": "/dʒɔint/",
+        "explain_word": "a place where two things or parts are joined",
+        "mean_word": "chung, cùng",
+        "id_group": "24"
+    },
+    {
+        "id_word": "283",
+        "name_word": "owe",
+        "pronounce_word": "/əʊ/",
+        "explain_word": "to need to pay or repay money to a person, bank, business, etc. [+ obj]",
+        "mean_word": "nợ, mắc nợ, mang ơn",
+        "id_group": "24"
+    },
+    {
+        "id_word": "284",
+        "name_word": "penalty",
+        "pronounce_word": "/'penlti/",
+        "explain_word": "punishment for breaking a rule or law [count]",
+        "mean_word": "sự phạt, hình phạt, tiền phạt",
+        "id_group": "24"
+    },
+    {
+        "id_word": "285",
+        "name_word": "preparation",
+        "pronounce_word": "/prepə'rei∫n/",
+        "explain_word": "the activity or process of making something ready or of becoming ready for something",
+        "mean_word": "sửa soạn, chuẩn bị",
+        "id_group": "24"
+    },
+    {
+        "id_word": "286",
+        "name_word": "refund",
+        "pronounce_word": "/ri'fʌnd/",
+        "explain_word": "to give back money that someone paid for something (such as a product that was returned or a service that was not acceptable)",
+        "mean_word": "sự trả lại, hoàn lại tiền",
+        "id_group": "24"
+    },
+    {
+        "id_word": "287",
+        "name_word": "spouse",
+        "pronounce_word": "/spaʊz/",
+        "explain_word": "a husband or wife",
+        "mean_word": "chồng, vợ",
+        "id_group": "24"
+    },
+    {
+        "id_word": "288",
+        "name_word": "withhold",
+        "pronounce_word": "/wið'həʊld/",
+        "explain_word": "[+ obj] to hold (something) back",
+        "mean_word": "kiềm chế, nín, nhịn",
+        "id_group": "24"
+    },
+    {
+        "id_word": "289",
+        "name_word": "desire",
+        "pronounce_word": "/di'zaiə[r]/",
+        "explain_word": "to want or wish for (something)",
+        "mean_word": "thèm muốn, khao khát, ao ước",
+        "id_group": "25"
+    },
+    {
+        "id_word": "290",
+        "name_word": "detail",
+        "pronounce_word": "/'di:teil/",
+        "explain_word": "a small part of something",
+        "mean_word": "chi tiết",
+        "id_group": "25"
+    },
+    {
+        "id_word": "291",
+        "name_word": "forecast",
+        "pronounce_word": "/'fɔkɑ:st/",
+        "explain_word": "to say that (something) will happen in the future :to predict (something, such as weather) after looking at the information that is available",
+        "mean_word": "dự đoán, tiên đoán",
+        "id_group": "25"
+    },
+    {
+        "id_word": "292",
+        "name_word": "level",
+        "pronounce_word": "/'levl/",
+        "explain_word": "a position or rank in a scale :a position that is high or low when compared to others",
+        "mean_word": "mức, cấp, cấp bậc",
+        "id_group": "25"
+    },
+    {
+        "id_word": "293",
+        "name_word": "overall",
+        "pronounce_word": "/,əʊvərɔ:l/",
+        "explain_word": "with everyone or everything included",
+        "mean_word": "tổng cộng, toàn bộ",
+        "id_group": "25"
+    },
+    {
+        "id_word": "294",
+        "name_word": "perspective",
+        "pronounce_word": "/pə'spektiv/",
+        "explain_word": "a way of thinking about and understanding something (such as a particular issue or life in general) [count]",
+        "mean_word": "phối cảnh, viễn cảnh, triển vọng",
+        "id_group": "25"
+    },
+    {
+        "id_word": "295",
+        "name_word": "project",
+        "pronounce_word": "/'prədʒekt/",
+        "explain_word": "a planned piece of work that has a specific purpose (such as to find information or to make something new) and that usually requires a lot of time",
+        "mean_word": "dự án, đề án, khóa luận",
+        "id_group": "25"
+    },
+    {
+        "id_word": "296",
+        "name_word": "realistic",
+        "pronounce_word": "/riə'listik/",
+        "explain_word": "able to see things as they really are and to deal with them in a practical way",
+        "mean_word": "hiện thực, thực tế",
+        "id_group": "25"
+    },
+    {
+        "id_word": "297",
+        "name_word": "target",
+        "pronounce_word": "/'tɑ:git/",
+        "explain_word": "something that you are trying to do or achieve",
+        "mean_word": "mục tiêu, chỉ tiêu, bia (tập bắn)",
+        "id_group": "25"
+    },
+    {
+        "id_word": "298",
+        "name_word": "translation",
+        "pronounce_word": "/trænz'lei∫n/",
+        "explain_word": "words that have been changed from one language into a different language :words that have been translated [count]",
+        "mean_word": "bản dịch, bài dịch",
+        "id_group": "25"
+    },
+    {
+        "id_word": "299",
+        "name_word": "typically",
+        "pronounce_word": "/'tipikli/",
+        "explain_word": "generally or normally - used to say what normally happens",
+        "mean_word": "tiêu biểu, điển hình",
+        "id_group": "25"
+    },
+    {
+        "id_word": "300",
+        "name_word": "yield",
+        "pronounce_word": "/ji:ld/",
+        "explain_word": "to produce or provide (something, such as a plant or crop)",
+        "mean_word": "sinh ra, sản lượng, lợi tức",
+        "id_group": "25"
     }
 ]

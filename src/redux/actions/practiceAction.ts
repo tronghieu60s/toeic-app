@@ -7,6 +7,7 @@ import Config from '~/src/constants/Config';
 const { count_max, difficult_max } = Config.study;
 
 export const LOAD_WORDS_GROUP = 'LOAD_WORDS_GROUP';
+export const LOAD_WORD_DETAILS = 'LOAD_WORD_DETAILS';
 export const LOAD_WORDS_DIFFICULT = 'LOAD_WORDS_DIFFICULT';
 export const INCREASE_POINT = 'INCREASE_POINT';
 
@@ -14,18 +15,26 @@ export type PracticeAction = {
   type: string;
   point: number;
   words: WordType[];
+  word: WordType;
 };
 
 export const typeDefault: PracticeAction = {
   type: '',
   point: 0,
   words: [],
+  word: { id_group: 0, id_word: 0, id_study: 0 },
 };
 
 export const loadWordsGroup = (words: WordType[]): PracticeAction => ({
   ...typeDefault,
   type: LOAD_WORDS_GROUP,
   words,
+});
+
+export const loadWordDetails = (word: WordType): PracticeAction => ({
+  ...typeDefault,
+  type: LOAD_WORD_DETAILS,
+  word,
 });
 
 export const loadWordsDifficult = (words: WordType[]): PracticeAction => ({

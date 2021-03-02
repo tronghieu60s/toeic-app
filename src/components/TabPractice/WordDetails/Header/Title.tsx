@@ -1,17 +1,13 @@
-import { RouteProp } from '@react-navigation/native';
 import React, { memo } from 'react';
 import { StyleSheet } from 'react-native';
+import { useSelector } from 'react-redux';
 import { Text, View } from '~/src/components/Themed';
+import { RootState } from '~/src/redux/reducers/rootReducer';
 import tailwind from '~/tailwind';
-import { TabPracticeParamList } from '~/types';
 
-type Props = {
-  route: RouteProp<TabPracticeParamList, 'TabPracticeWordDetails'>;
-};
-
-export default memo(function TabPracticeWordDetailHeaderTitle(props: Props) {
-  const { route } = props;
-  const { name_word, mean_word, pronounce_word } = route.params.word;
+export default memo(function TabPracticeWordDetailHeaderTitle() {
+  const wordDetails = useSelector((state: RootState) => state.practice.wordDetail);
+  const { name_word, mean_word, pronounce_word } = wordDetails;
 
   return (
     <View>
