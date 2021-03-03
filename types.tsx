@@ -32,7 +32,9 @@ export type TabDifficultParamList = {
     word: WordType;
   };
   TabDifficultStudy: undefined;
-  TabPracticeReport: undefined;
+  TabPracticeReport: {
+    word: WordType;
+  };
 };
 
 export type TabSettingParamList = {

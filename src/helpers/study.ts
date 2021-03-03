@@ -1,6 +1,9 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { convertWordsBase, removeVietnameseTones as rmVN } from '~/src/helpers/convert';
 import { randomBetweenTwoNumber as rdNum } from '~/src/helpers/random';
 import { TypesAnswer, WordType } from '~/types';
+import { AdMobInterstitial } from '../components/Ads';
 import Config from '../constants/Config';
 import { shuffle } from './array';
 
@@ -44,6 +47,16 @@ export const getTypeAnswer = (count_study: number): TypesAnswer => {
   return typeAnswer;
 };
 
+export const getPointByTypeAnswer = (typeAnswer: TypesAnswer): number => {
+  if (typeAnswer === 'CHOOSE-NAME-MEAN') return 1;
+  if (typeAnswer === 'CHOOSE-MEAN-NAME') return 1;
+  if (typeAnswer === 'CHOOSE-MEAN-SOUND') return 2;
+  if (typeAnswer === 'CHOOSE-SOUND-MEAN') return 2;
+  if (typeAnswer === 'FILL-MEAN-NAME') return 3;
+  if (typeAnswer === 'FILL-NAME-MEAN') return 3;
+  return 10;
+};
+
 export const handleStudyCheckAnswer = (props: {
   answer: string;
   word: WordType;
@@ -64,6 +77,17 @@ export const handleStudyCheckAnswer = (props: {
     arrExpectedVn.indexOf(actual) !== -1 ||
     actual === expected;
   return checkEqual;
+};
+
+export const handleEndStudy = async (navigation: any, point: number): Promise<void> => {
+  navigation.removeListener('beforeRemove', (e: any) => navigation.dispatch(e.data.action));
+  navigation.goBack();
+
+  const expStorage = (await AsyncStorage.getItem('@exp')) || '0';
+  const exp = parseInt(expStorage, 10);
+  await AsyncStorage.setItem('@exp', (exp + point).toString());
+
+  await AdMobInterstitial();
 };
 
 // Load Words Study
@@ -162,7 +186,6 @@ const loadWordsDifficultMaxTotal = (words: WordType[]): WordType[] => {
       }
     }
   }
-  console.log(newWords.length);
   return newWords;
 };
 

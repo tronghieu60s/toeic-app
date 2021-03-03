@@ -1,10 +1,12 @@
 import { Entypo, FontAwesome5, Ionicons } from '@expo/vector-icons';
-import React, { memo } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, { memo, useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
 import { AbstractChartConfig } from 'react-native-chart-kit/dist/AbstractChart';
 import { LineChartData } from 'react-native-chart-kit/dist/line-chart/LineChart';
 import Layout from '~/src/constants/Layout';
+import { getWordsStudied } from '~/src/models/WordsModel';
 import tailwind from '~/tailwind';
 import { ScrollView, Text, View } from '../Themed';
 import ButtonDefault from '../UI/ButtonDefault';
@@ -28,6 +30,10 @@ const chartConfig: AbstractChartConfig = {
 };
 
 export default memo(function TabStatistics() {
+  const [exp, setExp] = useState(0);
+  const [streak, setStreak] = useState(0);
+  const [countStudied, setCountStudied] = useState(0);
+
   const data: LineChartData = {
     labels: ['', '02 Feb', '', '04 Feb', '', '06 Feb', ''],
     datasets: [
@@ -44,20 +50,37 @@ export default memo(function TabStatistics() {
     ],
   };
 
+  useEffect(() => {
+    (async () => {
+      const wordsStudied = await getWordsStudied();
+      const countWordsStudied = wordsStudied.data.length;
+
+      const streakStorage = (await AsyncStorage.getItem('@streak')) || '0';
+      const streak = parseInt(streakStorage, 10);
+
+      const expStorage = (await AsyncStorage.getItem('@exp')) || '0';
+      const exp = parseInt(expStorage, 10);
+
+      setCountStudied(countWordsStudied);
+      setStreak(streak);
+      setExp(exp);
+    })();
+  }, []);
+
   return (
     <ScrollView light style={tailwind('p-2')}>
       <ContentBlock title="Bản thân">
         <View style={tailwind('flex-row justify-around mb-2')}>
           <View>
-            <ExperienceBlock text="Streak" number={5}>
+            <ExperienceBlock text="Streak" number={streak}>
               <FontAwesome5 name="fire" size={22} color="#FF5A00" />
             </ExperienceBlock>
-            <ExperienceBlock text="Từ đã học" number={5}>
+            <ExperienceBlock text="Từ đã học" number={countStudied}>
               <FontAwesome5 name="graduation-cap" size={20} color="#2dce89" />
             </ExperienceBlock>
           </View>
           <View>
-            <ExperienceBlock text="Tổng điểm KN" number={12000}>
+            <ExperienceBlock text="Tổng điểm KN" number={exp}>
               <Ionicons name="md-flash" size={22} color="#FFE808" />
             </ExperienceBlock>
             <ExperienceBlock text="T.gian học (phút)" number={120}>
@@ -98,7 +121,7 @@ type TypeExperienceBlock = {
 export function ExperienceBlock(props: TypeExperienceBlock): JSX.Element {
   const { text, number, children } = props;
   return (
-    <View style={tailwind('flex-row items-center mb-2')}>
+    <View style={tailwind('flex-row items-center mb-3')}>
       <View style={tailwind('w-6 items-center')}>{children}</View>
       <View style={tailwind('ml-2')}>
         <Text weight={700} style={tailwind('text-base tracking-wider')}>

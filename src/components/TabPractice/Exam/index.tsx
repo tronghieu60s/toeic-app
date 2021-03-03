@@ -1,6 +1,6 @@
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { memo, useEffect, useRef, useState } from 'react';
-import { Alert, Keyboard, StyleSheet, Vibration } from 'react-native';
+import { Keyboard, StyleSheet, Vibration } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useDispatch, useSelector } from 'react-redux';
 import { View } from '~/src/components/Themed';
@@ -9,12 +9,17 @@ import Config from '~/src/constants/Config';
 import Layout from '~/src/constants/Layout';
 import { shuffle } from '~/src/helpers/array';
 import { convertWordsBase } from '~/src/helpers/convert';
-import { actLoadWordsExam, handleStudyCheckAnswer, WordStudy } from '~/src/helpers/study';
+import {
+  actLoadWordsExam,
+  getPointByTypeAnswer,
+  handleEndStudy,
+  handleStudyCheckAnswer,
+  WordStudy,
+} from '~/src/helpers/study';
 import { increasePoint } from '~/src/redux/actions/practiceAction';
 import { RootState } from '~/src/redux/reducers/rootReducer';
 import tailwind from '~/tailwind';
 import { StatusQuestion, TabPracticeParamList } from '~/types';
-import { AdMobInterstitial } from '../../Ads';
 import ScreenLoading from '../../UI/ScreenLoading';
 import AlertBottom from '../Study/Alert';
 import Bottom from '../Study/Bottom';
@@ -41,6 +46,7 @@ export default memo(function TabPracticeExam({ navigation }: Props) {
   const [countIncorrect, setCountIncorrect] = useState(0);
 
   const dispatch = useDispatch();
+  const point = useSelector((state: RootState) => state.practice.point);
   const wordsState = useSelector((state: RootState) => state.practice.words);
   const [words, setWords] = useState<WordStudy[]>([]);
 
@@ -49,15 +55,7 @@ export default memo(function TabPracticeExam({ navigation }: Props) {
       if (countTime >= totalTime) {
         clearInterval(processTime);
 
-        navigation.removeListener('beforeRemove', (e) => navigation.dispatch(e.data.action));
-        navigation.goBack();
-        Alert.alert(
-          'Bạn đã hoàn thành bài học.',
-          `Thời gian: ${time_max}\nTổng số câu hỏi: ${
-            countCorrect + countIncorrect
-          }\nTrả lời sai: ${countIncorrect} lần`,
-        );
-        AdMobInterstitial();
+        handleEndStudy(navigation, point);
       } else setCountTime(countTime + 1);
     }, 1000);
     return () => clearInterval(processTime);
@@ -85,7 +83,8 @@ export default memo(function TabPracticeExam({ navigation }: Props) {
     });
   }, [currentNum]);
 
-  const handleSendAnswer = (value: string) => setAnswer(convertWordsBase(value));
+  if (isPending || words.length <= 0) return <ScreenLoading />;
+
   const handleCheckAnswer = () => {
     Keyboard.dismiss();
 
@@ -93,7 +92,7 @@ export default memo(function TabPracticeExam({ navigation }: Props) {
     const checkEqual = handleStudyCheckAnswer({ answer, word: word.data, type: word.type });
 
     if (checkEqual) {
-      dispatch(increasePoint(50));
+      dispatch(increasePoint(getPointByTypeAnswer(word.type)));
       setCountCorrect(countCorrect + 1);
 
       setStatus('Correct');
@@ -113,7 +112,10 @@ export default memo(function TabPracticeExam({ navigation }: Props) {
     return true;
   };
 
-  if (isPending || words.length <= 0) return <ScreenLoading />;
+  const handleSendAnswer = (value: string) => setAnswer(convertWordsBase(value));
+  const onPressReport = () => {
+    navigation.navigate('TabPracticeReport', { word: words[currentNum].data });
+  };
 
   return (
     <View style={styles.container}>
@@ -138,13 +140,7 @@ export default memo(function TabPracticeExam({ navigation }: Props) {
       </ScrollView>
       <Bottom status={status} answer={answer} handleContinue={handleContinue} />
       {status !== 'Waiting' && (
-        <AlertBottom
-          word={words[currentNum].data}
-          status={status}
-          onPressReport={() => {
-            navigation.navigate('TabPracticeReport', { word: words[currentNum].data });
-          }}
-        />
+        <AlertBottom word={words[currentNum].data} status={status} onPressReport={onPressReport} />
       )}
     </View>
   );

@@ -29,3 +29,7 @@ export const getWordsDifficult = (): Promise<ExecuteSQL> => {
     [],
   );
 };
+
+export const getWordsStudied = (): Promise<ExecuteSQL> => {
+  return executeSql('select * from studies where studies.count_study = 6', []);
+};

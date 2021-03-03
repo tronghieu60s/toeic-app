@@ -11,12 +11,17 @@ import ProcessBar from '~/src/components/UI/ProcessBar';
 import Layout from '~/src/constants/Layout';
 import { shuffle } from '~/src/helpers/array';
 import { convertWordsBase } from '~/src/helpers/convert';
-import { actLoadWordsDifficultStudy, handleStudyCheckAnswer, WordStudy } from '~/src/helpers/study';
+import {
+  actLoadWordsDifficultStudy,
+  getPointByTypeAnswer,
+  handleEndStudy,
+  handleStudyCheckAnswer,
+  WordStudy,
+} from '~/src/helpers/study';
 import { actStudyCorrectDifficult, increasePoint } from '~/src/redux/actions/practiceAction';
 import { RootState } from '~/src/redux/reducers/rootReducer';
 import tailwind from '~/tailwind';
 import { StatusQuestion, TabDifficultParamList } from '~/types';
-import { AdMobInterstitial } from '../../Ads';
 import ScreenLoading from '../../UI/ScreenLoading';
 
 const { width } = Layout.window;
@@ -35,6 +40,7 @@ export default memo(function TabDifficultStudy({ navigation }: Props) {
   const [countIncorrect, setCountIncorrect] = useState(0);
 
   const dispatch = useDispatch();
+  const point = useSelector((state: RootState) => state.practice.point);
   const wordsState = useSelector((state: RootState) => state.practice.wordsDifficult);
   const [words, setWords] = useState<WordStudy[]>([]);
 
@@ -52,12 +58,8 @@ export default memo(function TabDifficultStudy({ navigation }: Props) {
     });
   }, [currentNum]);
 
-  const handleSendAnswer = (value: string) => setAnswer(convertWordsBase(value));
-  const handleEndStudy = async () => {
-    navigation.removeListener('beforeRemove', (e) => navigation.dispatch(e.data.action));
-    navigation.goBack();
-    await AdMobInterstitial();
-  };
+  if (isPending || words.length <= 0) return <ScreenLoading />;
+
   const handleCheckAnswer = () => {
     Keyboard.dismiss();
 
@@ -65,7 +67,7 @@ export default memo(function TabDifficultStudy({ navigation }: Props) {
     const checkEqual = handleStudyCheckAnswer({ answer, word: word.data, type: word.type });
 
     if (checkEqual) {
-      dispatch(increasePoint(50));
+      dispatch(increasePoint(getPointByTypeAnswer(word.type)));
       dispatch(actStudyCorrectDifficult(word.data.id_word));
 
       setStatus('Correct');
@@ -79,7 +81,7 @@ export default memo(function TabDifficultStudy({ navigation }: Props) {
   };
   const handleContinue = (): any => {
     if (status === 'Waiting') return handleCheckAnswer();
-    if (currentNum + 1 >= words.length) return handleEndStudy();
+    if (currentNum + 1 >= words.length) return handleEndStudy(navigation, point);
 
     setAnswer('');
     setStatus('Waiting');
@@ -87,7 +89,10 @@ export default memo(function TabDifficultStudy({ navigation }: Props) {
     return true;
   };
 
-  if (isPending || words.length <= 0) return <ScreenLoading />;
+  const handleSendAnswer = (value: string) => setAnswer(convertWordsBase(value));
+  const onPressReport = () => {
+    navigation.navigate('TabPracticeReport', { word: words[currentNum].data });
+  };
 
   return (
     <View style={styles.container}>
@@ -111,7 +116,9 @@ export default memo(function TabDifficultStudy({ navigation }: Props) {
         })}
       </ScrollView>
       <Bottom status={status} answer={answer} handleContinue={handleContinue} />
-      {status !== 'Waiting' && <AlertBottom word={words[currentNum].data} status={status} />}
+      {status !== 'Waiting' && (
+        <AlertBottom word={words[currentNum].data} status={status} onPressReport={onPressReport} />
+      )}
     </View>
   );
 });
