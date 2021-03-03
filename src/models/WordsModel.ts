@@ -33,3 +33,14 @@ export const getWordsDifficult = (): Promise<ExecuteSQL> => {
 export const getWordsStudied = (): Promise<ExecuteSQL> => {
   return executeSql('select * from studies where studies.count_study = 6', []);
 };
+
+export const getWordsByNameOrMean = (str: string, limit: number): Promise<ExecuteSQL> => {
+  const key = str.replace(
+    /[^0-9a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ\s]/gi,
+    '',
+  );
+  return executeSql(
+    `select * from words where words.name_word like '%${key}%' or words.mean_word like '%${key}%' order by words.name_word limit ?`,
+    [limit],
+  );
+};

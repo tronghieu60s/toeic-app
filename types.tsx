@@ -28,10 +28,10 @@ export type TabPracticeParamList = {
 
 export type TabDifficultParamList = {
   TabDifficultScreen: undefined;
+  TabDifficultStudy: undefined;
   TabPracticeWordDetails: {
     word: WordType;
   };
-  TabDifficultStudy: undefined;
   TabPracticeReport: {
     word: WordType;
   };
@@ -44,6 +44,13 @@ export type TabSettingParamList = {
 
 export type TabStatisticsParamList = {
   TabStatisticsScreen: undefined;
+};
+
+export type TabDictionaryParamList = {
+  TabDictionaryScreen: undefined;
+  TabPracticeWordDetails: {
+    word: WordType;
+  };
 };
 
 export type StatusQuestion = 'Waiting' | 'Correct' | 'Incorrect';

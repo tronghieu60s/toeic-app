@@ -37,7 +37,7 @@ export default function useCachedResources(): ReturnValue {
             await Updates.reloadAsync();
           } else setProcessText('Không tìm thấy bản cập nhật nào...');
         } catch (e) {
-          // handle or log error
+          setProcessText('Không thể kết nối Internet...');
         }
 
         await delayLoading();
