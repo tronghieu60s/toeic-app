@@ -2,7 +2,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { convertWordsBase, removeVietnameseTones as rmVN } from '~/src/helpers/convert';
 import { randomBetweenTwoNumber as rdNum } from '~/src/helpers/random';
-import { TypesAnswer, WordType } from '~/types';
+import { TypePracticeResult, TypesAnswer, WordType } from '~/types';
 import { AdMobInterstitial } from '../components/Ads';
 import Config from '../constants/Config';
 import { shuffle } from './array';
@@ -79,9 +79,13 @@ export const handleStudyCheckAnswer = (props: {
   return checkEqual;
 };
 
-export const handleEndStudy = async (navigation: any, point: number): Promise<void> => {
+export const handleEndStudy = async (
+  navigation: any,
+  params: TypePracticeResult,
+): Promise<void> => {
+  const { point } = params;
   navigation.removeListener('beforeRemove', (e: any) => navigation.dispatch(e.data.action));
-  navigation.goBack();
+  navigation.navigate('TabPracticeResult', { results: params });
 
   const expStorage = (await AsyncStorage.getItem('@exp')) || '0';
   const exp = parseInt(expStorage, 10);

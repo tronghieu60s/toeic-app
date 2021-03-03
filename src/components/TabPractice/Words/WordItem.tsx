@@ -1,22 +1,22 @@
-import React, { memo } from 'react';
+import React from 'react';
 import { Image } from 'react-native';
 import { useSelector } from 'react-redux';
+import Config from '~/src/constants/Config';
 import { flashIcon, lightBulbIcon } from '~/src/constants/IconSource';
 import { RootState } from '~/src/redux/reducers/rootReducer';
 import tailwind from '~/tailwind';
 import { WordType } from '~/types';
 import { Ripple, Text, View } from '../../Themed';
-import Config from '~/src/constants/Config';
 
 const { count_max } = Config.study;
 
 type Props = {
   word: WordType;
-  handleFlashWord: (word: WordType) => void;
-  handleDetailsWord: (word: WordType) => void;
+  handleFlashWord?: (word: WordType) => void;
+  handleDetailsWord?: (word: WordType) => void;
 };
 
-export default memo(function WordItem(props: Props) {
+export default function WordItem(props: Props): JSX.Element {
   const { word, handleFlashWord, handleDetailsWord } = props;
   const {
     name_word,
@@ -38,7 +38,7 @@ export default memo(function WordItem(props: Props) {
     <View style={tailwind('flex-auto flex-row rounded-lg mb-2 px-3')}>
       <Ripple
         style={tailwind('w-11/12 flex-auto flex-row')}
-        onPress={() => handleDetailsWord(word)}
+        onPress={() => handleDetailsWord && handleDetailsWord(word)}
       >
         <View style={tailwind('w-1/12 justify-center items-center px-4')}>
           <Image style={tailwind('w-6 h-6')} source={iconBulb} />
@@ -64,10 +64,17 @@ export default memo(function WordItem(props: Props) {
         </View>
       </Ripple>
       <View style={tailwind('w-1/12 flex-auto justify-center items-center bg-transparent')}>
-        <Ripple style={{ padding: 8 }} onPress={() => handleFlashWord(word)}>
-          <Image style={{ width: 17, height: 17 }} source={iconFlash} />
-        </Ripple>
+        {handleFlashWord && (
+          <Ripple style={{ padding: 8 }} onPress={() => handleFlashWord(word)}>
+            <Image style={{ width: 17, height: 17 }} source={iconFlash} />
+          </Ripple>
+        )}
       </View>
     </View>
   );
-});
+}
+
+WordItem.defaultProps = {
+  handleFlashWord: null,
+  handleDetailsWord: null,
+};

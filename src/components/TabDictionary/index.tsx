@@ -2,9 +2,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import React, { memo, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
-import { useDispatch } from 'react-redux';
 import { getWordsByNameOrMean } from '~/src/models/WordsModel';
-import { actToggleFlashWord } from '~/src/redux/actions/practiceAction';
 import tailwind from '~/tailwind';
 import { TabDictionaryParamList, WordType } from '~/types';
 import WordItem from '../TabPractice/Words/WordItem';
@@ -19,7 +17,6 @@ export default memo(function TabDictionary({ navigation }: Props) {
   const [isPending, setIsPending] = useState(false);
   const [textSearch, setTextSearch] = useState('');
   const [words, setWords] = useState<WordType[]>([]);
-  const dispatch = useDispatch();
 
   const onPress = async () => {
     setIsPending(true);
@@ -29,7 +26,6 @@ export default memo(function TabDictionary({ navigation }: Props) {
     setIsPending(false);
   };
 
-  const handleFlashWord = (word: WordType) => dispatch(actToggleFlashWord(word));
   const handleDetailsWord = (word: WordType) => {
     navigation.navigate('TabPracticeWordDetails', { word });
   };
@@ -39,7 +35,6 @@ export default memo(function TabDictionary({ navigation }: Props) {
       <WordItem
         key={index}
         word={word}
-        handleFlashWord={handleFlashWord}
         handleDetailsWord={handleDetailsWord}
       />
     ));

@@ -24,6 +24,9 @@ export type TabPracticeParamList = {
   TabPracticeReport: {
     word: WordType;
   };
+  TabPracticeResult: {
+    results: TypePracticeResult
+  };
 };
 
 export type TabDifficultParamList = {
@@ -51,6 +54,9 @@ export type TabDictionaryParamList = {
   TabPracticeWordDetails: {
     word: WordType;
   };
+  TabPracticeReport: {
+    word: WordType;
+  };
 };
 
 export type StatusQuestion = 'Waiting' | 'Correct' | 'Incorrect';
@@ -61,6 +67,12 @@ export type TypesAnswer =
   | 'CHOOSE-MEAN-SOUND'
   | 'FILL-NAME-MEAN'
   | 'FILL-MEAN-NAME';
+export type TypePracticeResult = {
+  words: number[];
+  point: number;
+  correct: number;
+  inCorrect: number;
+};
 
 export type StudyType = {
   id_study: number;

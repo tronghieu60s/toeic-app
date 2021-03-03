@@ -16,7 +16,7 @@ export default {
   },
   TabDictionary: {
     icon: 'search1',
-    name: 'Từ Điển',
+    name: 'Từ điển',
     type: 'AntDesign',
   },
   TabSetting: {

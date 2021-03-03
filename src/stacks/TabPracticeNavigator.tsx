@@ -8,6 +8,7 @@ import { Alert } from 'react-native';
 import { useSelector } from 'react-redux';
 import TabPracticeHeaderTitle from '~/src/components/TabPractice/Header/Title';
 import TabPracticeReport from '~/src/components/TabPractice/Report';
+import TabPracticeResult from '~/src/components/TabPractice/Result';
 import TabPracticeStudy from '~/src/components/TabPractice/Study';
 import TabPracticeStudyHeaderRight from '~/src/components/TabPractice/Study/Header/Right';
 import TabPracticeWordDetails from '~/src/components/TabPractice/WordDetails';
@@ -52,6 +53,14 @@ export default function TabPracticeNavigator(): JSX.Element {
         })}
       />
       <TabPracticeStack.Screen
+        name="TabPracticeWordDetails"
+        component={TabPracticeWordDetails}
+        options={({ navigation }) => ({
+          headerTitle: () => <TabPracticeWordDetailHeaderTitle />,
+          headerRight: () => <TabPracticeWordDetailsHeaderRight navigation={navigation} />,
+        })}
+      />
+      <TabPracticeStack.Screen
         name="TabPracticeReport"
         component={TabPracticeReport}
         options={{
@@ -59,12 +68,11 @@ export default function TabPracticeNavigator(): JSX.Element {
         }}
       />
       <TabPracticeStack.Screen
-        name="TabPracticeWordDetails"
-        component={TabPracticeWordDetails}
-        options={({ navigation }) => ({
-          headerTitle: () => <TabPracticeWordDetailHeaderTitle />,
-          headerRight: () => <TabPracticeWordDetailsHeaderRight navigation={navigation} />,
-        })}
+        name="TabPracticeResult"
+        component={TabPracticeResult}
+        options={{
+          headerTitle: () => <HeaderTitle title="Kết Quả" />,
+        }}
       />
       <TabPracticeStack.Screen
         name="TabPracticeStudy"

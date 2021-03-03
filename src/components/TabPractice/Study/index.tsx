@@ -22,7 +22,7 @@ import {
 } from '~/src/redux/actions/practiceAction';
 import { RootState } from '~/src/redux/reducers/rootReducer';
 import tailwind from '~/tailwind';
-import { StatusQuestion, TabPracticeParamList } from '~/types';
+import { StatusQuestion, TabPracticeParamList, TypePracticeResult } from '~/types';
 import ScreenLoading from '../../UI/ScreenLoading';
 import AlertBottom from './Alert';
 import Bottom from './Bottom';
@@ -87,7 +87,15 @@ export default memo(function TabPracticeStudy({ navigation }: Props) {
   };
   const handleContinue = (): any => {
     if (status === 'Waiting') return handleCheckAnswer();
-    if (currentNum + 1 >= words.length) return handleEndStudy(navigation, point);
+
+    const wordsUnique = Array.from(new Set(words.map((item) => item.data.id_word)));
+    const result: TypePracticeResult = {
+      point,
+      correct: words.length,
+      inCorrect: countIncorrect,
+      words: wordsUnique,
+    };
+    if (currentNum + 1 >= words.length) return handleEndStudy(navigation, result);
 
     setAnswer('');
     setStatus('Waiting');
