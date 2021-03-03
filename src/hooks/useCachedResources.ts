@@ -2,6 +2,7 @@ import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Font from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
+import * as Updates from 'expo-updates';
 import * as React from 'react';
 import { ToastAndroid } from 'react-native';
 import { executeSql, initDbTable, loadDataFromResources } from '~/src/utils/SQLite';
@@ -23,6 +24,23 @@ export default function useCachedResources(): ReturnValue {
   React.useEffect(() => {
     async function loadResourcesAndDataAsync() {
       try {
+        setProcessText('Đang kiểm tra cập nhật...');
+
+        try {
+          const update = await Updates.checkForUpdateAsync();
+          if (update.isAvailable) {
+            setProcessText('Đã tìm thấy bản cập nhật mới...');
+            await delayLoading();
+            setProcessText('Đang cập nhật...');
+
+            await Updates.fetchUpdateAsync();
+            await Updates.reloadAsync();
+          } else setProcessText('Không tìm thấy bản cập nhật nào...');
+        } catch (e) {
+          // handle or log error
+        }
+
+        await delayLoading();
         setProcessText('Đang khởi tạo dữ liệu...');
 
         // Load Fonts
