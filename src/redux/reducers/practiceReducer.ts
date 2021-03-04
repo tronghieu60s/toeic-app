@@ -1,6 +1,5 @@
 import { WordType } from '~/types';
 import {
-  INCREASE_POINT,
   LOAD_WORDS_DIFFICULT,
   LOAD_WORDS_GROUP,
   LOAD_WORD_DETAILS,
@@ -34,11 +33,6 @@ const practice = (state = practiceInitialState, action: PracticeAction): Practic
     case LOAD_WORDS_DIFFICULT: {
       const { words } = action;
       return { ...state, wordsDifficult: words || [] };
-    }
-    case INCREASE_POINT: {
-      const { point } = action;
-      const newPoint = state.point + point;
-      return { ...state, point: newPoint };
     }
     default:
       return state;

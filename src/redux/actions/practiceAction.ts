@@ -13,14 +13,12 @@ export const INCREASE_POINT = 'INCREASE_POINT';
 
 export type PracticeAction = {
   type: string;
-  point: number;
   words: WordType[];
   word: WordType;
 };
 
 export const typeDefault: PracticeAction = {
   type: '',
-  point: 0,
   words: [],
   word: { id_group: 0, id_word: 0, id_study: 0 },
 };
@@ -41,12 +39,6 @@ export const loadWordsDifficult = (words: WordType[]): PracticeAction => ({
   ...typeDefault,
   type: LOAD_WORDS_DIFFICULT,
   words,
-});
-
-export const increasePoint = (point: number): PracticeAction => ({
-  ...typeDefault,
-  type: INCREASE_POINT,
-  point,
 });
 
 // Async Await Thunk

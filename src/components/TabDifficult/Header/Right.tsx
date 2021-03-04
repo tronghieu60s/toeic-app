@@ -1,4 +1,4 @@
-import { AntDesign, SimpleLineIcons } from '@expo/vector-icons';
+import { AntDesign, Ionicons } from '@expo/vector-icons';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { memo, useState } from 'react';
 import { StyleSheet } from 'react-native';
@@ -24,7 +24,7 @@ export default memo(function TabDifficultRight({ navigation }: Props) {
     <View style={tailwind('w-20 flex-row justify-end items-center mr-1 mt-2')}>
       {words.length > 0 && (
         <Ripple style={styles.button} onPress={() => navigation.navigate('TabDifficultStudy')}>
-          <SimpleLineIcons name="graduation" size={19} color={Colors[theme].text} />
+          <Ionicons name="md-flash" size={19} color={Colors[theme].text} />
         </Ripple>
       )}
       <Ripple style={styles.button} onPress={() => setModalVisible(true)}>

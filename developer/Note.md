@@ -20,3 +20,6 @@ https://youtu.be/rWwz9WO-hCo
   ...
 </ScrollView>
 ```
+
+## Clear Cache Expo
+expo r -c

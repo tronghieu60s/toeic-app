@@ -18,10 +18,13 @@ import {
   handleStudyCheckAnswer,
   WordStudy,
 } from '~/src/helpers/study';
-import { actStudyCorrectDifficult, increasePoint } from '~/src/redux/actions/practiceAction';
+import {
+  actStudyCorrectDifficult,
+} from '~/src/redux/actions/practiceAction';
+import { increasePoint, setPoint } from '~/src/redux/actions/statisticsAction';
 import { RootState } from '~/src/redux/reducers/rootReducer';
 import tailwind from '~/tailwind';
-import { StatusQuestion, TabDifficultParamList } from '~/types';
+import { StatusQuestion, TabDifficultParamList, TypePracticeResult } from '~/types';
 import ScreenLoading from '../../UI/ScreenLoading';
 
 const { width } = Layout.window;
@@ -45,6 +48,7 @@ export default memo(function TabDifficultStudy({ navigation }: Props) {
   const [words, setWords] = useState<WordStudy[]>([]);
 
   useEffect(() => {
+    dispatch(setPoint(0));
     const words = actLoadWordsDifficultStudy(wordsState);
     setWords(shuffle(words));
 
@@ -81,8 +85,17 @@ export default memo(function TabDifficultStudy({ navigation }: Props) {
   };
   const handleContinue = (): any => {
     if (status === 'Waiting') return handleCheckAnswer();
-    if (currentNum + 1 >= words.length) return handleEndStudy(navigation, point);
 
+    const wordsUnique = Array.from(new Set(words.map((item) => item.data.id_word)));
+    const result: TypePracticeResult = {
+      point,
+      correct: words.length,
+      inCorrect: countIncorrect,
+      words: wordsUnique,
+    };
+    if (currentNum + 1 >= words.length) {
+      return handleEndStudy(navigation, result);
+    }
     setAnswer('');
     setStatus('Waiting');
     setCurrentNum(currentNum + 1);

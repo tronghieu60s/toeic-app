@@ -85,7 +85,7 @@ export const handleEndStudy = async (
 ): Promise<void> => {
   const { point } = params;
   navigation.removeListener('beforeRemove', (e: any) => navigation.dispatch(e.data.action));
-  navigation.navigate('TabPracticeResult', { results: params });
+  navigation.replace('TabPracticeResult', { results: params });
 
   const expStorage = (await AsyncStorage.getItem('@exp')) || '0';
   const exp = parseInt(expStorage, 10);

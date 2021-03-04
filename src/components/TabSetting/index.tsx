@@ -90,18 +90,20 @@ export default memo(function TabSetting({ navigation }: Props) {
           </View>
         </ContentBlock>
         <ContentBlock title="Khác">
-          {/* <NormalBlock
+          <View>
+            {/* <NormalBlock
             title="Dữ liệu học tập"
             onPress={}
-          />
-          <NormalBlock
-            title="Sao lưu và khôi phục"
-            onPress={}
           /> */}
-          <NormalBlock
-            title="Thông tin ứng dụng"
-            onPress={() => navigation.navigate('TabSettingAppDetails')}
-          />
+            {/* <NormalBlock
+              title="Sao lưu và khôi phục"
+              onPress={() => navigation.navigate('TabSettingBackupRestore')}
+            /> */}
+            <NormalBlock
+              title="Thông tin ứng dụng"
+              onPress={() => navigation.navigate('TabSettingAppDetails')}
+            />
+          </View>
         </ContentBlock>
       </View>
     </ScrollView>

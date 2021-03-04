@@ -38,11 +38,15 @@ export type TabDifficultParamList = {
   TabPracticeReport: {
     word: WordType;
   };
+  TabPracticeResult: {
+    results: TypePracticeResult;
+  };
 };
 
 export type TabSettingParamList = {
   TabSettingScreen: undefined;
   TabSettingAppDetails: undefined;
+  TabSettingBackupRestore: undefined;
 };
 
 export type TabStatisticsParamList = {

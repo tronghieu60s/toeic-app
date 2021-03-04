@@ -1,15 +1,17 @@
-import { Entypo, FontAwesome5, Ionicons } from '@expo/vector-icons';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { FontAwesome5, Ionicons } from '@expo/vector-icons';
 import React, { memo, useEffect, useState } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, ToastAndroid } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
 import { AbstractChartConfig } from 'react-native-chart-kit/dist/AbstractChart';
 import { LineChartData } from 'react-native-chart-kit/dist/line-chart/LineChart';
+import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
+import { useDispatch, useSelector } from 'react-redux';
 import Layout from '~/src/constants/Layout';
 import { getWordsStudied } from '~/src/models/WordsModel';
+import { setTarget } from '~/src/redux/actions/statisticsAction';
+import { RootState } from '~/src/redux/reducers/rootReducer';
 import tailwind from '~/tailwind';
 import { ScrollView, Text, View } from '../Themed';
-import ButtonDefault from '../UI/ButtonDefault';
 import ContentBlock from '../UI/ContentBlock';
 
 const { width: screenWidth } = Layout.window;
@@ -31,8 +33,12 @@ const chartConfig: AbstractChartConfig = {
 
 export default memo(function TabStatistics() {
   const [exp, setExp] = useState(0);
-  const [streak, setStreak] = useState(0);
   const [countStudied, setCountStudied] = useState(0);
+
+  const dispatch = useDispatch();
+  const wordsDifficult = useSelector((state: RootState) => state.practice.wordsDifficult);
+  const { streak, experience, target } = useSelector((state: RootState) => state.statistics);
+  const [experienceText, setExperienceText] = useState(() => target.toString());
 
   const data: LineChartData = {
     labels: ['', '02 Feb', '', '04 Feb', '', '06 Feb', ''],
@@ -43,71 +49,86 @@ export default memo(function TabStatistics() {
         strokeWidth: 2,
       },
       {
-        data: [30, 30, 30, 30, 30, 30, 30],
+        data: [target, target, target, target, target, target, target],
         color: () => 'rgba(245, 54, 92)',
         strokeWidth: 2,
       },
     ],
   };
 
+  const onPressExperience = () => {
+    if (experienceText.length <= 0 || parseInt(experienceText, 10) <= 0) {
+      ToastAndroid.show('Vui lòng nhập một số nguyên lớn hơn 0.', ToastAndroid.SHORT);
+    } else {
+      dispatch(setTarget(parseInt(experienceText, 10)));
+    }
+  };
+
   useEffect(() => {
     (async () => {
       const wordsStudied = await getWordsStudied();
       const countWordsStudied = wordsStudied.data.length;
-
-      const streakStorage = (await AsyncStorage.getItem('@streak')) || '0';
-      const streak = parseInt(streakStorage, 10);
-
-      const expStorage = (await AsyncStorage.getItem('@exp')) || '0';
-      const exp = parseInt(expStorage, 10);
-
       setCountStudied(countWordsStudied);
-      setStreak(streak);
+
       setExp(exp);
     })();
   }, []);
 
   return (
     <ScrollView light style={tailwind('p-2')}>
-      <ContentBlock title="Bản thân">
-        <View style={tailwind('flex-row justify-around mb-2')}>
-          <View>
-            <ExperienceBlock text="Streak" number={streak}>
-              <FontAwesome5 name="fire" size={22} color="#FF5A00" />
-            </ExperienceBlock>
-            <ExperienceBlock text="Từ đã học" number={countStudied}>
-              <FontAwesome5 name="graduation-cap" size={20} color="#2dce89" />
-            </ExperienceBlock>
+      <View light style={tailwind('pb-20')}>
+        <ContentBlock title="Bản thân">
+          <View style={tailwind('flex-row justify-around mb-2')}>
+            <View style={tailwind('justify-center')}>
+              <ExperienceBlock text="Streak" number={streak}>
+                <FontAwesome5 name="fire" size={22} color="#FF5A00" />
+              </ExperienceBlock>
+              <ExperienceBlock text="Từ đã học" number={countStudied}>
+                <FontAwesome5 name="graduation-cap" size={20} color="#2dce89" />
+              </ExperienceBlock>
+            </View>
+            <View style={tailwind('justify-center')}>
+              <ExperienceBlock text="Tổng điểm KN" number={experience}>
+                <Ionicons name="md-flash" size={22} color="#FFE808" />
+              </ExperienceBlock>
+              <ExperienceBlock text="Từ khó còn lại" number={wordsDifficult.length}>
+                <Ionicons name="md-flash" size={20} color="#5e72e4" />
+              </ExperienceBlock>
+            </View>
           </View>
+        </ContentBlock>
+        <ContentBlock title="Điểm kinh nghiệm hằng ngày">
           <View>
-            <ExperienceBlock text="Tổng điểm KN" number={exp}>
-              <Ionicons name="md-flash" size={22} color="#FFE808" />
-            </ExperienceBlock>
-            <ExperienceBlock text="T.gian học (phút)" number={120}>
-              <Entypo name="time-slot" size={20} color="#5e72e4" />
-            </ExperienceBlock>
+            <View style={tailwind('mb-8 flex-row items-center')}>
+              <TextInput
+                keyboardType="number-pad"
+                style={styles.input}
+                onChangeText={(text) => setExperienceText(text)}
+                value={experienceText}
+              />
+              <TouchableOpacity style={styles.button} onPress={onPressExperience}>
+                <Text style={{ color: '#fff' }}>Đặt mục tiêu</Text>
+              </TouchableOpacity>
+            </View>
+            <View style={tailwind('mb-3')}>
+              <Text style={styles.textChart}>{`Mục tiêu: ${target}`}</Text>
+              <View style={styles.absoluteView} />
+              <LineChart
+                data={data}
+                width={screenWidth}
+                height={160}
+                chartConfig={chartConfig}
+                fromZero
+                segments={3}
+                yLabelsOffset={15}
+                yAxisInterval={10}
+                withShadow={false}
+                style={tailwind('-ml-7 my-1')}
+              />
+            </View>
           </View>
-        </View>
-      </ContentBlock>
-      <ContentBlock title="Số từ đã học gần đây">
-        <View>
-          <Text style={styles.textChart}>Mục tiêu: 30</Text>
-          <View style={styles.absoluteView} />
-          <LineChart
-            data={data}
-            width={screenWidth}
-            height={160}
-            chartConfig={chartConfig}
-            fromZero
-            segments={3}
-            yLabelsOffset={15}
-            yAxisInterval={10}
-            withShadow={false}
-            style={tailwind('-ml-7 my-1')}
-          />
-          <ButtonDefault title="Đặt mục tiêu hằng ngày" onPress={() => console.log('test')} />
-        </View>
-      </ContentBlock>
+        </ContentBlock>
+      </View>
     </ScrollView>
   );
 });
@@ -134,6 +155,16 @@ export function ExperienceBlock(props: TypeExperienceBlock): JSX.Element {
 }
 
 const styles = StyleSheet.create({
+  input: {
+    ...tailwind('w-3/12 h-9 border px-4'),
+    borderColor: '#dee2e6',
+    borderRadius: 2,
+  },
+  button: {
+    ...tailwind('justify-center items-center p-2 ml-2'),
+    backgroundColor: '#5e72e4',
+    borderRadius: 2,
+  },
   textChart: {
     color: '#f5365c',
     position: 'absolute',

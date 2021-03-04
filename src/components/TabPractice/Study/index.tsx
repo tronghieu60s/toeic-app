@@ -18,8 +18,8 @@ import {
 import {
   actStudyCorrect,
   actStudyInCorrect,
-  increasePoint,
 } from '~/src/redux/actions/practiceAction';
+import { increasePoint, setPoint } from '~/src/redux/actions/statisticsAction';
 import { RootState } from '~/src/redux/reducers/rootReducer';
 import tailwind from '~/tailwind';
 import { StatusQuestion, TabPracticeParamList, TypePracticeResult } from '~/types';
@@ -50,6 +50,7 @@ export default memo(function TabPracticeStudy({ navigation }: Props) {
   const [words, setWords] = useState<WordStudy[]>([]);
 
   useEffect(() => {
+    dispatch(setPoint(0));
     const words = actLoadWordsStudy(wordsState);
     setWords(shuffle(words));
 
@@ -95,7 +96,9 @@ export default memo(function TabPracticeStudy({ navigation }: Props) {
       inCorrect: countIncorrect,
       words: wordsUnique,
     };
-    if (currentNum + 1 >= words.length) return handleEndStudy(navigation, result);
+    if (currentNum + 1 >= words.length) {
+      return handleEndStudy(navigation, result);
+    }
 
     setAnswer('');
     setStatus('Waiting');

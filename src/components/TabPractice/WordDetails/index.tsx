@@ -1,4 +1,4 @@
-import { Ionicons, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
+import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { RouteProp } from '@react-navigation/native';
 import React, { memo, useEffect, useRef, useState } from 'react';
@@ -107,7 +107,7 @@ export default memo(function TabPracticeWordDetails(props: Props) {
             <Ionicons name="ios-arrow-back" size={22} color="black" />
           </Ripple>
           <Ripple style={styles.icon} onPress={onPressToggleDifficult}>
-            <MaterialCommunityIcons name="flash" size={22} color={flashColor} />
+            <Ionicons name="md-flash" size={20} color={flashColor} />
           </Ripple>
           <Ripple style={styles.icon} onPress={onPressToggleAutoPlay}>
             <Ionicons name={autoPlay ? 'md-pause' : 'md-play'} size={20} color="black" />

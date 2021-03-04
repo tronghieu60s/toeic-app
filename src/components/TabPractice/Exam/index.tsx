@@ -16,10 +16,10 @@ import {
   handleStudyCheckAnswer,
   WordStudy,
 } from '~/src/helpers/study';
-import { increasePoint } from '~/src/redux/actions/practiceAction';
+import { increasePoint, setPoint } from '~/src/redux/actions/statisticsAction';
 import { RootState } from '~/src/redux/reducers/rootReducer';
 import tailwind from '~/tailwind';
-import { StatusQuestion, TabPracticeParamList } from '~/types';
+import { StatusQuestion, TabPracticeParamList, TypePracticeResult } from '~/types';
 import ScreenLoading from '../../UI/ScreenLoading';
 import AlertBottom from '../Study/Alert';
 import Bottom from '../Study/Bottom';
@@ -55,13 +55,21 @@ export default memo(function TabPracticeExam({ navigation }: Props) {
       if (countTime >= totalTime) {
         clearInterval(processTime);
 
-        handleEndStudy(navigation, point);
+        const wordsUnique = Array.from(new Set(words.map((item) => item.data.id_word)));
+        const result: TypePracticeResult = {
+          point,
+          correct: countCorrect,
+          inCorrect: countIncorrect,
+          words: wordsUnique,
+        };
+        handleEndStudy(navigation, result);
       } else setCountTime(countTime + 1);
     }, 1000);
     return () => clearInterval(processTime);
   });
 
   useEffect(() => {
+    dispatch(setPoint(0));
     const words = actLoadWordsExam(wordsState, 3);
     setWords(shuffle(words));
 

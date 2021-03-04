@@ -10,6 +10,7 @@ import HeaderTitle from '~/src/components/Common/HeaderTitle';
 import TabDifficultRight from '~/src/components/TabDifficult/Header/Right';
 import TabDifficultStudy from '~/src/components/TabDifficult/Study';
 import TabPracticeReport from '~/src/components/TabPractice/Report';
+import TabPracticeResult from '~/src/components/TabPractice/Result';
 import TabPracticeStudyHeaderBackImage from '~/src/components/TabPractice/Study/Header/BackImage';
 import TabPracticeStudyHeaderRight from '~/src/components/TabPractice/Study/Header/Right';
 import TabPracticeWordDetailHeaderTitle from '~/src/components/TabPractice/WordDetails/Header/Title';
@@ -78,6 +79,13 @@ export default function TabDifficultNavigator(): JSX.Element {
             headerRight: () => <TabPracticeStudyHeaderRight />,
             cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
           };
+        }}
+      />
+      <TabFavoriteStack.Screen
+        name="TabPracticeResult"
+        component={TabPracticeResult}
+        options={{
+          headerTitle: () => <HeaderTitle title="Kết Quả" />,
         }}
       />
       <TabFavoriteStack.Screen
