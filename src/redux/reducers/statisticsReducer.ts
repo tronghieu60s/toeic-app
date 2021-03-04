@@ -6,24 +6,22 @@ import {
   INCREASE_STREAK,
   LOAD_STATISTICS,
   SET_POINT,
-  SET_TARGET,
   StatisticsAction,
   StatisticsState,
 } from '../actions/statisticsAction';
 
-const statisticsDefaultState = {
+const statisticsDefaultState: StatisticsState = {
   point: 0,
   streak: 0,
   experience: 0,
-  target: 30,
 };
 const statisticsInitialState: StatisticsState = { ...statisticsDefaultState };
 
 const statistics = (state = statisticsInitialState, action: StatisticsAction): StatisticsState => {
   switch (action.type) {
     case LOAD_STATISTICS: {
-      const { streak, experience, target } = action.state || statisticsDefaultState;
-      return { ...state, streak, experience, target };
+      const { streak, experience } = action.state || statisticsDefaultState;
+      return { ...state, streak, experience };
     }
     case INCREASE_STREAK: {
       const newStreak = state.streak + 1;
@@ -35,14 +33,9 @@ const statistics = (state = statisticsInitialState, action: StatisticsAction): S
       (async () => await AsyncStorage.setItem('@experience', newExp.toString()))();
       return { ...state, experience: newExp };
     }
-    case SET_TARGET: {
-      const target = action.value || 30;
-      (async () => await AsyncStorage.setItem('@target', target.toString()))();
-      return { ...state, target };
-    }
     case INCREASE_POINT: {
-      const { point } = action;
-      const newPoint = state.point + (point || 0);
+      const { value } = action;
+      const newPoint = state.point + (value || 0);
 
       const { experience } = state;
       const newExperience = experience + newPoint;

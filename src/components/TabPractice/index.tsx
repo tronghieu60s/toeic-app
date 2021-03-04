@@ -8,6 +8,7 @@ import { ScrollView, Text, View } from '../Themed';
 import ScreenEmpty from '../UI/ScreenEmpty';
 import ScreenLoading from '../UI/ScreenLoading';
 import GroupItem from './GroupItem';
+import TabPracticeStatistics from './Statistics';
 
 type Props = {
   navigation: StackNavigationProp<TabPracticeParamList, 'TabPracticeScreen'>;
@@ -97,6 +98,9 @@ export default memo(function TabPractice(props: Props) {
   return (
     <ScrollView light style={tailwind('flex-1')}>
       <View light style={tailwind('pt-1 px-1 pb-14')}>
+        <View style={tailwind('flex-1 py-3 mx-1 mt-1 rounded-lg')}>
+          <TabPracticeStatistics />
+        </View>
         {renderItems(groupsRender)}
       </View>
     </ScrollView>

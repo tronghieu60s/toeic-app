@@ -18,10 +18,8 @@ import {
   handleStudyCheckAnswer,
   WordStudy,
 } from '~/src/helpers/study';
-import {
-  actStudyCorrectDifficult,
-} from '~/src/redux/actions/practiceAction';
-import { increasePoint, setPoint } from '~/src/redux/actions/statisticsAction';
+import { actStudyCorrectDifficult } from '~/src/redux/actions/practiceAction';
+import { actIncreasePoint, setPoint } from '~/src/redux/actions/statisticsAction';
 import { RootState } from '~/src/redux/reducers/rootReducer';
 import tailwind from '~/tailwind';
 import { StatusQuestion, TabDifficultParamList, TypePracticeResult } from '~/types';
@@ -43,7 +41,7 @@ export default memo(function TabDifficultStudy({ navigation }: Props) {
   const [countIncorrect, setCountIncorrect] = useState(0);
 
   const dispatch = useDispatch();
-  const point = useSelector((state: RootState) => state.practice.point);
+  const point = useSelector((state: RootState) => state.statistics.point);
   const wordsState = useSelector((state: RootState) => state.practice.wordsDifficult);
   const [words, setWords] = useState<WordStudy[]>([]);
 
@@ -71,7 +69,7 @@ export default memo(function TabDifficultStudy({ navigation }: Props) {
     const checkEqual = handleStudyCheckAnswer({ answer, word: word.data, type: word.type });
 
     if (checkEqual) {
-      dispatch(increasePoint(getPointByTypeAnswer(word.type)));
+      dispatch(actIncreasePoint(getPointByTypeAnswer(word.type)));
       dispatch(actStudyCorrectDifficult(word.data.id_word));
 
       setStatus('Correct');

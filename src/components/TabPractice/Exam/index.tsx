@@ -16,7 +16,7 @@ import {
   handleStudyCheckAnswer,
   WordStudy,
 } from '~/src/helpers/study';
-import { increasePoint, setPoint } from '~/src/redux/actions/statisticsAction';
+import { actIncreasePoint, setPoint } from '~/src/redux/actions/statisticsAction';
 import { RootState } from '~/src/redux/reducers/rootReducer';
 import tailwind from '~/tailwind';
 import { StatusQuestion, TabPracticeParamList, TypePracticeResult } from '~/types';
@@ -46,7 +46,7 @@ export default memo(function TabPracticeExam({ navigation }: Props) {
   const [countIncorrect, setCountIncorrect] = useState(0);
 
   const dispatch = useDispatch();
-  const point = useSelector((state: RootState) => state.practice.point);
+  const point = useSelector((state: RootState) => state.statistics.point);
   const wordsState = useSelector((state: RootState) => state.practice.words);
   const [words, setWords] = useState<WordStudy[]>([]);
 
@@ -100,7 +100,7 @@ export default memo(function TabPracticeExam({ navigation }: Props) {
     const checkEqual = handleStudyCheckAnswer({ answer, word: word.data, type: word.type });
 
     if (checkEqual) {
-      dispatch(increasePoint(getPointByTypeAnswer(word.type)));
+      dispatch(actIncreasePoint(getPointByTypeAnswer(word.type)));
       setCountCorrect(countCorrect + 1);
 
       setStatus('Correct');

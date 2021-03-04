@@ -1,7 +1,6 @@
 /* eslint-disable no-await-in-loop */
 import { AntDesign, FontAwesome5 } from '@expo/vector-icons';
 import { RouteProp } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
 import React, { memo, useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { PieChart } from 'react-native-chart-kit';
@@ -21,10 +20,9 @@ const { width: screenWidth } = Layout.window;
 
 type Props = {
   route: RouteProp<TabPracticeParamList, 'TabPracticeResult'>;
-  navigation: StackNavigationProp<TabPracticeParamList, 'TabPracticeResult'>;
 };
 
-export default memo(function TabPracticeResult({ route, navigation }: Props) {
+export default memo(function TabPracticeResult({ route }: Props) {
   const { results } = route.params;
   const { point, correct, inCorrect, words: wordsId } = results;
   const [words, setWords] = useState<WordType[]>([]);

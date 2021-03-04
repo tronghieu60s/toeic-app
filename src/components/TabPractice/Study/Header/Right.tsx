@@ -9,7 +9,7 @@ export default memo(function TabPracticeStudyHeaderRight() {
   const fadePoint = useRef(new Animated.Value(1)).current;
   const fadePrePoint = useRef(new Animated.Value(0)).current;
 
-  const pointState = useSelector((state: RootState) => state.practice.point);
+  const pointState = useSelector((state: RootState) => state.statistics.point);
   const [point, setPoint] = useState(() => pointState);
   const [prePoint, setPrePoint] = useState(() => pointState - point);
 

@@ -1,4 +1,3 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DarkTheme, DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
@@ -8,7 +7,7 @@ import { RootStackParamList } from '../../types';
 import NotFoundScreen from '../components/Common/NotFoundScreen';
 import { actLoadCommon } from '../redux/actions/commonAction';
 import { actLoadWordsDifficult } from '../redux/actions/practiceAction';
-import { actLoadStatistics, increaseStreak } from '../redux/actions/statisticsAction';
+import { actLoadStatistics } from '../redux/actions/statisticsAction';
 import BottomTabNavigator from './BottomTabNavigator';
 import LinkingConfiguration from './LinkingConfiguration';
 
@@ -23,15 +22,6 @@ export default function Navigation(): JSX.Element {
       await dispatch(actLoadCommon());
       await dispatch(actLoadStatistics());
       await dispatch(actLoadWordsDifficult());
-
-      const preDateStorage = (await AsyncStorage.getItem('@previous_date')) || '0';
-      const numDatePreStorage = parseInt(preDateStorage, 10);
-      const now = new Date();
-      if (now.getTime() - numDatePreStorage > 86400000) {
-        const firstDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-        await AsyncStorage.setItem('@previous_date', firstDate.getTime().toString());
-        await dispatch(increaseStreak());
-      }
     })();
   }, []);
 
