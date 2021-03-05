@@ -37,14 +37,7 @@ const statistics = (state = statisticsInitialState, action: StatisticsAction): S
       const { value } = action;
       const newPoint = state.point + (value || 0);
 
-      const { experience } = state;
-      const newExperience = experience + newPoint;
-
-      (async () => {
-        await AsyncStorage.setItem('@experience', newExperience.toString());
-      })();
-
-      return { ...state, point: newPoint, experience: newExperience };
+      return { ...state, point: newPoint };
     }
     case SET_POINT: {
       const { point } = action;

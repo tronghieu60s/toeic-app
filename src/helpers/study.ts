@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { convertWordsBase, removeVietnameseTones as rmVN } from '~/src/helpers/convert';
 import { randomBetweenTwoNumber as rdNum } from '~/src/helpers/random';
 import { TypePracticeResult, TypesAnswer, WordType } from '~/types';
@@ -81,15 +80,10 @@ export const handleStudyCheckAnswer = (props: {
 
 export const handleEndStudy = async (
   navigation: any,
-  params: TypePracticeResult,
+  results: TypePracticeResult,
 ): Promise<void> => {
-  const { point } = params;
   navigation.removeListener('beforeRemove', (e: any) => navigation.dispatch(e.data.action));
-  navigation.replace('TabPracticeResult', { results: params });
-
-  const expStorage = (await AsyncStorage.getItem('@exp')) || '0';
-  const exp = parseInt(expStorage, 10);
-  await AsyncStorage.setItem('@exp', (exp + point).toString());
+  navigation.replace('TabPracticeResult', { results });
 
   await AdMobInterstitial();
 };

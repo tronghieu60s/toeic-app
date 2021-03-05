@@ -73,5 +73,6 @@ export const actIncreasePoint = (value: number) => async (
     dispatch(increaseStreak());
   }
 
+  dispatch(increaseExperience(value));
   return dispatch(increasePoint(value));
 };
