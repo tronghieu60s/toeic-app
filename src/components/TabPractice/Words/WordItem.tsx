@@ -37,6 +37,7 @@ export default function WordItem(props: Props): JSX.Element {
   return (
     <View style={tailwind('flex-auto flex-row rounded-lg mb-2 px-3')}>
       <Ripple
+        disabled={handleDetailsWord === null}
         style={tailwind('w-11/12 flex-auto flex-row')}
         onPress={() => handleDetailsWord && handleDetailsWord(word)}
       >

@@ -2,7 +2,9 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import React, { memo, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
+import { useDispatch } from 'react-redux';
 import { getWordsByNameOrMean } from '~/src/models/WordsModel';
+import { actToggleFlashWord } from '~/src/redux/actions/practiceAction';
 import tailwind from '~/tailwind';
 import { TabDictionaryParamList, WordType } from '~/types';
 import WordItem from '../TabPractice/Words/WordItem';
@@ -18,14 +20,22 @@ export default memo(function TabDictionary({ navigation }: Props) {
   const [textSearch, setTextSearch] = useState('');
   const [words, setWords] = useState<WordType[]>([]);
 
-  const onPress = async () => {
-    setIsPending(true);
+  const dispatch = useDispatch();
+  const loadWordsByText = async () => {
     const words = await getWordsByNameOrMean(textSearch, 20);
     if (textSearch.length > 0) setWords(words.data);
     else setWords([]);
-    setIsPending(false);
   };
 
+  const onPress = async () => {
+    setIsPending(true);
+    await loadWordsByText();
+    setIsPending(false);
+  };
+  const handleFlashWord = async (word: WordType) => {
+    dispatch(actToggleFlashWord(word));
+    await loadWordsByText();
+  };
   const handleDetailsWord = (word: WordType) => {
     navigation.navigate('TabPracticeWordDetails', { word });
   };
@@ -36,6 +46,7 @@ export default memo(function TabDictionary({ navigation }: Props) {
         key={index}
         word={word}
         handleDetailsWord={handleDetailsWord}
+        handleFlashWord={handleFlashWord}
       />
     ));
   };
@@ -47,7 +58,7 @@ export default memo(function TabDictionary({ navigation }: Props) {
           style={styles.input}
           onChangeText={(text) => setTextSearch(text)}
           value={textSearch}
-          placeholder="Nhập từ vựng cần tìm..."
+          placeholder="Nhập từ vựng hoặc nghĩa cần tìm..."
         />
         <TouchableOpacity style={styles.button} onPress={onPress}>
           <Text style={tailwind('text-white')}>Tìm kiếm</Text>

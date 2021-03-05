@@ -40,7 +40,13 @@ export const getWordsByNameOrMean = (str: string, limit: number): Promise<Execut
     '',
   );
   return executeSql(
-    `select * from words where words.name_word like '%${key}%' or words.mean_word like '%${key}%' order by words.name_word limit ?`,
+    `select * from words 
+    left join groups on groups.id_group = words.id_group 
+    left join studies on studies.id_study = words.id_word
+    where words.name_word like '%${key}%' or 
+    words.mean_word like '%${key}%' 
+    order by words.name_word 
+    limit ?`,
     [limit],
   );
 };
