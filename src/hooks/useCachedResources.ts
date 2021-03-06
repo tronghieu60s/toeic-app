@@ -38,7 +38,7 @@ export default function useCachedResources(): ReturnValue {
           } else setProcessText('Không tìm thấy bản cập nhật nào...');
         } catch (e) {
           await delayLoading();
-          setProcessText('Không thể kết nối Internet...');
+          setProcessText('Không thể kết nối với máy chủ...');
         }
 
         await delayLoading();

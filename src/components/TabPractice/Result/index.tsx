@@ -9,6 +9,7 @@ import { getWordsByIdWord } from '~/src/models/WordsModel';
 import tailwind from '~/tailwind';
 import { TabPracticeParamList, WordType } from '~/types';
 import { ScrollView, Text, View } from '../../Themed';
+import ScreenLoading from '../../UI/ScreenLoading';
 import WordItem from '../Words/WordItem';
 
 const chartConfig = {
@@ -23,6 +24,7 @@ type Props = {
 };
 
 export default memo(function TabPracticeResult({ route }: Props) {
+  const [isPending, setIsPending] = useState(true);
   const { results } = route.params;
   const { point, correct, inCorrect, words: wordsId } = results;
   const [words, setWords] = useState<WordType[]>([]);
@@ -48,8 +50,11 @@ export default memo(function TabPracticeResult({ route }: Props) {
         words.push(word.data[0]);
       }
       setWords(words);
+      setIsPending(false);
     })();
   }, []);
+
+  if (isPending) return <ScreenLoading />;
 
   return (
     <ScrollView light>

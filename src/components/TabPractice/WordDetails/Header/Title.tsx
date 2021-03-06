@@ -20,13 +20,13 @@ export default memo(function TabPracticeWordDetailHeaderTitle() {
       <Text style={styles.pronounce}>
         {pronounce_word}
         {' - '}
-        {mean_word?.slice(0, 20)}
-        {(mean_word || '').length > 20 ? '...' : ''}
+        {mean_word?.slice(0, 30)}
+        {(mean_word || '').length > 30 ? '...' : ''}
       </Text>
     </View>
   );
 });
 
 const styles = StyleSheet.create({
-  pronounce: { fontSize: 11, color: '#5e72e4' },
+  pronounce: { fontSize: 10, color: '#5e72e4' },
 });

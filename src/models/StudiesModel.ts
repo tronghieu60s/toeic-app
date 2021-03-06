@@ -18,3 +18,7 @@ export const updateStudies = (parameters: StudyType): Promise<ExecuteSQL> => {
     id_study,
   ]);
 };
+
+export const getWordsStudied = (): Promise<ExecuteSQL> => {
+  return executeSql('select * from studies where studies.count_study = 6', []);
+};

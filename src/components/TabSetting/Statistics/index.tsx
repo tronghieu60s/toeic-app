@@ -1,7 +1,7 @@
 import { FontAwesome5, Ionicons } from '@expo/vector-icons';
 import React, { memo, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { getWordsStudied } from '~/src/models/WordsModel';
+import { getWordsStudied } from '~/src/models/StudiesModel';
 import { RootState } from '~/src/redux/reducers/rootReducer';
 import tailwind from '~/tailwind';
 import { Text, View } from '../../Themed';

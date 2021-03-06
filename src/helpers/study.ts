@@ -62,19 +62,16 @@ export const handleStudyCheckAnswer = (props: {
   type: TypesAnswer;
 }): boolean => {
   const { answer, word, type } = props;
+
   let expected = '';
   if (isTypeAnswersName(type)) expected = word.name_word || '';
   if (isTypeAnswersMean(type)) expected = word.mean_word || '';
-  expected = convertWordsBase(expected);
 
+  expected = rmVN(convertWordsBase(expected));
+  const actual = rmVN(convertWordsBase(answer));
   const arrExpected = expected.split(',').map((s) => convertWordsBase(s));
-  const arrExpectedVn = expected.split(',').map((s) => rmVN(convertWordsBase(s)));
 
-  const actual = convertWordsBase(answer);
-  const checkEqual =
-    arrExpected.indexOf(actual) !== -1 ||
-    arrExpectedVn.indexOf(actual) !== -1 ||
-    actual === expected;
+  const checkEqual = arrExpected.indexOf(actual) !== -1 || actual === expected;
   return checkEqual;
 };
 

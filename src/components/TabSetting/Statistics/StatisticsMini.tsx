@@ -2,7 +2,7 @@ import { FontAwesome5, Ionicons } from '@expo/vector-icons';
 import React, { memo, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import tailwind from '~/tailwind';
-import { getWordsStudied } from '~/src/models/WordsModel';
+import { getWordsStudied } from '~/src/models/StudiesModel';
 import { RootState } from '~/src/redux/reducers/rootReducer';
 import { Text, View } from '../../Themed';
 
@@ -19,6 +19,7 @@ export default memo(function TabSettingStatisticsMini() {
       setCountStudied(countWordsStudied);
     })();
   }, []);
+
   return (
     <View style={tailwind('flex-row justify-around py-3')}>
       <BlockIconText value={streak}>

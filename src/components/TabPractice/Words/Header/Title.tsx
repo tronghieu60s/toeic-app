@@ -40,5 +40,5 @@ export default memo(function TabPracticeWordsHeaderTitle(props: Props) {
 
 const styles = StyleSheet.create({
   count: { ...tailwind('ml-2'), fontSize: 9, letterSpacing: 1.2, marginTop: 2 },
-  mean: { ...tailwind('w-10/12'), fontSize: 11, color: '#5e72e4' },
+  mean: { ...tailwind('w-10/12'), fontSize: 10, color: '#5e72e4' },
 });

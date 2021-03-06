@@ -1,4 +1,4 @@
-export function removeVietnameseTones(str: string) {
+export function removeVietnameseTones(str: string): string {
   const newStr = str
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
@@ -9,6 +9,6 @@ export function removeVietnameseTones(str: string) {
   return newStr;
 }
 
-export function convertWordsBase(value: string) {
+export function convertWordsBase(value: string): string {
   return value.trim().toLowerCase();
 }
