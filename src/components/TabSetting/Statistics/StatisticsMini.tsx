@@ -1,24 +1,14 @@
 import { FontAwesome5, Ionicons } from '@expo/vector-icons';
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo } from 'react';
 import { useSelector } from 'react-redux';
-import tailwind from '~/tailwind';
-import { getWordsStudied } from '~/src/models/StudiesModel';
 import { RootState } from '~/src/redux/reducers/rootReducer';
+import tailwind from '~/tailwind';
 import { Text, View } from '../../Themed';
 
 export default memo(function TabSettingStatisticsMini() {
-  const [countStudied, setCountStudied] = useState(0);
-
+  const wordsStudied = useSelector((state: RootState) => state.practice.wordsStudied);
   const wordsDifficult = useSelector((state: RootState) => state.practice.wordsDifficult);
   const { streak, experience } = useSelector((state: RootState) => state.statistics);
-
-  useEffect(() => {
-    (async () => {
-      const wordsStudied = await getWordsStudied();
-      const countWordsStudied = wordsStudied.data.length;
-      setCountStudied(countWordsStudied);
-    })();
-  }, []);
 
   return (
     <View style={tailwind('flex-row justify-around py-3')}>
@@ -28,7 +18,7 @@ export default memo(function TabSettingStatisticsMini() {
       <BlockIconText value={experience}>
         <Ionicons name="md-flash" size={18} color="#FFE808" />
       </BlockIconText>
-      <BlockIconText value={countStudied}>
+      <BlockIconText value={wordsStudied.length}>
         <FontAwesome5 name="graduation-cap" size={16} color="#2dce89" />
       </BlockIconText>
       <BlockIconText value={wordsDifficult.length}>

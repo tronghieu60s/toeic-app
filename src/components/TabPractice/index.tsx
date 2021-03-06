@@ -1,12 +1,12 @@
 import { StackNavigationProp } from '@react-navigation/stack';
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo } from 'react';
+import { useSelector } from 'react-redux';
 import TabSettingStatisticsMini from '~/src/components/TabSetting/Statistics/StatisticsMini';
-import { getGroups } from '~/src/models/GroupsModel';
+import { RootState } from '~/src/redux/reducers/rootReducer';
 import tailwind from '~/tailwind';
 import { GroupType, TabPracticeParamList } from '~/types';
 import { ScrollView, View } from '../Themed';
 import ScreenEmpty from '../UI/ScreenEmpty';
-import ScreenLoading from '../UI/ScreenLoading';
 import GroupItem from './GroupItem';
 
 type Props = {
@@ -15,16 +15,7 @@ type Props = {
 
 export default memo(function TabPractice(props: Props) {
   const { navigation } = props;
-  const [isPending, setIsPending] = useState(true);
-  const [groups, setGroups] = useState<GroupType[]>([]);
-
-  useEffect(() => {
-    (async () => {
-      const groups = await getGroups();
-      if (groups.data !== null) setGroups(groups.data);
-      setIsPending(false);
-    })();
-  }, []);
+  const groups = useSelector((state: RootState) => state.practice.groups);
 
   const renderItems = (groups: GroupType[]) => {
     return groups.map((item, index) => (
@@ -33,7 +24,6 @@ export default memo(function TabPractice(props: Props) {
   };
 
   const text = 'Không tải được dữ liệu,\nvui lòng xóa dữ liệu và khởi động lại ứng dụng.';
-  if (isPending) return <ScreenLoading />;
   if (groups.length <= 0) return <ScreenEmpty>{text}</ScreenEmpty>;
 
   return (

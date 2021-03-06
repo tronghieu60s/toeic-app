@@ -4,8 +4,10 @@ import { RouteProp } from '@react-navigation/native';
 import React, { memo, useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { PieChart } from 'react-native-chart-kit';
+import { useDispatch } from 'react-redux';
 import Layout from '~/src/constants/Layout';
 import { getWordsByIdWord } from '~/src/models/WordsModel';
+import { actLoadGroups, actLoadWordsStudied } from '~/src/redux/actions/practiceAction';
 import tailwind from '~/tailwind';
 import { TabPracticeParamList, WordType } from '~/types';
 import { ScrollView, Text, View } from '../../Themed';
@@ -29,6 +31,7 @@ export default memo(function TabPracticeResult({ route }: Props) {
   const { point, correct, inCorrect, words: wordsId } = results;
   const [words, setWords] = useState<WordType[]>([]);
 
+  const dispatch = useDispatch();
   const data = [
     {
       name: 'Trả lời đúng',
@@ -50,6 +53,9 @@ export default memo(function TabPracticeResult({ route }: Props) {
         words.push(word.data[0]);
       }
       setWords(words);
+
+      await dispatch(actLoadGroups());
+      await dispatch(actLoadWordsStudied());
       setIsPending(false);
     })();
   }, []);

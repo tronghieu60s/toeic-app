@@ -1,31 +1,54 @@
 import { Dispatch } from 'react';
-import { createStudies, updateStudies } from '~/src/models/StudiesModel';
+import Config from '~/src/constants/Config';
+import { getGroups } from '~/src/models/GroupsModel';
+import { createStudies, getWordsStudied, updateStudies } from '~/src/models/StudiesModel';
 import { getWordsByIdGroup, getWordsByIdWord, getWordsDifficult } from '~/src/models/WordsModel';
 import { GroupType, WordType } from '~/types';
-import Config from '~/src/constants/Config';
 
 const { count_max, difficult_max } = Config.study;
 
+export const LOAD_GROUPS = 'LOAD_GROUPS';
 export const LOAD_WORDS_GROUP = 'LOAD_WORDS_GROUP';
+export const LOAD_WORDS_STUDIED = 'LOAD_WORDS_STUDIED';
 export const LOAD_WORD_DETAILS = 'LOAD_WORD_DETAILS';
 export const LOAD_WORDS_DIFFICULT = 'LOAD_WORDS_DIFFICULT';
 export const INCREASE_POINT = 'INCREASE_POINT';
 
 export type PracticeAction = {
   type: string;
+  groups: GroupType[];
   words: WordType[];
   word: WordType;
 };
 
 export const typeDefault: PracticeAction = {
   type: '',
+  groups: [],
   words: [],
   word: { id_group: 0, id_word: 0, id_study: 0 },
 };
 
+export const loadGroups = (groups: GroupType[]): PracticeAction => ({
+  ...typeDefault,
+  type: LOAD_GROUPS,
+  groups,
+});
+
 export const loadWordsGroup = (words: WordType[]): PracticeAction => ({
   ...typeDefault,
   type: LOAD_WORDS_GROUP,
+  words,
+});
+
+export const loadWordsStudied = (words: WordType[]): PracticeAction => ({
+  ...typeDefault,
+  type: LOAD_WORDS_STUDIED,
+  words,
+});
+
+export const loadWordsDifficult = (words: WordType[]): PracticeAction => ({
+  ...typeDefault,
+  type: LOAD_WORDS_DIFFICULT,
   words,
 });
 
@@ -35,19 +58,29 @@ export const loadWordDetails = (word: WordType): PracticeAction => ({
   word,
 });
 
-export const loadWordsDifficult = (words: WordType[]): PracticeAction => ({
-  ...typeDefault,
-  type: LOAD_WORDS_DIFFICULT,
-  words,
-});
-
 // Async Await Thunk
+export const actLoadGroups = () => async (dispatch: Dispatch<PracticeAction>): Promise<void> => {
+  const groupsSql = await getGroups();
+  if (groupsSql.data !== null) {
+    const groups = groupsSql.data;
+    return dispatch(loadGroups(groups));
+  }
+  return undefined;
+};
+
 export const actLoadWordsGroup = (group: GroupType) => async (
   dispatch: Dispatch<PracticeAction>,
 ): Promise<void> => {
   const { id_group } = group;
   const words = await getWordsByIdGroup(id_group);
   return dispatch(loadWordsGroup(words.data || []));
+};
+
+export const actLoadWordsStudied = () => async (
+  dispatch: Dispatch<PracticeAction>,
+): Promise<void> => {
+  const wordsStudied = await getWordsStudied();
+  return dispatch(loadWordsStudied(wordsStudied.data || []));
 };
 
 export const actStudyCorrectDifficult = (id_word: number) => async (

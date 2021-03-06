@@ -1,6 +1,6 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Ripple } from '~/src/components/Themed';
 import { RootState } from '~/src/redux/reducers/rootReducer';
 import TabDifficultNavigator from '~/src/stacks/TabDifficultNavigator';
@@ -10,11 +10,34 @@ import Colors from '../constants/Colors';
 import TabDictionaryNavigator from '../stacks/TabDictionaryNavigator';
 import TabSettingNavigator from '../stacks/TabSettingNavigator';
 import BottomTabIcon from './BottomTabIcon';
+import ScreenLoading from '../components/UI/ScreenLoading';
+import { actLoadCommon } from '../redux/actions/commonAction';
+import {
+  actLoadGroups,
+  actLoadWordsDifficult,
+  actLoadWordsStudied,
+} from '../redux/actions/practiceAction';
+import { actLoadStatistics } from '../redux/actions/statisticsAction';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
 export default function BottomTabNavigator(): JSX.Element {
+  const [isPending, setIsPending] = React.useState(true);
+  const dispatch = useDispatch();
   const colorScheme = useSelector((state: RootState) => state.common.theme);
+
+  React.useEffect(() => {
+    (async () => {
+      await dispatch(actLoadCommon());
+      await dispatch(actLoadStatistics());
+      await dispatch(actLoadGroups());
+      await dispatch(actLoadWordsStudied());
+      await dispatch(actLoadWordsDifficult());
+      setIsPending(false);
+    })();
+  }, []);
+
+  if (isPending) return <ScreenLoading />;
 
   return (
     <BottomTab.Navigator
@@ -41,7 +64,6 @@ export default function BottomTabNavigator(): JSX.Element {
     >
       <BottomTab.Screen name="TabPractice" component={TabPracticeNavigator} />
       <BottomTab.Screen name="TabDifficult" component={TabDifficultNavigator} />
-      {/* <BottomTab.Screen name="TabStatistics" component={TabStatisticsNavigator} /> */}
       <BottomTab.Screen name="TabDictionary" component={TabDictionaryNavigator} />
       <BottomTab.Screen name="TabSetting" component={TabSettingNavigator} />
     </BottomTab.Navigator>

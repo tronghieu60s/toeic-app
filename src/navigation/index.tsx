@@ -1,29 +1,17 @@
 import { DarkTheme, DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { RootState } from '~/src/redux/reducers/rootReducer';
 import { RootStackParamList } from '../../types';
 import NotFoundScreen from '../components/Common/NotFoundScreen';
-import { actLoadCommon } from '../redux/actions/commonAction';
-import { actLoadWordsDifficult } from '../redux/actions/practiceAction';
-import { actLoadStatistics } from '../redux/actions/statisticsAction';
 import BottomTabNavigator from './BottomTabNavigator';
 import LinkingConfiguration from './LinkingConfiguration';
 
 // If you are not familiar with React Navigation, we recommend going through the
 // "Fundamentals" guide: https://reactnavigation.org/docs/getting-started
 export default function Navigation(): JSX.Element {
-  const dispatch = useDispatch();
   const colorScheme = useSelector((state: RootState) => state.common.theme);
-
-  React.useEffect(() => {
-    (async () => {
-      await dispatch(actLoadCommon());
-      await dispatch(actLoadStatistics());
-      await dispatch(actLoadWordsDifficult());
-    })();
-  }, []);
 
   return (
     <NavigationContainer

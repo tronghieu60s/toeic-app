@@ -1,24 +1,14 @@
 import { FontAwesome5, Ionicons } from '@expo/vector-icons';
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo } from 'react';
 import { useSelector } from 'react-redux';
-import { getWordsStudied } from '~/src/models/StudiesModel';
 import { RootState } from '~/src/redux/reducers/rootReducer';
 import tailwind from '~/tailwind';
 import { Text, View } from '../../Themed';
 
 export default memo(function TabSettingStatistics() {
-  const [countStudied, setCountStudied] = useState(0);
-
+  const wordsStudied = useSelector((state: RootState) => state.practice.wordsStudied);
   const wordsDifficult = useSelector((state: RootState) => state.practice.wordsDifficult);
   const { streak, experience } = useSelector((state: RootState) => state.statistics);
-
-  useEffect(() => {
-    (async () => {
-      const wordsStudied = await getWordsStudied();
-      const countWordsStudied = wordsStudied.data.length;
-      setCountStudied(countWordsStudied);
-    })();
-  }, []);
 
   return (
     <View style={tailwind('flex-row justify-around')}>
@@ -26,7 +16,7 @@ export default memo(function TabSettingStatistics() {
         <ExperienceBlock text="Streak" number={streak}>
           <FontAwesome5 name="fire" size={22} color="#FF5A00" />
         </ExperienceBlock>
-        <ExperienceBlock text="Từ đã học" number={countStudied}>
+        <ExperienceBlock text="Từ đã học" number={wordsStudied.length}>
           <FontAwesome5 name="graduation-cap" size={20} color="#2dce89" />
         </ExperienceBlock>
       </View>
