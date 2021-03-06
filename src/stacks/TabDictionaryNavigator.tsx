@@ -18,6 +18,7 @@ export default function TabDictionaryNavigator(): JSX.Element {
   return (
     <TabDictionaryStack.Navigator
       screenOptions={{
+        headerStyle: { elevation: 1, shadowOpacity: 0 },
         headerStyleInterpolator: HeaderStyleInterpolators.forSlideUp,
         cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
       }}

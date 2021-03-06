@@ -34,7 +34,11 @@ export default function TabPracticeNavigator(): JSX.Element {
   return (
     <TabPracticeStack.Navigator
       screenOptions={{
-        headerStyle: { backgroundColor: Colors[colorScheme].background },
+        headerStyle: {
+          backgroundColor: Colors[colorScheme].background,
+          elevation: 1,
+          shadowOpacity: 0,
+        },
         headerStyleInterpolator: HeaderStyleInterpolators.forSlideUp,
         cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
       }}

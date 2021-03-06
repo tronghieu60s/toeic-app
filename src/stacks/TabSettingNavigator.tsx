@@ -16,6 +16,7 @@ export default function TabSettingNavigator(): JSX.Element {
   return (
     <TabSettingStack.Navigator
       screenOptions={{
+        headerStyle: { elevation: 1, shadowOpacity: 0 },
         headerStyleInterpolator: HeaderStyleInterpolators.forSlideUp,
         cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
       }}

@@ -4,9 +4,9 @@ import { useSelector } from 'react-redux';
 import { getWordsStudied } from '~/src/models/WordsModel';
 import { RootState } from '~/src/redux/reducers/rootReducer';
 import tailwind from '~/tailwind';
-import { Text, View } from '../Themed';
+import { Text, View } from '../../Themed';
 
-export default memo(function TabPracticeStatistics() {
+export default memo(function TabSettingStatistics() {
   const [countStudied, setCountStudied] = useState(0);
 
   const wordsDifficult = useSelector((state: RootState) => state.practice.wordsDifficult);

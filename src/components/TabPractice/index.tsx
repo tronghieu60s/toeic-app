@@ -1,14 +1,13 @@
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { memo, useEffect, useState } from 'react';
-import { StyleSheet } from 'react-native';
+import TabSettingStatisticsMini from '~/src/components/TabSetting/Statistics/StatisticsMini';
 import { getGroups } from '~/src/models/GroupsModel';
 import tailwind from '~/tailwind';
 import { GroupType, TabPracticeParamList } from '~/types';
-import { ScrollView, Text, View } from '../Themed';
+import { ScrollView, View } from '../Themed';
 import ScreenEmpty from '../UI/ScreenEmpty';
 import ScreenLoading from '../UI/ScreenLoading';
 import GroupItem from './GroupItem';
-import TabPracticeStatistics from './Statistics';
 
 type Props = {
   navigation: StackNavigationProp<TabPracticeParamList, 'TabPracticeScreen'>;
@@ -18,7 +17,6 @@ export default memo(function TabPractice(props: Props) {
   const { navigation } = props;
   const [isPending, setIsPending] = useState(true);
   const [groups, setGroups] = useState<GroupType[]>([]);
-  const [groupsRender, setGroupsRender] = useState<{ title: string; data: GroupType[] }[]>([]);
 
   useEffect(() => {
     (async () => {
@@ -28,66 +26,9 @@ export default memo(function TabPractice(props: Props) {
     })();
   }, []);
 
-  useEffect(() => {
-    const groupsData = [
-      {
-        title: '1. General Business',
-        data: groups.slice(0, 5),
-      },
-      {
-        title: '2. Office Issues',
-        data: groups.slice(5, 10),
-      },
-      {
-        title: '3. Personnel',
-        data: groups.slice(10, 15),
-      },
-      {
-        title: '4. Purchasing',
-        data: groups.slice(15, 20),
-      },
-      {
-        title: '5. Financing and Budgeting',
-        data: groups.slice(20, 25),
-      },
-      {
-        title: '6. Management Issues',
-        data: groups.slice(25, 30),
-      },
-      {
-        title: '7. Restaurants and Events',
-        data: groups.slice(30, 35),
-      },
-      {
-        title: '8. Travel',
-        data: groups.slice(35, 40),
-      },
-      {
-        title: '9. Entertainment',
-        data: groups.slice(40, 45),
-      },
-      {
-        title: '10. Health',
-        data: groups.slice(45, 50),
-      },
-    ];
-    setGroupsRender(groupsData);
-  }, [groups]);
-
-  const renderItems = (groups: { title: string; data: GroupType[] }[]) => {
-    return groups.map((group, index) => (
-      <React.Fragment key={index}>
-        {group.data.length > 0 && (
-          <Text weight={700} style={styles.groupsTitle}>
-            {group.title}
-          </Text>
-        )}
-        <ScrollView horizontal style={styles.groups}>
-          {group.data.map((item, index) => (
-            <GroupItem key={index} group={item} navigation={navigation} />
-          ))}
-        </ScrollView>
-      </React.Fragment>
+  const renderItems = (groups: GroupType[]) => {
+    return groups.map((item, index) => (
+      <GroupItem key={index} group={item} navigation={navigation} />
     ));
   };
 
@@ -97,17 +38,12 @@ export default memo(function TabPractice(props: Props) {
 
   return (
     <ScrollView light style={tailwind('flex-1')}>
-      <View light style={tailwind('pt-1 px-1 pb-14')}>
-        <View style={tailwind('flex-1 py-3 mx-1 mt-1 rounded')}>
-          <TabPracticeStatistics />
+      <View light style={tailwind('pb-14')}>
+        <TabSettingStatisticsMini />
+        <View light style={tailwind('flex-1 flex-row flex-wrap justify-center mt-2')}>
+          {renderItems(groups)}
         </View>
-        {renderItems(groupsRender)}
       </View>
     </ScrollView>
   );
-});
-
-const styles = StyleSheet.create({
-  groups: { ...tailwind('flex-1 flex-row bg-transparent') },
-  groupsTitle: { ...tailwind('text-sm my-2 ml-2') },
 });

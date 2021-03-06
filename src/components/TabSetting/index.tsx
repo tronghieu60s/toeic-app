@@ -13,6 +13,7 @@ import { TabSettingParamList } from '~/types';
 import ContentBlock from '../UI/ContentBlock';
 import TabSettingAudio from './Audio';
 import TabSettingVisible from './Visible';
+import TabSettingStatistics from './Statistics';
 
 type LinkingProps = {
   title: string;
@@ -46,6 +47,9 @@ export default memo(function TabSetting({ navigation }: Props) {
   return (
     <ScrollView light style={tailwind('p-2')}>
       <View light style={tailwind('pb-2 pb-16')}>
+        <ContentBlock title="Bản Thân">
+          <TabSettingStatistics />
+        </ContentBlock>
         <ContentBlock title="Cài Đặt Hiển Thị">
           <TabSettingVisible />
         </ContentBlock>

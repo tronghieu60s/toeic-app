@@ -30,7 +30,11 @@ export default function TabDifficultNavigator(): JSX.Element {
   return (
     <TabFavoriteStack.Navigator
       screenOptions={{
-        headerStyle: { backgroundColor: Colors[colorScheme].background },
+        headerStyle: {
+          backgroundColor: Colors[colorScheme].background,
+          elevation: 1,
+          shadowOpacity: 0,
+        },
         headerStyleInterpolator: HeaderStyleInterpolators.forSlideUp,
         cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
       }}
