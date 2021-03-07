@@ -2,9 +2,10 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import React, { memo } from 'react';
 import { useSelector } from 'react-redux';
 import TabSettingStatisticsMini from '~/src/components/TabSetting/Statistics/StatisticsMini';
+import { GroupTypeRender } from '~/src/redux/actions/practiceAction';
 import { RootState } from '~/src/redux/reducers/rootReducer';
 import tailwind from '~/tailwind';
-import { GroupType, TabPracticeParamList } from '~/types';
+import { TabPracticeParamList } from '~/types';
 import { ScrollView, View } from '../Themed';
 import ScreenEmpty from '../UI/ScreenEmpty';
 import GroupItem from './GroupItem';
@@ -17,7 +18,7 @@ export default memo(function TabPractice(props: Props) {
   const { navigation } = props;
   const groups = useSelector((state: RootState) => state.practice.groups);
 
-  const renderItems = (groups: GroupType[]) => {
+  const renderItems = (groups: GroupTypeRender[]) => {
     return groups.map((item, index) => (
       <GroupItem key={index} group={item} navigation={navigation} />
     ));

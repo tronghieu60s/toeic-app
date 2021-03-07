@@ -14,9 +14,11 @@ export const LOAD_WORD_DETAILS = 'LOAD_WORD_DETAILS';
 export const LOAD_WORDS_DIFFICULT = 'LOAD_WORDS_DIFFICULT';
 export const INCREASE_POINT = 'INCREASE_POINT';
 
+export type GroupTypeRender = GroupType & { count_words: number; count_words_complete: number };
+
 export type PracticeAction = {
   type: string;
-  groups: GroupType[];
+  groups: GroupTypeRender[];
   words: WordType[];
   word: WordType;
 };
@@ -28,7 +30,7 @@ export const typeDefault: PracticeAction = {
   word: { id_group: 0, id_word: 0, id_study: 0 },
 };
 
-export const loadGroups = (groups: GroupType[]): PracticeAction => ({
+export const loadGroups = (groups: GroupTypeRender[]): PracticeAction => ({
   ...typeDefault,
   type: LOAD_GROUPS,
   groups,

@@ -1,39 +1,27 @@
 import { Feather } from '@expo/vector-icons';
 import { StackNavigationProp } from '@react-navigation/stack';
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo } from 'react';
 import { Dimensions, Image, StyleSheet } from 'react-native';
-import { getWordsByIdGroup } from '~/src/models/WordsModel';
+import { GroupTypeRender } from '~/src/redux/actions/practiceAction';
 import tailwind from '~/tailwind';
-import { GroupType, TabPracticeParamList } from '~/types';
+import { TabPracticeParamList } from '~/types';
 import { Ripple, Text } from '../Themed';
 
 type Props = {
-  group: GroupType;
+  group: GroupTypeRender;
   navigation: StackNavigationProp<TabPracticeParamList, 'TabPracticeScreen'>;
 };
 
 export default memo(function GroupItem(props: Props) {
   const { group, navigation } = props;
-  const { id_group, name_group, pronounce_group = '', image_group } = group;
-  const [countWords, setCountWords] = useState(0);
-  const [countStudies, setCountStudies] = useState(-1);
-
-  useEffect(() => {
-    (async () => {
-      const words = await getWordsByIdGroup(id_group);
-      setCountWords(words.data.length);
-
-      const countStudies = words.data.filter((item) => item.count_study === 6);
-      setCountStudies(countStudies.length);
-    })();
-  }, []);
+  const { name_group, pronounce_group = '', image_group, count_words, count_words_complete } = group;
 
   const handlePressGroup = async () => {
     navigation.navigate('TabPracticeWords', { group });
   };
 
   const styleStudied =
-    countStudies >= countWords ? { borderTopWidth: 3, borderColor: '#2dce89' } : {};
+    count_words_complete >= count_words ? { borderTopWidth: 3, borderColor: '#2dce89' } : {};
 
   return (
     <Ripple style={[styles.group, styleStudied]} onPress={handlePressGroup}>
@@ -45,7 +33,7 @@ export default memo(function GroupItem(props: Props) {
         {pronounce_group.substring(0, 20)}
         {pronounce_group.length > 20 ? '.../' : ''}
       </Text>
-      {countStudies >= countWords && (
+      {count_words_complete >= count_words && (
         <Text style={styles.number}>
           <Feather name="check" size={9} color="#fff" />
         </Text>

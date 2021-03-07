@@ -1,5 +1,6 @@
-import { GroupType, WordType } from '~/types';
+import { WordType } from '~/types';
 import {
+  GroupTypeRender,
   LOAD_GROUPS,
   LOAD_WORDS_DIFFICULT,
   LOAD_WORDS_GROUP,
@@ -9,7 +10,7 @@ import {
 } from '../actions/practiceAction';
 
 type PracticeState = {
-  groups: GroupType[];
+  groups: GroupTypeRender[];
   words: WordType[];
   wordsStudied: WordType[];
   wordDetail: WordType;
