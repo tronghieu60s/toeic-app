@@ -3,6 +3,7 @@ export default {
     total_max: 12,
     count_max: 10,
     difficult_max: 5,
+    difficult_per_day: 5,
     time_max: 30,
   },
   ads: {

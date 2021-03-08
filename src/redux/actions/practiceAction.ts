@@ -1,11 +1,18 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Dispatch } from 'react';
 import Config from '~/src/constants/Config';
+import { shuffle } from '~/src/helpers/array';
 import { getGroups } from '~/src/models/GroupsModel';
 import { createStudies, getWordsStudied, updateStudies } from '~/src/models/StudiesModel';
-import { getWordsByIdGroup, getWordsByIdWord, getWordsDifficult } from '~/src/models/WordsModel';
+import {
+  getWordsByIdGroup,
+  getWordsByIdWord,
+  getWordsDifficult,
+  getWordsNonDifficultStudied,
+} from '~/src/models/WordsModel';
 import { GroupType, WordType } from '~/types';
 
-const { count_max, difficult_max } = Config.study;
+const { count_max, difficult_max, difficult_per_day } = Config.study;
 
 export const LOAD_GROUPS = 'LOAD_GROUPS';
 export const LOAD_WORDS_GROUP = 'LOAD_WORDS_GROUP';
@@ -85,6 +92,29 @@ export const actLoadWordsStudied = () => async (
   return dispatch(loadWordsStudied(wordsStudied.data || []));
 };
 
+// Difficult Words
+export const actLoadWordsDifficult = () => async (
+  dispatch: Dispatch<PracticeAction>,
+): Promise<void> => {
+  const preDateStorage = (await AsyncStorage.getItem('@previous_date_difficult')) || '0';
+  const numDatePreStorage = parseInt(preDateStorage, 10);
+  const now = new Date();
+  const firstDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  if (firstDate.getTime() - numDatePreStorage >= 86400000) {
+    await AsyncStorage.setItem('@previous_date_difficult', firstDate.getTime().toString());
+    const wordsState = await getWordsNonDifficultStudied();
+    let words: WordType[] = wordsState.data || [];
+    words = shuffle(words).slice(0, difficult_per_day);
+
+    words.map(async (word: WordType) => {
+      await updateStudies({ ...word, difficult_study: 1 });
+    });
+  }
+
+  const wordsDifficult = await getWordsDifficult();
+  return dispatch(loadWordsDifficult(wordsDifficult.data || []));
+};
+
 export const actStudyCorrectDifficult = (id_word: number) => async (
   dispatch: Dispatch<PracticeAction>,
 ): Promise<void> => {
@@ -98,13 +128,7 @@ export const actStudyCorrectDifficult = (id_word: number) => async (
   return dispatch(loadWordsDifficult(wordsDifficult.data || []));
 };
 
-export const actLoadWordsDifficult = () => async (
-  dispatch: Dispatch<PracticeAction>,
-): Promise<void> => {
-  const words = await getWordsDifficult();
-  return dispatch(loadWordsDifficult(words.data || []));
-};
-
+// Study Check
 export const actStudyCorrect = (id_word: number) => async (
   dispatch: Dispatch<PracticeAction>,
 ): Promise<void> => {
@@ -139,6 +163,7 @@ export const actStudyInCorrect = (id_word: number) => async (
   return undefined;
 };
 
+// Flash Word Difficult
 export const actToggleFlashWord = (word: WordType) => async (
   dispatch: Dispatch<PracticeAction>,
 ): Promise<void> => {

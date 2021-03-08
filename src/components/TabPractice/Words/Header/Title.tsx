@@ -3,9 +3,12 @@ import React, { memo } from 'react';
 import { StyleSheet } from 'react-native';
 import { useSelector } from 'react-redux';
 import { Text, View } from '~/src/components/Themed';
+import Config from '~/src/constants/Config';
 import { RootState } from '~/src/redux/reducers/rootReducer';
 import tailwind from '~/tailwind';
 import { TabPracticeParamList } from '~/types';
+
+const { count_max } = Config.study;
 
 type Props = {
   route: RouteProp<TabPracticeParamList, 'TabPracticeWords'>;
@@ -16,7 +19,7 @@ export default memo(function TabPracticeWordsHeaderTitle(props: Props) {
   const { name_group, mean_group, pronounce_group } = route.params.group;
 
   const words = useSelector((state: RootState) => state.practice.words);
-  const wordsComplete = words.filter((o) => (o.count_study || 0) >= 6).length;
+  const wordsComplete = words.filter((o) => (o.count_study || 0) >= count_max).length;
 
   return (
     <View style={tailwind('bg-transparent')}>

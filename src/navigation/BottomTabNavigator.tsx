@@ -6,11 +6,8 @@ import { RootState } from '~/src/redux/reducers/rootReducer';
 import TabDifficultNavigator from '~/src/stacks/TabDifficultNavigator';
 import TabPracticeNavigator from '~/src/stacks/TabPracticeNavigator';
 import { BottomTabParamList } from '../../types';
-import Colors from '../constants/Colors';
-import TabDictionaryNavigator from '../stacks/TabDictionaryNavigator';
-import TabSettingNavigator from '../stacks/TabSettingNavigator';
-import BottomTabIcon from './BottomTabIcon';
 import ScreenLoading from '../components/UI/ScreenLoading';
+import Colors from '../constants/Colors';
 import { actLoadCommon } from '../redux/actions/commonAction';
 import {
   actLoadGroups,
@@ -18,6 +15,9 @@ import {
   actLoadWordsStudied,
 } from '../redux/actions/practiceAction';
 import { actLoadStatistics, actResetStreak } from '../redux/actions/statisticsAction';
+import TabDictionaryNavigator from '../stacks/TabDictionaryNavigator';
+import TabSettingNavigator from '../stacks/TabSettingNavigator';
+import BottomTabIcon from './BottomTabIcon';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
