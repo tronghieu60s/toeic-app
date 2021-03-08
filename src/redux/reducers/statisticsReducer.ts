@@ -5,6 +5,7 @@ import {
   INCREASE_EXPERIENCE,
   INCREASE_STREAK,
   LOAD_STATISTICS,
+  RESET_STREAK,
   SET_POINT,
   StatisticsAction,
   StatisticsState,
@@ -22,6 +23,10 @@ const statistics = (state = statisticsInitialState, action: StatisticsAction): S
     case LOAD_STATISTICS: {
       const { streak, experience } = action.state || statisticsDefaultState;
       return { ...state, streak, experience };
+    }
+    case RESET_STREAK: {
+      (async () => await AsyncStorage.setItem('@streak', '0'))();
+      return { ...state, streak: 0 };
     }
     case INCREASE_STREAK: {
       const newStreak = state.streak + 1;

@@ -17,7 +17,7 @@ import {
   actLoadWordsDifficult,
   actLoadWordsStudied,
 } from '../redux/actions/practiceAction';
-import { actLoadStatistics } from '../redux/actions/statisticsAction';
+import { actLoadStatistics, actResetStreak } from '../redux/actions/statisticsAction';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -29,7 +29,9 @@ export default function BottomTabNavigator(): JSX.Element {
   React.useEffect(() => {
     (async () => {
       await dispatch(actLoadCommon());
+      await dispatch(actResetStreak());
       await dispatch(actLoadStatistics());
+
       await dispatch(actLoadGroups());
       await dispatch(actLoadWordsStudied());
       await dispatch(actLoadWordsDifficult());

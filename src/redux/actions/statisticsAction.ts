@@ -3,6 +3,7 @@ import { Dispatch } from 'react';
 
 export const LOAD_STATISTICS = 'LOAD_STATISTICS';
 
+export const RESET_STREAK = 'RESET_STREAK';
 export const INCREASE_STREAK = 'INCREASE_STREAK';
 export const INCREASE_EXPERIENCE = 'INCREASE_EXPERIENCE';
 
@@ -29,6 +30,10 @@ export const loadStatistics = (state: StatisticsState): StatisticsAction => ({
 
 export const increaseStreak = (): StatisticsAction => ({
   type: INCREASE_STREAK,
+});
+
+export const resetStreak = (): StatisticsAction => ({
+  type: RESET_STREAK,
 });
 
 export const increaseExperience = (value: number): StatisticsAction => ({
@@ -64,15 +69,32 @@ export const actLoadStatistics = () => async (
 export const actIncreasePoint = (value: number) => async (
   dispatch: Dispatch<StatisticsAction>,
 ): Promise<void> => {
+  dispatch(increaseExperience(value));
+  return dispatch(increasePoint(value));
+};
+
+export const actIncreaseStreak = () => async (
+  dispatch: Dispatch<StatisticsAction>,
+): Promise<void> => {
   const preDateStorage = (await AsyncStorage.getItem('@previous_date')) || '0';
   const numDatePreStorage = parseInt(preDateStorage, 10);
   const now = new Date();
-  if (now.getTime() - numDatePreStorage > 86400000) {
-    const firstDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const firstDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  if (firstDate.getTime() - numDatePreStorage === 86400000 || numDatePreStorage === 0) {
     await AsyncStorage.setItem('@previous_date', firstDate.getTime().toString());
     dispatch(increaseStreak());
   }
+  return undefined;
+};
 
-  dispatch(increaseExperience(value));
-  return dispatch(increasePoint(value));
+export const actResetStreak = () => async (dispatch: Dispatch<StatisticsAction>): Promise<void> => {
+  const preDateStorage = (await AsyncStorage.getItem('@previous_date')) || '0';
+  const numDatePreStorage = parseInt(preDateStorage, 10);
+  const now = new Date();
+  const firstDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  if (firstDate.getTime() - numDatePreStorage >= 86400000 * 2) {
+    await AsyncStorage.setItem('@previous_date', '0');
+    dispatch(resetStreak());
+  }
+  return undefined;
 };

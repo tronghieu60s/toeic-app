@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import Layout from '~/src/constants/Layout';
 import { getWordsByIdWord } from '~/src/models/WordsModel';
 import { actLoadGroups, actLoadWordsStudied } from '~/src/redux/actions/practiceAction';
+import { actIncreaseStreak } from '~/src/redux/actions/statisticsAction';
 import tailwind from '~/tailwind';
 import { TabPracticeParamList, WordType } from '~/types';
 import { ScrollView, Text, View } from '../../Themed';
@@ -56,6 +57,7 @@ export default memo(function TabPracticeResult({ route }: Props) {
 
       await dispatch(actLoadGroups());
       await dispatch(actLoadWordsStudied());
+      await dispatch(actIncreaseStreak());
       setIsPending(false);
     })();
   }, []);
