@@ -48,16 +48,16 @@ export default memo(function TabPracticeResult({ route }: Props) {
 
   useEffect(() => {
     (async () => {
+      await dispatch(actIncreaseStreak());
+      await dispatch(actLoadGroups());
+      await dispatch(actLoadWordsStudied());
+
       const words = [];
       for (let i = 0; i < wordsId.length; i += 1) {
         const word = await getWordsByIdWord(wordsId[i]);
         words.push(word.data[0]);
       }
       setWords(words);
-
-      await dispatch(actLoadGroups());
-      await dispatch(actLoadWordsStudied());
-      await dispatch(actIncreaseStreak());
       setIsPending(false);
     })();
   }, []);

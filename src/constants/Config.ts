@@ -1,8 +1,8 @@
 export default {
   study: {
-    total_max: 10,
-    count_max: 6,
-    difficult_max: 4,
+    total_max: 12,
+    count_max: 10,
+    difficult_max: 5,
     time_max: 30,
   },
   ads: {

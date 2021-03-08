@@ -47,20 +47,20 @@ export default memo(function TabPracticeReport({ route }: Props) {
     }
 
     const subject = `[BUG - TOEIC ESSENTIAL WORDS] - Báo Lỗi Từ ${word.name_word?.toUpperCase()}`;
-    const body = `- Thiết bị: ${Constants.deviceName}<br>
-    - Thiết bị nhận dạng: ${Constants.installationId}<br>
-    - Phiên bản ứng dụng cơ sở: ${Constants.manifest.version}<br>
-    - Phiên bản dữ liệu ứng dụng: ${version_data}<br><br>
-    - Từ vựng: [${word.name_group}] ${word.name_word} - ${word.mean_word}<br>
-    - Lỗi: ${textBug.join(', ')}<br>
-    - Nội dung chi tiết: ${text}`;
+    const body = `- Thiết bị: ${Constants.deviceName}
+- Thiết bị nhận dạng: ${Constants.installationId}
+- Phiên bản ứng dụng cơ sở: ${Constants.manifest.version}
+- Phiên bản dữ liệu ứng dụng: ${version_data}
+- Từ vựng: [${word.id_word}] ${word.name_word} - ${word.mean_word}
+- Lỗi: ${textBug.join(', ')}
+- Nội dung chi tiết: ${text}`;
     Linking.openURL(`mailto:estudy.techapp@gmail.com?subject=${subject}&body=${body}`);
   };
 
   const textHead = `${word.name_word?.toUpperCase()}\n${word.mean_word}`;
   return (
     <ScrollView style={tailwind('px-4 pt-4')}>
-      <Text weight={700} style={{ ...tailwind('text-sm text-center mb-5'), color: '#5e72e4' }}>
+      <Text weight={700} style={{ ...tailwind('text-sm text-center mb-5'), color: '#f5365c' }}>
         {textHead}
       </Text>
       <View style={tailwind('mb-4')}>

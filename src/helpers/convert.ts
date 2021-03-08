@@ -10,5 +10,5 @@ export function removeVietnameseTones(str: string): string {
 }
 
 export function convertWordsBase(value: string): string {
-  return value.trim().toLowerCase();
+  return value.trim().replace(/ +/g, '').toLowerCase();
 }

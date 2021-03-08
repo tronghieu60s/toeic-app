@@ -1,5 +1,8 @@
 import { StudyType } from '~/types';
 import { ExecuteSQL, executeSql } from '~/src/utils/SQLite';
+import Config from '../constants/Config';
+
+const { count_max } = Config.study;
 
 export const createStudies = (parameters: StudyType): Promise<ExecuteSQL> => {
   const { id_study, count_study, difficult_study } = parameters;
@@ -20,5 +23,5 @@ export const updateStudies = (parameters: StudyType): Promise<ExecuteSQL> => {
 };
 
 export const getWordsStudied = (): Promise<ExecuteSQL> => {
-  return executeSql('select * from studies where studies.count_study = 6', []);
+  return executeSql(`select * from studies where studies.count_study = ${count_max}`, []);
 };
