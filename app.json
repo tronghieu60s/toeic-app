@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "Toeic Essential Words",
+    "name": "600 Essential Words For The TOEIC",
     "slug": "toeic-ew",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "toeic-ew",

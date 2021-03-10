@@ -14,7 +14,13 @@ type Props = {
 
 export default memo(function GroupItem(props: Props) {
   const { group, navigation } = props;
-  const { name_group, pronounce_group = '', image_group, count_words, count_words_complete } = group;
+  const {
+    name_group,
+    pronounce_group = '',
+    image_group,
+    count_words,
+    count_words_complete,
+  } = group;
 
   const handlePressGroup = async () => {
     navigation.navigate('TabPracticeWords', { group });
@@ -47,7 +53,12 @@ const styles = StyleSheet.create({
     ...tailwind('justify-center mb-3 mx-1 p-5 rounded-lg'),
     width: Dimensions.get('window').width / 2 - 13,
   },
-  groupPronounce: { fontSize: 11.5, color: '#888', marginTop: 2 },
+  groupPronounce: {
+    fontSize: 11.5,
+    color: '#666',
+    marginTop: 2,
+    letterSpacing: 0.5,
+  },
   number: {
     fontSize: 6,
     color: '#fff',

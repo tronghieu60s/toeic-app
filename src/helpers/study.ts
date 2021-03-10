@@ -24,25 +24,13 @@ export function isTypeAnswersMean(type: TypesAnswer): boolean {
 
 export const getTypeAnswerRandom = (): TypesAnswer => {
   let typeAnswer: TypesAnswer = 'CHOOSE-NAME-MEAN';
-  const rdStudy = rdNum(0, 5);
+  const rdStudy = rdNum(0, 6);
   if (rdStudy === 0) typeAnswer = 'CHOOSE-NAME-MEAN';
   if (rdStudy === 1) typeAnswer = 'CHOOSE-MEAN-NAME';
   if (rdStudy === 2) typeAnswer = 'CHOOSE-SOUND-MEAN';
   if (rdStudy === 3) typeAnswer = 'FILL-MEAN-NAME';
   if (rdStudy === 4) typeAnswer = 'FILL-NAME-MEAN';
   if (rdStudy === 5) typeAnswer = 'CHOOSE-MEAN-SOUND';
-  return typeAnswer;
-};
-
-export const getTypeAnswer = (count_study: number): TypesAnswer => {
-  let typeAnswer: TypesAnswer = 'CHOOSE-NAME-MEAN';
-  if (count_study === 0) typeAnswer = 'CHOOSE-NAME-MEAN';
-  if (count_study === 1) typeAnswer = 'CHOOSE-MEAN-NAME';
-  if (count_study === 2) typeAnswer = 'CHOOSE-SOUND-MEAN';
-  if (count_study === 3) typeAnswer = 'FILL-MEAN-NAME';
-  if (count_study === 4) typeAnswer = 'FILL-NAME-MEAN';
-  if (count_study === 5) typeAnswer = 'CHOOSE-MEAN-SOUND';
-  if (count_study > 5) typeAnswer = getTypeAnswerRandom();
   return typeAnswer;
 };
 
