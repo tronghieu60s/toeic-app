@@ -21,7 +21,6 @@ import { View } from '~/src/components/Themed';
 import { TabPracticeParamList } from '~/types';
 import HeaderTitle from '../components/Common/HeaderTitle';
 import TabPractice from '../components/TabPractice';
-import TabPracticeExam from '../components/TabPractice/Exam';
 import TabPracticeStudyHeaderBackImage from '../components/TabPractice/Study/Header/BackImage';
 import Colors from '../constants/Colors';
 import { RootState } from '../redux/reducers/rootReducer';
@@ -81,36 +80,6 @@ export default function TabPracticeNavigator(): JSX.Element {
       <TabPracticeStack.Screen
         name="TabPracticeStudy"
         component={TabPracticeStudy}
-        options={({ navigation }) => {
-          navigation.addListener('beforeRemove', (e: any) => {
-            e.preventDefault();
-
-            Alert.alert(
-              'Thoát phiên học',
-              'Bạn có chắc muốn thoát phiên học này không? Kết quả sẽ được lưu lại.',
-              [
-                { text: 'Hủy', style: 'cancel' },
-                {
-                  text: 'Thoát',
-                  style: 'destructive',
-                  onPress: () => navigation.dispatch(e.data.action),
-                },
-              ],
-            );
-          });
-
-          return {
-            headerStyle: { backgroundColor: '#47d798' },
-            headerBackImage: () => <TabPracticeStudyHeaderBackImage />,
-            headerTitle: () => <View />,
-            headerRight: () => <TabPracticeStudyHeaderRight />,
-            cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-          };
-        }}
-      />
-      <TabPracticeStack.Screen
-        name="TabPracticeExam"
-        component={TabPracticeExam}
         options={({ navigation }) => {
           navigation.addListener('beforeRemove', (e: any) => {
             e.preventDefault();

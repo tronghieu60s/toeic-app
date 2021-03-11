@@ -178,13 +178,3 @@ export const actLoadWordsDifficultStudy = (words: WordType[]): WordStudy[] => {
   const wordsStudy = loadWordsTypeAnswerRandom(wordsLoad);
   return wordsStudy;
 };
-
-// Load Word Exam
-export const actLoadWordsExam = (words: WordType[], numOfWords: number): WordStudy[] => {
-  const listWords: WordStudy[] = [];
-  for (let i = 0; i < numOfWords; i += 1) {
-    const typeAnswer = getTypeAnswerRandom();
-    listWords.push({ type: typeAnswer, data: words[rdNum(0, words.length)] });
-  }
-  return listWords;
-};

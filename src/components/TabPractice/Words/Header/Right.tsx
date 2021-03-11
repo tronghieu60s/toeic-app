@@ -1,4 +1,4 @@
-import { AntDesign, Entypo, SimpleLineIcons } from '@expo/vector-icons';
+import { AntDesign, SimpleLineIcons } from '@expo/vector-icons';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { memo, useState } from 'react';
 import { StyleSheet } from 'react-native';
@@ -23,15 +23,9 @@ export default memo(function TabPracticeWordsHeaderRight({ navigation }: Props) 
   return (
     <View style={styles.container}>
       {words.length > 0 && (
-        <>
-          <Ripple style={styles.button} onPress={() => navigation.navigate('TabPracticeStudy')}>
-            <SimpleLineIcons name="graduation" size={20} color={Colors[theme].text} />
-            {/* <Text style={styles.number}>10</Text> */}
-          </Ripple>
-          <Ripple style={styles.button} onPress={() => navigation.navigate('TabPracticeExam')}>
-            <Entypo name="time-slot" size={17.5} color={Colors[theme].text} />
-          </Ripple>
-        </>
+        <Ripple style={styles.button} onPress={() => navigation.navigate('TabPracticeStudy')}>
+          <SimpleLineIcons name="graduation" size={20} color={Colors[theme].text} />
+        </Ripple>
       )}
       <Ripple style={styles.button} onPress={() => setModalVisible(true)}>
         <AntDesign name="setting" size={19} color={Colors[theme].text} />
@@ -50,15 +44,4 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff0',
   },
   button: { ...tailwind('justify-center items-center p-2'), backgroundColor: '#fff0' },
-  number: {
-    fontSize: 6,
-    color: '#fff',
-    backgroundColor: '#f5365c',
-    position: 'absolute',
-    bottom: 4,
-    right: 2,
-    paddingVertical: 2,
-    paddingHorizontal: 3,
-    borderRadius: 15,
-  },
 });
