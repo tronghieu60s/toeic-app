@@ -82,7 +82,7 @@ const loadWordsStudyWithSet = (words: WordType[]): WordType[] => {
   const wordFirst = newWords.every((o) => o.count_study === null);
   if (newWords.length > 0) {
     newWords = wordFirst ? shuffle(newWords).slice(0, numOfASet) : newWords.slice(0, numOfASet);
-  } else newWords = [...words];
+  } else newWords = shuffle([...words]);
   return newWords;
 };
 
@@ -92,7 +92,7 @@ const loadWordsStudyMaxTotal = (words: WordType[]): WordType[] => {
     for (let i = 0; i < 4; i += 1) {
       wordsState.push(words[rdNum(0, words.length)]);
     }
-  } else wordsState = [...words];
+  } else wordsState = shuffle([...words]);
 
   let curNumWords = 0;
   const newWords: WordType[] = [];
@@ -101,7 +101,7 @@ const loadWordsStudyMaxTotal = (words: WordType[]): WordType[] => {
     if (curNumWords >= total_max) break;
 
     const word = words[i];
-    if ((word.count_study || 0) < 2) {
+    if ((word.count_study || 0) < 6) {
       for (let j = 0; j < 3; j += 1) {
         if (curNumWords >= total_max) break;
         newWords.push(word);
@@ -114,11 +114,9 @@ const loadWordsStudyMaxTotal = (words: WordType[]): WordType[] => {
         curNumWords += 1;
       }
     } else {
-      for (let j = 0; j < 2; j += 1) {
-        if (curNumWords >= total_max) break;
-        newWords.push(word);
-        curNumWords += 1;
-      }
+      if (curNumWords >= total_max) break;
+      newWords.push(word);
+      curNumWords += 1;
     }
   }
   return newWords;
@@ -162,10 +160,18 @@ const loadWordsDifficultMaxTotal = (words: WordType[]): WordType[] => {
 
     const word = words[i];
     if ((word.difficult_study || 1) <= difficult_max) {
-      for (let j = 0; j <= difficult_max - (word.difficult_study || 1); j += 1) {
-        if (curNumWords >= total_max) break;
-        newWords.push(word);
-        curNumWords += 1;
+      if ((word.difficult_study || 1) < 3) {
+        for (let j = 0; j < 2; j += 1) {
+          if (curNumWords >= total_max) break;
+          newWords.push(word);
+          curNumWords += 1;
+        }
+      } else {
+        for (let j = 0; j <= difficult_max - (word.difficult_study || 1); j += 1) {
+          if (curNumWords >= total_max) break;
+          newWords.push(word);
+          curNumWords += 1;
+        }
       }
     }
   }
