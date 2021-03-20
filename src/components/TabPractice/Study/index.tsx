@@ -89,7 +89,7 @@ export default memo(function TabPracticeStudy({ navigation }: Props) {
     const wordsUnique = Array.from(new Set(words.map((item) => item.data.id_word)));
     const result: TypePracticeResult = {
       point,
-      correct: words.length,
+      correct: words.length - countIncorrect,
       inCorrect: countIncorrect,
       words: wordsUnique,
     };
