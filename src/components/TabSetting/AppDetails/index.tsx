@@ -13,9 +13,9 @@ export default memo(function TabSettingAppDetails() {
   } - 2021`;
 
   return (
-    <ScrollView style={tailwind('h-full bg-white px-7')}>
+    <ScrollView style={tailwind('h-full bg-white px-7 pt-8')}>
       <View style={tailwind('items-center mb-6')}>
-        <Image style={tailwind('w-28 h-28')} source={require('~/assets/images/icon.png')} />
+        <Image style={tailwind('w-16 h-16 mb-5')} source={require('~/assets/images/icon.png')} />
         <Text
           weight={600}
           style={tailwind('w-9/12 text-base text-center tracking-wider leading-6')}

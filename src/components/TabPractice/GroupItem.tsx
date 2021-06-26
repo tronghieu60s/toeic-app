@@ -26,11 +26,8 @@ export default memo(function GroupItem(props: Props) {
     navigation.navigate('TabPracticeWords', { group });
   };
 
-  const styleStudied =
-    count_words_complete >= count_words ? { borderTopWidth: 3, borderColor: '#2dce89' } : {};
-
   return (
-    <Ripple style={[styles.group, styleStudied]} onPress={handlePressGroup}>
+    <Ripple style={styles.group} onPress={handlePressGroup}>
       <Image source={{ uri: image_group }} style={tailwind('w-6 h-6')} />
       <Text weight={700} style={{ fontSize: 13.5, marginTop: 5 }}>
         {name_group}

@@ -1,7 +1,5 @@
 import {
   AdMobBanner as DefaultAdMobBanner,
-  AdMobInterstitial as DefaultAdMobInterstitial,
-  AdMobRewarded as DefaultAdMobRewarded,
 } from 'expo-ads-admob';
 import React, { useState } from 'react';
 import tailwind from '~/tailwind';
@@ -11,8 +9,6 @@ import { View } from './Themed';
 // key test
 // const ad_banner = 'ca-app-pub-3940256099942544/6300978111';
 // const ad_interstitial_video = 'ca-app-pub-3940256099942544/8691691433';
-const ad_rewarded_video = 'ca-app-pub-3940256099942544/5354046379';
-const { ad_banner, ad_interstitial_video } = Config.ads;
 
 type AdsProps = {
   light?: boolean;
@@ -29,24 +25,24 @@ export function AdMobBanner(props: AdMobBannerProps): JSX.Element {
 
   return (
     <View light={light} style={tailwind('justify-center items-center')}>
-      <DefaultAdMobBanner
+      {/* <DefaultAdMobBanner
         adUnitID={ad_banner}
         onDidFailToReceiveAdWithError={bannerError}
         servePersonalizedAds
         {...props}
-      />
+      /> */}
     </View>
   );
 }
 
 export async function AdMobInterstitial(): Promise<void> {
-  await DefaultAdMobInterstitial.setAdUnitID(ad_interstitial_video);
-  await DefaultAdMobInterstitial.requestAdAsync({ servePersonalizedAds: true });
-  await DefaultAdMobInterstitial.showAdAsync();
+  // await DefaultAdMobInterstitial.setAdUnitID(ad_interstitial_video);
+  // await DefaultAdMobInterstitial.requestAdAsync({ servePersonalizedAds: true });
+  // await DefaultAdMobInterstitial.showAdAsync();
 }
 
 export async function AdMobRewarded(): Promise<void> {
-  await DefaultAdMobRewarded.setAdUnitID(ad_rewarded_video);
-  await DefaultAdMobRewarded.requestAdAsync();
-  await DefaultAdMobRewarded.showAdAsync();
+  // await DefaultAdMobRewarded.setAdUnitID(ad_rewarded_video);
+  // await DefaultAdMobRewarded.requestAdAsync();
+  // await DefaultAdMobRewarded.showAdAsync();
 }
