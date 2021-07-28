@@ -24,8 +24,9 @@ export type TabPracticeParamList = {
     word: WordType;
   };
   TabPracticeResult: {
-    results: TypePracticeResult
+    results: TypePracticeResult;
   };
+  TabPracticeAlert: undefined;
 };
 
 export type TabDifficultParamList = {
