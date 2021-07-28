@@ -2,7 +2,7 @@
   "expo": {
     "name": "600 Essential Words For The TOEIC",
     "slug": "toeic-ew",
-    "version": "0.0.5",
+    "version": "0.0.7",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "toeic-ew",
@@ -28,7 +28,7 @@
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.tronghieuit.toeicew",
-      "versionCode": 9,
+      "versionCode": 11,
       "permissions": [
         "VIBRATE"
       ],
