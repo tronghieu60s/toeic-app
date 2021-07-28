@@ -21,6 +21,8 @@ type AdsProps = {
 export type AdMobBannerProps = AdsProps & DefaultAdMobBanner['props'];
 
 export function AdMobBanner(props: AdMobBannerProps): JSX.Element {
+  if (true) return <View />;
+
   const { light } = props;
   const [bannerLoad, setBannerLoad] = useState(true);
 
@@ -40,13 +42,13 @@ export function AdMobBanner(props: AdMobBannerProps): JSX.Element {
 }
 
 export async function AdMobInterstitial(): Promise<void> {
-  await DefaultAdMobInterstitial.setAdUnitID(ad_interstitial_video);
-  await DefaultAdMobInterstitial.requestAdAsync({ servePersonalizedAds: true });
-  await DefaultAdMobInterstitial.showAdAsync();
+  // await DefaultAdMobInterstitial.setAdUnitID(ad_interstitial_video);
+  // await DefaultAdMobInterstitial.requestAdAsync({ servePersonalizedAds: true });
+  // await DefaultAdMobInterstitial.showAdAsync();
 }
 
 export async function AdMobRewarded(): Promise<void> {
-  await DefaultAdMobRewarded.setAdUnitID(ad_rewarded_video);
-  await DefaultAdMobRewarded.requestAdAsync();
-  await DefaultAdMobRewarded.showAdAsync();
+  // await DefaultAdMobRewarded.setAdUnitID(ad_rewarded_video);
+  // await DefaultAdMobRewarded.requestAdAsync();
+  // await DefaultAdMobRewarded.showAdAsync();
 }

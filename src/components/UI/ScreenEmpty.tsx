@@ -8,7 +8,7 @@ type Props = { children: React.ReactNode };
 export default memo(function ScreenEmpty(props: Props) {
   const { children } = props;
   return (
-    <View style={tailwind('flex-1 justify-center items-center px-10 pb-20')}>
+    <View light style={tailwind('flex-1 justify-center items-center px-10 pb-20')}>
       <Image style={tailwind('w-12 h-12 mb-2')} source={require('~/assets/images/box.png')} />
       <Text style={{ fontSize: 13, textAlign: 'center' }}>{children}</Text>
     </View>
